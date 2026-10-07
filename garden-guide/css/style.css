@@ -1,0 +1,575 @@
+/* 헤더 */
+.header {
+  background: var(--color-surface);
+  border-bottom: var(--border-w) solid var(--color-primary);
+}
+.header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 1.25rem;
+}
+.header__title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-right: auto;
+  font-size: clamp(1.5rem, 4vw, 1.875rem);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-primary);
+}
+.header__logo { width: 2.75rem; height: 2.75rem; }
+
+/* 보기 설정: 모바일은 3칸(아이콘 위·글자 아래), PC는 한 줄 */
+.tools {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+}
+.tools__label { grid-column: 1 / -1; font-size: 1rem; }
+.tools .btn--tool { flex-direction: column; gap: 0.25rem; padding-inline: 0.5rem; }
+@media (min-width: 1024px) {
+  .tools { display: flex; align-items: center; width: auto; }
+  .tools__label { margin-right: 0.5rem; }
+  .tools .btn--tool { flex-direction: row; gap: 0.5rem; padding-inline: 1rem; }
+}
+
+/* 주요 메뉴 */
+.gnb { border-top: 0.0625rem solid var(--color-bg); }
+.gnb__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding-block: 0.75rem;
+}
+.gnb__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  min-height: var(--touch);
+  padding: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+  border: var(--border-w) solid transparent;
+  border-radius: var(--radius);
+  transition: background-color 0.15s;
+}
+@media (min-width: 768px) {
+  .gnb__link { flex-direction: row; gap: 0.5rem; }
+}
+.gnb__link:hover { background: var(--color-bg); border-color: var(--color-primary); }
+.gnb__link[aria-current="page"] {
+  color: var(--color-surface);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* 공통 섹션 */
+.panel {
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+  scroll-margin-top: 1rem;
+}
+.panel + .panel { border-top: var(--border-w) solid var(--color-surface); }
+.panel__title {
+  font-size: clamp(1.625rem, 4vw, 2.125rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+.panel__lead {
+  margin-top: 0.5rem;
+  font-size: 1.125rem;
+}
+
+/* 오늘 요약 */
+.summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: var(--gap);
+  padding: 1.25rem 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-primary);
+  border-radius: var(--radius);
+}
+.summary:empty { display: none; }
+.summary--due { color: var(--color-accent); border-color: var(--color-accent); }
+.summary .ico { width: 2rem; height: 2rem; }
+
+.empty {
+  margin-top: var(--gap);
+  padding: 2rem 1.5rem;
+  font-size: 1.125rem;
+  text-align: center;
+  background: var(--color-surface);
+  border: var(--border-w) dashed var(--color-primary);
+  border-radius: var(--radius);
+}
+
+/* 내 식물 목록 */
+.my-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: var(--gap);
+  margin-top: var(--gap);
+}
+.my-list:empty { display: none; }
+
+.plant-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  height: 100%;
+  padding: clamp(1.25rem, 4vw, 1.75rem);
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-primary);
+  border-radius: 1.5rem;
+}
+.plant-card--due { border-color: var(--color-accent); border-width: 0.25rem; }
+.plant-card__head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.plant-card__img { width: 4.5rem; height: 4.5rem; flex-shrink: 0; }
+.plant-card__name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* 물 주기 상태 */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--color-primary);
+}
+.status--due, .status--none { color: var(--color-accent); }
+
+.plant-card__info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+  padding-block: 1rem;
+  border-block: 0.0625rem solid var(--color-primary);
+}
+.plant-card__label { font-weight: 400; }
+.plant-card__value { font-weight: 700; }
+
+/* 이번 주 기록 */
+.week__title { font-weight: 700; }
+.week {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(1.875rem, 1fr));
+  gap: 0.125rem;
+  margin-top: 0.5rem;
+}
+.week__day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding-block: 0.5rem;
+  font-size: 1rem;
+  border: 0.0625rem solid transparent;
+  border-radius: 0.75rem;
+}
+.week__legend {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+.week__legend .ico { width: 1.25rem; height: 1.25rem; color: var(--color-accent); }
+.week__day--today { border: var(--border-w) solid var(--color-text); font-weight: 700; }
+.week__mark { display: grid; place-items: center; width: 1.5rem; height: 1.5rem; color: var(--color-accent); }
+.week__mark--empty::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--color-bg);
+  border: 0.0625rem solid var(--color-text);
+  border-radius: 50%;
+}
+
+/* 카드 버튼 */
+.plant-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+.plant-card__sub {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+  gap: 0.75rem;
+}
+
+/* 날짜 고치기 폼 */
+.date-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  background: var(--color-bg);
+  border-radius: var(--radius);
+}
+.date-form__label { font-weight: 700; }
+.date-form__input {
+  width: 100%;
+  min-height: var(--touch);
+  padding: 0.5rem 1rem;
+  font-size: 1.125rem;
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-text);
+  border-radius: 0.75rem;
+}
+.date-form__input[aria-invalid="true"] { border-color: var(--color-accent); border-width: 0.25rem; }
+.date-form__error {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+.date-form__error:empty { display: none; }
+.date-form__error:not(:empty)::before { content: "! "; }
+
+/* 빼기 확인 */
+.confirm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border: var(--border-w) solid var(--color-accent);
+  border-radius: var(--radius);
+}
+.confirm__text { font-weight: 700; color: var(--color-accent); }
+.confirm__btns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+  gap: 0.75rem;
+}
+
+/* 식물 고르기 */
+.picker {
+  margin-top: clamp(3rem, 8vw, 4.5rem);
+}
+.picker__title { font-size: 1.375rem; font-weight: 700; }
+.picker__desc { margin-top: 0.25rem; }
+.picker__group {
+  margin-top: 2rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.picker__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+.picker__btn { justify-content: flex-start; width: 100%; min-height: 4rem; padding-inline: 0.75rem; text-align: left; }
+.picker__img { flex-shrink: 0; width: 2.5rem; height: 2.5rem; }
+.picker__btn[aria-pressed="true"]::before { content: none; }
+.picker__btn[aria-pressed="true"]::after {
+  content: "✓";
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-left: auto;
+  font-size: 1rem;
+  color: var(--color-primary);
+  background: var(--color-surface);
+  border-radius: 50%;
+}
+
+/* 도움말 */
+.tip {
+  margin-top: clamp(3rem, 8vw, 4.5rem);
+  padding: 1.5rem;
+  background: var(--color-surface);
+  border-left: 0.5rem solid var(--color-accent);
+  border-radius: var(--radius);
+}
+.tip__title { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+
+/* 종류 필터 */
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: var(--gap);
+}
+.filter__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 5.5rem;
+  min-height: var(--touch);
+  padding: 0.5rem 1.25rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-primary);
+  border-radius: var(--radius-pill);
+}
+.filter__btn:hover { background: var(--color-bg); }
+.filter__btn[aria-pressed="true"] { color: var(--color-surface); background: var(--color-primary); }
+.filter__btn[aria-pressed="true"]::before { content: "✓ "; }
+
+/* 식물 안내 카드 */
+.guide-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  align-items: start;
+  gap: var(--gap);
+  margin-top: var(--gap);
+}
+.guide-list__item[hidden] { display: none; }
+.guide-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  height: 100%;
+  padding: clamp(1.25rem, 4vw, 1.75rem);
+  background: var(--color-surface);
+  border-radius: 1.5rem;
+  scroll-margin-top: 1rem;
+}
+.guide-card__img { width: 6rem; height: 6rem; }
+.guide-card__type {
+  align-self: flex-start;
+  padding: 0.125rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  border: 0.0625rem solid var(--color-primary);
+  border-radius: var(--radius-pill);
+}
+.guide-card__name { font-size: 1.5rem; font-weight: 700; line-height: 1.3; }
+.tags { display: flex; flex-direction: column; gap: 0.25rem; }
+.tags__label {
+  display: inline-block;
+  min-width: 3.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.guide-card__more { margin-top: auto; border-top: 0.0625rem solid var(--color-primary); }
+.guide-card__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--touch);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  cursor: pointer;
+  list-style: none;
+}
+.guide-card__summary::-webkit-details-marker { display: none; }
+.guide-card__summary-text { display: inline-flex; align-items: center; gap: 0.5rem; }
+.guide-card__add[aria-pressed="true"]::before { content: none; }
+.guide-card__summary::after { content: "열기 +"; flex-shrink: 0; margin-left: 0.5rem; font-size: 1rem; white-space: nowrap; }
+.guide-card__more[open] .guide-card__summary::after { content: "닫기 −"; }
+.guide-card__detail { padding-bottom: 0.5rem; }
+.guide-card__term { margin-top: 0.75rem; font-weight: 700; color: var(--color-primary); }
+.guide-card__term:first-child { margin-top: 0; }
+
+/* 이달의 할 일 */
+.month-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "label label" "prev next";
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: var(--gap);
+}
+.month-nav__label { grid-area: label; }
+@media (min-width: 768px) {
+  .month-nav { grid-template-columns: auto 1fr auto; grid-template-areas: "prev label next"; }
+}
+.month-nav__label {
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-primary);
+}
+.month-nav__now { margin-top: 1.5rem; }
+.todo {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  counter-reset: todo;
+}
+.todo__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  font-size: 1.125rem;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  counter-increment: todo;
+}
+.todo__item::before {
+  content: counter(todo);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  font-weight: 700;
+  color: var(--color-surface);
+  background: var(--color-primary);
+  border-radius: 50%;
+}
+.todo__title { display: block; }
+
+/* 광고 영역 (광고 규격 때문에 높이만 px 고정) */
+.ad {
+  margin-top: clamp(3rem, 8vw, 4.5rem);
+  padding-top: 1.5rem;
+  border-top: 0.0625rem solid var(--color-primary);
+}
+.ad__label {
+  font-size: 1rem;
+  font-weight: 700;
+}
+.ad__slot {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 728px;
+  min-height: 100px;
+  margin: 0.5rem auto 0;
+  background: var(--color-surface);
+  border: 0.0625rem dashed var(--color-text);
+  border-radius: 0.5rem;
+}
+.ad__placeholder { font-size: 1rem; }
+@media (min-width: 768px) {
+  .ad__slot { min-height: 90px; }
+}
+
+/* 푸터 */
+.footer {
+  padding-block: 2.5rem;
+  text-align: center;
+  color: var(--color-surface);
+  background: var(--color-primary);
+}
+.footer__note { margin-top: 0.5rem; font-size: 1rem; }
+.footer__nav { margin-top: 1rem; }
+.footer__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch);
+  padding-inline: 1rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+.footer__link[aria-current="page"] { text-decoration-thickness: 0.2em; }
+.footer :focus-visible { outline-color: var(--color-surface); }
+
+/* 개인정보 처리방침 */
+.policy {
+  max-width: 44rem;
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+}
+.policy__title {
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.35;
+}
+.policy__lead { margin-top: 1rem; font-size: 1.125rem; }
+.policy__date { margin-top: 0.5rem; }
+.policy__toc {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+}
+.policy__toc-title { font-size: 1.125rem; font-weight: 700; }
+.policy__toc-list { margin-top: 0.5rem; padding-left: 1.5rem; list-style: decimal; }
+.policy__toc-link {
+  display: inline-block;
+  padding-block: 0.5rem;
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.policy__section {
+  margin-top: clamp(2.5rem, 6vw, 3.5rem);
+  scroll-margin-top: 1rem;
+}
+.policy__heading {
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.policy__text { margin-top: 0.75rem; }
+.policy__list {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+.policy__link {
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.policy__fill {
+  padding: 0 0.25rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  background: none;
+  border-bottom: 0.125rem dashed var(--color-accent);
+}
+
+/* 고대비 모드 보정 */
+html[data-contrast="high"] .guide-card,
+html[data-contrast="high"] .todo__item,
+html[data-contrast="high"] .tip { border: var(--border-w) solid var(--color-text); }
+
+/* 태블릿 이상 */
+@media (min-width: 768px) {
+  .plant-card__actions .btn--primary { font-size: 1.25rem; }
+}
+
+/* 알림 메시지 */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  z-index: 50;
+  width: min(calc(100% - 2rem), 32rem);
+  padding: 1rem 1.25rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-surface);
+  background: var(--color-text);
+  border-radius: var(--radius);
+  transform: translateX(-50%);
+}
+.toast:empty { display: none; }
+.toast:not(:empty)::before { content: "✓ "; }

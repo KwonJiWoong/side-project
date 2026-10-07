@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="귀여운 밥풀이가 아침, 점심, 저녁 메뉴를 골라 드려요. 한식·중식·일식·양식 중에서 버튼 한 번으로 추천받으세요.">
+  <meta name="theme-color" content="#ffe3ea">
+  <title>밥풀이의 오늘 뭐 먹지? | 메뉴 추천</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&display=swap">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="container header__inner">
+      <h1 class="header__title" id="siteTitle" tabindex="-1"><span aria-hidden="true">🍙</span> 오늘 뭐 먹지?</h1>
+      <button type="button" class="btn btn--home" id="homeBtn"><span aria-hidden="true">🏠</span> 처음으로</button>
+
+      <div class="tools" role="group" aria-label="보기 설정">
+        <p class="tools__label">글자 크기: <strong id="sizeText">보통</strong></p>
+        <button type="button" class="btn btn--tool" id="fontDown">가<span class="sr-only"> 글자 작게</span></button>
+        <button type="button" class="btn btn--tool" id="fontUp">가+<span class="sr-only"> 글자 크게</span></button>
+        <button type="button" class="btn btn--tool btn--toggle" id="contrastBtn" aria-pressed="false">고대비 보기</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="container">
+
+      <!-- 캐릭터 인사 -->
+      <section class="hello" aria-labelledby="helloTitle">
+        <h2 class="sr-only" id="helloTitle">밥풀이 인사</h2>
+        <figure class="mascot" id="mascot">
+          <svg class="mascot__img" viewBox="0 0 160 150" role="img" aria-labelledby="mascotAlt">
+            <title id="mascotAlt">주먹밥 캐릭터 밥풀이가 웃고 있어요</title>
+            <!-- 몸통 -->
+            <path class="mascot__body" d="M80 10c10 0 16 6 22 16l40 72c8 16-2 38-24 38H42c-22 0-32-22-24-38l40-72c6-10 12-16 22-16z"/>
+            <!-- 김 -->
+            <path class="mascot__nori" d="M34 104h92v20c0 7-6 12-13 12H47c-7 0-13-5-13-12z"/>
+            <!-- 밥알 -->
+            <ellipse class="mascot__grain" cx="62" cy="46" rx="4" ry="2.5" transform="rotate(-30 62 46)"/>
+            <ellipse class="mascot__grain" cx="100" cy="52" rx="4" ry="2.5" transform="rotate(25 100 52)"/>
+            <!-- 눈: 기본 -->
+            <g class="mascot__eyes mascot__eyes--open">
+              <circle cx="64" cy="74" r="6"/>
+              <circle cx="96" cy="74" r="6"/>
+              <circle class="mascot__shine" cx="66" cy="72" r="2"/>
+              <circle class="mascot__shine" cx="98" cy="72" r="2"/>
+            </g>
+            <!-- 눈: 신남 -->
+            <g class="mascot__eyes mascot__eyes--happy">
+              <path d="M57 76q7-10 14 0"/>
+              <path d="M89 76q7-10 14 0"/>
+            </g>
+            <!-- 볼터치 -->
+            <ellipse class="mascot__cheek" cx="52" cy="88" rx="8" ry="5"/>
+            <ellipse class="mascot__cheek" cx="108" cy="88" rx="8" ry="5"/>
+            <!-- 입 -->
+            <path class="mascot__mouth" d="M72 86q8 10 16 0"/>
+          </svg>
+          <figcaption class="mascot__bubble">
+            <strong class="mascot__name">밥풀이</strong>
+            <span id="mascotSay">안녕하세요! 오늘 뭐 드실지 같이 골라 봐요.</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- 끼니 선택 -->
+      <section class="pick" aria-labelledby="pickTitle">
+        <h2 class="section-title" id="pickTitle"><span class="section-title__num" aria-hidden="true">1</span> 어느 끼니를 드실 건가요?</h2>
+        <nav aria-label="끼니 선택">
+          <ul class="meal-list">
+            <li><button type="button" class="meal-btn" data-meal="breakfast" aria-pressed="false"><span class="meal-btn__emoji" aria-hidden="true">🌅</span><span class="meal-btn__label">아침</span></button></li>
+            <li><button type="button" class="meal-btn" data-meal="lunch" aria-pressed="false"><span class="meal-btn__emoji" aria-hidden="true">☀️</span><span class="meal-btn__label">점심</span></button></li>
+            <li><button type="button" class="meal-btn" data-meal="dinner" aria-pressed="false"><span class="meal-btn__emoji" aria-hidden="true">🌙</span><span class="meal-btn__label">저녁</span></button></li>
+          </ul>
+        </nav>
+      </section>
+
+      <!-- 음식 종류 필터 -->
+      <section class="kind" aria-labelledby="kindTitle">
+        <h2 class="section-title" id="kindTitle"><span class="section-title__num" aria-hidden="true">2</span> 어떤 음식이 좋으세요?</h2>
+        <ul class="kind-list" role="group" aria-label="음식 종류 선택">
+          <li><button type="button" class="kind-btn" data-kind="all" aria-pressed="true"><span aria-hidden="true">🍽️</span> 전부</button></li>
+          <li><button type="button" class="kind-btn" data-kind="ko" aria-pressed="false"><span aria-hidden="true">🍚</span> 한식</button></li>
+          <li><button type="button" class="kind-btn" data-kind="cn" aria-pressed="false"><span aria-hidden="true">🥟</span> 중식</button></li>
+          <li><button type="button" class="kind-btn" data-kind="jp" aria-pressed="false"><span aria-hidden="true">🍣</span> 일식</button></li>
+          <li><button type="button" class="kind-btn" data-kind="we" aria-pressed="false"><span aria-hidden="true">🍝</span> 양식</button></li>
+        </ul>
+      </section>
+
+      <!-- 추천 결과 -->
+      <section class="result" aria-labelledby="resultTitle">
+        <h2 class="section-title" id="resultTitle"><span class="section-title__num" aria-hidden="true">3</span> 오늘의 추천 메뉴</h2>
+        <article class="card" aria-labelledby="cardName">
+          <p class="card__meal" id="cardMeal"></p>
+          <p class="card__emoji" id="cardEmoji" aria-hidden="true"></p>
+          <h3 class="card__name" id="cardName"></h3>
+          <p class="card__desc" id="cardDesc"></p>
+          <ul class="card__info">
+            <li><span class="card__label">음식 종류</span> <strong id="cardKind"></strong></li>
+            <li><span class="card__label">걸리는 시간</span> <strong id="cardTime"></strong></li>
+            <li><span class="card__label">먹는 느낌</span> <strong id="cardFeel"></strong></li>
+          </ul>
+          <a class="btn btn--outline btn--block" id="recipeLink" href="https://search.naver.com/" target="_blank" rel="noopener noreferrer">만드는 법 보기<span class="sr-only"> (새 창으로 열림)</span></a>
+        </article>
+        <button type="button" class="btn btn--primary btn--block" id="nextBtn"><span aria-hidden="true">🎲</span> 다른 메뉴 추천받기</button>
+        <p class="notice" id="notice" role="status"></p>
+      </section>
+
+      <!-- 전체 메뉴 -->
+      <section class="all" aria-labelledby="allTitle">
+        <h2 class="section-title" id="allTitle">직접 골라 볼까요?</h2>
+        <details class="all__details" id="allDetails">
+          <summary class="all__summary"><span>전체 메뉴 보기 <span id="menuCount"></span></span></summary>
+          <ul class="menu-list" id="menuList"></ul>
+        </details>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <div class="container">
+      <p>밥풀이가 응원해요! 오늘도 맛있는 한 끼 드세요 <span aria-hidden="true">💕</span></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+/* 디자인 토큰 */
+:root {
+  --color-bg: #fff6f8;
+  --color-surface: #ffffff;
+  --color-soft: #ffe3ea;
+  --color-bubble: #fff4cc;
+  --color-text: #3b2330;
+  --color-text-sub: #5c3a4a;
+  --color-primary: #9e2a52;
+  --color-primary-hover: #7f1f41;
+  --color-on-primary: #ffffff;
+  --color-accent: #2e5a3a;
+  --color-accent-soft: #e4f3e6;
+  --color-border: #b56a86;
+  --color-focus: #0b3d91;
+
+  /* 캐릭터 색 */
+  --mascot-body: #ffffff;
+  --mascot-line: #6b2440;
+  --mascot-nori: #2b3a2e;
+  --mascot-cheek: #ff8fab;
+  --mascot-eye: #3b2330;
+
+  --font-sans: 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  --font-cute: 'Jua', var(--font-sans);
+  --border-w: 0.1875rem;
+  --radius: 1.25rem;
+  --shadow: 0 0.3rem 0 var(--color-border);
+  --touch: 3.5rem;
+  --page-pad: clamp(1rem, 4vw, 1.5rem);
+}
+
+/* 고대비 모드 */
+html[data-contrast="high"] {
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-soft: #ffffff;
+  --color-bubble: #ffffff;
+  --color-text: #000000;
+  --color-text-sub: #000000;
+  --color-primary: #000000;
+  --color-primary-hover: #222222;
+  --color-accent: #000000;
+  --color-accent-soft: #ffffff;
+  --color-border: #000000;
+  --color-focus: #d00000;
+  --mascot-line: #000000;
+  --mascot-nori: #000000;
+  --mascot-cheek: #ffffff;
+  --mascot-eye: #000000;
+  --border-w: 0.25rem;
+  --shadow: none;
+}
+
+/* 글자 크기 단계 (기본 18px) */
+html { font-size: 112.5%; }
+html[data-size="1"] { font-size: 125%; }
+html[data-size="2"] { font-size: 137.5%; }
+
+/* 기본 */
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  background-image: radial-gradient(var(--color-soft) 0.18rem, transparent 0.2rem);
+  background-size: 1.5rem 1.5rem;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+html[data-contrast="high"] body { background-image: none; }
+
+/* 키보드 포커스 */
+:focus-visible {
+  outline: 0.25rem solid var(--color-focus);
+  outline-offset: 0.2rem;
+}
+
+/* 본문 바로가기 */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -10rem;
+  z-index: 100;
+  padding: 1rem 1.5rem;
+  font-weight: 700;
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  border-radius: var(--radius);
+}
+.skip-link:focus { top: 1rem; }
+
+/* 스크린리더 전용 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* 컨테이너 */
+.container {
+  width: 100%;
+  max-width: 40rem;
+  margin-inline: auto;
+  padding-inline: var(--page-pad);
+}
+@media (min-width: 768px) {
+  .container { max-width: 44rem; }
+}
+@media (min-width: 1024px) {
+  .container { max-width: 48rem; }
+}
+
+/* 모션 최소화 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

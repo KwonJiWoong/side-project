@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="디자인 토큰, BEM 이름 짓기, 선택자, 단위, 반응형, 접근성까지 CSS 작성 규칙을 정리했습니다.">
+  <meta name="theme-color" content="#1f4b7a">
+  <title>CSS 가이드 | 나의 코딩 가이드</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <!-- 아이콘 모음 -->
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" hidden>
+    <symbol id="i-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M3 11.5 12 4l9 7.5M6 10v10h12V10"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M10 20v-5h4v5"/></symbol>
+    <symbol id="i-text-minus" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" cx="10.5" cy="10.5" r="6.5"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m15.5 15.5 5 5M7.5 10.5h6"/></symbol>
+    <symbol id="i-text-plus" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" cx="10.5" cy="10.5" r="6.5"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m15.5 15.5 5 5M7.5 10.5h6M10.5 7.5v6"/></symbol>
+    <symbol id="i-contrast" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="12" r="8.5"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 3.5a8.5 8.5 0 1 0 0 17c1.4 0 2-1 1.5-2.2-.6-1.3.3-2.8 1.8-2.8H17a3.5 3.5 0 0 0 3.5-3.5C20.5 7 16.7 3.5 12 3.5z"/><circle fill="currentColor" cx="7.5" cy="11" r="1.3"/><circle fill="currentColor" cx="10" cy="7.3" r="1.3"/><circle fill="currentColor" cx="14.5" cy="7.3" r="1.3"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M9 6h11M9 12h11M9 18h11"/><circle fill="currentColor" cx="4.5" cy="6" r="1.4"/><circle fill="currentColor" cx="4.5" cy="12" r="1.4"/><circle fill="currentColor" cx="4.5" cy="18" r="1.4"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="m5 15 7-7 7 7"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4"/></symbol>
+  </svg>
+
+  <!-- 헤더 -->
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <p class="header__title"><img class="header__logo" src="images/favicon.svg" alt="" width="40" height="40"> 나의 코딩 가이드</p>
+
+      <div class="tools" role="group" aria-label="보기 설정">
+        <p class="tools__label">글자 크기: <strong class="tools__value" id="sizeText">보통</strong></p>
+        <button type="button" class="btn btn--tool" id="fontDown"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-text-minus"></use></svg> 글자 작게</button>
+        <button type="button" class="btn btn--tool" id="fontUp"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-text-plus"></use></svg> 글자 크게</button>
+        <button type="button" class="btn btn--tool btn--toggle" id="contrastBtn" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-contrast"></use></svg> 고대비 보기</button>
+      </div>
+    </div>
+
+    <!-- 가이드 메뉴 -->
+    <nav class="gnb" aria-label="가이드 고르기">
+      <ul class="container gnb__list">
+        <li><a class="gnb__link" href="index.html"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-code"></use></svg> 코딩 가이드</a></li>
+        <li><a class="gnb__link" href="css.html" aria-current="page"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-palette"></use></svg> CSS 가이드</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container layout">
+    <!-- 목차 -->
+    <aside class="toc" aria-labelledby="tocTitle">
+      <details class="toc__box" id="tocBox" open>
+        <summary class="toc__summary"><span class="toc__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-list"></use></svg> <span id="tocTitle">목차</span></span></summary>
+        <ol class="toc__list">
+          <li class="toc__item"><a class="toc__link" href="#파일-구조">1. 파일 구조</a></li>
+          <li class="toc__item"><a class="toc__link" href="#디자인-토큰">2. 디자인 토큰</a></li>
+          <li class="toc__item"><a class="toc__link" href="#클래스-이름-bem">3. 클래스 이름: BEM</a></li>
+          <li class="toc__item"><a class="toc__link" href="#선택자-규칙">4. 선택자 규칙</a></li>
+          <li class="toc__item"><a class="toc__link" href="#단위">5. 단위</a></li>
+          <li class="toc__item"><a class="toc__link" href="#반응형">6. 반응형</a></li>
+          <li class="toc__item"><a class="toc__link" href="#접근성-필수-css">7. 접근성 필수 CSS</a></li>
+          <li class="toc__item"><a class="toc__link" href="#아이콘과-그림">8. 아이콘과 그림</a></li>
+          <li class="toc__item"><a class="toc__link" href="#공통-부품-버튼">9. 공통 부품: 버튼</a></li>
+          <li class="toc__item"><a class="toc__link" href="#속성-작성-순서">10. 속성 작성 순서</a></li>
+          <li class="toc__item"><a class="toc__link" href="#작업-전-확인-목록">11. 작업 전 확인 목록</a></li>
+          <li class="toc__item"><a class="toc__link" href="#부록-garden-guide-정리-기록">부록. garden-guide 정리 기록</a></li>
+        </ol>
+          <button type="button" class="btn btn--block" data-reset-checks><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-reset"></use></svg> 체크 모두 지우기</button>
+      </details>
+    </aside>
+
+    <main class="doc" id="main" tabindex="-1">
+      <h1 class="doc__title">CSS 작성 가이드</h1>
+      <div class="doc__intro">
+<p class="doc__text">이 폴더의 모든 사이트(<code class="doc__inline-code">/</code>, <code class="doc__inline-code">/menu-cute</code>, <code class="doc__inline-code">/garden-guide</code> 및 이후 추가할 사이트)에 공통으로 적용하는 CSS 규칙입니다.
+상위 원칙은 <code class="doc__inline-code">CLAUDE.md</code>를 따르며, 이 문서는 그 원칙을 <strong class="doc__strong">CSS 코드 수준에서 어떻게 지키는지</strong>를 정리합니다.</p>
+<blockquote class="doc__quote">
+<p class="doc__text">판단 기준: 규칙이 애매하면 "노약자가 더 쉽게 쓰는 쪽"을 고른다.</p>
+</blockquote>
+      </div>
+
+<section class="doc__section" aria-labelledby="파일-구조">
+<h2 class="doc__h2" id="파일-구조" tabindex="-1">1. 파일 구조</h2>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col">파일</th>
+<th class="doc__th" scope="col">담는 것</th>
+<th class="doc__th" scope="col">담지 않는 것</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">css/reset.css</code></td>
+<td class="doc__td">브라우저 기본 스타일 초기화, <code class="doc__inline-code">[hidden]</code> 처리</td>
+<td class="doc__td">색, 글꼴, 컴포넌트</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">css/common.css</code></td>
+<td class="doc__td">디자인 토큰, 고대비·글자 크기 단계, <code class="doc__inline-code">body</code> 기본값, 포커스, 공통 부품(<code class="doc__inline-code">.btn</code>, <code class="doc__inline-code">.container</code>, <code class="doc__inline-code">.sr-only</code>, <code class="doc__inline-code">.skip-link</code>, <code class="doc__inline-code">.ico</code>), 모션 최소화</td>
+<td class="doc__td">특정 화면에만 쓰는 스타일</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">css/style.css</code></td>
+<td class="doc__td">화면별 블록 스타일</td>
+<td class="doc__td">토큰 정의, 공통 부품</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="doc__list">
+<li class="doc__item">불러오는 순서는 항상 <code class="doc__inline-code">reset.css → common.css → style.css</code>.</li>
+<li class="doc__item"><code class="doc__inline-code">style.css</code>는 <strong class="doc__strong">화면에 보이는 순서대로</strong> 블록을 배치한다. (헤더 → 메뉴 → 본문 섹션 순서 → 푸터 → 고대비 보정 → 미디어쿼리 보정)</li>
+<li class="doc__item">블록이 시작될 때마다 한 줄 주석을 단다. 주석은 섹션 구분용으로만, 한국어로 쓴다.</li>
+</ul>
+<pre class="doc__pre" tabindex="0"><code class="doc__code">/* 내 식물 목록 */
+.my-list { … }
+</code></pre>
+<p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
+</section>
+<section class="doc__section" aria-labelledby="디자인-토큰">
+<h2 class="doc__h2" id="디자인-토큰" tabindex="-1">2. 디자인 토큰</h2>
+<h3 class="doc__h3" id="공통-토큰-모든-사이트-필수" tabindex="-1">2-1. 공통 토큰 (모든 사이트 필수)</h3>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col">토큰</th>
+<th class="doc__th" scope="col">용도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">--color-bg</code></td>
+<td class="doc__td">페이지 배경 (흰색 또는 아주 밝은 톤)</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">--color-surface</code></td>
+<td class="doc__td">카드·버튼 바탕</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">--color-text</code></td>
+<td class="doc__td">본문 글자</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">--color-primary</code></td>
+<td class="doc__td">주요 색 (버튼, 링크, 현재 메뉴)</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">--color-accent</code></td>
+<td class="doc__td">강조 색 (주의, 포커스 테두리)</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">--font-sans</code></td>
+<td class="doc__td">본문 글꼴 스택</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">--border-w</code></td>
+<td class="doc__td">기본 테두리 두께</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">--radius</code></td>
+<td class="doc__td">기본 모서리 둥글기</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">--touch</code></td>
+<td class="doc__td">버튼 최소 크기 (3.5rem 이상)</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">--page-pad</code></td>
+<td class="doc__td">화면 좌우 여백</td>
+</tr>
+</tbody>
+</table></div>
+<h3 class="doc__h3" id="추가-토큰-규칙" tabindex="-1">2-2. 추가 토큰 규칙</h3>
+<ul class="doc__list">
+<li class="doc__item">사이트에 필요한 토큰은 추가해도 되지만 <strong class="doc__strong">같은 접두어</strong>를 쓴다.</li>
+<li class="doc__item">색: <code class="doc__inline-code">--color-*</code> (예: <code class="doc__inline-code">--color-soft</code>, <code class="doc__inline-code">--color-on-primary</code>)</li>
+<li class="doc__item">글꼴: <code class="doc__inline-code">--font-*</code></li>
+<li class="doc__item">크기·간격: <code class="doc__inline-code">--radius-*</code>, <code class="doc__inline-code">--gap</code>, <code class="doc__inline-code">--space-*</code></li>
+<li class="doc__item"><strong class="doc__strong">색 토큰은 사이트당 5개 이내</strong>로 한다. 고대비 모드는 이 개수에 넣지 않는다.</li>
+<li class="doc__item">텍스트 대비는 배경 대비 <strong class="doc__strong">7:1 이상</strong>을 목표로 하고, 최소 4.5:1은 반드시 지킨다. 토큰을 정할 때 대비 값을 주석으로 남긴다.</li>
+</ul>
+<h3 class="doc__h3" id="토큰-사용-규칙" tabindex="-1">2-3. 토큰 사용 규칙</h3>
+<ul class="doc__list">
+<li class="doc__item"><strong class="doc__strong">색상 코드(hex, rgb)는 <code class="doc__inline-code">:root</code>와 고대비 블록에서만 쓴다.</strong> 컴포넌트에는 항상 <code class="doc__inline-code">var(--color-*)</code>만 쓴다.</li>
+<li class="doc__item">예외: SVG 이미지 파일 안의 색</li>
+<li class="doc__item"><strong class="doc__strong">고대비 모드:</strong> <code class="doc__inline-code">html[data-contrast="high"]</code>에서 <strong class="doc__strong">토큰 값만 바꾼다.</strong> 컴포넌트별 보정이 꼭 필요할 때만 <code class="doc__inline-code">style.css</code> 끝의 "고대비 모드 보정" 블록에 모은다.</li>
+<li class="doc__item"><strong class="doc__strong">글자 크기 단계:</strong> <code class="doc__inline-code">html[data-size="1|2"]</code>가 <code class="doc__inline-code">html</code>의 <code class="doc__inline-code">font-size</code>를 바꾼다. 그래서 모든 크기를 rem으로 쓰면 자동으로 함께 커진다.</li>
+</ul>
+<pre class="doc__pre" tabindex="0"><code class="doc__code">/* 좋음 */
+.status--due { color: var(--color-accent); }
+
+/* 나쁨: 고대비 모드에서 바뀌지 않음 */
+.status--due { color: #8a3f0e; }
+</code></pre>
+<p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
+</section>
+<section class="doc__section" aria-labelledby="클래스-이름-bem">
+<h2 class="doc__h2" id="클래스-이름-bem" tabindex="-1">3. 클래스 이름: BEM</h2>
+<h3 class="doc__h3" id="형식" tabindex="-1">3-1. 형식</h3>
+<pre class="doc__pre" tabindex="0"><code class="doc__code">.블록              .plant-card
+.블록__요소         .plant-card__name
+.블록--변형         .plant-card--due
+.블록__요소--변형    .week__day--today
+</code></pre>
+<ul class="doc__list">
+<li class="doc__item"><strong class="doc__strong">이름 짓기:</strong> 소문자 영어 + 하이픈(kebab-case)으로 쓴다. 블록 이름은 <strong class="doc__strong">역할</strong>로 짓고 모양으로 짓지 않는다. (<code class="doc__inline-code">.green-box</code> ✕ → <code class="doc__inline-code">.tip</code> ○)</li>
+<li class="doc__item"><strong class="doc__strong">요소는 한 단계만:</strong> <code class="doc__inline-code">.plant-card__head__img</code> ✕ → <code class="doc__inline-code">.plant-card__img</code> ○</li>
+<li class="doc__item"><strong class="doc__strong">블록끼리 섞기(mix):</strong> 공통 부품에 화면별 클래스를 함께 붙인다.
+  <code class="doc__inline-code">class="btn btn--toggle picker__btn"</code></li>
+</ul>
+<h3 class="doc__h3" id="상태-표시-aria-속성-먼저" tabindex="-1">3-2. 상태 표시: ARIA 속성 먼저</h3>
+<p class="doc__text">화면 낭독기가 읽는 상태와 화면에 보이는 상태가 어긋나지 않도록, <strong class="doc__strong">상태는 ARIA 속성이나 HTML 속성으로 스타일을 준다.</strong></p>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col">상태</th>
+<th class="doc__th" scope="col">사용할 속성</th>
+<th class="doc__th" scope="col">예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td">눌림/선택</td>
+<td class="doc__td"><code class="doc__inline-code">aria-pressed</code></td>
+<td class="doc__td"><code class="doc__inline-code">.filter__btn[aria-pressed="true"]</code></td>
+</tr>
+<tr>
+<td class="doc__td">현재 위치</td>
+<td class="doc__td"><code class="doc__inline-code">aria-current="page"</code></td>
+<td class="doc__td"><code class="doc__inline-code">.gnb__link[aria-current="page"]</code></td>
+</tr>
+<tr>
+<td class="doc__td">펼침</td>
+<td class="doc__td"><code class="doc__inline-code">aria-expanded</code>, <code class="doc__inline-code">details[open]</code></td>
+<td class="doc__td"><code class="doc__inline-code">.guide-card__more[open]</code></td>
+</tr>
+<tr>
+<td class="doc__td">입력 오류</td>
+<td class="doc__td"><code class="doc__inline-code">aria-invalid="true"</code></td>
+<td class="doc__td"><code class="doc__inline-code">.date-form__input[aria-invalid="true"]</code></td>
+</tr>
+<tr>
+<td class="doc__td">숨김</td>
+<td class="doc__td"><code class="doc__inline-code">hidden</code> 속성</td>
+<td class="doc__td">JS에서 <code class="doc__inline-code">el.hidden = true</code></td>
+</tr>
+<tr>
+<td class="doc__td">사용 불가</td>
+<td class="doc__td"><code class="doc__inline-code">disabled</code></td>
+<td class="doc__td"><code class="doc__inline-code">.btn[disabled]</code></td>
+</tr>
+</tbody>
+</table></div>
+<ul class="doc__list">
+<li class="doc__item">속성으로 표현할 수 없는 <strong class="doc__strong">보이는 모양 차이</strong>만 <code class="doc__inline-code">--변형</code> 클래스로 만든다. (<code class="doc__inline-code">.plant-card--due</code>, <code class="doc__inline-code">.summary--due</code>)</li>
+<li class="doc__item"><strong class="doc__strong">JS에서 쓰는 이름:</strong> JS가 요소를 찾을 때는 <code class="doc__inline-code">id</code>나 <code class="doc__inline-code">data-*</code>(<code class="doc__inline-code">data-act</code>, <code class="doc__inline-code">data-id</code>, <code class="doc__inline-code">data-filter</code>)를 쓴다. <strong class="doc__strong">클래스 이름을 바꿔도 JS가 깨지지 않게</strong> 하기 위해서다.</li>
+</ul>
+<h3 class="doc__h3" id="전역-클래스-bem-예외" tabindex="-1">3-3. 전역 클래스 (BEM 예외)</h3>
+<p class="doc__text">어디서나 쓰는 공통 클래스는 아래만 허용한다. 새로 만들지 않는다.</p>
+<p class="doc__text"><code class="doc__inline-code">.container</code> <code class="doc__inline-code">.sr-only</code> <code class="doc__inline-code">.skip-link</code> <code class="doc__inline-code">.btn</code> <code class="doc__inline-code">.ico</code></p>
+<p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
+</section>
+<section class="doc__section" aria-labelledby="선택자-규칙">
+<h2 class="doc__h2" id="선택자-규칙" tabindex="-1">4. 선택자 규칙</h2>
+<ol class="doc__list doc__list--num">
+<li class="doc__item">
+<p class="doc__text"><strong class="doc__strong">클래스 선택자 하나</strong>를 기본으로 한다. 상태 속성이나 가상 클래스를 붙이는 것은 괜찮다.
+   <code class="doc__inline-code">.btn:hover</code>, <code class="doc__inline-code">.btn--toggle[aria-pressed="true"]::before</code></p>
+</li>
+<li class="doc__item">
+<p class="doc__text"><strong class="doc__strong">태그 선택자 금지.</strong> 꾸밀 요소에는 클래스를 준다.
+   - 예외 1: <code class="doc__inline-code">reset.css</code>와 <code class="doc__inline-code">common.css</code>의 <code class="doc__inline-code">body</code>, <code class="doc__inline-code">strong</code>, <code class="doc__inline-code">main</code>
+   - 예외 2: <strong class="doc__strong">문장 안에 섞이는 글</strong>(<code class="doc__inline-code">&lt;strong&gt;</code>, <code class="doc__inline-code">&lt;a&gt;</code>)은 블록 아래 한 단계만 허용 (예: <code class="doc__inline-code">.policy__body a</code>)</p>
+</li>
+<li class="doc__item"><strong class="doc__strong">id 선택자로 스타일을 주지 않는다.</strong> id는 JS와 <code class="doc__inline-code">aria-labelledby</code>용이다.</li>
+<li class="doc__item"><strong class="doc__strong">중첩은 최대 2단계.</strong> <code class="doc__inline-code">.a .b</code> 까지만 쓴다.</li>
+<li class="doc__item"><strong class="doc__strong"><code class="doc__inline-code">!important</code> 금지.</strong>
+   - 예외: <code class="doc__inline-code">reset.css</code>의 <code class="doc__inline-code">[hidden]</code>, <code class="doc__inline-code">common.css</code>의 <code class="doc__inline-code">prefers-reduced-motion</code> 블록</li>
+</ol>
+<pre class="doc__pre" tabindex="0"><code class="doc__code">/* 나쁨 */
+.plant-card__info dt { … }
+
+/* 좋음 */
+.plant-card__label { … }
+</code></pre>
+<p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
+</section>
+<section class="doc__section" aria-labelledby="단위">
+<h2 class="doc__h2" id="단위" tabindex="-1">5. 단위</h2>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col">대상</th>
+<th class="doc__th" scope="col">단위</th>
+<th class="doc__th" scope="col">비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td">글자 크기</td>
+<td class="doc__td"><code class="doc__inline-code">rem</code></td>
+<td class="doc__td">본문 최소 <code class="doc__inline-code">1rem</code>(=18px), 버튼·중요 안내 <code class="doc__inline-code">1.125rem</code> 이상</td>
+</tr>
+<tr>
+<td class="doc__td">행간</td>
+<td class="doc__td">단위 없는 숫자</td>
+<td class="doc__td"><code class="doc__inline-code">1.6</code> 이상 (기본 <code class="doc__inline-code">1.7</code>)</td>
+</tr>
+<tr>
+<td class="doc__td">여백·간격</td>
+<td class="doc__td"><code class="doc__inline-code">rem</code>, <code class="doc__inline-code">clamp()</code></td>
+<td class="doc__td">화면 크기에 따라 변하는 큰 여백은 <code class="doc__inline-code">clamp()</code></td>
+</tr>
+<tr>
+<td class="doc__td">레이아웃 너비</td>
+<td class="doc__td"><code class="doc__inline-code">%</code>, <code class="doc__inline-code">fr</code>, <code class="doc__inline-code">min()</code></td>
+<td class="doc__td">고정 너비 금지</td>
+</tr>
+<tr>
+<td class="doc__td">테두리 두께</td>
+<td class="doc__td"><code class="doc__inline-code">--border-w</code> 또는 <code class="doc__inline-code">rem</code></td>
+<td class="doc__td">가는 선은 <code class="doc__inline-code">0.0625rem</code></td>
+</tr>
+<tr>
+<td class="doc__td">둥근 모서리</td>
+<td class="doc__td"><code class="doc__inline-code">--radius</code>, <code class="doc__inline-code">--radius-pill</code></td>
+<td class="doc__td"><code class="doc__inline-code">999px</code> 같은 값을 직접 쓰지 않는다</td>
+</tr>
+</tbody>
+</table></div>
+<p class="doc__text"><strong class="doc__strong">px 허용 예외</strong> (주석에 이유를 쓴다)</p>
+<ul class="doc__list">
+<li class="doc__item">미디어쿼리 기준점 (<code class="doc__inline-code">768px</code>, <code class="doc__inline-code">1024px</code>)</li>
+<li class="doc__item"><code class="doc__inline-code">.sr-only</code>의 <code class="doc__inline-code">1px</code> (표준 패턴)</li>
+<li class="doc__item">광고 규격 (<code class="doc__inline-code">max-width: 728px</code>, <code class="doc__inline-code">min-height: 90px / 100px</code>)</li>
+<li class="doc__item"><code class="doc__inline-code">--radius-pill: 999px</code> 토큰 정의 (알약 모양은 아주 큰 값이 필요)</li>
+<li class="doc__item"><code class="doc__inline-code">env(safe-area-inset-*, 0px)</code>의 기본값</li>
+</ul>
+<p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
+</section>
+<section class="doc__section" aria-labelledby="반응형">
+<h2 class="doc__h2" id="반응형" tabindex="-1">6. 반응형</h2>
+<ul class="doc__list">
+<li class="doc__item"><strong class="doc__strong">모바일 우선:</strong> 기본 스타일은 375px 기준으로 쓰고, <code class="doc__inline-code">min-width</code> 미디어쿼리로만 넓힌다.</li>
+<li class="doc__item"><strong class="doc__strong">기준점은 두 개만:</strong> <code class="doc__inline-code">768px</code>(태블릿), <code class="doc__inline-code">1024px</code>(PC).</li>
+<li class="doc__item"><strong class="doc__strong">미디어쿼리 위치:</strong> 해당 블록 바로 아래에 둔다. 흩어지면 <code class="doc__inline-code">style.css</code> 맨 끝의 "태블릿 이상" 블록에 모은다.</li>
+<li class="doc__item"><strong class="doc__strong">카드 목록:</strong> 아래 패턴을 쓴다. 글자를 키우거나 200%로 확대하면 칸 수가 자동으로 줄어든다.</li>
+</ul>
+<pre class="doc__pre" tabindex="0"><code class="doc__code">grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+</code></pre>
+<ul class="doc__list">
+<li class="doc__item"><strong class="doc__strong">글이 들어가는 요소:</strong> 너비를 고정하지 않는다. 버튼 글자가 넘치면 글자를 줄이거나 칸을 넓힌다. 글자 크기를 줄여서 해결하지 않는다.</li>
+</ul>
+<p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
+</section>
+<section class="doc__section" aria-labelledby="접근성-필수-css">
+<h2 class="doc__h2" id="접근성-필수-css" tabindex="-1">7. 접근성 필수 CSS</h2>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col">항목</th>
+<th class="doc__th" scope="col">규칙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td">포커스</td>
+<td class="doc__td"><code class="doc__inline-code">:focus-visible</code>에 <code class="doc__inline-code">0.25rem</code> 이상 굵은 outline, 강조 색, <code class="doc__inline-code">outline-offset</code> 확보. <code class="doc__inline-code">outline: none</code> 금지 (단, <code class="doc__inline-code">tabindex="-1"</code>로 포커스만 옮기는 제목은 예외)</td>
+</tr>
+<tr>
+<td class="doc__td">터치 영역</td>
+<td class="doc__td">버튼·링크 <code class="doc__inline-code">min-height: var(--touch)</code>, 요소 사이 간격 <code class="doc__inline-code">0.5rem</code> 이상</td>
+</tr>
+<tr>
+<td class="doc__td">버튼 모양</td>
+<td class="doc__td">테두리나 배경이 있어 "누를 수 있는 것"으로 보여야 한다</td>
+</tr>
+<tr>
+<td class="doc__td">상태 표시</td>
+<td class="doc__td">색만으로 상태를 알리지 않는다. 아이콘·글자·테두리 굵기를 함께 바꾼다 (예: 눌린 버튼에 <code class="doc__inline-code">✓</code>)</td>
+</tr>
+<tr>
+<td class="doc__td">호버</td>
+<td class="doc__td">호버에만 의존하는 정보 금지. 호버는 배경색 변화 정도만 준다</td>
+</tr>
+<tr>
+<td class="doc__td">모션</td>
+<td class="doc__td"><code class="doc__inline-code">transition</code>은 <code class="doc__inline-code">0.15s</code> 이하의 색 변화만 쓴다. <code class="doc__inline-code">prefers-reduced-motion</code>이면 모두 끈다</td>
+</tr>
+<tr>
+<td class="doc__td">숨김</td>
+<td class="doc__td">화면에서만 숨길 때는 <code class="doc__inline-code">.sr-only</code>, 완전히 숨길 때는 <code class="doc__inline-code">hidden</code> 속성</td>
+</tr>
+</tbody>
+</table></div>
+<p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
+</section>
+<section class="doc__section" aria-labelledby="아이콘과-그림">
+<h2 class="doc__h2" id="아이콘과-그림" tabindex="-1">8. 아이콘과 그림</h2>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col">종류</th>
+<th class="doc__th" scope="col">방식</th>
+<th class="doc__th" scope="col">클래스</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td">UI 아이콘 (버튼, 메뉴, 상태)</td>
+<td class="doc__td">HTML 상단 아이콘 모음 <code class="doc__inline-code">&lt;svg&gt;&lt;use href="#i-이름"&gt;&lt;/use&gt;&lt;/svg&gt;</code></td>
+<td class="doc__td"><code class="doc__inline-code">.ico</code></td>
+</tr>
+<tr>
+<td class="doc__td">식물 그림 등 콘텐츠 이미지</td>
+<td class="doc__td"><code class="doc__inline-code">&lt;img&gt;</code> + 의미 있는 <code class="doc__inline-code">alt</code></td>
+<td class="doc__td">블록 요소 클래스 (<code class="doc__inline-code">.guide-card__img</code>, <code class="doc__inline-code">.picker__img</code>)</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="doc__list">
+<li class="doc__item"><strong class="doc__strong"><code class="doc__inline-code">.ico</code> 쓰는 법:</strong> <code class="doc__inline-code">aria-hidden="true"</code>를 붙이고, <strong class="doc__strong">항상 글자 라벨과 함께</strong> 쓴다. 색은 <code class="doc__inline-code">currentColor</code>라서 버튼 글자색과 고대비 모드를 자동으로 따라간다.</li>
+<li class="doc__item"><strong class="doc__strong">새 아이콘:</strong> 아이콘 모음에 <code class="doc__inline-code">i-이름</code> 심볼로 추가한다. 아이콘을 이미지 파일로 따로 만들지 않는다.</li>
+<li class="doc__item"><strong class="doc__strong">장식용 그림:</strong> 옆에 같은 내용의 글자가 있으면 <code class="doc__inline-code">alt=""</code>로 비운다.</li>
+</ul>
+<p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
+</section>
+<section class="doc__section" aria-labelledby="공통-부품-버튼">
+<h2 class="doc__h2" id="공통-부품-버튼" tabindex="-1">9. 공통 부품: 버튼</h2>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col">클래스</th>
+<th class="doc__th" scope="col">용도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">.btn</code></td>
+<td class="doc__td">기본 버튼 (흰 바탕 + 주요 색 테두리)</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">.btn--primary</code></td>
+<td class="doc__td">화면의 핵심 동작 1개 (채운 배경, 큰 글자)</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">.btn--block</code></td>
+<td class="doc__td">가로 꽉 채움</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">.btn--toggle</code></td>
+<td class="doc__td">켜고 끄는 버튼 (<code class="doc__inline-code">aria-pressed</code>와 함께)</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">.btn--danger</code></td>
+<td class="doc__td">되돌리기 어려운 동작 (빼기, 삭제)</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">.btn--home</code>, <code class="doc__inline-code">.btn--tool</code></td>
+<td class="doc__td">머리글의 "처음으로", 보기 설정 버튼</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="doc__list">
+<li class="doc__item"><strong class="doc__strong">핵심 버튼은 하나만:</strong> 한 카드나 화면에 <code class="doc__inline-code">.btn--primary</code>는 1개만 쓴다.</li>
+<li class="doc__item"><strong class="doc__strong">위험한 동작은 확인 단계와 함께:</strong> <code class="doc__inline-code">.btn--danger</code> 버튼은 확인 단계(<code class="doc__inline-code">.confirm</code> 블록)를 거치게 한다.</li>
+</ul>
+<p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
+</section>
+<section class="doc__section" aria-labelledby="속성-작성-순서">
+<h2 class="doc__h2" id="속성-작성-순서" tabindex="-1">10. 속성 작성 순서</h2>
+<p class="doc__text">한 규칙 안에서는 아래 순서로 쓴다.</p>
+<ol class="doc__list doc__list--num">
+<li class="doc__item">위치: <code class="doc__inline-code">position</code>, <code class="doc__inline-code">top/right/bottom/left</code>, <code class="doc__inline-code">z-index</code></li>
+<li class="doc__item">상자 배치: <code class="doc__inline-code">display</code>, <code class="doc__inline-code">flex-*</code>, <code class="doc__inline-code">grid-*</code>, <code class="doc__inline-code">align-*</code>, <code class="doc__inline-code">justify-*</code>, <code class="doc__inline-code">gap</code></li>
+<li class="doc__item">크기: <code class="doc__inline-code">width</code>, <code class="doc__inline-code">min-/max-width</code>, <code class="doc__inline-code">height</code>, <code class="doc__inline-code">aspect-ratio</code></li>
+<li class="doc__item">여백: <code class="doc__inline-code">margin</code>, <code class="doc__inline-code">padding</code></li>
+<li class="doc__item">글자: <code class="doc__inline-code">font-*</code>, <code class="doc__inline-code">line-height</code>, <code class="doc__inline-code">letter-spacing</code>, <code class="doc__inline-code">text-*</code></li>
+<li class="doc__item">색과 모양: <code class="doc__inline-code">color</code>, <code class="doc__inline-code">background</code>, <code class="doc__inline-code">border</code>, <code class="doc__inline-code">border-radius</code>, <code class="doc__inline-code">box-shadow</code></li>
+<li class="doc__item">기타: <code class="doc__inline-code">cursor</code>, <code class="doc__inline-code">transition</code>, <code class="doc__inline-code">transform</code></li>
+</ol>
+<p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
+</section>
+<section class="doc__section" aria-labelledby="작업-전-확인-목록">
+<h2 class="doc__h2" id="작업-전-확인-목록" tabindex="-1">11. 작업 전 확인 목록</h2>
+<ul class="doc__list doc__list--check">
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="css-check-1" data-check="css-check-1"><label class="doc__check-label" for="css-check-1"><code class="doc__inline-code">:root</code>·고대비 블록 밖에 hex 색상이 없다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="css-check-2" data-check="css-check-2"><label class="doc__check-label" for="css-check-2">태그 선택자, id 선택자, <code class="doc__inline-code">!important</code>가 없다 (허용 예외 제외)</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="css-check-3" data-check="css-check-3"><label class="doc__check-label" for="css-check-3">새 클래스가 BEM 형식이고 요소가 한 단계다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="css-check-4" data-check="css-check-4"><label class="doc__check-label" for="css-check-4">상태를 ARIA·HTML 속성으로 표현했다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="css-check-5" data-check="css-check-5"><label class="doc__check-label" for="css-check-5">글자는 rem, px은 허용 예외에만 썼다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="css-check-6" data-check="css-check-6"><label class="doc__check-label" for="css-check-6">모든 버튼에 <code class="doc__inline-code">.ico</code> 아이콘과 글자 라벨이 함께 있다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="css-check-7" data-check="css-check-7"><label class="doc__check-label" for="css-check-7">375px / 768px / 1024px, 글자 "아주 크게", 고대비 모드에서 깨지지 않는다</label></li>
+</ul>
+<p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
+</section>
+<section class="doc__section" aria-labelledby="부록-garden-guide-정리-기록">
+<h2 class="doc__h2" id="부록-garden-guide-정리-기록" tabindex="-1">부록. garden-guide 정리 기록</h2>
+<p class="doc__text">이 가이드에 맞춰 2026-10-01에 정리한 내용입니다.</p>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col">위치</th>
+<th class="doc__th" scope="col">이전</th>
+<th class="doc__th" scope="col">정리 후</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td">내 식물 카드 정보</td>
+<td class="doc__td"><code class="doc__inline-code">.plant-card__info dt/dd</code></td>
+<td class="doc__td"><code class="doc__inline-code">.plant-card__label</code>, <code class="doc__inline-code">.plant-card__value</code></td>
+</tr>
+<tr>
+<td class="doc__td">안내 카드 자세히 보기</td>
+<td class="doc__td"><code class="doc__inline-code">.guide-card__detail dt</code></td>
+<td class="doc__td"><code class="doc__inline-code">.guide-card__term</code>, <code class="doc__inline-code">.guide-card__def</code></td>
+</tr>
+<tr>
+<td class="doc__td">이달의 할 일</td>
+<td class="doc__td"><code class="doc__inline-code">.todo__item strong</code></td>
+<td class="doc__td"><code class="doc__inline-code">.todo__text</code>, <code class="doc__inline-code">.todo__title</code></td>
+</tr>
+<tr>
+<td class="doc__td">개인정보 처리방침</td>
+<td class="doc__td"><code class="doc__inline-code">.policy__toc ol/a</code>, <code class="doc__inline-code">.policy__section h2/p/ul/a</code>, <code class="doc__inline-code">.policy__list li + li</code>, <code class="doc__inline-code">.fill</code></td>
+<td class="doc__td"><code class="doc__inline-code">.policy__toc-list</code>, <code class="doc__inline-code">.policy__toc-link</code>, <code class="doc__inline-code">.policy__heading</code>, <code class="doc__inline-code">.policy__text</code>, <code class="doc__inline-code">.policy__item</code>, <code class="doc__inline-code">.policy__link</code>, <code class="doc__inline-code">.policy__fill</code></td>
+</tr>
+<tr>
+<td class="doc__td">알약 모양 모서리</td>
+<td class="doc__td"><code class="doc__inline-code">border-radius: 999px</code></td>
+<td class="doc__td"><code class="doc__inline-code">var(--radius-pill)</code></td>
+</tr>
+<tr>
+<td class="doc__td">식물 고르기 그림</td>
+<td class="doc__td"><code class="doc__inline-code">.icon</code> (common.css)</td>
+<td class="doc__td"><code class="doc__inline-code">.picker__img</code>, <code class="doc__inline-code">.icon</code> 삭제</td>
+</tr>
+<tr>
+<td class="doc__td">안 쓰는 아이콘 파일</td>
+<td class="doc__td"><code class="doc__inline-code">images/icon-*.svg</code> 4개</td>
+<td class="doc__td">삭제</td>
+</tr>
+</tbody>
+</table></div>
+<p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
+</section>
+    </main>
+  </div>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__text">원본: <code class="footer__code">CSS_GUIDE.md</code> · 규칙이 다르면 프로젝트의 <code class="footer__code">CLAUDE.md</code>가 우선합니다.</p>
+    </div>
+  </footer>
+
+  <p class="toast" id="notice" role="status" aria-live="polite"></p>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

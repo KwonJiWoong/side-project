@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="상추, 방울토마토, 바질, 몬스테라 등 집에서 많이 키우는 식물 21가지의 물 주기 날짜를 기록하고, 쉬운 키우기 안내와 달마다 할 일을 확인하세요.">
+  <meta name="theme-color" content="#285232">
+  <title>우리집 텃밭 수첩 | 베란다 가드닝 물 주기 도우미</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <!-- 아이콘 모음 -->
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" hidden>
+    <symbol id="i-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M3 11.5 12 4l9 7.5M6 10v10h12V10"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M10 20v-5h4v5"/></symbol>
+    <symbol id="i-text-minus" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" cx="10.5" cy="10.5" r="6.5"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m15.5 15.5 5 5M7.5 10.5h6"/></symbol>
+    <symbol id="i-text-plus" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" cx="10.5" cy="10.5" r="6.5"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m15.5 15.5 5 5M7.5 10.5h6M10.5 7.5v6"/></symbol>
+    <symbol id="i-contrast" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="12" r="8.5"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5C8.5 7.5 5.5 11 5.5 14.5a6.5 6.5 0 0 0 13 0C18.5 11 15.5 7.5 12 2.5z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5zM12 6.5v13"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-today" viewBox="0 0 24 24"><rect fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M3.5 10h17M8 3v4M16 3v4"/><circle fill="currentColor" cx="12" cy="15" r="2.2"/></symbol>
+    <symbol id="i-undo" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 9h11a5 5 0 0 1 0 10H9"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m8 5-4 4 4 4"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13M10 11v5.5M14 11v5.5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24"><circle fill="currentColor" cx="12" cy="12" r="10"/><path fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="m7.5 12.5 3 3 6-6"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="m15 5-7 7 7 7"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></symbol>
+    <symbol id="i-veg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M14.5 9.5 4 20c7-1.5 11.5-5 13-9.5a2.5 2.5 0 0 0-2.5-1z"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M15 9c0-2.5 1-4.5 3-5.5M15.5 9.5c1.5-1.5 3.5-2 5.5-1.5M8.5 15l2 2M11.5 12l1.5 1.5"/></symbol>
+    <symbol id="i-herb" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 21V8"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 13c-4 0-6.5-2.5-7-6.5 4 0 6.5 2.5 7 6.5zM12 10c3.5 0 6-2 6.5-6-3.5 0-6 2-6.5 6zM12 17c2.5 0 4.5-1.5 5-4.5-2.5 0-4.5 1.5-5 4.5z"/></symbol>
+    <symbol id="i-indoor" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M3 11 12 4l9 7M5.5 9.5V20h13V9.5"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 18v-4.5M12 15c-2.3 0-3.5-1.3-3.7-3.5 2.2 0 3.5 1.3 3.7 3.5zM12 14c2 0 3.2-1.1 3.4-3-2 0-3.2 1.1-3.4 3z"/></symbol>
+  </svg>
+
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="container header__inner">
+      <h1 class="header__title">
+        <img class="header__logo" src="images/logo.svg" alt="" width="48" height="48">
+        우리집 텃밭 수첩
+      </h1>
+      <a class="btn btn--home" href="#water" id="homeBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg> 처음으로</a>
+
+      <div class="tools" role="group" aria-label="보기 설정">
+        <p class="tools__label">글자 크기: <strong id="sizeText">보통</strong></p>
+        <button type="button" class="btn btn--tool" id="fontDown"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-text-minus"></use></svg> 글자 작게</button>
+        <button type="button" class="btn btn--tool" id="fontUp"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-text-plus"></use></svg> 글자 크게</button>
+        <button type="button" class="btn btn--tool btn--toggle" id="contrastBtn" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-contrast"></use></svg> 고대비 보기</button>
+      </div>
+    </div>
+
+    <!-- 주요 메뉴 -->
+    <nav class="gnb" aria-label="주요 메뉴">
+      <ul class="container gnb__list">
+        <li><a class="gnb__link" href="#water" aria-current="page"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-drop"></use></svg> 물 주기 확인</a></li>
+        <li><a class="gnb__link" href="#guide"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 식물 키우기 안내</a></li>
+        <li><a class="gnb__link" href="#month"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-calendar"></use></svg> 이달의 할 일</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="container">
+
+      <!-- 물 주기 확인 -->
+      <section class="panel" id="water" aria-labelledby="waterTitle">
+        <h2 class="panel__title" id="waterTitle" tabindex="-1">물 주기 확인</h2>
+        <p class="panel__lead">오늘은 <strong id="todayText">오늘</strong>이에요.</p>
+
+        <p class="summary" id="waterSummary"></p>
+        <p class="empty" id="myEmpty">아직 등록한 식물이 없어요.<br>아래 <strong>키우는 식물 고르기</strong>에서 식물을 눌러 주세요.</p>
+        <ul class="my-list" id="myList"></ul>
+
+        <section class="picker" aria-labelledby="pickerTitle">
+          <h3 class="picker__title" id="pickerTitle">키우는 식물 고르기</h3>
+          <p class="picker__desc">누르면 내 식물 목록에 들어가요. 다시 누르면 빠져요.</p>
+          <h4 class="picker__group">채소</h4>
+          <ul class="picker__list" data-group="veg"></ul>
+          <h4 class="picker__group">허브</h4>
+          <ul class="picker__list" data-group="herb"></ul>
+          <h4 class="picker__group">실내 식물</h4>
+          <ul class="picker__list" data-group="indoor"></ul>
+        </section>
+
+        <aside class="tip" aria-labelledby="tipTitle">
+          <h3 class="tip__title" id="tipTitle">물 주기 전에 확인하세요</h3>
+          <p>날짜는 참고용이에요. 손가락 한 마디만큼 흙을 눌러 보고 <strong>말라 있을 때</strong> 주세요. 여름엔 더 자주, 겨울엔 더 드물게 줘요.</p>
+        </aside>
+
+        <!-- 광고 영역 -->
+        <aside class="ad" aria-label="광고">
+          <p class="ad__label">광고</p>
+          <div class="ad__slot">
+            <p class="ad__placeholder">광고가 들어갈 자리예요</p>
+          </div>
+        </aside>
+      </section>
+
+      <!-- 식물 키우기 안내 -->
+      <section class="panel" id="guide" aria-labelledby="guideTitle">
+        <h2 class="panel__title" id="guideTitle" tabindex="-1">식물 키우기 안내</h2>
+        <p class="panel__lead">집에서 많이 키우는 식물 21가지를 쉽게 정리했어요.</p>
+
+        <ul class="filter" role="group" aria-label="식물 종류 고르기">
+          <li><button type="button" class="filter__btn" data-filter="all" aria-pressed="true"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-grid"></use></svg> 전체</button></li>
+          <li><button type="button" class="filter__btn" data-filter="veg" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-veg"></use></svg> 채소</button></li>
+          <li><button type="button" class="filter__btn" data-filter="herb" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-herb"></use></svg> 허브</button></li>
+          <li><button type="button" class="filter__btn" data-filter="indoor" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-indoor"></use></svg> 실내 식물</button></li>
+        </ul>
+        <p class="sr-only" id="filterStatus" role="status"></p>
+
+        <ul class="guide-list">
+            <li class="guide-list__item" data-type="veg">
+              <article class="guide-card" id="plant-lettuce" data-id="lettuce" data-name="상추" data-type="veg" data-interval="2" aria-labelledby="name-lettuce">
+                <img class="guide-card__img" src="images/lettuce.svg" alt="상추 화분 그림" width="120" height="120">
+                <p class="guide-card__type">채소</p>
+                <h3 class="guide-card__name" id="name-lettuce">상추</h3>
+                <p class="guide-card__desc">쌈 채소의 대표예요. 바깥 잎부터 따면 오래 먹을 수 있어요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 2일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 반나절 햇빛</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 쉬움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">3~5월, 9~10월에 씨앗이나 모종을 심어요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">하루 4시간 이상이면 충분해요. 한여름 강한 볕은 가려 주세요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">겉흙이 마르면 화분 밑으로 물이 나올 만큼 흠뻑 주세요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">바깥쪽 큰 잎부터 한 장씩 따고, 가운데 속잎은 남겨 두세요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="lettuce" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="veg">
+              <article class="guide-card" id="plant-tomato" data-id="tomato" data-name="방울토마토" data-type="veg" data-interval="2" aria-labelledby="name-tomato">
+                <img class="guide-card__img" src="images/tomato.svg" alt="방울토마토 화분 그림" width="120" height="120">
+                <p class="guide-card__type">채소</p>
+                <h3 class="guide-card__name" id="name-tomato">방울토마토</h3>
+                <p class="guide-card__desc">베란다에서도 주렁주렁 열려 키우는 재미가 커요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 2일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 하루 종일 햇빛</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 보통</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">4월 말~5월에 모종을 심어요. 깊은 화분(30cm 이상)이 좋아요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">하루 6시간 이상 햇빛이 필요해요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">흙이 마르지 않게 해 주세요. 한여름엔 매일 줘도 괜찮아요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">잎과 줄기 사이에 나는 곁순을 손으로 따 주고, 지지대에 묶어 주세요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="tomato" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="veg">
+              <article class="guide-card" id="plant-pepper" data-id="pepper" data-name="고추" data-type="veg" data-interval="2" aria-labelledby="name-pepper">
+                <img class="guide-card__img" src="images/pepper.svg" alt="고추 화분 그림" width="120" height="120">
+                <p class="guide-card__type">채소</p>
+                <h3 class="guide-card__name" id="name-pepper">고추</h3>
+                <p class="guide-card__desc">모종 몇 개로 여름 내내 풋고추를 따 먹을 수 있어요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 2일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 하루 종일 햇빛</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 보통</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">5월 초, 서리가 끝난 뒤에 모종을 심어요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">하루 6시간 이상 햇빛이 드는 곳에 두세요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">겉흙이 마르면 주고, 흙이 늘 젖어 있지 않게 해 주세요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">줄기가 처음 갈라지는 곳 아래 곁순은 따 주고, 지지대를 세워 주세요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="pepper" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="veg">
+              <article class="guide-card" id="plant-perilla" data-id="perilla" data-name="깻잎" data-type="veg" data-interval="2" aria-labelledby="name-perilla">
+                <img class="guide-card__img" src="images/perilla.svg" alt="깻잎 화분 그림" width="120" height="120">
+                <p class="guide-card__type">채소</p>
+                <h3 class="guide-card__name" id="name-perilla">깻잎</h3>
+                <p class="guide-card__desc">한 번 자리 잡으면 잎이 쑥쑥 나서 따 먹기 좋아요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 2일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 반나절 이상</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 쉬움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">4~5월에 씨앗이나 모종을 심어요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">하루 5시간 정도 햇빛이 좋아요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">물을 좋아해요. 겉흙이 마르면 바로 주세요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">키가 30cm쯤 되면 맨 윗순을 잘라 주세요. 옆으로 잎이 더 많이 나요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="perilla" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="veg">
+              <article class="guide-card" id="plant-greenonion" data-id="greenonion" data-name="대파" data-type="veg" data-interval="3" aria-labelledby="name-greenonion">
+                <img class="guide-card__img" src="images/greenonion.svg" alt="대파 화분 그림" width="120" height="120">
+                <p class="guide-card__type">채소</p>
+                <h3 class="guide-card__name" id="name-greenonion">대파</h3>
+                <p class="guide-card__desc">사 온 대파 뿌리만 심어도 다시 자라요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 3일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 반나절 햇빛</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 아주 쉬움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">사계절 언제든 심을 수 있어요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">밝은 창가면 충분해요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">흙이 마르면 주세요. 물이 고이면 뿌리가 썩어요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">뿌리 쪽 5cm를 남겨 흙에 꽂아 두면 1~2주 뒤 다시 자라요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="greenonion" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="veg">
+              <article class="guide-card" id="plant-chives" data-id="chives" data-name="부추" data-type="veg" data-interval="3" aria-labelledby="name-chives">
+                <img class="guide-card__img" src="images/chives.svg" alt="부추 화분 그림" width="120" height="120">
+                <p class="guide-card__type">채소</p>
+                <h3 class="guide-card__name" id="name-chives">부추</h3>
+                <p class="guide-card__desc">한 번 심으면 여러 해 동안 잘라 먹을 수 있어요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 3일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 반나절 햇빛</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 아주 쉬움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">3~4월이나 9월에 모종을 심어요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">하루 4시간 이상 햇빛이 좋아요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">겉흙이 마르면 흠뻑 주세요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">밑동을 2~3cm 남기고 자르면 다시 자라요. 자른 뒤엔 물을 넉넉히 주세요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="chives" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="veg">
+              <article class="guide-card" id="plant-strawberry" data-id="strawberry" data-name="딸기" data-type="veg" data-interval="2" aria-labelledby="name-strawberry">
+                <img class="guide-card__img" src="images/strawberry.svg" alt="딸기 화분 그림" width="120" height="120">
+                <p class="guide-card__type">채소</p>
+                <h3 class="guide-card__name" id="name-strawberry">딸기</h3>
+                <p class="guide-card__desc">하얀 꽃이 지고 나면 빨간 딸기가 열려요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 2일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 하루 종일 햇빛</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 보통</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">3~4월이나 10월에 모종을 심어요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">하루 6시간 이상 햇빛이 필요해요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">겉흙이 마르면 흙에만 주세요. 열매에 물이 닿으면 물러져요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">옆으로 길게 뻗는 줄기는 잘라 주세요. 열매가 더 굵어져요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="strawberry" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="veg">
+              <article class="guide-card" id="plant-bokchoy" data-id="bokchoy" data-name="청경채" data-type="veg" data-interval="2" aria-labelledby="name-bokchoy">
+                <img class="guide-card__img" src="images/bokchoy.svg" alt="청경채 화분 그림" width="120" height="120">
+                <p class="guide-card__type">채소</p>
+                <h3 class="guide-card__name" id="name-bokchoy">청경채</h3>
+                <p class="guide-card__desc">한 달 남짓이면 거둘 만큼 빨리 자라요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 2일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 반나절 햇빛</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 쉬움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">3~5월, 8~9월에 씨앗을 뿌려요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">하루 4시간 이상이면 충분해요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">흙이 마르지 않게 촉촉하게 해 주세요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">더워지면 꽃대가 올라와 질겨져요. 선선할 때 키우세요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="bokchoy" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="veg">
+              <article class="guide-card" id="plant-sprouts" data-id="sprouts" data-name="새싹채소" data-type="veg" data-interval="1" aria-labelledby="name-sprouts">
+                <img class="guide-card__img" src="images/sprouts.svg" alt="새싹채소 화분 그림" width="120" height="120">
+                <p class="guide-card__type">채소</p>
+                <h3 class="guide-card__name" id="name-sprouts">새싹채소</h3>
+                <p class="guide-card__desc">씨앗을 뿌리고 일주일이면 먹을 수 있어요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 매일</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 밝은 그늘</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 아주 쉬움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">사계절 언제든 키울 수 있어요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">직사광선 없이 밝은 곳이면 돼요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">분무기로 하루 한두 번 촉촉하게 뿌려 주세요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">물이 고이면 곰팡이가 생겨요. 바람이 잘 통하게 해 주세요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="sprouts" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="herb">
+              <article class="guide-card" id="plant-basil" data-id="basil" data-name="바질" data-type="herb" data-interval="2" aria-labelledby="name-basil">
+                <img class="guide-card__img" src="images/basil.svg" alt="바질 화분 그림" width="120" height="120">
+                <p class="guide-card__type">허브</p>
+                <h3 class="guide-card__name" id="name-basil">바질</h3>
+                <p class="guide-card__desc">잎을 따서 샐러드나 파스타에 바로 쓸 수 있어요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 2일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 하루 종일 햇빛</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 보통</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">4~6월, 날이 따뜻할 때 심어요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">하루 6시간 이상 햇빛을 좋아해요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">겉흙이 마르면 흙에만 흠뻑 주세요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">꽃대가 올라오면 바로 잘라 주세요. 밤 기온이 10도 아래로 내려가면 실내로 들여요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="basil" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="herb">
+              <article class="guide-card" id="plant-rosemary" data-id="rosemary" data-name="로즈마리" data-type="herb" data-interval="5" aria-labelledby="name-rosemary">
+                <img class="guide-card__img" src="images/rosemary.svg" alt="로즈마리 화분 그림" width="120" height="120">
+                <p class="guide-card__type">허브</p>
+                <h3 class="guide-card__name" id="name-rosemary">로즈마리</h3>
+                <p class="guide-card__desc">스치기만 해도 상쾌한 향이 나는 허브예요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 5일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 하루 종일 햇빛</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 보통</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">4~5월에 모종으로 시작하면 쉬워요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">햇빛과 바람이 잘 드는 곳에 두세요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">흙 속까지 마르면 흠뻑 주세요. 잎에 물 뿌리기는 피하세요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">바람이 잘 통하는 게 가장 중요해요. 창문을 자주 열어 주세요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="rosemary" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="herb">
+              <article class="guide-card" id="plant-mint" data-id="mint" data-name="애플민트" data-type="herb" data-interval="2" aria-labelledby="name-mint">
+                <img class="guide-card__img" src="images/mint.svg" alt="애플민트 화분 그림" width="120" height="120">
+                <p class="guide-card__type">허브</p>
+                <h3 class="guide-card__name" id="name-mint">애플민트</h3>
+                <p class="guide-card__desc">잘 자라서 차나 음료에 넣기 좋아요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 2일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 반나절 햇빛</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 아주 쉬움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">4~5월에 모종을 심어요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">반나절 이상 밝은 곳이 좋아요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">물을 좋아해요. 겉흙이 마르면 바로 주세요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">뿌리가 넓게 퍼지니 다른 식물과 따로 심어 주세요. 자주 잘라 줄수록 풍성해져요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="mint" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="herb">
+              <article class="guide-card" id="plant-lavender" data-id="lavender" data-name="라벤더" data-type="herb" data-interval="7" aria-labelledby="name-lavender">
+                <img class="guide-card__img" src="images/lavender.svg" alt="라벤더 화분 그림" width="120" height="120">
+                <p class="guide-card__type">허브</p>
+                <h3 class="guide-card__name" id="name-lavender">라벤더</h3>
+                <p class="guide-card__desc">보라색 꽃과 은은한 향이 좋은 허브예요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 7일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 하루 종일 햇빛</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 조금 어려움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">4~5월에 모종을 심어요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">햇빛이 많을수록 잘 자라요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">흙이 속까지 마르면 흠뻑 주세요. 물이 많으면 약해요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">장마철엔 비를 맞지 않게 하고, 바람이 잘 통하게 해 주세요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="lavender" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="herb">
+              <article class="guide-card" id="plant-parsley" data-id="parsley" data-name="파슬리" data-type="herb" data-interval="2" aria-labelledby="name-parsley">
+                <img class="guide-card__img" src="images/parsley.svg" alt="파슬리 화분 그림" width="120" height="120">
+                <p class="guide-card__type">허브</p>
+                <h3 class="guide-card__name" id="name-parsley">파슬리</h3>
+                <p class="guide-card__desc">요리에 조금씩 뜯어 쓰기 좋은 허브예요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 2일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 반나절 햇빛</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 쉬움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">3~5월, 9월에 씨앗이나 모종을 심어요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">반나절 정도 햇빛이면 충분해요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">겉흙이 마르면 주세요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">바깥쪽 줄기부터 밑동에서 잘라 쓰면 새 잎이 계속 나와요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="parsley" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="indoor">
+              <article class="guide-card" id="plant-monstera" data-id="monstera" data-name="몬스테라" data-type="indoor" data-interval="7" aria-labelledby="name-monstera">
+                <img class="guide-card__img" src="images/monstera.svg" alt="몬스테라 화분 그림" width="120" height="120">
+                <p class="guide-card__type">실내 식물</p>
+                <h3 class="guide-card__name" id="name-monstera">몬스테라</h3>
+                <p class="guide-card__desc">구멍 난 큰 잎이 멋스러운 대표 실내 식물이에요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 7일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 밝은 그늘</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 쉬움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">봄·여름에 분갈이하면 잘 자라요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">직사광선은 피하고, 밝은 거실 창가가 좋아요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">겉흙 2~3cm가 마르면 주세요. 겨울엔 간격을 늘려요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">잎에 앉은 먼지는 젖은 천으로 살살 닦아 주세요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="monstera" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="indoor">
+              <article class="guide-card" id="plant-stucky" data-id="stucky" data-name="스투키" data-type="indoor" data-interval="30" aria-labelledby="name-stucky">
+                <img class="guide-card__img" src="images/stucky.svg" alt="스투키 화분 그림" width="120" height="120">
+                <p class="guide-card__type">실내 식물</p>
+                <h3 class="guide-card__name" id="name-stucky">스투키</h3>
+                <p class="guide-card__desc">물을 거의 주지 않아도 잘 자라 처음 키우기 좋아요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 한 달에 한 번</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 어디든 괜찮아요</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 아주 쉬움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">사계절 언제든 들일 수 있어요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">밝은 곳을 좋아하지만 그늘에서도 버텨요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">한 달에 한 번이면 충분해요. 겨울엔 더 드물게 주세요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">물을 자주 주면 뿌리가 썩어요. 잊어버릴 만할 때 주세요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="stucky" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="indoor">
+              <article class="guide-card" id="plant-pothos" data-id="pothos" data-name="스킨답서스" data-type="indoor" data-interval="7" aria-labelledby="name-pothos">
+                <img class="guide-card__img" src="images/pothos.svg" alt="스킨답서스 화분 그림" width="120" height="120">
+                <p class="guide-card__type">실내 식물</p>
+                <h3 class="guide-card__name" id="name-pothos">스킨답서스</h3>
+                <p class="guide-card__desc">줄기가 늘어지며 자라 선반이나 걸이 화분에 잘 어울려요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 7일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 밝은 그늘</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 아주 쉬움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">사계절 언제든 들일 수 있어요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">밝은 곳이 좋지만 그늘에도 강해요. 직사광선은 피하세요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">겉흙이 마르면 흠뻑 주세요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">줄기를 잘라 물컵에 꽂아 두면 뿌리가 나와 새로 키울 수 있어요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="pothos" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="indoor">
+              <article class="guide-card" id="plant-zz" data-id="zz" data-name="금전수" data-type="indoor" data-interval="21" aria-labelledby="name-zz">
+                <img class="guide-card__img" src="images/zz.svg" alt="금전수 화분 그림" width="120" height="120">
+                <p class="guide-card__type">실내 식물</p>
+                <h3 class="guide-card__name" id="name-zz">금전수</h3>
+                <p class="guide-card__desc">도톰한 잎에 물을 저장해 물을 자주 주지 않아도 돼요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 3주마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 밝은 그늘</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 아주 쉬움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">사계절 언제든 들일 수 있어요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">밝은 실내면 충분해요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">흙이 속까지 완전히 마르면 주세요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">물이 많은 게 가장 위험해요. 잎이 누렇게 되면 물을 줄여 주세요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="zz" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="indoor">
+              <article class="guide-card" id="plant-rubber" data-id="rubber" data-name="고무나무" data-type="indoor" data-interval="10" aria-labelledby="name-rubber">
+                <img class="guide-card__img" src="images/rubber.svg" alt="고무나무 화분 그림" width="120" height="120">
+                <p class="guide-card__type">실내 식물</p>
+                <h3 class="guide-card__name" id="name-rubber">고무나무</h3>
+                <p class="guide-card__desc">윤기 나는 큰 잎이 시원해 보이는 실내 나무예요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 10일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 밝은 창가</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 쉬움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">봄·여름에 분갈이하면 잘 자라요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">밝은 창가가 좋아요. 한여름 직사광선은 피하세요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">겉흙 2~3cm가 마르면 주세요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">자리를 자주 옮기면 잎을 떨궈요. 한곳에 두고 키우세요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="rubber" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="indoor">
+              <article class="guide-card" id="plant-spathiphyllum" data-id="spathiphyllum" data-name="스파티필럼" data-type="indoor" data-interval="5" aria-labelledby="name-spathiphyllum">
+                <img class="guide-card__img" src="images/spathiphyllum.svg" alt="스파티필럼 화분 그림" width="120" height="120">
+                <p class="guide-card__type">실내 식물</p>
+                <h3 class="guide-card__name" id="name-spathiphyllum">스파티필럼</h3>
+                <p class="guide-card__desc">하얀 꽃이 피는 실내 식물로, 그늘에서도 잘 자라요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 5일마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 밝은 그늘</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 쉬움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">사계절 언제든 들일 수 있어요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">그늘에서도 잘 자라요. 직사광선은 피하세요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">물을 좋아해요. 잎이 축 처지면 물을 달라는 신호예요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">시든 꽃대는 밑동에서 잘라 주세요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="spathiphyllum" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+            <li class="guide-list__item" data-type="indoor">
+              <article class="guide-card" id="plant-succulent" data-id="succulent" data-name="다육식물" data-type="indoor" data-interval="21" aria-labelledby="name-succulent">
+                <img class="guide-card__img" src="images/succulent.svg" alt="다육식물 화분 그림" width="120" height="120">
+                <p class="guide-card__type">실내 식물</p>
+                <h3 class="guide-card__name" id="name-succulent">다육식물</h3>
+                <p class="guide-card__desc">작고 통통한 잎이 귀여워 창가에 두기 좋아요.</p>
+                <ul class="tags">
+                  <li class="tags__item"><span class="tags__label">물</span> 3주마다</li>
+                  <li class="tags__item"><span class="tags__label">햇빛</span> 하루 종일 햇빛</li>
+                  <li class="tags__item"><span class="tags__label">난이도</span> 쉬움</li>
+                </ul>
+                <details class="guide-card__more">
+                  <summary class="guide-card__summary"><span class="guide-card__summary-text"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"></use></svg> 키우는 법 보기</span></summary>
+                  <dl class="guide-card__detail">
+                    <dt class="guide-card__term">심는 때</dt><dd class="guide-card__def">봄·가을에 들이면 좋아요.</dd>
+                    <dt class="guide-card__term">햇빛</dt><dd class="guide-card__def">햇빛이 부족하면 줄기만 길게 자라요. 밝은 창가에 두세요.</dd>
+                    <dt class="guide-card__term">물 주기</dt><dd class="guide-card__def">잎이 살짝 쭈글해지면 흙에 흠뻑 주세요.</dd>
+                    <dt class="guide-card__term">꼭 기억하세요</dt><dd class="guide-card__def">잎에 물이 닿지 않게 흙에만 주세요. 장마철엔 물을 줄여요.</dd>
+                  </dl>
+                </details>
+                <button type="button" class="btn btn--block btn--toggle guide-card__add" data-add="succulent" aria-pressed="false" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 내 식물에 추가</button>
+              </article>
+            </li>
+        </ul>
+
+        <!-- 광고 영역 -->
+        <aside class="ad" aria-label="광고">
+          <p class="ad__label">광고</p>
+          <div class="ad__slot">
+            <p class="ad__placeholder">광고가 들어갈 자리예요</p>
+          </div>
+        </aside>
+      </section>
+
+      <!-- 이달의 할 일 -->
+      <section class="panel" id="month" aria-labelledby="monthTitle">
+        <h2 class="panel__title" id="monthTitle" tabindex="-1">이달의 할 일</h2>
+        <p class="panel__lead">달마다 텃밭과 화분에 해 주면 좋은 일이에요.</p>
+
+        <nav class="month-nav" aria-label="달 바꾸기">
+          <button type="button" class="btn month-nav__btn" id="prevMonth"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-left"></use></svg> 지난달</button>
+          <p class="month-nav__label" id="monthLabel" aria-live="polite">9월</p>
+          <button type="button" class="btn month-nav__btn" id="nextMonth">다음달 <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-right"></use></svg></button>
+        </nav>
+        <ol class="todo" id="monthList"></ol>
+        <button type="button" class="btn btn--block month-nav__now" id="thisMonth" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-today"></use></svg> 이번 달로 돌아가기</button>
+
+        <!-- 광고 영역 -->
+        <aside class="ad" aria-label="광고">
+          <p class="ad__label">광고</p>
+          <div class="ad__slot">
+            <p class="ad__placeholder">광고가 들어갈 자리예요</p>
+          </div>
+        </aside>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <div class="container">
+      <p>오늘도 초록 식물과 함께 편안한 하루 보내세요.</p>
+      <p class="footer__note">물 주기 간격은 봄·가을 기준의 참고 값이에요. 기록은 이 기기에만 저장되고 서버로 보내지 않아요.</p>
+      <nav class="footer__nav" aria-label="사이트 정보">
+        <a class="footer__link" href="privacy.html">개인정보 처리방침</a>
+      </nav>
+    </div>
+  </footer>
+
+  <p class="toast" id="notice" role="status" aria-live="polite"></p>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
