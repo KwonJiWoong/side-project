@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-09T04:10:15+09:00",
+ "updated": "2026-10-09T04:12:14+09:00",
  "keepDays": 3,
  "sources": [
   {
@@ -39,30 +39,6 @@
  ],
  "items": [
   {
-   "id": "ed111000de78",
-   "source": "chosun",
-   "title": "“한국의 ‘예측 불가능’ 플랫폼 규제, 美기업 차별하는 방식으로 작용”",
-   "link": "https://www.chosun.com/international/us/2026/10/09/ZRCYLL7BERBJDL2V2VUR7EC7TI/",
-   "published": "2026-10-09T03:44:09+09:00",
-   "people": []
-  },
-  {
-   "id": "e36c8c7f9f41",
-   "source": "chosun",
-   "title": "美, 한국 내 강제 노동 지적… “신체·지적 장애인에 염전 노동 강요”",
-   "link": "https://www.chosun.com/international/us/2026/10/09/QU7DKHTLCBAAHE6IQC5MJVIMTA/",
-   "published": "2026-10-09T03:36:45+09:00",
-   "people": []
-  },
-  {
-   "id": "3a734efb48d6",
-   "source": "chosun",
-   "title": "휴전 2주 전 뚫린 전선… “백 장군이 가달라” 다급한 새벽 전화",
-   "link": "https://www.chosun.com/international/2026/10/09/ENCAR2C74ZFLPL62CQPPOZ36DQ/",
-   "published": "2026-10-09T03:00:00+09:00",
-   "people": []
-  },
-  {
    "id": "506c818643e5",
    "source": "chosun",
    "title": "123명 목숨 앗아간 오폭… “AI는 최악 판단에 더 빨리 도달할 뿐”",
@@ -71,20 +47,14 @@
    "people": []
   },
   {
-   "id": "89b1d43e1ce4",
-   "source": "donga",
-   "title": "상속-고령-임대 농지 강제처분 조치 안한다",
-   "link": "https://www.donga.com/news/Economy/article/all/20261009/134812805/2",
-   "published": "2026-10-09T01:40:00+09:00",
-   "people": []
-  },
-  {
    "id": "9104ad3476fb",
    "source": "donga",
    "title": "靑 “극초음속 탄도미사일 첫 시험발사 성공”",
    "link": "https://www.donga.com/news/Politics/article/all/20261009/134812799/2",
    "published": "2026-10-09T01:40:00+09:00",
-   "people": []
+   "people": [
+    "president"
+   ]
   },
   {
    "id": "dec309105e9a",
@@ -111,14 +81,6 @@
    "people": []
   },
   {
-   "id": "e6ade56df577",
-   "source": "donga",
-   "title": "성난 농심에 물러선 농지조사… 농지은행 안 맡겨도 처분 유예",
-   "link": "https://www.donga.com/news/Economy/article/all/20261008/134812833/2",
-   "published": "2026-10-09T01:40:00+09:00",
-   "people": []
-  },
-  {
    "id": "62b09ee7170d",
    "source": "donga",
    "title": "李, ‘CPTPP 원점 재검토’ 이틀만에 가입 보류",
@@ -131,22 +93,6 @@
    "source": "donga",
    "title": "“한-이집트, CEPA 협상 개시-경제협력 확대”",
    "link": "https://www.donga.com/news/Politics/article/all/20261008/134812837/2",
-   "published": "2026-10-09T01:40:00+09:00",
-   "people": []
-  },
-  {
-   "id": "46752262c588",
-   "source": "donga",
-   "title": "미래기금 사업 9조6220억 현금 지원성… 野 “세수 줄면 감당 못해”",
-   "link": "https://www.donga.com/news/Economy/article/all/20261008/134812970/2",
-   "published": "2026-10-09T01:40:00+09:00",
-   "people": []
-  },
-  {
-   "id": "e28090447db9",
-   "source": "donga",
-   "title": "野 “김용범이 레버리지 ETF 압력” 이억원 “靑 지시 아니다”",
-   "link": "https://www.donga.com/news/Economy/article/all/20261008/134812972/2",
    "published": "2026-10-09T01:40:00+09:00",
    "people": []
   },
@@ -191,6 +137,14 @@
    "people": []
   },
   {
+   "id": "dc2f634cdcad",
+   "source": "joongang",
+   "title": "정청래, 미국 비자 발급 보류",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBDQUN0RExQa3dPZEhhVWctRGp2bkFQZGd1RjBjODBxcDFxY1A0RzJXMGp3X3dmSThwWjBLMEZHRTJLSHpQdkRJdUh3RkNzQXY1UG1MRkN3?oc=5",
+   "published": "2026-10-09T00:42:07+09:00",
+   "people": []
+  },
+  {
    "id": "97bc0afdd0d2",
    "source": "donga",
    "title": "‘빈총 경계’ 질타에 굳은 표정… 고개 숙인 국감장의 장성들[청계천 옆 사진관]",
@@ -204,14 +158,6 @@
    "title": "美 “韓 핵잠 찬성, 핵무장은 반대”…71% “北 침공땐 미군 방어”",
    "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE45MjB2OU5FMXhva0d4MmtWdjRhVjFNVHNPMHIwaGY1UnljSkJwMm9aZG5adlI2aGoydzVoVmFqQVMzbms4dENnQmZCdWZScy10b0FRQndR?oc=5",
    "published": "2026-10-08T23:03:00+09:00",
-   "people": []
-  },
-  {
-   "id": "fc9fe36b2157",
-   "source": "chosun",
-   "title": "미국인 10명 중 7명 “北 침공시 미군의 남한 방어 찬성”",
-   "link": "https://www.chosun.com/international/us/2026/10/08/AXNAQ36JNJAXLCQT66IZQ5F7MI/",
-   "published": "2026-10-08T23:00:00+09:00",
    "people": []
   },
   {
@@ -377,14 +323,6 @@
    "people": []
   },
   {
-   "id": "32077f320026",
-   "source": "donga",
-   "title": "정부 “주우크라 대사 소환”…‘北포로 송환 공개’ 강경대응",
-   "link": "https://www.donga.com/news/Inter/article/all/20261008/134811392/2",
-   "published": "2026-10-08T17:30:00+09:00",
-   "people": []
-  },
-  {
    "id": "da487826aab2",
    "source": "joongang",
    "title": "JYP, 755억 들인 고덕동 신사옥 건립 포기 “사업 진행 어려워”",
@@ -422,14 +360,6 @@
    "title": "삼성전자 역대급 실적에도 코스피 6600선 후퇴…외국인 2조원 순매도",
    "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9NckpweXh0T0tXM0NjSXR1c3JabWdUOHNRZkc0QXFlTEFLNEdWODNuNDBDekJhWmpSZmN3MV9RaFE1eXBfVXhSWElFd3ppeERlWWdLSUpR?oc=5",
    "published": "2026-10-08T16:44:37+09:00",
-   "people": []
-  },
-  {
-   "id": "ba41e062b068",
-   "source": "donga",
-   "title": "162조 미래대응기금 충돌…野 “李 쌈짓돈” 與 “성장동력”",
-   "link": "https://www.donga.com/news/Economy/article/all/20261008/134810020/1",
-   "published": "2026-10-08T16:41:00+09:00",
    "people": []
   },
   {
@@ -562,14 +492,6 @@
    "title": "정점식 “文정부 부동산 비판자 블랙리스트, 법적 조치 추진”",
    "link": "https://www.donga.com/news/Politics/article/all/20261008/134809430/2",
    "published": "2026-10-08T14:49:00+09:00",
-   "people": []
-  },
-  {
-   "id": "23d366e9c77f",
-   "source": "donga",
-   "title": "기상청장, 거제 폭우 예보 오차 사과…“슈퍼컴 6호기 도입 지연”",
-   "link": "https://www.donga.com/news/Society/article/all/20261008/134809414/1",
-   "published": "2026-10-08T14:41:00+09:00",
    "people": []
   },
   {
@@ -761,14 +683,6 @@
    "people": [
     "democratic"
    ]
-  },
-  {
-   "id": "2b454472465e",
-   "source": "donga",
-   "title": "경찰, 김승원 ‘성추행 의혹’ 수사 착수…고발인 조사",
-   "link": "https://www.donga.com/news/Society/article/all/20261008/134807726/1",
-   "published": "2026-10-08T10:34:00+09:00",
-   "people": []
   },
   {
    "id": "67ed059c9dfa",
@@ -971,14 +885,6 @@
    "people": []
   },
   {
-   "id": "90cab82b9808",
-   "source": "donga",
-   "title": "“하하하, 김정은과 얘기하고 싶으면 말해”… 北유엔대표부 전화하니 ‘金 조롱’ 메시지",
-   "link": "https://www.donga.com/news/Inter/article/all/20261008/134805807/2",
-   "published": "2026-10-08T04:30:00+09:00",
-   "people": []
-  },
-  {
    "id": "1332cf7fa253",
    "source": "donga",
    "title": "강신철 “北 MDL 침범, 유엔사 조사후 조치… 확성기 효과는 의문”",
@@ -1144,7 +1050,9 @@
    "title": "우크라 “韓, 러시아에 경유 수출”...靑 “사실과 다르고 부적절한 주장”",
    "link": "https://www.chosun.com/politics/politics_general/2026/10/07/GN5HOZ5J2FHM7L2JID6EEJXZXM/",
    "published": "2026-10-07T19:41:21+09:00",
-   "people": []
+   "people": [
+    "president"
+   ]
   },
   {
    "id": "c898bf074e81",
@@ -1184,7 +1092,9 @@
    "title": "후임 비서실장 인선 묻자 靑 “후임 올 만한 분위기 느끼지 못해”",
    "link": "https://www.chosun.com/politics/politics_general/2026/10/07/KWZPAXDQEVCVRHK4JAAH3HWJMQ/",
    "published": "2026-10-07T18:08:20+09:00",
-   "people": []
+   "people": [
+    "president"
+   ]
   },
   {
    "id": "c955c29ced47",
@@ -1624,7 +1534,9 @@
    "title": "靑 “주우크라이나 대사 소환 검토”",
    "link": "https://www.chosun.com/politics/politics_general/2026/10/06/6MTKTDMENFFHJAP2DIKGCVVVZQ/",
    "published": "2026-10-06T18:33:45+09:00",
-   "people": []
+   "people": [
+    "president"
+   ]
   },
   {
    "id": "2857a73e823c",
@@ -1690,7 +1602,9 @@
    "title": "조국, 靑 검찰개혁 진실공방에 “소모적 문제, 무슨 의미 있나”",
    "link": "https://www.chosun.com/politics/assembly/2026/10/06/GHCDI2TFKRHATGSFMVSZT25KYI/",
    "published": "2026-10-06T16:22:44+09:00",
-   "people": []
+   "people": [
+    "president"
+   ]
   },
   {
    "id": "320def869608",
@@ -1912,14 +1826,6 @@
    "title": "서울 방문 외국인, 작년보다 22% ↑…중국인 37%로 가장 많아",
    "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5jSy0tN0V4cXBjSUR2SldjYWR1NXdRUDBidzBEd1NPSmhUSmoya09lZEVVdGhvVEZqcmVmUzdBczlubUphWHMxRU5UWG1vR05WU2drM05n?oc=5",
    "published": "2026-10-06T06:53:06+09:00",
-   "people": []
-  },
-  {
-   "id": "a21269168606",
-   "source": "chosun",
-   "title": "前주한미군 사령관 “전작권 전환, 시간에 쫓기면 위험… 미비점 여전”",
-   "link": "https://www.chosun.com/international/us/2026/10/06/YTWPE5T2TRG65G3GXU2EFT3FDM/",
-   "published": "2026-10-06T06:28:09+09:00",
    "people": []
   },
   {
