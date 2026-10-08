@@ -1,16 +1,9 @@
-/* ---------- Reset / base ---------- */
+/* 리셋 */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
-  transition: background-color .2s ease, color .2s ease;
-}
-h1, h2, h3, p, dl, dd, ul, ol { margin: 0; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body, h1, h2, h3, h4, p, figure, dl, dd, ul, ol { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
-a { color: var(--accent); text-decoration: none; }
-a:hover { color: var(--accent-hover); }
-img { max-width: 100%; display: block; }
-button { font: inherit; cursor: pointer; }
+a { color: inherit; }
+img, svg { max-width: 100%; }
+img { display: block; }
+button { font: inherit; color: inherit; cursor: pointer; }
