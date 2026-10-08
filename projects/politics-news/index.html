@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="조선일보·중앙일보·동아일보의 정치 기사 제목을 최근 3일치 모아 큰 글씨로 보여 드려요. 대통령, 국무총리, 여야 대표 소식만 따로 볼 수도 있어요.">
+  <meta name="author" content="권지웅">
+  <meta name="theme-color" content="#263238">
+  <title>오늘의 정치 소식 | 언론사·인물별 정치 기사 모음</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <!-- 아이콘 모음 -->
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" hidden>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-contrast" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 9.5V20h5v-6h4v6h5V9.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-news" viewBox="0 0 24 24"><rect x="3" y="4" width="15" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M18 8h3v10a2 2 0 0 1-2 2M7 8h7M7 12h7M7 16h4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 7v5l3.5 2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-out" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-reload" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 11v6M12 7.5v.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="container header__inner">
+      <h1 class="header__title" id="siteTitle" tabindex="-1">
+        <svg class="ico header__logo" aria-hidden="true" focusable="false"><use href="#i-news"></use></svg>
+        오늘의 정치 소식
+      </h1>
+      <button type="button" class="btn btn--home" id="homeBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg> 처음으로</button>
+
+      <div class="tools" role="group" aria-label="보기 설정">
+        <p class="tools__label">글자 크기: <strong id="sizeText">보통</strong></p>
+        <button type="button" class="btn btn--tool" id="fontDown"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-minus"></use></svg> 글자 작게</button>
+        <button type="button" class="btn btn--tool" id="fontUp"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 글자 크게</button>
+        <button type="button" class="btn btn--tool btn--toggle" id="contrastBtn" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-contrast"></use></svg> 고대비 보기</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="container">
+
+      <!-- 업데이트 안내 -->
+      <section class="summary" aria-labelledby="summaryTitle">
+        <h2 class="sr-only" id="summaryTitle">기사 모음 안내</h2>
+        <p class="summary__updated"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clock"></use></svg> <span id="updatedText">기사를 불러오는 중이에요…</span></p>
+        <p class="summary__desc">최근 3일 동안 나온 정치 기사 제목을 모았어요. 제목을 누르면 언론사 홈페이지에서 기사 전체를 읽을 수 있어요.</p>
+      </section>
+
+      <!-- 보기 고르기 -->
+      <nav class="view-nav" aria-label="보기 고르기">
+        <ul class="view-nav__list">
+          <li><button type="button" class="view-nav__btn" data-view="news" aria-pressed="true" aria-controls="newsPanel"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-news"></use></svg> 언론사별 뉴스</button></li>
+          <li><button type="button" class="view-nav__btn" data-view="people" aria-pressed="false" aria-controls="peoplePanel"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-user"></use></svg> 인물별 소식</button></li>
+        </ul>
+      </nav>
+
+      <!-- 언론사별 뉴스 -->
+      <section class="panel" id="newsPanel" aria-labelledby="newsTitle">
+        <h2 class="panel__title" id="newsTitle" tabindex="-1">언론사별 뉴스</h2>
+        <div class="chips" role="group" aria-label="언론사 고르기">
+          <button type="button" class="chip" data-source="all" aria-pressed="true">전체</button>
+          <button type="button" class="chip" data-source="chosun" aria-pressed="false">조선일보</button>
+          <button type="button" class="chip" data-source="joongang" aria-pressed="false">중앙일보</button>
+          <button type="button" class="chip" data-source="donga" aria-pressed="false">동아일보</button>
+        </div>
+        <p class="panel__count" id="newsCount" aria-live="polite"></p>
+        <div class="feed" id="newsFeed"></div>
+        <button type="button" class="btn btn--block feed__more" id="newsMore" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-down"></use></svg> 기사 더 보기</button>
+      </section>
+
+      <!-- 인물별 소식 -->
+      <section class="panel" id="peoplePanel" aria-labelledby="peopleTitle" hidden>
+        <h2 class="panel__title" id="peopleTitle" tabindex="-1">인물별 소식</h2>
+        <p class="panel__desc">기사 제목에 이름이 나온 기사만 모아 보여 드려요.</p>
+        <ul class="people" id="peopleList" aria-label="인물 고르기">
+          <li><button type="button" class="person" data-person="president" aria-pressed="true"><span class="person__role">대통령</span> <span class="person__name">이재명</span></button></li>
+          <li><button type="button" class="person" data-person="pm" aria-pressed="false"><span class="person__role">국무총리</span> <span class="person__name">한성숙</span></button></li>
+          <li><button type="button" class="person" data-person="democratic" aria-pressed="false"><span class="person__role">더불어민주당 대표</span> <span class="person__name">김민석</span></button></li>
+          <li><button type="button" class="person" data-person="ppp" aria-pressed="false"><span class="person__role">국민의힘 대표</span> <span class="person__name">장동혁</span></button></li>
+        </ul>
+        <p class="panel__count" id="peopleCount" aria-live="polite"></p>
+        <div class="feed" id="peopleFeed"></div>
+        <button type="button" class="btn btn--block feed__more" id="peopleMore" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-down"></use></svg> 기사 더 보기</button>
+      </section>
+
+      <!-- 불러오기 실패 -->
+      <section class="state" id="errorBox" aria-labelledby="errorTitle" hidden>
+        <h2 class="state__title" id="errorTitle" tabindex="-1">기사를 불러오지 못했어요</h2>
+        <p class="state__desc">인터넷 연결을 확인한 뒤 아래 버튼을 눌러 주세요.</p>
+        <button type="button" class="btn btn--primary" id="retryBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-reload"></use></svg> 다시 불러오기</button>
+      </section>
+
+      <!-- 알아 두세요 -->
+      <aside class="notice-box" aria-labelledby="noticeTitle">
+        <h2 class="notice-box__title" id="noticeTitle"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-info"></use></svg> 알아 두세요</h2>
+        <ul class="notice-box__list">
+          <li>각 언론사가 공개한 RSS(기사 목록)에서 <strong>제목·언론사·시간·원문 주소</strong>만 가져와요. 기사 본문과 사진은 싣지 않아요.</li>
+          <li>기사의 저작권은 각 언론사에 있어요. 기사 전체는 언론사 홈페이지에서 읽어 주세요.</li>
+          <li>기사는 사람이 고르지 않아요. 하루 두 번(아침 7시, 저녁 6시쯤) 자동으로 모아서 최신순으로 보여 드려요.</li>
+        </ul>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__maker">만든 사람: <strong>권지웅</strong> (웹퍼블리셔)</p>
+      <ul class="footer__links">
+        <li><a class="footer__link" href="../../"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-back"></use></svg> 포트폴리오로 돌아가기</a></li>
+        <li><a class="footer__link" href="https://github.com/KwonJiWoong/side-project/tree/main/projects/politics-news" target="_blank" rel="noopener noreferrer"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-code"></use></svg> 소스 코드 보기<span class="sr-only"> (새 창으로 열림)</span></a></li>
+      </ul>
+      <p class="footer__copy">© 2026 권지웅. 화면 디자인과 코드는 권지웅이 직접 만들었어요.</p>
+    </div>
+  </footer>
+
+  <p class="toast" id="notice" role="status" aria-live="polite"></p>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
