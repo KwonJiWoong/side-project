@@ -1,0 +1,146 @@
+/* 디자인 토큰 (컬러 5가지, 정당 색인 파랑·빨강을 피한 중립 먹색) */
+:root {
+  --color-bg: #f4f3ef;       /* 신문지 느낌 연한 바탕 */
+  --color-surface: #ffffff;  /* 카드·버튼 바탕 */
+  --color-text: #1d2124;     /* 글자 (흰 바탕 16.2:1, 바탕 14.6:1) */
+  --color-primary: #263238;  /* 먹색 (흰 바탕 13.2:1, 바탕 11.9:1) */
+  --color-accent: #7a4100;   /* 갈색 포커스·강조 (흰 바탕 8.1:1, 바탕 7.3:1) */
+
+  --font-sans: 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  --border-w: 0.125rem;
+  --radius: 0.75rem;
+  --radius-pill: 999px;   /* 알약 모양 (값이 커야 해서 px) */
+  --touch: 3.5rem;
+  --page-pad: clamp(1rem, 4vw, 1.5rem);
+  --gap: clamp(1rem, 3vw, 1.5rem);
+}
+
+/* 고대비 모드 */
+html[data-contrast="high"] {
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-text: #000000;
+  --color-primary: #000000;
+  --color-accent: #000000;
+  --border-w: 0.25rem;
+}
+
+/* 글자 크기 단계 (기본 18px) */
+html { font-size: 112.5%; }
+html[data-size="1"] { font-size: 125%; }
+html[data-size="2"] { font-size: 137.5%; }
+
+/* 기본 */
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+  background: var(--color-bg);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+strong { font-weight: 700; }
+
+/* 키보드 포커스 */
+:focus-visible {
+  outline: 0.25rem solid var(--color-accent);
+  outline-offset: 0.2rem;
+}
+main:focus, [tabindex="-1"]:focus { outline: none; }
+
+/* 본문 바로가기 */
+.skip-link {
+  position: absolute;
+  top: -10rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 1rem 1.5rem;
+  font-weight: 700;
+  color: var(--color-surface);
+  background: var(--color-primary);
+  border-radius: var(--radius);
+}
+.skip-link:focus { top: 1rem; }
+
+/* 스크린리더 전용 (1px은 표준 패턴) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* 컨테이너 */
+.container {
+  width: 100%;
+  max-width: 40rem;
+  margin-inline: auto;
+  padding-inline: var(--page-pad);
+}
+@media (min-width: 768px) {
+  .container { max-width: 46rem; }
+}
+@media (min-width: 1024px) {
+  .container { max-width: 52rem; }
+}
+
+/* 아이콘 (글자색을 따라감) */
+.ico {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  vertical-align: middle;
+}
+
+/* 버튼 공통 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: var(--touch);
+  min-height: var(--touch);
+  padding: 0.5rem 1.25rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--color-primary);
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-primary);
+  border-radius: var(--radius);
+  transition: background-color 0.15s, color 0.15s;
+}
+.btn:hover { background: var(--color-bg); }
+.btn--block { display: flex; width: 100%; }
+.btn--primary {
+  min-height: 4rem;
+  font-size: 1.25rem;
+  color: var(--color-surface);
+  background: var(--color-primary);
+}
+.btn--primary:hover { color: var(--color-surface); background: var(--color-text); }
+.btn--home, .btn--tool { color: var(--color-text); border-color: var(--color-text); }
+.btn--toggle[aria-pressed="true"] {
+  color: var(--color-surface);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn--toggle[aria-pressed="true"]::before { content: "✓"; }
+.btn[disabled] { opacity: 0.6; cursor: not-allowed; }
+
+/* 모션 최소화 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
