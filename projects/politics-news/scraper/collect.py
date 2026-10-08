@@ -69,8 +69,9 @@ def child_text(node, *names):
     return ''
 
 
-def parse_feed(raw, source):
-    """RSS 2.0 / Atom 모두 읽어서 [{title, link, published}] 로 돌려준다."""
+def parse_feed(raw, source, link_contains=''):
+    """RSS 2.0 / Atom 모두 읽어서 [{title, link, published}] 로 돌려준다.
+    link_contains가 있으면 원문 주소에 그 글자가 든 기사(예: 정치 분류)만 남긴다."""
     root = ET.fromstring(raw)
     nodes = [n for n in root.iter() if local_name(n.tag) in ('item', 'entry')]
     suffix = ' - ' + source['name']
@@ -81,6 +82,8 @@ def parse_feed(raw, source):
             title = title[: -len(suffix)].strip()
         link = clean_text(child_text(node, 'link'))
         if not title or not re.match(r'^https?://', link):
+            continue
+        if link_contains and link_contains not in link:
             continue
         published = parse_date(child_text(node, 'pubDate', 'date', 'published', 'updated'))
         items.append({'title': title, 'link': link, 'published': published})
@@ -121,9 +124,12 @@ def main():
     for source in config['sources']:
         urls = [source['url']] + ([source['fallback_url']] if source.get('fallback_url') else [])
         fresh = None
+        link_contains = ''
         for url in urls:
             try:
-                fresh = parse_feed(fetch(url), source)
+                # 주소 거르기는 언론사 공식 RSS에만 (대체 주소는 링크 모양이 다름)
+                link_contains = source.get('link_contains', '') if url == source['url'] else ''
+                fresh = parse_feed(fetch(url), source, link_contains)
                 if fresh:
                     print('[성공] ' + source['name'] + ': ' + str(len(fresh)) + '건 (' + url + ')')
                     break
@@ -139,6 +145,9 @@ def main():
             continue
 
         ok_count += 1
+        if link_contains:
+            # 지난번에 모은 기사도 같은 기준으로 거름
+            kept = [item for item in kept if link_contains in item['link']]
         merged = {item['link']: item for item in kept}
         for item in fresh:
             before = old_by_link.get(item['link'])

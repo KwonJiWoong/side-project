@@ -5,7 +5,8 @@
     {
       "id": "chosun",
       "name": "조선일보",
-      "url": "https://www.chosun.com/arc/outboundfeeds/rss/category/politics/?outputType=xml"
+      "url": "https://www.chosun.com/arc/outboundfeeds/rss/category/politics/?outputType=xml",
+      "link_contains": "/politics/"
     },
     {
       "id": "joongang",
@@ -16,7 +17,8 @@
     {
       "id": "donga",
       "name": "동아일보",
-      "url": "https://rss.donga.com/politics.xml"
+      "url": "https://rss.donga.com/politics.xml",
+      "link_contains": "/Politics/"
     }
   ],
   "people": [
@@ -24,7 +26,7 @@
       "id": "president",
       "name": "이재명",
       "role": "대통령",
-      "keywords": ["이재명", "李대통령", "李 대통령", "이 대통령", "대통령실"]
+      "keywords": ["이재명", "李대통령", "李 대통령", "이 대통령", "대통령실", "청와대", "靑"]
     },
     {
       "id": "pm",
