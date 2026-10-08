@@ -237,7 +237,7 @@ def main():
     data = {
         'updated': now.isoformat(),
         'keepDays': config['keep_days'],
-        'sources': [{'id': s['id'], 'name': s['name']} for s in config['sources']],
+        'sources': [{'id': s['id'], 'name': s['name'], 'home': s.get('home', '')} for s in config['sources']],
         'people': [{'id': p['id'], 'name': p['name'], 'role': p['role']} for p in config['people']],
         'topicHours': config['topic_hours'],
         'topics': build_topics(final, now, config['topic_hours'], config['topic_limit']),

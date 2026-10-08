@@ -26,7 +26,8 @@
     newsCount: $('newsCount'),
     newsFeed: $('newsFeed'),
     newsMore: $('newsMore'),
-    sourceBtns: Array.from(document.querySelectorAll('[data-source]')),
+    sourceList: $('sourceList'),
+    sourceLinks: $('sourceLinks'),
     peoplePanel: $('peoplePanel'),
     peopleTitle: $('peopleTitle'),
     peopleList: $('peopleList'),
@@ -134,6 +135,11 @@
     }).filter((t) => t.sourceCount >= 2);
 
     return {
+      sources: sources.filter((s) => s && typeof s.id === 'string').map((s) => ({
+        id: s.id,
+        name: String(s.name || s.id),
+        home: /^https?:\/\//.test(String(s.home || '')) ? String(s.home) : ''
+      })),
       topics: topics,
       updated: raw.updated ? new Date(raw.updated) : null,
       people: people.filter((p) => p && typeof p.id === 'string' && typeof p.name === 'string'),
@@ -248,6 +254,47 @@
     });
   }
 
+  /* 그리기 - 언론사 버튼 · 푸터 출처 링크 (설정에 맞춰 만듦) */
+  function renderSources() {
+    const sources = state.data.sources;
+    if (!sources.length) return;
+    if (state.source !== 'all' && !sources.some((s) => s.id === state.source)) state.source = 'all';
+
+    Array.from(el.sourceList.querySelectorAll('[data-source]:not([data-source="all"])')).forEach((btn) => btn.remove());
+    sources.forEach((s) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'chip';
+      btn.dataset.source = s.id;
+      btn.textContent = s.name;
+      el.sourceList.append(btn);
+    });
+
+    el.sourceLinks.textContent = '';
+    sources.filter((s) => s.home).forEach((s) => {
+      const li = document.createElement('li');
+      const link = document.createElement('a');
+      link.className = 'footer__link';
+      link.href = s.home;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = s.name;
+      const sr = document.createElement('span');
+      sr.className = 'sr-only';
+      sr.textContent = ' (새 창으로 열림)';
+      const ico = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      ico.setAttribute('class', 'ico');
+      ico.setAttribute('aria-hidden', 'true');
+      ico.setAttribute('focusable', 'false');
+      const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+      use.setAttribute('href', '#i-out');
+      ico.append(use);
+      link.append(sr, ico);
+      li.append(link);
+      el.sourceLinks.append(li);
+    });
+  }
+
   /* 그리기 - 인물 버튼 (설정이 바뀌면 데이터에 맞춰 다시 만듦) */
   function renderPeopleButtons() {
     if (!state.data || !state.data.people.length) return;
@@ -285,7 +332,7 @@
 
     // 보기 고르기
     el.viewBtns.forEach((btn) => btn.setAttribute('aria-pressed', String(btn.dataset.view === state.view)));
-    el.sourceBtns.forEach((btn) => btn.setAttribute('aria-pressed', String(btn.dataset.source === state.source)));
+    Array.from(el.sourceList.querySelectorAll('[data-source]')).forEach((btn) => btn.setAttribute('aria-pressed', String(btn.dataset.source === state.source)));
     Array.from(el.peopleList.querySelectorAll('[data-person]')).forEach((btn) => {
       btn.setAttribute('aria-pressed', String(btn.dataset.person === state.person));
     });
@@ -333,6 +380,7 @@
         if (!data) throw new Error('형식 오류');
         state.data = data;
         state.isError = false;
+        renderSources();
         renderPeopleButtons();
         render();
       })
