@@ -4,6 +4,7 @@ name: 정치 뉴스 모으기
 on:
   schedule:
     - cron: '0 22 * * *'   # 매일 오전 7시 (한국 시간)
+    - cron: '0 3 * * *'    # 매일 정오 12시 (한국 시간)
     - cron: '0 9 * * *'    # 매일 오후 6시 (한국 시간)
   workflow_dispatch:        # Actions 화면에서 직접 실행
   push:

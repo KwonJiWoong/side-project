@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-09T04:17:24+09:00",
+ "updated": "2026-10-09T04:41:38+09:00",
  "keepDays": 3,
  "sources": [
   {
@@ -35,6 +35,88 @@
    "id": "ppp",
    "name": "장동혁",
    "role": "국민의힘 대표"
+  }
+ ],
+ "topicHours": 24,
+ "topics": [
+  {
+   "title": "정청래, 美 비자 발급 ‘보류’…외통위 국감 ‘미국→유럽行’ 변경",
+   "sourceCount": 3,
+   "latest": "2026-10-09T01:40:00+09:00",
+   "items": [
+    "855abe6d9e32",
+    "dc2f634cdcad",
+    "b079c9f59bf7",
+    "9d62693e3d49",
+    "345fef1322ef",
+    "3115c0ae13cd",
+    "a04d88a6ed8b"
+   ]
+  },
+  {
+   "title": "정부 “주우크라 대사 소환”…北포로 송환 공개에 초강수",
+   "sourceCount": 3,
+   "latest": "2026-10-09T01:40:00+09:00",
+   "items": [
+    "1cae4429f21e",
+    "407801a24714",
+    "a06e7f74a88f",
+    "55ea53a0ebf4",
+    "c0e1d6e8e245",
+    "0bf470d163cf"
+   ]
+  },
+  {
+   "title": "李, CPTPP 연내 가입 신청 않도록 지시…“농어민 신뢰 회복 우선”",
+   "sourceCount": 3,
+   "latest": "2026-10-08T16:21:00+09:00",
+   "items": [
+    "45f76d95722e",
+    "5c073a8be8c3",
+    "f671860e9e2d"
+   ]
+  },
+  {
+   "title": "추미애 또 김지용 반대하자…김민석 “절제 필요하다” 저격",
+   "sourceCount": 3,
+   "latest": "2026-10-08T14:13:00+09:00",
+   "items": [
+    "5df805900c8d",
+    "f0af73ab1d14",
+    "e0e349fedc43"
+   ]
+  },
+  {
+   "title": "국산 극초음속 미사일 첫 시험발사 성공…李대통령 참관",
+   "sourceCount": 2,
+   "latest": "2026-10-09T01:40:00+09:00",
+   "items": [
+    "9104ad3476fb",
+    "9a76db0ab08f",
+    "0fae452f1377",
+    "75b71f211ab2"
+   ]
+  },
+  {
+   "title": "정부, 상속·고령농·임대차 농지 등은 전수조사 처분서 제외",
+   "sourceCount": 2,
+   "latest": "2026-10-08T14:20:00+09:00",
+   "items": [
+    "bc71e2c8be76",
+    "0455a79c5540",
+    "e1bf5c70a357",
+    "bf6059a72691"
+   ]
+  },
+  {
+   "title": "“한-이집트, CEPA 협상 개시-경제협력 확대”",
+   "sourceCount": 2,
+   "latest": "2026-10-09T01:40:00+09:00",
+   "items": [
+    "28b674a3574a",
+    "f0f0093efc95",
+    "ab11d3e8f166"
+   ]
   }
  ],
  "items": [
@@ -360,6 +442,14 @@
    "title": "외교부 “주우크라 대사 소환 결정”... 북한군 포로 공개에 항의",
    "link": "https://www.chosun.com/politics/politics_general/2026/10/08/YZKYWLLI4ZDN3C2Z5M2RVTASM4/",
    "published": "2026-10-08T17:17:54+09:00",
+   "people": []
+  },
+  {
+   "id": "554f2ad51da6",
+   "source": "joongang",
+   "title": "구준엽 “한국 안돌아간다”…故서희원 생일에 묘소 지키며 눈물",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5BWGE2akpISzktVTVMYzVWX29VcWIyT21hYlExU2NZb3RZd2lxUG1zSHdRelZUa3EtQVVyUHk1TlFGeTNFZmRvQlVTMU9RVTZFa00tME5B?oc=5",
+   "published": "2026-10-08T17:07:34+09:00",
    "people": []
   },
   {

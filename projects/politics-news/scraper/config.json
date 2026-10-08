@@ -1,6 +1,8 @@
 {
   "keep_days": 3,
   "max_per_source": 120,
+  "topic_hours": 24,
+  "topic_limit": 10,
   "sources": [
     {
       "id": "chosun",
