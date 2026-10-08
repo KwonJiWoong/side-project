@@ -1,9 +1,10 @@
 /* 리셋 */
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-body, h1, h2, h3, h4, p, figure, dl, dd, ul, ol { margin: 0; }
+body, h1, h2, h3, p, figure, dl, dd, ul, ol { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 a { color: inherit; }
 img, svg { max-width: 100%; }
 img { display: block; }
 button { font: inherit; color: inherit; cursor: pointer; }
+[hidden] { display: none !important; }

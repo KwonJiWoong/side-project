@@ -1,83 +1,89 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>[이름] 웹퍼블리셔 포트폴리오 | 보기 편하고 쓰기 쉬운 화면</title>
-<meta name="description" content="글자 크기와 대비, 누르는 영역까지 살피는 웹퍼블리셔의 포트폴리오입니다. 금융·커머스·문화 분야 실무 경력과 직접 만든 사이트를 소개합니다.">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="글자 크기와 대비, 누르는 영역까지 살피는 웹퍼블리셔의 포트폴리오입니다. 금융·커머스·문화 분야 실무 경력과 직접 만든 사이트를 소개합니다.">
+  <meta name="theme-color" content="#14356b">
+  <title>[이름] 웹퍼블리셔 포트폴리오 | 보기 편하고 쓰기 쉬운 화면</title>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
 
-<a class="skip-link" href="#main">본문 바로가기</a>
+  <!-- 아이콘 모음 -->
+  <svg class="sr-only" aria-hidden="true" focusable="false">
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-contrast" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 9.5V20h5v-6h4v6h5V9.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-window" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M3 9h18" fill="none" stroke="currentColor" stroke-width="2.2"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M9 7V5h6v2M3 12h18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  </svg>
 
-<!-- 아이콘 모음 -->
-<svg class="sr-only" aria-hidden="true" focusable="false">
-  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
-  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
-  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></symbol>
-  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
-  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-</svg>
-
-<header class="site-header" id="top">
-  <!-- 보기 설정 -->
-  <div class="tools">
-    <div class="container tools__inner" role="group" aria-label="보기 설정">
-      <p class="tools__label">글자 크기: <strong id="sizeText">보통</strong></p>
-      <button type="button" class="btn btn--tool" id="fontDown"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-minus"></use></svg> 글자 작게</button>
-      <button type="button" class="btn btn--tool" id="fontUp"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 글자 크게</button>
-      <button type="button" class="btn btn--tool btn--toggle" id="themeBtn" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-moon"></use></svg> 어두운 화면</button>
+  <header class="header" id="top">
+    <!-- 보기 설정 -->
+    <div class="tools">
+      <div class="container tools__inner" role="group" aria-label="보기 설정">
+        <p class="tools__label" role="status">글자 크기: <strong id="sizeText">보통</strong></p>
+        <button type="button" class="btn btn--tool" id="fontDown"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-minus"></use></svg> 글자 작게</button>
+        <button type="button" class="btn btn--tool" id="fontUp"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 글자 크게</button>
+        <button type="button" class="btn btn--tool btn--toggle" id="contrastBtn" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-contrast"></use></svg> 고대비 보기</button>
+      </div>
     </div>
-  </div>
 
-  <!-- 주요 메뉴 -->
-  <nav class="nav" aria-label="주요 메뉴">
-    <div class="container nav__inner">
-      <a href="#top" class="nav__brand">[이름] <span class="nav__brand-sub">웹퍼블리셔</span></a>
+    <!-- 주요 메뉴 -->
+    <nav class="gnb" aria-label="주요 메뉴">
+      <div class="container gnb__inner">
+        <p class="gnb__brand">[이름] <span class="gnb__brand-sub">웹퍼블리셔</span></p>
+        <a class="btn btn--home gnb__home" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg> 처음으로</a>
+        <button type="button" class="btn btn--tool gnb__toggle" id="menuBtn" aria-expanded="false" aria-controls="navList">
+          <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-menu"></use></svg>
+          <span id="menuText">메뉴 열기</span>
+        </button>
 
-      <button type="button" class="btn nav__menu-btn" aria-expanded="false" aria-controls="navList">
-        <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-menu"></use></svg>
-        <span class="nav__menu-text">메뉴 열기</span>
-      </button>
+        <ul class="gnb__list" id="navList">
+          <li><a class="gnb__link" href="#about" data-nav="about"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-user"></use></svg> 소개</a></li>
+          <li><a class="gnb__link" href="#skills" data-nav="skills"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-code"></use></svg> 다루는 기술</a></li>
+          <li><a class="gnb__link" href="#works" data-nav="works"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-window"></use></svg> 만든 사이트</a></li>
+          <li><a class="gnb__link" href="#career" data-nav="career"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-briefcase"></use></svg> 경력</a></li>
+          <li><a class="gnb__link" href="#contact" data-nav="contact"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-mail"></use></svg> 연락하기</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-      <ul class="nav__list" id="navList">
-        <li><a class="nav__link" href="#about">소개</a></li>
-        <li><a class="nav__link" href="#skills">다루는 기술</a></li>
-        <li><a class="nav__link" href="#works">만든 사이트</a></li>
-        <li><a class="nav__link" href="#career">경력</a></li>
-        <li><a class="nav__link" href="#contact">연락하기</a></li>
-      </ul>
-    </div>
-  </nav>
-</header>
+  <main id="main" tabindex="-1">
 
-<main id="main" tabindex="-1">
+    <!-- 첫 화면 -->
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <p class="hero__eyebrow">웹퍼블리셔 포트폴리오</p>
+          <h1 class="hero__title" id="heroTitle">보기 편하고 쓰기 쉬운<br>화면을 만듭니다.</h1>
+          <p class="hero__desc">글자 크기와 대비, 누르는 영역까지 살피는 웹퍼블리셔 [이름]입니다. 어르신도 헤매지 않는 화면을 목표로, 5년 넘게 금융·커머스·문화 분야의 웹사이트를 만들고 운영해 왔습니다.</p>
 
-  <!-- 첫 화면 -->
-  <section class="hero" aria-labelledby="heroTitle">
-    <div class="container hero__inner">
-      <div class="hero__content">
-        <p class="eyebrow">웹퍼블리셔 포트폴리오</p>
-        <h1 class="hero__title" id="heroTitle">보기 편하고 쓰기 쉬운<br>화면을 만듭니다.</h1>
-        <p class="hero__desc">글자 크기와 대비, 누르는 영역까지 살피는 웹퍼블리셔 [이름]입니다. 어르신도 헤매지 않는 화면을 목표로, 5년 넘게 금융·커머스·문화 분야의 웹사이트를 만들고 운영해 왔습니다.</p>
+          <div class="hero__actions">
+            <a href="#works" class="btn btn--primary"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-window"></use></svg> 만든 사이트 보기</a>
+            <a href="#career" class="btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-briefcase"></use></svg> 경력 보기</a>
+          </div>
 
-        <div class="hero__actions">
-          <a href="#works" class="btn btn--primary"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"></use></svg> 만든 사이트 보기</a>
-          <a href="#career" class="btn btn--line">경력 보기</a>
+          <p class="hero__status"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> 새 프로젝트를 함께할 수 있어요</p>
         </div>
 
-        <p class="status-badge"><svg class="ico status-badge__ico" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> 새 프로젝트 함께할 수 있어요</p>
-      </div>
-
-      <figure class="hero__visual" aria-hidden="true">
-        <div class="code-window">
+        <figure class="code-window" aria-hidden="true">
           <div class="code-window__bar">
             <span class="code-window__dot"></span>
             <span class="code-window__dot"></span>
@@ -85,246 +91,243 @@
             <span class="code-window__label">index.html</span>
           </div>
           <div class="code-window__body">
-            <span class="code-line code-line--w70"></span>
-            <span class="code-line code-line--accent code-line--w45"></span>
-            <span class="code-line code-line--w88"></span>
-            <span class="code-line code-line--w60"></span>
-            <span class="code-line code-line--w36"></span>
-            <span class="code-line code-line--w80"></span>
+            <span class="code-window__line code-window__line--w70"></span>
+            <span class="code-window__line code-window__line--accent code-window__line--w45"></span>
+            <span class="code-window__line code-window__line--w88"></span>
+            <span class="code-window__line code-window__line--w60"></span>
+            <span class="code-window__line code-window__line--w36"></span>
+            <span class="code-window__line code-window__line--w80"></span>
           </div>
-        </div>
-      </figure>
-    </div>
-  </section>
-
-  <!-- 소개 -->
-  <section id="about" class="section section--tint" aria-labelledby="aboutTitle">
-    <div class="container about">
-      <div class="about__intro">
-        <p class="eyebrow">소개</p>
-        <h2 class="section-title" id="aboutTitle">저를 소개합니다</h2>
-        <p class="body-text">금융·커머스·교육·문화 서비스를 중심으로 5년 넘게 웹퍼블리셔로 일해왔습니다. 글자 크기·색상 대비·누르는 영역처럼 작지만 중요한 부분까지 살펴서, 나이나 시력에 상관없이 편하게 쓸 수 있는 화면을 만드는 것을 가장 중요하게 생각합니다.</p>
+        </figure>
       </div>
+    </section>
 
-      <div class="about__card">
-        <dl class="stat-list">
-          <div class="stat">
-            <dt class="stat__label">실무 경력</dt>
-            <dd class="stat__value">5년+</dd>
+    <!-- 소개 -->
+    <section class="section" id="about" aria-labelledby="aboutTitle">
+      <div class="container about">
+        <div class="about__intro">
+          <div class="section-head">
+            <p class="section-head__eyebrow">소개</p>
+            <h2 class="section-head__title" id="aboutTitle" tabindex="-1">저를 소개합니다</h2>
           </div>
-          <div class="stat">
-            <dt class="stat__label">실무 프로젝트</dt>
-            <dd class="stat__value">11개</dd>
-          </div>
-          <div class="stat">
-            <dt class="stat__label">함께한 회사</dt>
-            <dd class="stat__value">5곳</dd>
-          </div>
-        </dl>
+          <p class="about__text">금융·커머스·교육·문화 서비스를 중심으로 5년 넘게 웹퍼블리셔로 일해왔습니다. 글자 크기·색상 대비·누르는 영역처럼 작지만 중요한 부분까지 살펴서, 나이나 시력에 상관없이 편하게 쓸 수 있는 화면을 만드는 것을 가장 중요하게 생각합니다.</p>
+        </div>
 
-        <div class="about__focus">
+        <div class="about__card">
+          <dl class="stat-list">
+            <div class="stat-list__item">
+              <dt class="stat-list__label">실무 경력</dt>
+              <dd class="stat-list__value">5년+</dd>
+            </div>
+            <div class="stat-list__item">
+              <dt class="stat-list__label">실무 프로젝트</dt>
+              <dd class="stat-list__value">11개</dd>
+            </div>
+            <div class="stat-list__item">
+              <dt class="stat-list__label">함께한 회사</dt>
+              <dd class="stat-list__value">5곳</dd>
+            </div>
+          </dl>
+
           <h3 class="about__focus-title">집중하는 영역</h3>
-          <ul class="chip-list">
-            <li class="chip">웹 접근성</li>
-            <li class="chip">반응형</li>
-            <li class="chip">고가독성 화면</li>
+          <ul class="tag-list">
+            <li class="tag-list__item">웹 접근성</li>
+            <li class="tag-list__item">반응형</li>
+            <li class="tag-list__item">고가독성 화면</li>
           </ul>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 다루는 기술 -->
-  <section id="skills" class="section" aria-labelledby="skillsTitle">
-    <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">기술</p>
-        <h2 class="section-title" id="skillsTitle">다루는 기술</h2>
-      </div>
+    <!-- 다루는 기술 -->
+    <section class="section section--surface" id="skills" aria-labelledby="skillsTitle">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-head__eyebrow">기술</p>
+          <h2 class="section-head__title" id="skillsTitle" tabindex="-1">다루는 기술</h2>
+        </div>
 
-      <ul class="skill-list">
-        <li class="skill-tag">HTML5</li>
-        <li class="skill-tag">CSS3 / Sass</li>
-        <li class="skill-tag">JavaScript (ES6+)</li>
-        <li class="skill-tag">TypeScript</li>
-        <li class="skill-tag">React</li>
-        <li class="skill-tag">Vue.js</li>
-        <li class="skill-tag">Git</li>
-        <li class="skill-tag">Figma</li>
-        <li class="skill-tag">웹 접근성 (WCAG)</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 직접 만든 사이트 -->
-  <section id="works" class="section section--tint" aria-labelledby="worksTitle">
-    <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">개인 작업</p>
-        <h2 class="section-title" id="worksTitle">직접 만든 사이트</h2>
-        <p class="section-note">‘사이트 보기’ 버튼을 누르면 실제 화면으로 이동합니다.</p>
-      </div>
-
-      <ul class="work-list">
-        <li class="work">
-          <article class="work__inner">
-            <p class="work__meta"><span class="work__badge">01</span> 생활 도우미 · 2026</p>
-            <h3 class="work__title">우리집 텃밭 수첩</h3>
-            <p class="work__desc">상추·방울토마토·몬스테라 등 식물 21가지의 물 주기 날짜를 기록하고, 키우기 안내와 달마다 할 일을 보여주는 베란다 가드닝 도우미입니다. 큰 글씨와 쉬운 말로 어르신도 혼자 쓸 수 있게 만들었습니다.</p>
-            <ul class="tag-list">
-              <li class="tag">어르신 친화 화면</li>
-              <li class="tag">기록 저장</li>
-              <li class="tag">웹 접근성</li>
-            </ul>
-            <a href="garden-guide/" class="btn btn--primary work__link">사이트 보기<span class="sr-only"> - 우리집 텃밭 수첩</span> <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"></use></svg></a>
-          </article>
-        </li>
-
-        <li class="work">
-          <article class="work__inner">
-            <p class="work__meta"><span class="work__badge">02</span> 메뉴 추천 · 2026</p>
-            <h3 class="work__title">오늘 뭐 먹지?</h3>
-            <p class="work__desc">아침·점심·저녁 무엇을 먹을지 고민될 때 버튼 한 번으로 집밥 메뉴를 추천해 주는 사이트입니다. 큰 버튼과 높은 대비로 누구나 헤매지 않게 구성했습니다.</p>
-            <ul class="tag-list">
-              <li class="tag">Vanilla JS</li>
-              <li class="tag">반응형</li>
-              <li class="tag">고가독성 화면</li>
-            </ul>
-            <a href="menu/" class="btn btn--primary work__link">사이트 보기<span class="sr-only"> - 오늘 뭐 먹지?</span> <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"></use></svg></a>
-          </article>
-        </li>
-
-        <li class="work">
-          <article class="work__inner">
-            <p class="work__meta"><span class="work__badge">03</span> 메뉴 추천 · 2026</p>
-            <h3 class="work__title">밥풀이의 오늘 뭐 먹지?</h3>
-            <p class="work__desc">같은 메뉴 추천 기능을 귀여운 캐릭터 ‘밥풀이’ 콘셉트로 다시 디자인했습니다. 한식·중식·일식·양식 중에서 고를 수 있고, 같은 마크업 구조에 테마만 바꿔 다른 분위기를 냈습니다.</p>
-            <ul class="tag-list">
-              <li class="tag">테마 리디자인</li>
-              <li class="tag">CSS 변수</li>
-              <li class="tag">인터랙션</li>
-            </ul>
-            <a href="menu-cute/" class="btn btn--primary work__link">사이트 보기<span class="sr-only"> - 밥풀이의 오늘 뭐 먹지?</span> <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"></use></svg></a>
-          </article>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 경력 -->
-  <section id="career" class="section" aria-labelledby="careerTitle">
-    <div class="container">
-      <div class="section-heading">
-        <p class="eyebrow">실무 경력</p>
-        <h2 class="section-title" id="careerTitle">대표 실무 프로젝트</h2>
-        <p class="section-note">보안 정책상 화면을 공개할 수 없어 글로 정리했습니다. 최근 프로젝트부터 보여드립니다.</p>
-      </div>
-
-      <ol class="career-list">
-        <li class="career">
-          <article>
-            <p class="career__date"><time datetime="2023-05">2023. 05</time> ~ <time datetime="2023-09">2023. 09</time> <span class="career__period">(5개월)</span></p>
-            <h3 class="career__title">KCB(bizwire) 퍼블리싱 구축</h3>
-            <p class="career__org">㈜파인너츠 · 대리 · 웹퍼블리셔</p>
-            <ul class="tag-list">
-              <li class="tag">금융</li>
-              <li class="tag">신규 구축</li>
-            </ul>
-          </article>
-        </li>
-        <li class="career">
-          <article>
-            <p class="career__date"><time datetime="2022-08">2022. 08</time> ~ <time datetime="2022-10">2022. 10</time> <span class="career__period">(3개월)</span></p>
-            <h3 class="career__title">현대카드 M포인트몰 리뉴얼</h3>
-            <p class="career__org">이길 · 대리 · 웹퍼블리셔</p>
-            <ul class="tag-list">
-              <li class="tag">금융 · 쇼핑</li>
-              <li class="tag">리뉴얼</li>
-            </ul>
-          </article>
-        </li>
-        <li class="career">
-          <article>
-            <p class="career__date"><time datetime="2021-07">2021. 07</time> ~ <time datetime="2022-01">2022. 01</time> <span class="career__period">(7개월)</span></p>
-            <h3 class="career__title">예스코 사업부문 홈페이지 리뉴얼</h3>
-            <p class="career__org">이길 · 대리 · 웹퍼블리셔</p>
-            <ul class="tag-list">
-              <li class="tag">기업 홈페이지</li>
-              <li class="tag">리뉴얼</li>
-            </ul>
-          </article>
-        </li>
-        <li class="career">
-          <article>
-            <p class="career__date"><time datetime="2020-11">2020. 11</time> ~ <time datetime="2021-01">2021. 01</time> <span class="career__period">(3개월)</span></p>
-            <h3 class="career__title">리움·호암 미술관 구축</h3>
-            <p class="career__org">이길 · 대리 · 웹퍼블리셔</p>
-            <ul class="tag-list">
-              <li class="tag">문화 · 미술관</li>
-              <li class="tag">신규 구축</li>
-            </ul>
-          </article>
-        </li>
-        <li class="career">
-          <article>
-            <p class="career__date"><time datetime="2019-01">2019. 01</time> ~ <time datetime="2020-06">2020. 06</time> <span class="career__period">(1년 6개월)</span></p>
-            <h3 class="career__title">메리츠화재 퍼블리싱 운영</h3>
-            <p class="career__org">이트라이브 · 메리츠운영그룹 대리 · 웹퍼블리셔</p>
-            <ul class="tag-list">
-              <li class="tag">금융 · 보험</li>
-              <li class="tag">운영</li>
-            </ul>
-          </article>
-        </li>
-        <li class="career">
-          <article>
-            <p class="career__date"><time datetime="2018-01">2018. 01</time> ~ <time datetime="2018-09">2018. 09</time> <span class="career__period">(9개월)</span></p>
-            <h3 class="career__title">KEB하나은행 모바일·인터넷뱅킹 운영</h3>
-            <p class="career__org">하이웹솔루션 · 사원 · 웹퍼블리셔</p>
-            <ul class="tag-list">
-              <li class="tag">금융 · 은행</li>
-              <li class="tag">운영</li>
-            </ul>
-          </article>
-        </li>
-      </ol>
-
-      <section class="career-more" aria-labelledby="careerMoreTitle">
-        <h3 class="career-more__title" id="careerMoreTitle">그 밖의 프로젝트</h3>
-        <ul class="career-more__list">
-          <li>LG CNS 내부 프로젝트 리뉴얼 <span class="career-more__date">(2023)</span></li>
-          <li>신세계백화점 앱 고도화 분석·설계 컨설팅 <span class="career-more__date">(2022)</span></li>
-          <li>교원 KRT 리뉴얼 사업 <span class="career-more__date">(2022)</span></li>
-          <li>능률·YBM 교과서 퍼블리싱 <span class="career-more__date">(2017 ~ 2018)</span></li>
-          <li>잡코리아 운영 퍼블리싱 <span class="career-more__date">(2016 ~ 2017)</span></li>
-        </ul>
-      </section>
-    </div>
-  </section>
-
-  <!-- 연락하기 -->
-  <section id="contact" class="section section--contact" aria-labelledby="contactTitle">
-    <div class="container">
-      <div class="contact">
-        <h2 class="contact__title" id="contactTitle">함께 좋은 화면을 만들어요</h2>
-        <p class="contact__desc">새로운 프로젝트나 협업 제안은 언제든 환영합니다. 아래 메일로 편하게 연락해 주세요.</p>
-        <a href="mailto:example@email.com" class="btn btn--contact"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-mail"></use></svg> [이메일 주소]</a>
-        <ul class="social-list">
-          <li><a class="social-list__link" href="https://github.com/KwonJiWoong">GitHub 보기</a></li>
+        <ul class="skill-list">
+          <li class="skill-list__item">HTML5</li>
+          <li class="skill-list__item">CSS3 / Sass</li>
+          <li class="skill-list__item">JavaScript (ES6+)</li>
+          <li class="skill-list__item">TypeScript</li>
+          <li class="skill-list__item">React</li>
+          <li class="skill-list__item">Vue.js</li>
+          <li class="skill-list__item">Git</li>
+          <li class="skill-list__item">Figma</li>
+          <li class="skill-list__item">웹 접근성 (WCAG)</li>
         </ul>
       </div>
+    </section>
+
+    <!-- 직접 만든 사이트 -->
+    <section class="section" id="works" aria-labelledby="worksTitle">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-head__eyebrow">개인 작업</p>
+          <h2 class="section-head__title" id="worksTitle" tabindex="-1">직접 만든 사이트</h2>
+          <p class="section-head__note">‘사이트 보기’ 버튼을 누르면 실제 화면으로 이동합니다.</p>
+        </div>
+
+        <ul class="card-list">
+          <li class="card-list__item">
+            <article class="work" aria-labelledby="work1">
+              <p class="work__meta"><span class="work__badge">01</span> 생활 도우미 · 2026</p>
+              <h3 class="work__title" id="work1">우리집 텃밭 수첩</h3>
+              <p class="work__desc">상추·방울토마토·몬스테라 등 식물 21가지의 물 주기 날짜를 기록하고, 키우기 안내와 달마다 할 일을 보여주는 베란다 가드닝 도우미입니다. 큰 글씨와 쉬운 말로 어르신도 혼자 쓸 수 있게 만들었습니다.</p>
+              <ul class="tag-list">
+                <li class="tag-list__item">어르신 친화 화면</li>
+                <li class="tag-list__item">기록 저장</li>
+                <li class="tag-list__item">웹 접근성</li>
+              </ul>
+              <a href="garden-guide/" class="btn btn--primary btn--block work__link"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"></use></svg> 사이트 보기<span class="sr-only"> - 우리집 텃밭 수첩</span></a>
+            </article>
+          </li>
+
+          <li class="card-list__item">
+            <article class="work" aria-labelledby="work2">
+              <p class="work__meta"><span class="work__badge">02</span> 메뉴 추천 · 2026</p>
+              <h3 class="work__title" id="work2">오늘 뭐 먹지?</h3>
+              <p class="work__desc">아침·점심·저녁 무엇을 먹을지 고민될 때 버튼 한 번으로 집밥 메뉴를 추천해 주는 사이트입니다. 큰 버튼과 높은 대비로 누구나 헤매지 않게 구성했습니다.</p>
+              <ul class="tag-list">
+                <li class="tag-list__item">Vanilla JS</li>
+                <li class="tag-list__item">반응형</li>
+                <li class="tag-list__item">고가독성 화면</li>
+              </ul>
+              <a href="menu/" class="btn btn--primary btn--block work__link"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"></use></svg> 사이트 보기<span class="sr-only"> - 오늘 뭐 먹지?</span></a>
+            </article>
+          </li>
+
+          <li class="card-list__item">
+            <article class="work" aria-labelledby="work3">
+              <p class="work__meta"><span class="work__badge">03</span> 메뉴 추천 · 2026</p>
+              <h3 class="work__title" id="work3">밥풀이의 오늘 뭐 먹지?</h3>
+              <p class="work__desc">같은 메뉴 추천 기능을 귀여운 캐릭터 ‘밥풀이’ 콘셉트로 다시 디자인했습니다. 한식·중식·일식·양식 중에서 고를 수 있고, 같은 마크업 구조에 테마만 바꿔 다른 분위기를 냈습니다.</p>
+              <ul class="tag-list">
+                <li class="tag-list__item">테마 리디자인</li>
+                <li class="tag-list__item">CSS 변수</li>
+                <li class="tag-list__item">인터랙션</li>
+              </ul>
+              <a href="menu-cute/" class="btn btn--primary btn--block work__link"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-arrow"></use></svg> 사이트 보기<span class="sr-only"> - 밥풀이의 오늘 뭐 먹지?</span></a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 경력 -->
+    <section class="section section--surface" id="career" aria-labelledby="careerTitle">
+      <div class="container">
+        <div class="section-head">
+          <p class="section-head__eyebrow">실무 경력</p>
+          <h2 class="section-head__title" id="careerTitle" tabindex="-1">대표 실무 프로젝트</h2>
+          <p class="section-head__note">보안 정책상 화면을 공개할 수 없어 글로 정리했습니다. 최근 프로젝트부터 보여드립니다.</p>
+        </div>
+
+        <ol class="card-list">
+          <li class="card-list__item">
+            <article class="career" aria-labelledby="career1">
+              <p class="career__date"><time datetime="2023-05">2023. 05</time> ~ <time datetime="2023-09">2023. 09</time> <span class="career__period">(5개월)</span></p>
+              <h3 class="career__title" id="career1">KCB(bizwire) 퍼블리싱 구축</h3>
+              <p class="career__org">㈜파인너츠 · 대리 · 웹퍼블리셔</p>
+              <ul class="tag-list">
+                <li class="tag-list__item">금융</li>
+                <li class="tag-list__item">신규 구축</li>
+              </ul>
+            </article>
+          </li>
+          <li class="card-list__item">
+            <article class="career" aria-labelledby="career2">
+              <p class="career__date"><time datetime="2022-08">2022. 08</time> ~ <time datetime="2022-10">2022. 10</time> <span class="career__period">(3개월)</span></p>
+              <h3 class="career__title" id="career2">현대카드 M포인트몰 리뉴얼</h3>
+              <p class="career__org">이길 · 대리 · 웹퍼블리셔</p>
+              <ul class="tag-list">
+                <li class="tag-list__item">금융 · 쇼핑</li>
+                <li class="tag-list__item">리뉴얼</li>
+              </ul>
+            </article>
+          </li>
+          <li class="card-list__item">
+            <article class="career" aria-labelledby="career3">
+              <p class="career__date"><time datetime="2021-07">2021. 07</time> ~ <time datetime="2022-01">2022. 01</time> <span class="career__period">(7개월)</span></p>
+              <h3 class="career__title" id="career3">예스코 사업부문 홈페이지 리뉴얼</h3>
+              <p class="career__org">이길 · 대리 · 웹퍼블리셔</p>
+              <ul class="tag-list">
+                <li class="tag-list__item">기업 홈페이지</li>
+                <li class="tag-list__item">리뉴얼</li>
+              </ul>
+            </article>
+          </li>
+          <li class="card-list__item">
+            <article class="career" aria-labelledby="career4">
+              <p class="career__date"><time datetime="2020-11">2020. 11</time> ~ <time datetime="2021-01">2021. 01</time> <span class="career__period">(3개월)</span></p>
+              <h3 class="career__title" id="career4">리움·호암 미술관 구축</h3>
+              <p class="career__org">이길 · 대리 · 웹퍼블리셔</p>
+              <ul class="tag-list">
+                <li class="tag-list__item">문화 · 미술관</li>
+                <li class="tag-list__item">신규 구축</li>
+              </ul>
+            </article>
+          </li>
+          <li class="card-list__item">
+            <article class="career" aria-labelledby="career5">
+              <p class="career__date"><time datetime="2019-01">2019. 01</time> ~ <time datetime="2020-06">2020. 06</time> <span class="career__period">(1년 6개월)</span></p>
+              <h3 class="career__title" id="career5">메리츠화재 퍼블리싱 운영</h3>
+              <p class="career__org">이트라이브 · 메리츠운영그룹 대리 · 웹퍼블리셔</p>
+              <ul class="tag-list">
+                <li class="tag-list__item">금융 · 보험</li>
+                <li class="tag-list__item">운영</li>
+              </ul>
+            </article>
+          </li>
+          <li class="card-list__item">
+            <article class="career" aria-labelledby="career6">
+              <p class="career__date"><time datetime="2018-01">2018. 01</time> ~ <time datetime="2018-09">2018. 09</time> <span class="career__period">(9개월)</span></p>
+              <h3 class="career__title" id="career6">KEB하나은행 모바일·인터넷뱅킹 운영</h3>
+              <p class="career__org">하이웹솔루션 · 사원 · 웹퍼블리셔</p>
+              <ul class="tag-list">
+                <li class="tag-list__item">금융 · 은행</li>
+                <li class="tag-list__item">운영</li>
+              </ul>
+            </article>
+          </li>
+        </ol>
+
+        <section class="career-more" aria-labelledby="careerMoreTitle">
+          <h3 class="career-more__title" id="careerMoreTitle">그 밖의 프로젝트</h3>
+          <ul class="career-more__list">
+            <li class="career-more__item">LG CNS 내부 프로젝트 리뉴얼 <span class="career-more__date">(2023)</span></li>
+            <li class="career-more__item">신세계백화점 앱 고도화 분석·설계 컨설팅 <span class="career-more__date">(2022)</span></li>
+            <li class="career-more__item">교원 KRT 리뉴얼 사업 <span class="career-more__date">(2022)</span></li>
+            <li class="career-more__item">능률·YBM 교과서 퍼블리싱 <span class="career-more__date">(2017 ~ 2018)</span></li>
+            <li class="career-more__item">잡코리아 운영 퍼블리싱 <span class="career-more__date">(2016 ~ 2017)</span></li>
+          </ul>
+        </section>
+      </div>
+    </section>
+
+    <!-- 연락하기 -->
+    <section class="section" id="contact" aria-labelledby="contactTitle">
+      <div class="container">
+        <div class="contact">
+          <h2 class="contact__title" id="contactTitle" tabindex="-1">함께 좋은 화면을 만들어요</h2>
+          <p class="contact__desc">새로운 프로젝트나 협업 제안은 언제든 환영합니다. 아래 메일로 편하게 연락해 주세요.</p>
+          <a href="mailto:example@email.com" class="btn contact__btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-mail"></use></svg> [이메일 주소]</a>
+          <a href="https://github.com/KwonJiWoong" class="contact__link"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-link"></use></svg> GitHub 보기</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">© 2026 [이름]. All rights reserved.</p>
+      <a href="#top" class="btn footer__top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a>
     </div>
-  </section>
+  </footer>
 
-</main>
-
-<footer class="site-footer">
-  <div class="container site-footer__inner">
-    <p class="site-footer__copy">© 2026 [이름]. All rights reserved.</p>
-    <a href="#top" class="btn btn--line site-footer__top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a>
-  </div>
-</footer>
-
-<script src="js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
