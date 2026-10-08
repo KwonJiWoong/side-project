@@ -40,8 +40,8 @@ CSS 세부 규칙은 [`CSS_GUIDE.md`](CSS_GUIDE.md)에 따로 정리되어 있�
 └─ images/
 ```
 
-- 사이트가 여러 개면 루트에 사이트별 폴더를 만들고, 폴더마다 위 구조를 똑같이 둔다.
-- 공통 문서(`CLAUDE.md`, `CODING_GUIDE.md`, `CSS_GUIDE.md`)는 루트에 둔다.
+- 루트에는 포트폴리오 메인 사이트를 둔다. 개인 작업 사이트는 `projects/사이트이름/`에 두고, 폴더마다 위 구조를 똑같이 둔다.
+- 작업 규칙 문서(`CODING_GUIDE.md`, `CSS_GUIDE.md`)와 가이드 뷰어(`guide/`)는 `docs/`에 둔다. `CLAUDE.md`만 루트에 둔다.
 
 ### 1-2. 파일 이름
 

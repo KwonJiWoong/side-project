@@ -242,7 +242,10 @@
 }
 .contact__title { font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 700; line-height: 1.35; }
 .contact__desc { max-width: 30em; font-size: 1.0625rem; }
+.contact__email { font-size: clamp(1.25rem, 3.5vw, 1.625rem); font-weight: 700; letter-spacing: 0.03em; overflow-wrap: anywhere; }
+.contact__actions { display: flex; flex-direction: column; gap: 0.75rem; width: 100%; }
 .contact__btn { width: 100%; border-color: var(--color-surface); }
+.contact__status { min-height: 1.7em; font-weight: 700; }
 .contact__link {
   display: inline-flex;
   align-items: center;
@@ -280,6 +283,7 @@
 
   .hero__actions { flex-direction: row; flex-wrap: wrap; }
 
+  .contact__actions { flex-direction: row; justify-content: center; }
   .contact__btn { width: auto; padding-inline: 2rem; }
   .footer__inner { flex-direction: row; justify-content: space-between; text-align: left; }
 }

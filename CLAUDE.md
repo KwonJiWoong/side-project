@@ -53,17 +53,31 @@
 - 주석은 섹션 구분용으로만 간단히
 
 # 폴더 구조
-/index.html
-/css/ (reset.css, common.css, style.css)
-/js/ (main.js)
-/images/
+```
+/                       포트폴리오 메인 (GitHub Pages 첫 화면)
+├─ index.html
+├─ css/ (reset.css, common.css, style.css)
+├─ js/ (main.js)
+├─ images/
+├─ projects/             포트폴리오에 소개하는 개인 작업 사이트
+│  ├─ garden-guide/     우리집 텃밭 수첩
+│  ├─ menu/             오늘 뭐 먹지?
+│  └─ menu-cute/        밥풀이의 오늘 뭐 먹지? (귀여운 버전)
+├─ docs/                작업 규칙 문서 (포트폴리오에는 노출하지 않음)
+│  ├─ CODING_GUIDE.md
+│  ├─ CSS_GUIDE.md
+│  └─ guide/            가이드 HTML 뷰어 (build.py로 생성)
+└─ CLAUDE.md
+```
+- 사이트마다 index.html · css/ · js/ · images/ 구조를 똑같이 둔다
+- 새 개인 작업은 `projects/사이트이름/`에 추가하고, 메인 index.html의 "직접 만든 사이트"에 카드를 단다
 
 # 참고 가이드
-- 전체 코딩 규칙: `CODING_GUIDE.md` (HTML · CSS · JS · 작업 방식 · 체크리스트)
-- CSS 세부 규칙: `CSS_GUIDE.md`
+- 전체 코딩 규칙: `docs/CODING_GUIDE.md` (HTML · CSS · JS · 작업 방식 · 체크리스트)
+- CSS 세부 규칙: `docs/CSS_GUIDE.md`
 - 두 문서와 이 파일이 다르면 이 파일(CLAUDE.md)을 우선한다
-- **가이드 HTML 자동 갱신:** `CODING_GUIDE.md` 또는 `CSS_GUIDE.md`를 수정하면, 같은 작업 안에서 반드시 `python3 guide/build.py`를 실행해 `guide/index.html`, `guide/css.html`을 다시 만든다 (`markdown` 패키지가 없으면 `pip install markdown`)
-- `guide/*.html`은 직접 고치지 않는다. 가이드 내용은 md 파일이 원본이고, 페이지 모양은 `guide/css/`, `guide/js/`, `guide/build.py`의 틀에서 고친다
+- **가이드 HTML 자동 갱신:** `CODING_GUIDE.md` 또는 `CSS_GUIDE.md`를 수정하면, 같은 작업 안에서 반드시 `python3 docs/guide/build.py`를 실행해 `docs/guide/index.html`, `docs/guide/css.html`을 다시 만든다 (`markdown` 패키지가 없으면 `pip install markdown`)
+- `docs/guide/*.html`은 직접 고치지 않는다. 가이드 내용은 md 파일이 원본이고, 페이지 모양은 `docs/guide/css/`, `docs/guide/js/`, `docs/guide/build.py`의 틀에서 고친다
 
 # 작업 방식
 - 수정 전 기존 파일과 스타일을 먼저 확인하고 톤을 맞출 것

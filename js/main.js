@@ -12,7 +12,9 @@
     menuBtn: document.getElementById('menuBtn'),
     menuText: document.getElementById('menuText'),
     navList: document.getElementById('navList'),
-    navLinks: Array.from(document.querySelectorAll('[data-nav]'))
+    navLinks: Array.from(document.querySelectorAll('[data-nav]')),
+    copyBtn: document.getElementById('copyEmailBtn'),
+    copyStatus: document.getElementById('copyStatus')
   };
   const SIZE_LABELS = ['보통', '크게', '아주 크게'];
 
@@ -116,6 +118,39 @@
     el.navLinks.forEach((link) => {
       const section = document.getElementById(link.dataset.nav);
       if (section) observer.observe(section);
+    });
+  }
+
+  /* 이벤트 - 이메일 주소 복사 */
+  function copyByTextarea(text) {
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.className = 'sr-only';
+    document.body.appendChild(area);
+    area.select();
+    let isCopied = false;
+    try { isCopied = document.execCommand('copy'); } catch (e) { isCopied = false; }
+    area.remove();
+    return isCopied;
+  }
+
+  function showCopyResult(isCopied, text) {
+    el.copyStatus.textContent = isCopied
+      ? '✓ 이메일 주소를 복사했어요. 메일 쓰는 곳에 붙여 넣어 주세요.'
+      : '복사하지 못했어요. 위에 보이는 주소 ' + text + '를 직접 적어 주세요.';
+  }
+
+  if (el.copyBtn && el.copyStatus) {
+    el.copyBtn.addEventListener('click', () => {
+      const text = el.copyBtn.dataset.copy;
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text)
+          .then(() => showCopyResult(true, text))
+          .catch(() => showCopyResult(copyByTextarea(text), text));
+      } else {
+        showCopyResult(copyByTextarea(text), text);
+      }
     });
   }
 
