@@ -1,4 +1,4 @@
-// 오늘의 정치 소식 - 기사 불러오기 / 언론사·인물별 보기 / 보기 설정
+// 오늘의 정치 소식 - 기사 불러오기 / 언론사·인물별·많이 다룬 소식 보기 / 보기 설정
 (() => {
   'use strict';
 
@@ -8,7 +8,9 @@
   const SIZE_LABELS = ['보통', '크게', '아주 크게'];
   const DAY_NAMES = ['일', '월', '화', '수', '목', '금', '토'];
   const PAGE_SIZE = 15;
-  const VIEWS = ['news', 'people'];
+  const VIEWS = ['news', 'people', 'topics'];
+  const UPDATE_HOURS = [7, 12, 18];   // 자동 수집 시각 (한국 시간)
+  const KST_OFFSET = 9 * 60 * 60 * 1000;
 
   const el = {
     title: $('siteTitle'),
@@ -31,6 +33,11 @@
     peopleCount: $('peopleCount'),
     peopleFeed: $('peopleFeed'),
     peopleMore: $('peopleMore'),
+    topicsPanel: $('topicsPanel'),
+    topicsTitle: $('topicsTitle'),
+    topicsCount: $('topicsCount'),
+    topicsList: $('topicsList'),
+    nextText: $('nextText'),
     errorBox: $('errorBox'),
     errorTitle: $('errorTitle'),
     retry: $('retryBtn'),
@@ -84,6 +91,16 @@
     return (h < 12 ? '오전 ' : '오후 ') + (h % 12 === 0 ? 12 : h % 12) + ':' + pad(d.getMinutes());
   }
 
+  /* 도우미 - 다음 자동 수집 시각 (한국 시간 기준) */
+  function nextUpdateText() {
+    const kst = new Date(Date.now() + KST_OFFSET);   // UTC 값으로 읽으면 한국 시각
+    const hour = kst.getUTCHours();
+    const next = UPDATE_HOURS.find((h) => h > hour);
+    const label = (h) => (h < 12 ? '아침 ' + h + '시' : h === 12 ? '낮 12시' : '저녁 ' + (h - 12) + '시');
+    if (next === undefined) return '다음 업데이트: 내일 ' + label(UPDATE_HOURS[0]) + '쯤';
+    return '다음 업데이트: 오늘 ' + label(next) + '쯤';
+  }
+
   /* 도우미 - 데이터 확인 (형식이 틀린 기사는 버림) */
   function cleanData(raw) {
     if (!raw || !Array.isArray(raw.items)) return null;
@@ -97,6 +114,7 @@
       typeof item.link === 'string' && /^https?:\/\//.test(item.link) &&
       !Number.isNaN(new Date(item.published).getTime())
     ).map((item) => ({
+      id: String(item.id),
       title: item.title,
       link: item.link,
       source: String(item.source),
@@ -106,7 +124,17 @@
     }));
     items.sort((a, b) => b.date - a.date);
 
+    // 많이 다룬 소식: 기사 id를 실제 기사로 바꾸고, 2곳 이상 남은 것만
+    const byId = {};
+    items.forEach((item) => { byId[item.id] = item; });
+    const topics = (Array.isArray(raw.topics) ? raw.topics : []).map((t) => {
+      const list = (Array.isArray(t.items) ? t.items : []).map((id) => byId[String(id)]).filter(Boolean);
+      const sourceCount = new Set(list.map((item) => item.source)).size;
+      return { title: String(t.title || (list[0] ? list[0].title : '')), sourceCount: sourceCount, items: list };
+    }).filter((t) => t.sourceCount >= 2);
+
     return {
+      topics: topics,
       updated: raw.updated ? new Date(raw.updated) : null,
       people: people.filter((p) => p && typeof p.id === 'string' && typeof p.name === 'string'),
       items: items
@@ -181,6 +209,45 @@
     });
   }
 
+  /* 그리기 - 많이 다룬 소식 */
+  function renderTopics() {
+    const topics = state.data.topics;
+    el.topicsList.textContent = '';
+    el.topicsCount.textContent = topics.length ? '여러 언론사가 다룬 소식 ' + topics.length + '개' : '';
+    if (!topics.length) {
+      const empty = document.createElement('li');
+      empty.className = 'feed__empty';
+      empty.textContent = '최근 하루 동안 여러 언론사가 함께 다룬 소식이 아직 없어요.';
+      el.topicsList.append(empty);
+      return;
+    }
+
+    topics.forEach((topic, i) => {
+      const li = document.createElement('li');
+      const article = document.createElement('article');
+      article.className = 'topic';
+      article.setAttribute('aria-labelledby', 'topic' + i);
+
+      const rank = document.createElement('p');
+      rank.className = 'topic__rank';
+      rank.textContent = (i + 1) + '번째';
+      const title = document.createElement('h3');
+      title.className = 'topic__title';
+      title.id = 'topic' + i;
+      title.textContent = topic.title;
+      const meta = document.createElement('p');
+      meta.className = 'topic__meta';
+      meta.textContent = topic.sourceCount + '개 언론사가 다뤘어요 · 기사 ' + topic.items.length + '개';
+      const list = document.createElement('ol');
+      list.className = 'topic__list';
+      topic.items.forEach((item) => list.append(newsItem(item)));
+
+      article.append(rank, title, meta, list);
+      li.append(article);
+      el.topicsList.append(li);
+    });
+  }
+
   /* 그리기 - 인물 버튼 (설정이 바뀌면 데이터에 맞춰 다시 만듦) */
   function renderPeopleButtons() {
     if (!state.data || !state.data.people.length) return;
@@ -226,6 +293,8 @@
     el.errorBox.hidden = !state.isError;
     el.newsPanel.hidden = state.isError || state.view !== 'news';
     el.peoplePanel.hidden = state.isError || state.view !== 'people';
+    el.topicsPanel.hidden = state.isError || state.view !== 'topics';
+    el.nextText.textContent = nextUpdateText();
     if (!state.data) return;
 
     // 업데이트 시각
@@ -246,6 +315,9 @@
     renderFeed(el.peopleFeed, peopleItems, state.shown.people, (person ? person.name : '이 인물') + ' 관련 기사가 최근 3일 동안 없어요.');
     el.peopleCount.textContent = (person ? person.role + ' ' + person.name : '') + ' 관련 기사 ' + peopleItems.length + '개';
     el.peopleMore.hidden = peopleItems.length <= state.shown.people;
+
+    // 많이 다룬 소식
+    renderTopics();
   }
 
   /* 기사 불러오기 */
@@ -294,7 +366,7 @@
     state.view = btn.dataset.view;
     store.set('politics-view', state.view);
     render();
-    (state.view === 'news' ? el.newsTitle : el.peopleTitle).focus();
+    ({ news: el.newsTitle, people: el.peopleTitle, topics: el.topicsTitle })[state.view].focus();
   }));
 
   /* 이벤트 - 언론사 · 인물 고르기 */

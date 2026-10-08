@@ -29,8 +29,8 @@
     <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-reload" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 11v6M12 7.5v.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
-    <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-stack" viewBox="0 0 24 24"><path d="M12 3 3 8l9 5 9-5-9-5zM3 12.5l9 5 9-5M3 17l9 5 9-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </svg>
 
   <!-- 헤더 -->
@@ -66,6 +66,7 @@
         <ul class="view-nav__list">
           <li><button type="button" class="view-nav__btn" data-view="news" aria-pressed="true" aria-controls="newsPanel"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-news"></use></svg> 언론사별 뉴스</button></li>
           <li><button type="button" class="view-nav__btn" data-view="people" aria-pressed="false" aria-controls="peoplePanel"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-user"></use></svg> 인물별 소식</button></li>
+          <li><button type="button" class="view-nav__btn" data-view="topics" aria-pressed="false" aria-controls="topicsPanel"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-stack"></use></svg> 많이 다룬 소식</button></li>
         </ul>
       </nav>
 
@@ -98,6 +99,14 @@
         <button type="button" class="btn btn--block feed__more" id="peopleMore" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-down"></use></svg> 기사 더 보기</button>
       </section>
 
+      <!-- 많이 다룬 소식 -->
+      <section class="panel" id="topicsPanel" aria-labelledby="topicsTitle" hidden>
+        <h2 class="panel__title" id="topicsTitle" tabindex="-1">많이 다룬 소식</h2>
+        <p class="panel__desc">최근 하루 동안 여러 언론사가 함께 다룬 소식을 모았어요. 더 많은 언론사가 다룬 소식이 위에 나와요.</p>
+        <p class="panel__count" id="topicsCount" aria-live="polite"></p>
+        <ol class="topics" id="topicsList"></ol>
+      </section>
+
       <!-- 불러오기 실패 -->
       <section class="state" id="errorBox" aria-labelledby="errorTitle" hidden>
         <h2 class="state__title" id="errorTitle" tabindex="-1">기사를 불러오지 못했어요</h2>
@@ -121,12 +130,18 @@
   <!-- 푸터 -->
   <footer class="footer">
     <div class="container footer__inner">
-      <p class="footer__maker">만든 사람: <strong>권지웅</strong> (웹퍼블리셔)</p>
-      <ul class="footer__links">
-        <li><a class="footer__link" href="../../"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-back"></use></svg> 포트폴리오로 돌아가기</a></li>
-        <li><a class="footer__link" href="https://github.com/KwonJiWoong/side-project/tree/main/projects/politics-news" target="_blank" rel="noopener noreferrer"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-code"></use></svg> 소스 코드 보기<span class="sr-only"> (새 창으로 열림)</span></a></li>
-      </ul>
-      <p class="footer__copy">© 2026 권지웅. 화면 디자인과 코드는 권지웅이 직접 만들었어요.</p>
+      <p class="footer__next"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clock"></use></svg> <span id="nextText">하루 세 번(아침 7시, 낮 12시, 저녁 6시쯤) 새 기사를 모아요.</span></p>
+
+      <section class="footer__sources" aria-labelledby="sourcesTitle">
+        <h2 class="footer__title" id="sourcesTitle">기사 출처</h2>
+        <ul class="footer__links">
+          <li><a class="footer__link" href="https://www.chosun.com/politics/" target="_blank" rel="noopener noreferrer">조선일보 정치<span class="sr-only"> (새 창으로 열림)</span><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-out"></use></svg></a></li>
+          <li><a class="footer__link" href="https://www.joongang.co.kr/politics" target="_blank" rel="noopener noreferrer">중앙일보 정치<span class="sr-only"> (새 창으로 열림)</span><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-out"></use></svg></a></li>
+          <li><a class="footer__link" href="https://www.donga.com/news/Politics" target="_blank" rel="noopener noreferrer">동아일보 정치<span class="sr-only"> (새 창으로 열림)</span><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-out"></use></svg></a></li>
+        </ul>
+      </section>
+
+      <a class="btn btn--block footer__top" href="#siteTitle"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a>
     </div>
   </footer>
 

@@ -100,6 +100,64 @@ def match_people(title, people):
     return found
 
 
+# ---------- 많이 다룬 소식 ----------
+# 제목에서 뽑은 낱말이 2개 이상, 짧은 쪽 제목 낱말의 40% 이상 겹치면 같은 소식으로 본다.
+# 서로 다른 언론사 기사끼리만 비교하고, 2곳 이상이 다룬 소식만 남긴다.
+TOPIC_STOP = {'단독', '속보', '종합', '포토', '사설', '칼럼', '오늘', '기자', '뉴스', '인터뷰', '영상'}
+TOPIC_TAIL = re.compile(r'(에서|으로|이라며|라며|까지|부터|에게|한테|은|는|이|가|을|를|의|에|와|과|도|로|만|께|며|고|다)$')
+
+
+def title_words(title):
+    title = re.sub(r'\[[^\]]*\]', ' ', title)
+    words = set()
+    for word in re.findall(r'[가-힣A-Za-z0-9一-龥]+', title):
+        word = TOPIC_TAIL.sub('', word)
+        if len(word) >= 2 and word not in TOPIC_STOP:
+            words.add(word)
+    return words
+
+
+def build_topics(items, now, hours, limit):
+    recent = [item for item in items if parse_date(item['published']) >= now - timedelta(hours=hours)]
+    words = [title_words(item['title']) for item in recent]
+    parent = list(range(len(recent)))
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    for a in range(len(recent)):
+        for b in range(a + 1, len(recent)):
+            if recent[a]['source'] == recent[b]['source'] or not words[a] or not words[b]:
+                continue
+            same = words[a] & words[b]
+            if len(same) >= 2 and len(same) / min(len(words[a]), len(words[b])) >= 0.4:
+                parent[find(a)] = find(b)
+
+    groups = {}
+    for i in range(len(recent)):
+        groups.setdefault(find(i), []).append(i)
+
+    topics = []
+    for members in groups.values():
+        sources = {recent[i]['source'] for i in members}
+        if len(sources) < 2:
+            continue
+        # 대표 제목: 묶음 안 다른 제목과 낱말이 가장 많이 겹치는 기사
+        best = max(members, key=lambda i: (sum(len(words[i] & words[j]) for j in members if j != i), recent[i]['published']))
+        members.sort(key=lambda i: recent[i]['published'], reverse=True)
+        topics.append({
+            'title': re.sub(r'^\s*\[[^\]]*\]\s*', '', recent[best]['title']),
+            'sourceCount': len(sources),
+            'latest': recent[members[0]]['published'],
+            'items': [recent[i]['id'] for i in members],
+        })
+    topics.sort(key=lambda t: (t['sourceCount'], len(t['items']), t['latest']), reverse=True)
+    return topics[:limit]
+
+
 # ---------- 기존 데이터 ----------
 def load_old():
     try:
@@ -181,6 +239,8 @@ def main():
         'keepDays': config['keep_days'],
         'sources': [{'id': s['id'], 'name': s['name']} for s in config['sources']],
         'people': [{'id': p['id'], 'name': p['name'], 'role': p['role']} for p in config['people']],
+        'topicHours': config['topic_hours'],
+        'topics': build_topics(final, now, config['topic_hours'], config['topic_limit']),
         'items': final,
     }
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)

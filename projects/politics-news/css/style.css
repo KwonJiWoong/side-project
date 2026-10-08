@@ -53,7 +53,7 @@ main { display: block; padding-block: 1.5rem 2.5rem; }
 .view-nav { margin-bottom: 1.5rem; }
 .view-nav__list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
 }
 .view-nav__btn {
@@ -64,10 +64,11 @@ main { display: block; padding-block: 1.5rem 2.5rem; }
   gap: 0.25rem;
   width: 100%;
   min-height: 5rem;
-  padding: 0.75rem 0.5rem;
-  font-size: 1.25rem;
+  padding: 0.75rem 0.25rem;
+  font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.3;
+  text-align: center;
   color: var(--color-primary);
   background: var(--color-surface);
   border: var(--border-w) solid var(--color-primary);
@@ -221,6 +222,34 @@ main { display: block; padding-block: 1.5rem 2.5rem; }
 }
 .news-item__go .ico { width: 1.25rem; height: 1.25rem; }
 
+/* 많이 다룬 소식 */
+.topics { display: grid; gap: 1.25rem; }
+.topic {
+  padding: 1.25rem;
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-text);
+  border-top: 0.5rem solid var(--color-primary);
+  border-radius: var(--radius);
+}
+.topic__rank {
+  display: inline-block;
+  padding: 0.1rem 0.75rem;
+  font-weight: 700;
+  color: var(--color-surface);
+  background: var(--color-primary);
+  border-radius: var(--radius-pill);
+}
+.topic__title {
+  margin-top: 0.5rem;
+  font-size: 1.375rem;
+  font-weight: 800;
+  line-height: 1.45;
+}
+.topic__meta { margin-top: 0.25rem; font-weight: 700; color: var(--color-accent); }
+.topic__list { display: grid; gap: 0.5rem; margin-top: 1rem; }
+.topic .news-item { border-width: 0.125rem; }
+.topic .news-item__title { font-size: 1.125rem; }
+
 /* 불러오기 실패 */
 .state {
   margin-bottom: 2rem;
@@ -259,20 +288,27 @@ main { display: block; padding-block: 1.5rem 2.5rem; }
   background: var(--color-surface);
   border-top: 0.375rem solid var(--color-primary);
 }
-.footer__inner { display: grid; gap: 0.75rem; }
-.footer__maker { font-size: 1.125rem; }
+.footer__inner { display: grid; gap: 1.25rem; }
+.footer__next {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+.footer__title { margin-bottom: 0.25rem; font-size: 1.125rem; font-weight: 800; }
 .footer__links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
 .footer__link {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
   min-height: var(--touch);
   font-weight: 700;
   color: var(--color-primary);
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
-.footer__copy { font-size: 1rem; }
+.footer__link .ico { width: 1.25rem; height: 1.25rem; }
 
 /* 짧은 알림 */
 .toast {
@@ -296,7 +332,6 @@ main { display: block; padding-block: 1.5rem 2.5rem; }
   .tools { grid-template-columns: auto 1fr 1fr 1.5fr; }
   .tools__label, .tools .btn--toggle { grid-column: auto; }
   .chips { grid-template-columns: repeat(4, 1fr); }
-  .view-nav__btn { flex-direction: row; min-height: 4rem; }
 }
 
 /* PC */
