@@ -14,12 +14,20 @@
     navList: document.getElementById('navList'),
     navLinks: Array.from(document.querySelectorAll('[data-nav]')),
     copyBtn: document.getElementById('copyEmailBtn'),
-    copyStatus: document.getElementById('copyStatus'),
+    alert: document.getElementById('alertBox'),
+    alertIcon: document.getElementById('alertIcon'),
+    alertTitle: document.getElementById('alertTitle'),
+    alertMessage: document.getElementById('alertMessage'),
     toTop: document.getElementById('toTopBtn'),
     hero: document.getElementById('hero'),
     footer: document.getElementById('footer')
   };
   const SIZE_LABELS = ['보통', '크게', '아주 크게'];
+  const ALERT_TYPES = {
+    success: { icon: '#i-check', title: '완료했어요' },
+    error: { icon: '#i-alert', title: '다시 확인해 주세요' },
+    info: { icon: '#i-info', title: '알려 드려요' }
+  };
 
   /* 저장소 */
   const store = {
@@ -35,6 +43,29 @@
     isMenuOpen: false,
     current: ''
   };
+
+  /* 공통 알림창 - showAlert({ type, title, message }) */
+  let alertOpener = null;
+
+  function showAlert({ type = 'info', title, message }) {
+    if (!el.alert) return;
+    const preset = ALERT_TYPES[type] || ALERT_TYPES.info;
+    alertOpener = document.activeElement;
+    el.alert.dataset.type = type;
+    el.alertIcon.setAttribute('href', preset.icon);
+    el.alertTitle.textContent = title || preset.title;
+    el.alertMessage.textContent = message;
+    if (typeof el.alert.showModal === 'function') el.alert.showModal();
+    else el.alert.setAttribute('open', '');
+  }
+
+  if (el.alert) {
+    // 닫히면 알림창을 연 버튼으로 포커스를 돌려줌
+    el.alert.addEventListener('close', () => {
+      if (alertOpener && typeof alertOpener.focus === 'function') alertOpener.focus();
+      alertOpener = null;
+    });
+  }
 
   /* 그리기 */
   function renderView() {
@@ -126,6 +157,7 @@
 
   /* 이벤트 - 이메일 주소 복사 */
   function copyByTextarea(text) {
+    const lastFocus = document.activeElement;
     const area = document.createElement('textarea');
     area.value = text;
     area.setAttribute('readonly', '');
@@ -135,16 +167,19 @@
     let isCopied = false;
     try { isCopied = document.execCommand('copy'); } catch (e) { isCopied = false; }
     area.remove();
+    if (lastFocus) lastFocus.focus();
     return isCopied;
   }
 
   function showCopyResult(isCopied, text) {
-    el.copyStatus.textContent = isCopied
-      ? '✓ 이메일 주소를 복사했어요. 메일 쓰는 곳에 붙여 넣어 주세요.'
-      : '복사하지 못했어요. 위에 보이는 주소 ' + text + '를 직접 적어 주세요.';
+    if (isCopied) {
+      showAlert({ type: 'success', title: '복사했어요', message: '이메일 주소(' + text + ')를 복사했어요. 메일 쓰는 곳에 붙여 넣어 주세요.' });
+    } else {
+      showAlert({ type: 'error', title: '복사하지 못했어요', message: '이 기기에서는 자동 복사가 안 돼요. 주소를 직접 적어 주세요: ' + text });
+    }
   }
 
-  if (el.copyBtn && el.copyStatus) {
+  if (el.copyBtn) {
     el.copyBtn.addEventListener('click', () => {
       const text = el.copyBtn.dataset.copy;
       if (navigator.clipboard && window.isSecureContext) {

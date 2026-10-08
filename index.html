@@ -32,6 +32,8 @@
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
     <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2.2"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 11v6M12 7.5v.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3 2 20h20z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M12 10v4.5M12 17.5v.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
   </svg>
 
   <!-- 보기 설정 -->
@@ -319,7 +321,6 @@
             <a href="mailto:kjobaba@naver.com" class="btn contact__btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-mail"></use></svg> 메일 보내기</a>
             <button type="button" class="btn contact__btn" id="copyEmailBtn" data-copy="kjobaba@naver.com"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-copy"></use></svg> 주소 복사하기</button>
           </div>
-          <p class="contact__status" id="copyStatus" role="status"></p>
           <a href="https://github.com/KwonJiWoong" class="contact__link"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-link"></use></svg> GitHub 보기</a>
         </div>
       </div>
@@ -336,6 +337,20 @@
     <!-- 떠 있는 맨 위로 버튼 (첫 화면·푸터가 안 보일 때만 나타남) -->
     <a href="#top" class="btn to-top" id="toTopBtn" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a>
   </footer>
+
+  <!-- 공통 알림창 (showAlert로 엶) -->
+  <dialog class="alert" id="alertBox" data-type="info" aria-labelledby="alertTitle" aria-describedby="alertMessage">
+    <div class="alert__body">
+      <div class="alert__head">
+        <svg class="ico alert__ico" aria-hidden="true" focusable="false"><use id="alertIcon" href="#i-info"></use></svg>
+        <h2 class="alert__title" id="alertTitle">알려 드려요</h2>
+      </div>
+      <p class="alert__message" id="alertMessage"></p>
+      <form class="alert__actions" method="dialog">
+        <button type="submit" class="btn btn--primary btn--block" id="alertOk"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> 확인</button>
+      </form>
+    </div>
+  </dialog>
 
   <script src="js/main.js"></script>
 </body>

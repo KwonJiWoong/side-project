@@ -12,7 +12,7 @@
 | 파일 | 담는 것 | 담지 않는 것 |
 |---|---|---|
 | `css/reset.css` | 브라우저 기본 스타일 초기화, `[hidden]` 처리 | 색, 글꼴, 컴포넌트 |
-| `css/common.css` | 디자인 토큰, 고대비·글자 크기 단계, `body` 기본값, 포커스, 공통 부품(`.btn`, `.container`, `.sr-only`, `.skip-link`, `.ico`), 모션 최소화 | 특정 화면에만 쓰는 스타일 |
+| `css/common.css` | 디자인 토큰, 고대비·글자 크기 단계, `body` 기본값, 포커스, 공통 부품(`.btn`, `.container`, `.sr-only`, `.skip-link`, `.ico`, `.alert`), 모션 최소화 | 특정 화면에만 쓰는 스타일 |
 | `css/style.css` | 화면별 블록 스타일 | 토큰 정의, 공통 부품 |
 
 - 불러오는 순서는 항상 `reset.css → common.css → style.css`.
@@ -105,7 +105,7 @@
 
 어디서나 쓰는 공통 클래스는 아래만 허용한다. 새로 만들지 않는다.
 
-`.container` `.sr-only` `.skip-link` `.btn` `.ico`
+`.container` `.sr-only` `.skip-link` `.btn` `.ico` `.alert`
 
 ---
 
@@ -209,7 +209,40 @@ grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
 
 ---
 
-## 10. 속성 작성 순서
+## 10. 공통 부품: 알림창
+
+`common.css`에 두는 공통 알림창(`<dialog class="alert">`)이다. 마크업과 JS 사용법은 코딩 가이드 2-8, 4-5를 따른다.
+
+| 클래스 / 속성 | 용도 |
+|---|---|
+| `.alert` | 알림창 틀 (흰 바탕, 위쪽 굵은 테두리) |
+| `.alert[data-type="success / error / info"]` | 종류. `error`는 강조 색 테두리와 아이콘 |
+| `.alert__head`, `.alert__ico`, `.alert__title` | 아이콘 + 제목 줄 (아이콘 `2rem`) |
+| `.alert__message` | 본문 (`1.125rem`, 긴 주소도 줄바꿈) |
+| `.alert__actions` | [확인] 버튼 영역 (`.btn--primary.btn--block`) |
+
+```css
+/* 공통 알림창 (dialog) */
+.alert {
+  width: min(100% - 2.5rem, 30rem);
+  padding: 0;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-primary);
+  border-top: 0.5rem solid var(--color-primary);
+  border-radius: var(--radius-lg);
+}
+.alert::backdrop { background: color-mix(in srgb, var(--color-text) 55%, transparent); }
+.alert[data-type="error"] { border-color: var(--color-accent); }
+```
+
+- **뒤 배경:** `::backdrop`은 토큰 색을 `color-mix()`로 흐리게 써서 hex 없이 만든다. 고대비 모드에서도 토큰을 따라간다.
+- **모션 없음:** 열고 닫을 때 애니메이션을 넣지 않는다.
+- **너비:** `min()`으로 화면보다 넓어지지 않게 하고, 글자를 키워도 버튼이 잘리지 않게 한다.
+
+---
+
+## 11. 속성 작성 순서
 
 한 규칙 안에서는 아래 순서로 쓴다.
 
@@ -223,7 +256,7 @@ grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
 
 ---
 
-## 11. 작업 전 확인 목록
+## 12. 작업 전 확인 목록
 
 - [ ] `:root`·고대비 블록 밖에 hex 색상이 없다
 - [ ] 태그 선택자, id 선택자, `!important`가 없다 (허용 예외 제외)

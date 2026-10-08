@@ -145,6 +145,7 @@ CSS 세부 규칙은 [`CSS_GUIDE.md`](CSS_GUIDE.md)에 따로 정리되어 있�
 ### 2-6. 알림과 숨김
 
 - **알림:** 결과 알림은 `role="status"`(또는 `aria-live="polite"`) 영역에 글자를 넣어 화면 낭독기도 읽게 한다.
+- **꼭 확인해야 하는 결과:** 복사 완료, 저장 실패처럼 사용자가 놓치면 안 되는 결과는 공통 알림창(아래 2-8)으로 보여 준다.
 - **숨김:**
   - 화면에서도, 낭독기에서도 숨김: `hidden` 속성
   - 화면에서만 숨김: `.sr-only`
@@ -156,7 +157,41 @@ CSS 세부 규칙은 [`CSS_GUIDE.md`](CSS_GUIDE.md)에 따로 정리되어 있�
 - `<br>`로 간격 만들기 (줄바꿈이 의미일 때만 사용)
 - `<table>`로 배치하기 (표 데이터에만 사용)
 - 자동 재생, 자동 슬라이드, 깜빡임
-- `alert()`, `confirm()`, `prompt()` (화면 안에 확인 단계를 직접 만든다)
+- `alert()`, `confirm()`, `prompt()` (대신 공통 알림창을 쓴다. 아래 2-8)
+
+### 2-8. 공통 알림창
+
+브라우저 기본 `alert()` 대신 쓰는 알림창이다. 페이지마다 **하나만** 두고, 어디서든 JS의 `showAlert()`로 내용을 바꿔 연다.
+
+- **태그:** `<dialog>`를 쓴다. 열리면 뒤 화면을 누를 수 없고, 포커스가 [확인] 버튼으로 가며, `Esc`로도 닫힌다.
+- **위치:** `</body>` 바로 위, `<script>` 앞에 둔다.
+- **종류:** `data-type`으로 구분하고, 색만이 아니라 **아이콘 + 제목 글자**가 함께 바뀐다.
+
+| `type` | 아이콘 | 기본 제목 | 쓰는 때 |
+|---|---|---|---|
+| `success` | `#i-check` | 완료했어요 | 복사·저장이 끝났을 때 |
+| `error` | `#i-alert` | 다시 확인해 주세요 | 실패했거나 입력이 잘못됐을 때 |
+| `info` | `#i-info` | 알려 드려요 | 그 밖의 안내 |
+
+```html
+<!-- 공통 알림창 (showAlert로 엶) -->
+<dialog class="alert" id="alertBox" data-type="info" aria-labelledby="alertTitle" aria-describedby="alertMessage">
+  <div class="alert__body">
+    <div class="alert__head">
+      <svg class="ico alert__ico" aria-hidden="true" focusable="false"><use id="alertIcon" href="#i-info"></use></svg>
+      <h2 class="alert__title" id="alertTitle">알려 드려요</h2>
+    </div>
+    <p class="alert__message" id="alertMessage"></p>
+    <form class="alert__actions" method="dialog">
+      <button type="submit" class="btn btn--primary btn--block" id="alertOk"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> 확인</button>
+    </form>
+  </div>
+</dialog>
+```
+
+- **문구:** 제목은 결과를 짧게("복사했어요"), 본문은 **다음에 할 일**까지 쉬운 말로 쓴다 ("메일 쓰는 곳에 붙여 넣어 주세요.").
+- **하지 않는 것:** 저절로 사라지게 만들지 않는다 (읽기 느린 사용자가 놓친다). 바깥을 눌러 닫히게 하지 않는다 (실수로 닫힌다).
+- **되돌릴 수 없는 동작의 확인 단계**는 이 알림창이 아니라 화면 안의 `.confirm` 블록으로 만든다.
 
 ---
 
@@ -239,6 +274,41 @@ el.myList.addEventListener('click', (e) => {
 ### 4-5. 사용자에게 알리기와 포커스
 
 - 동작이 끝나면 알림 영역(`role="status"`)에 결과를 쓴다 (예: "상추에 물 준 기록을 남겼어요.").
+- 놓치면 안 되는 결과는 공통 알림창으로 연다. 함수는 `main.js`의 "공통 알림창" 부분에 한 번만 만들고 어디서든 부른다.
+
+```js
+// 기본 요소
+const ALERT_TYPES = {
+  success: { icon: '#i-check', title: '완료했어요' },
+  error: { icon: '#i-alert', title: '다시 확인해 주세요' },
+  info: { icon: '#i-info', title: '알려 드려요' }
+};
+
+// 공통 알림창 - showAlert({ type, title, message })
+let alertOpener = null;
+
+function showAlert({ type = 'info', title, message }) {
+  if (!el.alert) return;
+  const preset = ALERT_TYPES[type] || ALERT_TYPES.info;
+  alertOpener = document.activeElement;           // 닫은 뒤 돌아갈 버튼
+  el.alert.dataset.type = type;
+  el.alertIcon.setAttribute('href', preset.icon);
+  el.alertTitle.textContent = title || preset.title;
+  el.alertMessage.textContent = message;          // innerHTML 금지
+  if (typeof el.alert.showModal === 'function') el.alert.showModal();
+  else el.alert.setAttribute('open', '');
+}
+
+el.alert.addEventListener('close', () => {
+  if (alertOpener && typeof alertOpener.focus === 'function') alertOpener.focus();
+  alertOpener = null;
+});
+
+// 쓰는 곳
+showAlert({ type: 'success', title: '복사했어요', message: '이메일 주소를 복사했어요. 메일 쓰는 곳에 붙여 넣어 주세요.' });
+showAlert({ type: 'error', message: '날짜를 골라 주세요. 오늘이나 지난 날짜만 고를 수 있어요.' });
+```
+
 - 화면을 다시 그린 뒤에는 **사용자가 보던 버튼으로 포커스를 돌려준다.**
 - 메뉴로 화면을 바꾸면 새 화면의 제목(`tabindex="-1"`)으로 포커스를 옮긴다.
 
@@ -259,7 +329,7 @@ const store = {
 
 ### 4-7. 금지 목록
 
-- `alert`, `confirm`, `prompt`
+- `alert`, `confirm`, `prompt` (공통 알림창 `showAlert()`를 쓴다)
 - `setTimeout`으로 순서 맞추기 (이벤트나 함수 호출 순서로 해결)
 - 정리 안 된 `console.log` 남기기
 

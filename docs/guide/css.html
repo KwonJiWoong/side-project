@@ -66,8 +66,9 @@
           <li class="toc__item"><a class="toc__link" href="#접근성-필수-css">7. 접근성 필수 CSS</a></li>
           <li class="toc__item"><a class="toc__link" href="#아이콘과-그림">8. 아이콘과 그림</a></li>
           <li class="toc__item"><a class="toc__link" href="#공통-부품-버튼">9. 공통 부품: 버튼</a></li>
-          <li class="toc__item"><a class="toc__link" href="#속성-작성-순서">10. 속성 작성 순서</a></li>
-          <li class="toc__item"><a class="toc__link" href="#작업-전-확인-목록">11. 작업 전 확인 목록</a></li>
+          <li class="toc__item"><a class="toc__link" href="#공통-부품-알림창">10. 공통 부품: 알림창</a></li>
+          <li class="toc__item"><a class="toc__link" href="#속성-작성-순서">11. 속성 작성 순서</a></li>
+          <li class="toc__item"><a class="toc__link" href="#작업-전-확인-목록">12. 작업 전 확인 목록</a></li>
           <li class="toc__item"><a class="toc__link" href="#부록-garden-guide-정리-기록">부록. garden-guide 정리 기록</a></li>
         </ol>
           <button type="button" class="btn btn--block" data-reset-checks><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-reset"></use></svg> 체크 모두 지우기</button>
@@ -102,7 +103,7 @@
 </tr>
 <tr>
 <td class="doc__td"><code class="doc__inline-code">css/common.css</code></td>
-<td class="doc__td">디자인 토큰, 고대비·글자 크기 단계, <code class="doc__inline-code">body</code> 기본값, 포커스, 공통 부품(<code class="doc__inline-code">.btn</code>, <code class="doc__inline-code">.container</code>, <code class="doc__inline-code">.sr-only</code>, <code class="doc__inline-code">.skip-link</code>, <code class="doc__inline-code">.ico</code>), 모션 최소화</td>
+<td class="doc__td">디자인 토큰, 고대비·글자 크기 단계, <code class="doc__inline-code">body</code> 기본값, 포커스, 공통 부품(<code class="doc__inline-code">.btn</code>, <code class="doc__inline-code">.container</code>, <code class="doc__inline-code">.sr-only</code>, <code class="doc__inline-code">.skip-link</code>, <code class="doc__inline-code">.ico</code>, <code class="doc__inline-code">.alert</code>), 모션 최소화</td>
 <td class="doc__td">특정 화면에만 쓰는 스타일</td>
 </tr>
 <tr>
@@ -262,7 +263,7 @@
 </ul>
 <h3 class="doc__h3" id="전역-클래스-bem-예외" tabindex="-1">3-3. 전역 클래스 (BEM 예외)</h3>
 <p class="doc__text">어디서나 쓰는 공통 클래스는 아래만 허용한다. 새로 만들지 않는다.</p>
-<p class="doc__text"><code class="doc__inline-code">.container</code> <code class="doc__inline-code">.sr-only</code> <code class="doc__inline-code">.skip-link</code> <code class="doc__inline-code">.btn</code> <code class="doc__inline-code">.ico</code></p>
+<p class="doc__text"><code class="doc__inline-code">.container</code> <code class="doc__inline-code">.sr-only</code> <code class="doc__inline-code">.skip-link</code> <code class="doc__inline-code">.btn</code> <code class="doc__inline-code">.ico</code> <code class="doc__inline-code">.alert</code></p>
 <p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
 </section>
 <section class="doc__section" aria-labelledby="선택자-규칙">
@@ -472,8 +473,61 @@
 </ul>
 <p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
 </section>
+<section class="doc__section" aria-labelledby="공통-부품-알림창">
+<h2 class="doc__h2" id="공통-부품-알림창" tabindex="-1">10. 공통 부품: 알림창</h2>
+<p class="doc__text"><code class="doc__inline-code">common.css</code>에 두는 공통 알림창(<code class="doc__inline-code">&lt;dialog class="alert"&gt;</code>)이다. 마크업과 JS 사용법은 코딩 가이드 2-8, 4-5를 따른다.</p>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col">클래스 / 속성</th>
+<th class="doc__th" scope="col">용도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">.alert</code></td>
+<td class="doc__td">알림창 틀 (흰 바탕, 위쪽 굵은 테두리)</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">.alert[data-type="success / error / info"]</code></td>
+<td class="doc__td">종류. <code class="doc__inline-code">error</code>는 강조 색 테두리와 아이콘</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">.alert__head</code>, <code class="doc__inline-code">.alert__ico</code>, <code class="doc__inline-code">.alert__title</code></td>
+<td class="doc__td">아이콘 + 제목 줄 (아이콘 <code class="doc__inline-code">2rem</code>)</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">.alert__message</code></td>
+<td class="doc__td">본문 (<code class="doc__inline-code">1.125rem</code>, 긴 주소도 줄바꿈)</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">.alert__actions</code></td>
+<td class="doc__td">[확인] 버튼 영역 (<code class="doc__inline-code">.btn--primary.btn--block</code>)</td>
+</tr>
+</tbody>
+</table></div>
+<pre class="doc__pre" tabindex="0"><code class="doc__code">/* 공통 알림창 (dialog) */
+.alert {
+  width: min(100% - 2.5rem, 30rem);
+  padding: 0;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-primary);
+  border-top: 0.5rem solid var(--color-primary);
+  border-radius: var(--radius-lg);
+}
+.alert::backdrop { background: color-mix(in srgb, var(--color-text) 55%, transparent); }
+.alert[data-type=&quot;error&quot;] { border-color: var(--color-accent); }
+</code></pre>
+<ul class="doc__list">
+<li class="doc__item"><strong class="doc__strong">뒤 배경:</strong> <code class="doc__inline-code">::backdrop</code>은 토큰 색을 <code class="doc__inline-code">color-mix()</code>로 흐리게 써서 hex 없이 만든다. 고대비 모드에서도 토큰을 따라간다.</li>
+<li class="doc__item"><strong class="doc__strong">모션 없음:</strong> 열고 닫을 때 애니메이션을 넣지 않는다.</li>
+<li class="doc__item"><strong class="doc__strong">너비:</strong> <code class="doc__inline-code">min()</code>으로 화면보다 넓어지지 않게 하고, 글자를 키워도 버튼이 잘리지 않게 한다.</li>
+</ul>
+<p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
+</section>
 <section class="doc__section" aria-labelledby="속성-작성-순서">
-<h2 class="doc__h2" id="속성-작성-순서" tabindex="-1">10. 속성 작성 순서</h2>
+<h2 class="doc__h2" id="속성-작성-순서" tabindex="-1">11. 속성 작성 순서</h2>
 <p class="doc__text">한 규칙 안에서는 아래 순서로 쓴다.</p>
 <ol class="doc__list doc__list--num">
 <li class="doc__item">위치: <code class="doc__inline-code">position</code>, <code class="doc__inline-code">top/right/bottom/left</code>, <code class="doc__inline-code">z-index</code></li>
@@ -487,7 +541,7 @@
 <p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
 </section>
 <section class="doc__section" aria-labelledby="작업-전-확인-목록">
-<h2 class="doc__h2" id="작업-전-확인-목록" tabindex="-1">11. 작업 전 확인 목록</h2>
+<h2 class="doc__h2" id="작업-전-확인-목록" tabindex="-1">12. 작업 전 확인 목록</h2>
 <ul class="doc__list doc__list--check">
 <li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="css-check-1" data-check="css-check-1"><label class="doc__check-label" for="css-check-1"><code class="doc__inline-code">:root</code>·고대비 블록 밖에 hex 색상이 없다</label></li>
 <li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="css-check-2" data-check="css-check-2"><label class="doc__check-label" for="css-check-2">태그 선택자, id 선택자, <code class="doc__inline-code">!important</code>가 없다 (허용 예외 제외)</label></li>

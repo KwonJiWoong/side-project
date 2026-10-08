@@ -230,6 +230,7 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 <h3 class="doc__h3" id="알림과-숨김" tabindex="-1">2-6. 알림과 숨김</h3>
 <ul class="doc__list">
 <li class="doc__item"><strong class="doc__strong">알림:</strong> 결과 알림은 <code class="doc__inline-code">role="status"</code>(또는 <code class="doc__inline-code">aria-live="polite"</code>) 영역에 글자를 넣어 화면 낭독기도 읽게 한다.</li>
+<li class="doc__item"><strong class="doc__strong">꼭 확인해야 하는 결과:</strong> 복사 완료, 저장 실패처럼 사용자가 놓치면 안 되는 결과는 공통 알림창(아래 2-8)으로 보여 준다.</li>
 <li class="doc__item"><strong class="doc__strong">숨김:</strong></li>
 <li class="doc__item">화면에서도, 낭독기에서도 숨김: <code class="doc__inline-code">hidden</code> 속성</li>
 <li class="doc__item">화면에서만 숨김: <code class="doc__inline-code">.sr-only</code></li>
@@ -241,7 +242,63 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 <li class="doc__item"><code class="doc__inline-code">&lt;br&gt;</code>로 간격 만들기 (줄바꿈이 의미일 때만 사용)</li>
 <li class="doc__item"><code class="doc__inline-code">&lt;table&gt;</code>로 배치하기 (표 데이터에만 사용)</li>
 <li class="doc__item">자동 재생, 자동 슬라이드, 깜빡임</li>
-<li class="doc__item"><code class="doc__inline-code">alert()</code>, <code class="doc__inline-code">confirm()</code>, <code class="doc__inline-code">prompt()</code> (화면 안에 확인 단계를 직접 만든다)</li>
+<li class="doc__item"><code class="doc__inline-code">alert()</code>, <code class="doc__inline-code">confirm()</code>, <code class="doc__inline-code">prompt()</code> (대신 공통 알림창을 쓴다. 아래 2-8)</li>
+</ul>
+<h3 class="doc__h3" id="공통-알림창" tabindex="-1">2-8. 공통 알림창</h3>
+<p class="doc__text">브라우저 기본 <code class="doc__inline-code">alert()</code> 대신 쓰는 알림창이다. 페이지마다 <strong class="doc__strong">하나만</strong> 두고, 어디서든 JS의 <code class="doc__inline-code">showAlert()</code>로 내용을 바꿔 연다.</p>
+<ul class="doc__list">
+<li class="doc__item"><strong class="doc__strong">태그:</strong> <code class="doc__inline-code">&lt;dialog&gt;</code>를 쓴다. 열리면 뒤 화면을 누를 수 없고, 포커스가 [확인] 버튼으로 가며, <code class="doc__inline-code">Esc</code>로도 닫힌다.</li>
+<li class="doc__item"><strong class="doc__strong">위치:</strong> <code class="doc__inline-code">&lt;/body&gt;</code> 바로 위, <code class="doc__inline-code">&lt;script&gt;</code> 앞에 둔다.</li>
+<li class="doc__item"><strong class="doc__strong">종류:</strong> <code class="doc__inline-code">data-type</code>으로 구분하고, 색만이 아니라 <strong class="doc__strong">아이콘 + 제목 글자</strong>가 함께 바뀐다.</li>
+</ul>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col"><code class="doc__inline-code">type</code></th>
+<th class="doc__th" scope="col">아이콘</th>
+<th class="doc__th" scope="col">기본 제목</th>
+<th class="doc__th" scope="col">쓰는 때</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">success</code></td>
+<td class="doc__td"><code class="doc__inline-code">#i-check</code></td>
+<td class="doc__td">완료했어요</td>
+<td class="doc__td">복사·저장이 끝났을 때</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">error</code></td>
+<td class="doc__td"><code class="doc__inline-code">#i-alert</code></td>
+<td class="doc__td">다시 확인해 주세요</td>
+<td class="doc__td">실패했거나 입력이 잘못됐을 때</td>
+</tr>
+<tr>
+<td class="doc__td"><code class="doc__inline-code">info</code></td>
+<td class="doc__td"><code class="doc__inline-code">#i-info</code></td>
+<td class="doc__td">알려 드려요</td>
+<td class="doc__td">그 밖의 안내</td>
+</tr>
+</tbody>
+</table></div>
+<pre class="doc__pre" tabindex="0"><code class="doc__code">&lt;!-- 공통 알림창 (showAlert로 엶) --&gt;
+&lt;dialog class=&quot;alert&quot; id=&quot;alertBox&quot; data-type=&quot;info&quot; aria-labelledby=&quot;alertTitle&quot; aria-describedby=&quot;alertMessage&quot;&gt;
+  &lt;div class=&quot;alert__body&quot;&gt;
+    &lt;div class=&quot;alert__head&quot;&gt;
+      &lt;svg class=&quot;ico alert__ico&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;use id=&quot;alertIcon&quot; href=&quot;#i-info&quot;&gt;&lt;/use&gt;&lt;/svg&gt;
+      &lt;h2 class=&quot;alert__title&quot; id=&quot;alertTitle&quot;&gt;알려 드려요&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;p class=&quot;alert__message&quot; id=&quot;alertMessage&quot;&gt;&lt;/p&gt;
+    &lt;form class=&quot;alert__actions&quot; method=&quot;dialog&quot;&gt;
+      &lt;button type=&quot;submit&quot; class=&quot;btn btn--primary btn--block&quot; id=&quot;alertOk&quot;&gt;&lt;svg class=&quot;ico&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;&lt;use href=&quot;#i-check&quot;&gt;&lt;/use&gt;&lt;/svg&gt; 확인&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;
+</code></pre>
+<ul class="doc__list">
+<li class="doc__item"><strong class="doc__strong">문구:</strong> 제목은 결과를 짧게("복사했어요"), 본문은 <strong class="doc__strong">다음에 할 일</strong>까지 쉬운 말로 쓴다 ("메일 쓰는 곳에 붙여 넣어 주세요.").</li>
+<li class="doc__item"><strong class="doc__strong">하지 않는 것:</strong> 저절로 사라지게 만들지 않는다 (읽기 느린 사용자가 놓친다). 바깥을 눌러 닫히게 하지 않는다 (실수로 닫힌다).</li>
+<li class="doc__item"><strong class="doc__strong">되돌릴 수 없는 동작의 확인 단계</strong>는 이 알림창이 아니라 화면 안의 <code class="doc__inline-code">.confirm</code> 블록으로 만든다.</li>
 </ul>
 <p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
 </section>
@@ -377,6 +434,40 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 <h3 class="doc__h3" id="사용자에게-알리기와-포커스" tabindex="-1">4-5. 사용자에게 알리기와 포커스</h3>
 <ul class="doc__list">
 <li class="doc__item">동작이 끝나면 알림 영역(<code class="doc__inline-code">role="status"</code>)에 결과를 쓴다 (예: "상추에 물 준 기록을 남겼어요.").</li>
+<li class="doc__item">놓치면 안 되는 결과는 공통 알림창으로 연다. 함수는 <code class="doc__inline-code">main.js</code>의 "공통 알림창" 부분에 한 번만 만들고 어디서든 부른다.</li>
+</ul>
+<pre class="doc__pre" tabindex="0"><code class="doc__code">// 기본 요소
+const ALERT_TYPES = {
+  success: { icon: '#i-check', title: '완료했어요' },
+  error: { icon: '#i-alert', title: '다시 확인해 주세요' },
+  info: { icon: '#i-info', title: '알려 드려요' }
+};
+
+// 공통 알림창 - showAlert({ type, title, message })
+let alertOpener = null;
+
+function showAlert({ type = 'info', title, message }) {
+  if (!el.alert) return;
+  const preset = ALERT_TYPES[type] || ALERT_TYPES.info;
+  alertOpener = document.activeElement;           // 닫은 뒤 돌아갈 버튼
+  el.alert.dataset.type = type;
+  el.alertIcon.setAttribute('href', preset.icon);
+  el.alertTitle.textContent = title || preset.title;
+  el.alertMessage.textContent = message;          // innerHTML 금지
+  if (typeof el.alert.showModal === 'function') el.alert.showModal();
+  else el.alert.setAttribute('open', '');
+}
+
+el.alert.addEventListener('close', () =&gt; {
+  if (alertOpener &amp;&amp; typeof alertOpener.focus === 'function') alertOpener.focus();
+  alertOpener = null;
+});
+
+// 쓰는 곳
+showAlert({ type: 'success', title: '복사했어요', message: '이메일 주소를 복사했어요. 메일 쓰는 곳에 붙여 넣어 주세요.' });
+showAlert({ type: 'error', message: '날짜를 골라 주세요. 오늘이나 지난 날짜만 고를 수 있어요.' });
+</code></pre>
+<ul class="doc__list">
 <li class="doc__item">화면을 다시 그린 뒤에는 <strong class="doc__strong">사용자가 보던 버튼으로 포커스를 돌려준다.</strong></li>
 <li class="doc__item">메뉴로 화면을 바꾸면 새 화면의 제목(<code class="doc__inline-code">tabindex="-1"</code>)으로 포커스를 옮긴다.</li>
 </ul>
@@ -396,7 +487,7 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 </ul>
 <h3 class="doc__h3" id="금지-목록-2" tabindex="-1">4-7. 금지 목록</h3>
 <ul class="doc__list">
-<li class="doc__item"><code class="doc__inline-code">alert</code>, <code class="doc__inline-code">confirm</code>, <code class="doc__inline-code">prompt</code></li>
+<li class="doc__item"><code class="doc__inline-code">alert</code>, <code class="doc__inline-code">confirm</code>, <code class="doc__inline-code">prompt</code> (공통 알림창 <code class="doc__inline-code">showAlert()</code>를 쓴다)</li>
 <li class="doc__item"><code class="doc__inline-code">setTimeout</code>으로 순서 맞추기 (이벤트나 함수 호출 순서로 해결)</li>
 <li class="doc__item">정리 안 된 <code class="doc__inline-code">console.log</code> 남기기</li>
 </ul>
