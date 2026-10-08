@@ -1,100 +1,240 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!doctype html>
+<html lang="ko" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="아침, 점심, 저녁 무엇을 먹을지 고민될 때 버튼 한 번으로 따뜻한 집밥 메뉴를 추천해 드려요.">
-  <meta name="theme-color" content="#ffeacc">
-  <title>오늘 뭐 먹지? | 아침·점심·저녁 메뉴 추천</title>
-  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[이름] · Web Publisher Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <a class="skip-link" href="#main">본문 바로가기</a>
 
-  <!-- 헤더 -->
-  <header class="header">
-    <div class="container header__inner">
-      <h1 class="header__title" id="siteTitle" tabindex="-1"><span aria-hidden="true">🍚</span> 오늘 뭐 먹지?</h1>
-      <button type="button" class="btn btn--home" id="homeBtn"><span aria-hidden="true">🏠</span> 처음으로</button>
+<header class="site-header">
+  <nav class="nav" aria-label="주요 메뉴">
+    <a href="#top" class="nav__brand">[이름] · Web Publisher</a>
 
-      <div class="tools" role="group" aria-label="보기 설정">
-        <p class="tools__label">글자 크기: <strong id="sizeText">보통</strong></p>
-        <button type="button" class="btn btn--tool" id="fontDown">가<span class="sr-only"> 글자 작게</span></button>
-        <button type="button" class="btn btn--tool" id="fontUp">가+<span class="sr-only"> 글자 크게</span></button>
-        <button type="button" class="btn btn--tool btn--toggle" id="contrastBtn" aria-pressed="false">고대비 보기</button>
+    <button class="nav__menu-btn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="nav-links">
+      <span class="nav__menu-bar"></span>
+      <span class="nav__menu-bar"></span>
+      <span class="nav__menu-bar"></span>
+    </button>
+
+    <div class="nav__links" id="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+
+      <div class="theme-toggle" role="group" aria-label="테마 선택">
+        <button type="button" class="theme-toggle__btn is-active" data-theme-btn="light" aria-pressed="true" aria-label="라이트 모드">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"></circle><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"></path></svg>
+        </button>
+        <button type="button" class="theme-toggle__btn" data-theme-btn="dark" aria-pressed="false" aria-label="다크 모드">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path></svg>
+        </button>
       </div>
     </div>
-  </header>
+  </nav>
+</header>
 
-  <main id="main" tabindex="-1">
-    <div class="container">
+<main id="top">
 
-      <!-- 끼니 선택 -->
-      <section class="pick" aria-labelledby="pickTitle">
-        <h2 class="section-title" id="pickTitle">어느 끼니를 드실 건가요?</h2>
-        <nav aria-label="끼니 선택">
-          <ul class="meal-list">
-            <li><button type="button" class="meal-btn" data-meal="breakfast" aria-pressed="false"><span class="meal-btn__emoji" aria-hidden="true">🌅</span><span class="meal-btn__label">아침</span></button></li>
-            <li><button type="button" class="meal-btn" data-meal="lunch" aria-pressed="false"><span class="meal-btn__emoji" aria-hidden="true">☀️</span><span class="meal-btn__label">점심</span></button></li>
-            <li><button type="button" class="meal-btn" data-meal="dinner" aria-pressed="false"><span class="meal-btn__emoji" aria-hidden="true">🌙</span><span class="meal-btn__label">저녁</span></button></li>
-          </ul>
-        </nav>
-      </section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__content">
+      <span class="eyebrow">Web Publisher</span>
+      <h1 class="hero__title">보기 편하고 쓰기 쉬운<br>화면을 만듭니다.</h1>
+      <p class="hero__desc">글자 크기와 대비, 클릭 영역까지 살피는 웹퍼블리셔 [이름]입니다. 어르신도 헤매지 않는 화면을 목표로, [N]년째 접근성 높은 웹사이트를 만들어 왔습니다.</p>
 
-      <!-- 음식 종류 필터 -->
-      <section class="kind" aria-labelledby="kindTitle">
-        <h2 class="section-title" id="kindTitle">어떤 음식이 좋으세요?</h2>
-        <ul class="kind-list" role="group" aria-label="음식 종류 선택">
-          <li><button type="button" class="kind-btn" data-kind="all" aria-pressed="true"><span aria-hidden="true">🍽️</span> 전부</button></li>
-          <li><button type="button" class="kind-btn" data-kind="ko" aria-pressed="false"><span aria-hidden="true">🍚</span> 한식</button></li>
-          <li><button type="button" class="kind-btn" data-kind="cn" aria-pressed="false"><span aria-hidden="true">🥟</span> 중식</button></li>
-          <li><button type="button" class="kind-btn" data-kind="jp" aria-pressed="false"><span aria-hidden="true">🍣</span> 일식</button></li>
-          <li><button type="button" class="kind-btn" data-kind="we" aria-pressed="false"><span aria-hidden="true">🍝</span> 양식</button></li>
+      <div class="hero__actions">
+        <a href="#projects" class="btn btn--primary"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>프로젝트 보기</a>
+        <a href="#" class="btn btn--secondary"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"></path></svg>이력서 다운로드</a>
+      </div>
+
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span>현재 새 프로젝트 협업 가능</span>
+      </div>
+    </div>
+
+    <div class="hero__visual">
+      <div class="code-window">
+        <div class="code-window__bar">
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__dot"></span>
+          <span class="code-window__label">index.html</span>
+        </div>
+        <div class="code-window__body">
+          <span class="code-line code-line--w70"></span>
+          <span class="code-line code-line--accent code-line--w45"></span>
+          <span class="code-line code-line--w88"></span>
+          <span class="code-line code-line--w60"></span>
+          <span class="code-line code-line--w36"></span>
+          <span class="code-line code-line--w80"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about section--elevated">
+    <div class="about__intro">
+      <span class="eyebrow">About</span>
+      <h2 class="section-title">저를 소개합니다</h2>
+      <p class="body-text">[분야] 서비스를 중심으로 [N]년간 웹퍼블리셔로 일해왔습니다. 글자 크기·색상 대비·클릭 영역처럼 작지만 중요한 부분까지 살펴서, 나이나 시력에 상관없이 편하게 쓸 수 있는 화면을 만드는 것을 가장 중요하게 생각합니다.</p>
+    </div>
+
+    <div class="about__card">
+      <div class="stat-row">
+        <div class="stat">
+          <span class="stat__value">[N]년</span>
+          <span class="stat__label">경력</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat__value">[N]+</span>
+          <span class="stat__label">프로젝트</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat__value">[N]개</span>
+          <span class="stat__label">협업 팀</span>
+        </div>
+      </div>
+
+      <div class="about__focus">
+        <span class="focus-label">집중하는 영역</span>
+        <ul class="chip-list">
+          <li class="chip">웹 접근성</li>
+          <li class="chip">반응형</li>
+          <li class="chip">고가독성 UI</li>
         </ul>
-      </section>
-
-      <!-- 추천 결과 -->
-      <section class="result" aria-labelledby="resultTitle">
-        <h2 class="section-title" id="resultTitle">오늘의 추천 메뉴</h2>
-        <article class="card" aria-labelledby="cardName">
-          <p class="card__meal" id="cardMeal"></p>
-          <p class="card__emoji" id="cardEmoji" aria-hidden="true"></p>
-          <h3 class="card__name" id="cardName"></h3>
-          <p class="card__desc" id="cardDesc"></p>
-          <ul class="card__info">
-            <li><span class="card__label">음식 종류</span> <strong id="cardKind"></strong></li>
-            <li><span class="card__label">걸리는 시간</span> <strong id="cardTime"></strong></li>
-            <li><span class="card__label">먹는 느낌</span> <strong id="cardFeel"></strong></li>
-          </ul>
-          <a class="btn btn--outline btn--block" id="recipeLink" href="https://search.naver.com/" target="_blank" rel="noopener noreferrer">만드는 법 보기<span class="sr-only"> (새 창으로 열림)</span></a>
-        </article>
-        <button type="button" class="btn btn--primary btn--block" id="nextBtn"><span aria-hidden="true">🔄</span> 다른 메뉴 추천받기</button>
-        <p class="notice" id="notice" role="status"></p>
-      </section>
-
-      <!-- 전체 메뉴 -->
-      <section class="all" aria-labelledby="allTitle">
-        <h2 class="section-title" id="allTitle">직접 골라 볼까요?</h2>
-        <details class="all__details" id="allDetails">
-          <summary class="all__summary"><span>전체 메뉴 보기 <span id="menuCount"></span></span></summary>
-          <ul class="menu-list" id="menuList"></ul>
-        </details>
-      </section>
-
+      </div>
     </div>
-  </main>
+  </section>
 
-  <!-- 푸터 -->
-  <footer class="footer">
-    <div class="container">
-      <p>오늘도 맛있고 따뜻한 한 끼 드세요 <span aria-hidden="true">🌼</span></p>
+  <!-- SKILLS -->
+  <section id="skills" class="skills">
+    <div class="section-heading">
+      <span class="eyebrow">Skills</span>
+      <h2 class="section-title">기술 스택</h2>
     </div>
-  </footer>
 
-  <script src="js/main.js"></script>
+    <ul class="skill-list">
+      <li class="skill-tag">HTML5</li>
+      <li class="skill-tag">CSS3 / Sass</li>
+      <li class="skill-tag">JavaScript (ES6+)</li>
+      <li class="skill-tag">TypeScript</li>
+      <li class="skill-tag">React</li>
+      <li class="skill-tag">Vue.js</li>
+      <li class="skill-tag">Git</li>
+      <li class="skill-tag">Figma</li>
+      <li class="skill-tag">웹 접근성 (WCAG)</li>
+    </ul>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="projects section--elevated">
+    <div class="section-heading">
+      <span class="eyebrow">Work</span>
+      <h2 class="section-title">프로젝트</h2>
+      <p class="section-note">직접 만든 사이트입니다. 화살표 버튼으로 넘겨보고, ‘사이트 보기’를 눌러 실제 화면을 확인해 보세요.</p>
+    </div>
+
+    <div class="carousel" data-carousel>
+      <div class="carousel__viewport" data-carousel-viewport>
+        <ul class="project-list carousel__track" data-carousel-track aria-roledescription="carousel" aria-label="프로젝트 목록">
+          <li class="project" role="group" aria-roledescription="slide" aria-label="1 / 3">
+            <div class="project__head">
+              <span class="project__badge">01</span>
+              <span class="project__meta">생활 도우미 · 2026</span>
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">우리집 텃밭 수첩</h3>
+              <p class="project__desc">상추·방울토마토·몬스테라 등 식물 21가지의 물 주기 날짜를 기록하고, 키우기 안내와 달마다 할 일을 보여주는 베란다 가드닝 도우미입니다. 큰 글씨와 쉬운 말로 어르신도 혼자 쓸 수 있게 만들었습니다.</p>
+              <ul class="tag-list">
+                <li class="tag">시니어 친화 UI</li>
+                <li class="tag">localStorage</li>
+                <li class="tag">웹 접근성</li>
+              </ul>
+              <a href="garden-guide/" class="btn btn--primary project__link">사이트 보기<span class="visually-hidden"> - 우리집 텃밭 수첩</span></a>
+            </div>
+          </li>
+
+          <li class="project" role="group" aria-roledescription="slide" aria-label="2 / 3">
+            <div class="project__head">
+              <span class="project__badge">02</span>
+              <span class="project__meta">메뉴 추천 · 2026</span>
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">오늘 뭐 먹지?</h3>
+              <p class="project__desc">아침·점심·저녁 무엇을 먹을지 고민될 때 버튼 한 번으로 집밥 메뉴를 추천해 주는 사이트입니다. 큰 버튼과 높은 대비로 누구나 헤매지 않게 구성했습니다.</p>
+              <ul class="tag-list">
+                <li class="tag">Vanilla JS</li>
+                <li class="tag">반응형</li>
+                <li class="tag">고가독성 UI</li>
+              </ul>
+              <a href="menu/" class="btn btn--primary project__link">사이트 보기<span class="visually-hidden"> - 오늘 뭐 먹지?</span></a>
+            </div>
+          </li>
+
+          <li class="project" role="group" aria-roledescription="slide" aria-label="3 / 3">
+            <div class="project__head">
+              <span class="project__badge">03</span>
+              <span class="project__meta">메뉴 추천 · 2026</span>
+            </div>
+            <div class="project__body">
+              <h3 class="project__title">밥풀이의 오늘 뭐 먹지? (귀여운 버전)</h3>
+              <p class="project__desc">같은 메뉴 추천 기능을 귀여운 캐릭터 '밥풀이' 콘셉트로 다시 디자인했습니다. 한식·중식·일식·양식 중에서 고를 수 있고, 같은 마크업 구조에 테마만 바꿔 다른 분위기를 낸 작업입니다.</p>
+              <ul class="tag-list">
+                <li class="tag">테마 리디자인</li>
+                <li class="tag">CSS 변수</li>
+                <li class="tag">인터랙션</li>
+              </ul>
+              <a href="menu-cute/" class="btn btn--primary project__link">사이트 보기<span class="visually-hidden"> - 밥풀이의 오늘 뭐 먹지?</span></a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="carousel__controls">
+        <button type="button" class="carousel__btn" data-carousel-prev aria-label="이전 프로젝트">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg>
+        </button>
+        <div class="carousel__dots" data-carousel-dots role="tablist" aria-label="프로젝트 슬라이드 선택"></div>
+        <button type="button" class="carousel__btn" data-carousel-next aria-label="다음 프로젝트">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="contact__tile">
+      <h2 class="contact__title">함께 좋은 인터페이스를 만들어요</h2>
+      <p class="contact__desc">새로운 프로젝트나 협업 제안은 언제든 환영합니다. 아래 메일로 편하게 연락해 주세요.</p>
+      <a href="mailto:example@email.com" class="btn btn--contact"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>[이메일 주소]</a>
+      <ul class="social-list">
+        <li><a href="https://github.com/KwonJiWoong">GitHub</a></li>
+        <li aria-hidden="true">·</li>
+        <li><a href="#">LinkedIn</a></li>
+        <li aria-hidden="true">·</li>
+        <li><a href="#">Velog</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <span class="footer__copy">© 2026 [이름]. All rights reserved.</span>
+  <a href="#top" class="footer__top">맨 위로 ↑</a>
+</footer>
+
+<script src="js/main.js"></script>
 </body>
 </html>
