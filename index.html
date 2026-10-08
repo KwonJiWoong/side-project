@@ -34,17 +34,17 @@
     <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2.2"/></symbol>
   </svg>
 
-  <header class="header" id="top">
-    <!-- 보기 설정 -->
-    <div class="tools">
-      <div class="container tools__inner" role="group" aria-label="보기 설정">
-        <p class="tools__label" role="status">글자 크기: <strong id="sizeText">보통</strong></p>
-        <button type="button" class="btn btn--tool" id="fontDown"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-minus"></use></svg> 글자 작게</button>
-        <button type="button" class="btn btn--tool" id="fontUp"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 글자 크게</button>
-        <button type="button" class="btn btn--tool btn--toggle" id="contrastBtn" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-contrast"></use></svg> 고대비 보기</button>
-      </div>
+  <!-- 보기 설정 -->
+  <aside class="tools" id="top" tabindex="-1" aria-label="보기 설정">
+    <div class="container tools__inner">
+      <p class="tools__label" role="status">글자 크기: <strong id="sizeText">보통</strong></p>
+      <button type="button" class="btn btn--tool" id="fontDown"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-minus"></use></svg> 글자 작게</button>
+      <button type="button" class="btn btn--tool" id="fontUp"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 글자 크게</button>
+      <button type="button" class="btn btn--tool btn--toggle" id="contrastBtn" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-contrast"></use></svg> 고대비 보기</button>
     </div>
+  </aside>
 
+  <header class="header">
     <!-- 주요 메뉴 -->
     <nav class="gnb" aria-label="주요 메뉴">
       <div class="container gnb__inner">
@@ -69,7 +69,7 @@
   <main id="main" tabindex="-1">
 
     <!-- 첫 화면 -->
-    <section class="hero" aria-labelledby="heroTitle">
+    <section class="hero" id="hero" aria-labelledby="heroTitle">
       <div class="container hero__inner">
         <div class="hero__content">
           <p class="hero__eyebrow">웹퍼블리셔 포트폴리오</p>
@@ -327,11 +327,14 @@
 
   </main>
 
-  <footer class="footer">
+  <footer class="footer" id="footer">
     <div class="container footer__inner">
       <p class="footer__copy">© 2026 권지웅. All rights reserved.</p>
       <a href="#top" class="btn footer__top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a>
     </div>
+
+    <!-- 떠 있는 맨 위로 버튼 (첫 화면·푸터가 안 보일 때만 나타남) -->
+    <a href="#top" class="btn to-top" id="toTopBtn" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a>
   </footer>
 
   <script src="js/main.js"></script>

@@ -14,7 +14,10 @@
     navList: document.getElementById('navList'),
     navLinks: Array.from(document.querySelectorAll('[data-nav]')),
     copyBtn: document.getElementById('copyEmailBtn'),
-    copyStatus: document.getElementById('copyStatus')
+    copyStatus: document.getElementById('copyStatus'),
+    toTop: document.getElementById('toTopBtn'),
+    hero: document.getElementById('hero'),
+    footer: document.getElementById('footer')
   };
   const SIZE_LABELS = ['보통', '크게', '아주 크게'];
 
@@ -152,6 +155,19 @@
         showCopyResult(copyByTextarea(text), text);
       }
     });
+  }
+
+  /* 이벤트 - 맨 위로 버튼: 첫 화면과 푸터가 안 보일 때만 띄움 */
+  if (el.toTop && el.hero && el.footer && 'IntersectionObserver' in window) {
+    const seen = { hero: true, footer: false };
+    const topObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        seen[entry.target.id] = entry.isIntersecting;
+      });
+      el.toTop.hidden = seen.hero || seen.footer;
+    });
+    topObserver.observe(el.hero);
+    topObserver.observe(el.footer);
   }
 
   /* 시작 */

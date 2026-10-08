@@ -271,6 +271,22 @@
   text-align: center;
 }
 
+/* 떠 있는 맨 위로 버튼 */
+.to-top {
+  position: fixed;
+  right: var(--page-pad);
+  bottom: 1rem;
+  z-index: 20;
+  padding-inline: 1rem;
+  font-size: 1rem;
+  color: var(--color-surface);
+  background: var(--color-primary);
+  border-color: var(--color-surface);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 0 0 var(--border-w) var(--color-primary);
+}
+.to-top:hover { color: var(--color-surface); background: var(--color-text); }
+
 /* =========================================================
    태블릿 - 768px 이상
    ========================================================= */
@@ -284,8 +300,26 @@
   .hero__actions { flex-direction: row; flex-wrap: wrap; }
 
   .contact__actions { flex-direction: row; justify-content: center; }
+  .to-top { bottom: 1.5rem; padding-inline: 1.25rem; font-size: 1.125rem; }
   .contact__btn { width: auto; padding-inline: 2rem; }
   .footer__inner { flex-direction: row; justify-content: space-between; text-align: left; }
+}
+
+/* 태블릿·PC에서 메뉴 상단 고정 - 화면 높이가 낮거나 크게 확대하면 고정하지 않음 */
+@media (min-width: 768px) and (min-height: 600px) {
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+  .gnb__inner { padding-block: 0.5rem; }
+  .section, .hero { scroll-margin-top: 6rem; }
+
+  /* 글자를 키우면 메뉴가 두 줄이 되어 화면을 가리므로 고정하지 않음 */
+  html[data-size] .header { position: static; }
+  html[data-size] .section, html[data-size] .hero { scroll-margin-top: 0; }
 }
 
 /* =========================================================
