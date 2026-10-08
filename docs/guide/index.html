@@ -573,7 +573,7 @@ showAlert({ type: 'error', message: '날짜를 골라 주세요. 오늘이나 �
 <h2 class="doc__h2" id="바깥-데이터-쓰기-자동-수집" tabindex="-1">5. 바깥 데이터 쓰기 (자동 수집)</h2>
 <p class="doc__text">정적 사이트라서 브라우저가 다른 사이트를 직접 읽지 않는다. 스크립트가 미리 모아 JSON으로 저장하고, 화면은 그 JSON만 읽는다. 기준 예: <code class="doc__inline-code">projects/politics-news/</code>.</p>
 <h3 class="doc__h3" id="흐름" tabindex="-1">5-1. 흐름</h3>
-<pre class="doc__pre" tabindex="0"><code class="doc__code">GitHub Actions (하루 2번) → scraper/collect.py → data/news.json 커밋 → Pages가 다시 배포 → 화면이 fetch로 읽음
+<pre class="doc__pre" tabindex="0"><code class="doc__code">GitHub Actions (하루 3번: 07·12·18시) → scraper/collect.py → data/news.json 커밋 → Pages가 다시 배포 → 화면이 fetch로 읽음
 </code></pre>
 <ul class="doc__list">
 <li class="doc__item"><strong class="doc__strong">실행 설정:</strong> <code class="doc__inline-code">.github/workflows/사이트이름.yml</code>에 둔다. <code class="doc__inline-code">schedule</code>(시간은 UTC로 쓰고 옆에 한국 시간을 주석으로), <code class="doc__inline-code">workflow_dispatch</code>(직접 실행), <code class="doc__inline-code">push</code>(스크립트가 바뀌면 바로 한 번)를 단다.</li>

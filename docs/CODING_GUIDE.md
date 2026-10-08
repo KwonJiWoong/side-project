@@ -417,7 +417,7 @@ const store = {
 ### 5-1. 흐름
 
 ```
-GitHub Actions (하루 2번) → scraper/collect.py → data/news.json 커밋 → Pages가 다시 배포 → 화면이 fetch로 읽음
+GitHub Actions (하루 3번: 07·12·18시) → scraper/collect.py → data/news.json 커밋 → Pages가 다시 배포 → 화면이 fetch로 읽음
 ```
 
 - **실행 설정:** `.github/workflows/사이트이름.yml`에 둔다. `schedule`(시간은 UTC로 쓰고 옆에 한국 시간을 주석으로), `workflow_dispatch`(직접 실행), `push`(스크립트가 바뀌면 바로 한 번)를 단다.
