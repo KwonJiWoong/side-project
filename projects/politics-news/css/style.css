@@ -59,6 +59,7 @@ main { display: block; padding-block: 1.5rem 2.5rem; }
 .view-nav__btn {
   display: flex;
   flex-direction: column;
+  height: 100%;   /* '보는 중' 줄이 있어도 세 버튼 높이를 똑같이 */
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
