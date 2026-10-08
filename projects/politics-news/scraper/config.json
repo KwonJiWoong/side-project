@@ -1,26 +1,72 @@
 {
   "keep_days": 3,
-  "max_per_source": 120,
+  "max_per_source": 80,
   "topic_hours": 24,
   "topic_limit": 10,
   "sources": [
     {
       "id": "chosun",
       "name": "조선일보",
+      "home": "https://www.chosun.com/politics/",
       "url": "https://www.chosun.com/arc/outboundfeeds/rss/category/politics/?outputType=xml",
       "link_contains": "/politics/"
     },
     {
       "id": "joongang",
       "name": "중앙일보",
+      "home": "https://www.joongang.co.kr/politics",
       "url": "https://rss.joins.com/joins_politics_list.xml",
       "fallback_url": "https://news.google.com/rss/search?q=site:joongang.co.kr+%EC%A0%95%EC%B9%98+when:3d&hl=ko&gl=KR&ceid=KR:ko"
     },
     {
       "id": "donga",
       "name": "동아일보",
+      "home": "https://www.donga.com/news/Politics",
       "url": "https://rss.donga.com/politics.xml",
       "link_contains": "/Politics/"
+    },
+    {
+      "id": "munhwa",
+      "name": "문화일보",
+      "home": "https://www.munhwa.com",
+      "url": "https://news.google.com/rss/search?q=site:munhwa.com+%EC%A0%95%EC%B9%98+when:3d&hl=ko&gl=KR&ceid=KR:ko"
+    },
+    {
+      "id": "segye",
+      "name": "세계일보",
+      "home": "https://www.segye.com",
+      "url": "https://www.segye.com/Articles/RSSList/segye_politic.xml"
+    },
+    {
+      "id": "kmib",
+      "name": "국민일보",
+      "home": "https://www.kmib.co.kr",
+      "url": "https://www.kmib.co.kr/rss/data/kmibPolRss.xml"
+    },
+    {
+      "id": "hankyung",
+      "name": "한국경제",
+      "home": "https://www.hankyung.com/politics",
+      "url": "https://www.hankyung.com/feed/politics"
+    },
+    {
+      "id": "mk",
+      "name": "매일경제",
+      "home": "https://www.mk.co.kr/news/politics/",
+      "url": "https://www.mk.co.kr/rss/30200030/",
+      "link_contains": "/news/politics/"
+    },
+    {
+      "id": "dailian",
+      "name": "데일리안",
+      "home": "https://www.dailian.co.kr",
+      "url": "https://www.dailian.co.kr/rss/politics"
+    },
+    {
+      "id": "newdaily",
+      "name": "뉴데일리",
+      "home": "https://www.newdaily.co.kr",
+      "url": "https://news.google.com/rss/search?q=site:newdaily.co.kr+%EC%A0%95%EC%B9%98+when:3d&hl=ko&gl=KR&ceid=KR:ko"
     }
   ],
   "people": [
@@ -28,25 +74,42 @@
       "id": "president",
       "name": "이재명",
       "role": "대통령",
-      "keywords": ["이재명", "李대통령", "李 대통령", "이 대통령", "대통령실", "청와대", "靑"]
+      "keywords": [
+        "이재명",
+        "李대통령",
+        "李 대통령",
+        "이 대통령",
+        "대통령실",
+        "청와대",
+        "靑"
+      ]
     },
     {
       "id": "pm",
       "name": "한성숙",
       "role": "국무총리",
-      "keywords": ["한성숙", "한 총리", "韓총리", "韓 총리"]
+      "keywords": [
+        "한성숙",
+        "한 총리",
+        "韓총리",
+        "韓 총리"
+      ]
     },
     {
       "id": "democratic",
       "name": "김민석",
       "role": "더불어민주당 대표",
-      "keywords": ["김민석"]
+      "keywords": [
+        "김민석"
+      ]
     },
     {
       "id": "ppp",
       "name": "장동혁",
       "role": "국민의힘 대표",
-      "keywords": ["장동혁"]
+      "keywords": [
+        "장동혁"
+      ]
     }
   ]
 }

@@ -338,4 +338,5 @@ main { display: block; padding-block: 1.5rem 2.5rem; }
 /* PC */
 @media (min-width: 1024px) {
   .people { grid-template-columns: repeat(4, 1fr); }
+  .chips { grid-template-columns: repeat(6, 1fr); }
 }
