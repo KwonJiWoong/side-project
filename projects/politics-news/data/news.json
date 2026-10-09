@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-09T10:32:45+09:00",
+ "updated": "2026-10-09T19:13:13+09:00",
  "keepDays": 3,
  "sources": [
   {
@@ -79,9 +79,20 @@
  "topics": [
   {
    "title": "정청래, 美 비자 발급 ‘보류’…외통위 국감 ‘미국→유럽行’ 변경",
-   "sourceCount": 8,
-   "latest": "2026-10-09T07:42:04+09:00",
+   "sourceCount": 9,
+   "latest": "2026-10-09T18:38:33+09:00",
    "items": [
+    "2e81cf95e376",
+    "59cbab0c7e92",
+    "cf83a421d453",
+    "287c8fe86ec8",
+    "e5ef6dcc64ae",
+    "b1a5fb11ceaa",
+    "3ad076ec1d67",
+    "c0bace69a78c",
+    "931a3b908402",
+    "1c66e555d174",
+    "9d1596134854",
     "9811a8b2de22",
     "1b6cb61dbd93",
     "855abe6d9e32",
@@ -101,148 +112,710 @@
    ]
   },
   {
-   "title": "외교부 “주우크라이나 대사 소환 결정”…‘北 포로 송환 공개’ 항의 수위 높여",
-   "sourceCount": 8,
-   "latest": "2026-10-09T01:40:00+09:00",
+   "title": "李대통령 “능력 안되면서 큰자리 요구, 개혁 명분으로 내부공격”…與 강경파 겨눠",
+   "sourceCount": 6,
+   "latest": "2026-10-09T19:05:00+09:00",
    "items": [
-    "1cae4429f21e",
+    "4b8367bf8735",
+    "344389ba9668",
+    "9c15c0aac7f9",
+    "0c876dea91b2",
+    "bf178958b308",
+    "d496a9827fb6",
+    "41ad81aeb42e",
+    "12a9571076db",
+    "d4430ab521c2",
+    "638e6075775c",
+    "ea0e306e2885",
+    "03cb74e3f0ba"
+   ]
+  },
+  {
+   "title": "李대통령 지지율 37% 최저치 유지…민주당은 정부 출범 후 최저 [한국갤럽]",
+   "sourceCount": 6,
+   "latest": "2026-10-09T16:56:19+09:00",
+   "items": [
+    "55b88d7d58e9",
+    "dc520e99c891",
+    "a793d8c19bc8",
+    "bb83e44f85b5",
+    "457401a05285",
+    "66c67000ead1",
+    "e43fea87811d"
+   ]
+  },
+  {
+   "title": "외교부 ‘주우크라 대사 소환’ 결정, 사회복무요원 규정 위반 8779명 중 절반 ‘복무이탈’, 이화영 16개월간 454차례 접견, 법사위 ‘서영교 진행’ 놓고 난타전 등",
+   "sourceCount": 5,
+   "latest": "2026-10-09T17:08:00+09:00",
+   "items": [
+    "b35ffbaf5eac",
+    "06cdeb16f8d8",
     "407801a24714",
     "df5db42cd51c",
     "ed671d6c522a",
     "a06e7f74a88f",
-    "77f2c437c0a4",
-    "d3a05e9b52dd",
-    "55ea53a0ebf4",
-    "9811c9e4ad43",
-    "a770a4642fcb",
-    "5523bffc3417",
-    "c0e1d6e8e245",
-    "0bf470d163cf"
+    "77f2c437c0a4"
    ]
   },
   {
-   "title": "李대통령 “CPTPP 가입 연내 신청 말라…원점에서 다시 대화”",
-   "sourceCount": 8,
-   "latest": "2026-10-09T06:00:00+09:00",
+   "title": "국산 극초음속 미사일 시험발사 성공",
+   "sourceCount": 4,
+   "latest": "2026-10-09T18:05:46+09:00",
    "items": [
-    "48b7cbff6da5",
-    "62b09ee7170d",
-    "9e4cfa83df93",
-    "e13244aa2e4c",
-    "cbc5ddf19f12",
-    "23cc586f1b28",
-    "45f76d95722e",
-    "5c073a8be8c3",
-    "f671860e9e2d",
-    "7d29453b150a",
-    "22a9969031c9"
-   ]
-  },
-  {
-   "title": "‘가석방 요구’ 이화영, 李정부 출범 후 ‘하루 한번꼴’ 외부 접견",
-   "sourceCount": 6,
-   "latest": "2026-10-09T06:33:05+09:00",
-   "items": [
-    "a0fe3c9f2b2a",
-    "b95f5e57d64b",
-    "b3d8c0c3e02a",
-    "af37bcd74684",
-    "eefcc905ad4f",
-    "0854d174e924",
-    "c2f804a0703c",
-    "c4da9e52091a",
-    "46ca3e7e5708",
-    "7e582ac006de",
-    "9dbd316096c3",
-    "8ab4f0ca86fd",
-    "bb2390e05dab",
-    "97a53df63d6e",
-    "88219c626d5d"
-   ]
-  },
-  {
-   "title": "국산 극초음속 미사일 첫 시험발사 성공…李대통령 참관",
-   "sourceCount": 6,
-   "latest": "2026-10-09T06:00:00+09:00",
-   "items": [
+    "7416a8e07c7d",
     "67bff66659a1",
     "9104ad3476fb",
     "9a76db0ab08f",
     "72932c62b589",
     "27aca68a5f23",
     "9173f6d6ccf2",
-    "28942f3b2d79",
-    "f4d1ff2db85f",
-    "20c8b0a31941",
-    "d5b326fe1750",
-    "0fae452f1377",
-    "43aea86beb15",
-    "75b71f211ab2",
-    "6667a76e6687"
+    "28942f3b2d79"
    ]
   },
   {
-   "title": "李대통령 “韓·이집트, 전략적 동반자 관계로 격상...CEPA 협상 개시\"",
-   "sourceCount": 6,
-   "latest": "2026-10-09T01:40:00+09:00",
+   "title": "DMZ 지뢰 폭발 놓고 유엔서 맞선 남북...사과 요구에 北 반발",
+   "sourceCount": 4,
+   "latest": "2026-10-09T19:04:00+09:00",
    "items": [
-    "28b674a3574a",
-    "f0f0093efc95",
-    "7234b715b718",
-    "a575cbec75b1",
-    "c150cf19a657",
-    "907023022c0f",
-    "ab11d3e8f166",
-    "57d597d95eb2",
-    "62ff0f90cf4d"
+    "91a2bf773319",
+    "510681b8cae7",
+    "fdf53425dce3",
+    "8f0e85a50792",
+    "eae2929a82c4"
    ]
   },
   {
-   "title": "김여정 ‘지뢰폭발’에 “정동영이도 공화국의 공격 단정 어렵다 스스로 고백”",
-   "sourceCount": 5,
-   "latest": "2026-10-08T17:00:37+09:00",
+   "title": "李 “한글, 광복 후 대한민국 성장 뒷받침…글은 나라의 얼굴”",
+   "sourceCount": 4,
+   "latest": "2026-10-09T16:18:00+09:00",
    "items": [
-    "e6a9f7d7ce29",
-    "acb73dee0fb5",
-    "79360212437e",
-    "aed37ae622b6",
-    "94c2a5ca945f"
+    "c246f730914f",
+    "a17332dba6e4",
+    "36d8c7ba05ac",
+    "deef47f035b5"
    ]
   },
   {
-   "title": "국힘 “서영교 발언, 18인분 중 6인분 혼자 먹은 꼴” 서영교 “인격모독”",
-   "sourceCount": 5,
-   "latest": "2026-10-08T16:18:00+09:00",
-   "items": [
-    "abd5be46f31c",
-    "6658fb8bbba5",
-    "714fe3bc096c",
-    "3d65b35f0bd6",
-    "336a5f38b910"
-   ]
-  },
-  {
-   "title": "김여정, 韓 의료장비 지원에 “또 광대극…눈꼴 사나운 거동”",
+   "title": "정점식 \"北 지뢰 도발 책임 면해준 정동영…즉각 경질하라\"",
    "sourceCount": 3,
-   "latest": "2026-10-09T08:39:00+09:00",
+   "latest": "2026-10-09T17:38:01+09:00",
    "items": [
-    "e9ede4fce44e",
-    "89a07f391b96",
-    "07968faa445d"
+    "93cfcbb9f72b",
+    "7c90405fae11",
+    "2046a8a527ae"
    ]
   },
   {
-   "title": "“단일종목 레버리지 ETF 도입이 청와대 지시? 여러 의견 들어” 금융위원장의 말",
-   "sourceCount": 3,
-   "latest": "2026-10-08T21:52:14+09:00",
+   "title": "국감 첫주…조희대에 당황한 與, 한방 없는 野",
+   "sourceCount": 2,
+   "latest": "2026-10-09T17:48:56+09:00",
    "items": [
-    "d2930794d0bc",
-    "0efa5a8b5f1d",
-    "1c395a7bc5ef"
+    "043ebfc6df3d",
+    "bb4d60950648"
+   ]
+  },
+  {
+   "title": "김여정, 대북 의료지원 재차 비난…\"韓쓰레기들 외면할 것\"",
+   "sourceCount": 2,
+   "latest": "2026-10-09T16:48:00+09:00",
+   "items": [
+    "c438ac084905",
+    "072a823f4ef5"
    ]
   }
  ],
  "items": [
+  {
+   "id": "4b8367bf8735",
+   "source": "kmib",
+   "title": "“개혁 명분 내부 공격” 與 강경파 직격한 李",
+   "link": "https://www.kmib.co.kr/article/view.asp?arcid=9000021331",
+   "published": "2026-10-09T19:05:00+09:00",
+   "people": []
+  },
+  {
+   "id": "91a2bf773319",
+   "source": "kmib",
+   "title": "유엔서 ‘DMZ 지뢰’ 사과 요구… 안보리 의장 서한 검토할 듯",
+   "link": "https://www.kmib.co.kr/article/view.asp?arcid=9000021330",
+   "published": "2026-10-09T19:04:00+09:00",
+   "people": []
+  },
+  {
+   "id": "2e81cf95e376",
+   "source": "segye",
+   "title": "정청래 \"제 美비자 문제로 한미동맹에 해 끼치는 발언 자제해야\"",
+   "link": "https://www.segye.com/newsView/20261009506216",
+   "published": "2026-10-09T18:38:33+09:00",
+   "people": []
+  },
+  {
+   "id": "07db8b2e9c56",
+   "source": "hankyung",
+   "title": "업적급이 뭐길래…연봉 올랐는데 월급 덜 들어왔나?",
+   "link": "https://www.hankyung.com/article/2026100928451",
+   "published": "2026-10-09T18:06:25+09:00",
+   "people": []
+  },
+  {
+   "id": "7416a8e07c7d",
+   "source": "hankyung",
+   "title": "[포토] 국산 극초음속 미사일 시험발사 성공",
+   "link": "https://www.hankyung.com/article/2026100929361",
+   "published": "2026-10-09T18:05:46+09:00",
+   "people": []
+  },
+  {
+   "id": "510681b8cae7",
+   "source": "hankyung",
+   "title": "DMZ 지뢰 폭발 놓고 유엔서 남북 '설전'",
+   "link": "https://www.hankyung.com/article/2026100929411",
+   "published": "2026-10-09T18:04:27+09:00",
+   "people": []
+  },
+  {
+   "id": "344389ba9668",
+   "source": "hankyung",
+   "title": "李 \"능력 안되면서 큰자리 요구…급진개혁 명분으로 내부 공격\"",
+   "link": "https://www.hankyung.com/article/2026100929391",
+   "published": "2026-10-09T18:04:16+09:00",
+   "people": []
+  },
+  {
+   "id": "8218294a442b",
+   "source": "hankyung",
+   "title": "전기료 덜 걷어놓고 자회사에 청구한 한전",
+   "link": "https://www.hankyung.com/article/2026100929371",
+   "published": "2026-10-09T18:04:00+09:00",
+   "people": []
+  },
+  {
+   "id": "59cbab0c7e92",
+   "source": "hankyung",
+   "title": "정청래 美 비자 보류에…野 \"대미외교 실패\"",
+   "link": "https://www.hankyung.com/article/2026100929401",
+   "published": "2026-10-09T18:03:47+09:00",
+   "people": []
+  },
+  {
+   "id": "cf83a421d453",
+   "source": "kmib",
+   "title": "정청래 “제 美비자 문제로 한미동맹 해 끼치는 발언 자제”",
+   "link": "https://www.kmib.co.kr/article/view.asp?arcid=9000021318",
+   "published": "2026-10-09T17:49:00+09:00",
+   "people": []
+  },
+  {
+   "id": "043ebfc6df3d",
+   "source": "hankyung",
+   "title": "국감 첫주…조희대에 당황한 與, 한방 없는 野",
+   "link": "https://www.hankyung.com/article/2026100929381",
+   "published": "2026-10-09T17:48:56+09:00",
+   "people": []
+  },
+  {
+   "id": "93cfcbb9f72b",
+   "source": "hankyung",
+   "title": "北 김여정 \"광대극\" 조롱에…정점식 \"정동영 당장 경질하라\"",
+   "link": "https://www.hankyung.com/article/2026100928387",
+   "published": "2026-10-09T17:38:01+09:00",
+   "people": []
+  },
+  {
+   "id": "287c8fe86ec8",
+   "source": "segye",
+   "title": "정청래, 미국 비자 발급 보류에 “한미동맹 해치는 발언 자제”",
+   "link": "https://www.segye.com/newsView/20261009507019",
+   "published": "2026-10-09T17:13:56+09:00",
+   "people": []
+  },
+  {
+   "id": "b35ffbaf5eac",
+   "source": "donga",
+   "title": "‘대사 소환’ 韓 초강경 대응에…우크라 “외교가 감정보다 우선”",
+   "link": "https://www.donga.com/news/Politics/article/all/20261009/134814541/1",
+   "published": "2026-10-09T17:08:00+09:00",
+   "people": []
+  },
+  {
+   "id": "55b88d7d58e9",
+   "source": "segye",
+   "title": "李대통령 지지율 37%… ‘국방·안보’ 부정 평가 12%p↑ [한국갤럽]",
+   "link": "https://www.segye.com/newsView/20261009506668",
+   "published": "2026-10-09T16:56:19+09:00",
+   "people": []
+  },
+  {
+   "id": "c438ac084905",
+   "source": "dailian",
+   "title": "김여정, 대북 의료지원 재차 비난…\"韓쓰레기들 외면할 것\"",
+   "link": "https://www.dailian.co.kr/news/view/1699813/?sc=rss",
+   "published": "2026-10-09T16:48:00+09:00",
+   "people": []
+  },
+  {
+   "id": "bcc8f3b8a5ac",
+   "source": "donga",
+   "title": "“민주 황금시대 운운할 때냐” 조국, 김민석 직격",
+   "link": "https://www.donga.com/news/Politics/article/all/20261009/134814399/1",
+   "published": "2026-10-09T16:42:00+09:00",
+   "people": [
+    "democratic"
+   ]
+  },
+  {
+   "id": "f396ceb643c6",
+   "source": "donga",
+   "title": "외교부 “정청래 美비자 사안, 한미관계와 연계 적절치 않아”",
+   "link": "https://www.donga.com/news/Politics/article/all/20261009/134814974/1",
+   "published": "2026-10-09T16:36:24+09:00",
+   "people": []
+  },
+  {
+   "id": "c246f730914f",
+   "source": "donga",
+   "title": "李 “한글, 광복 후 대한민국 성장 뒷받침…글은 나라의 얼굴”",
+   "link": "https://www.donga.com/news/Politics/article/all/20261009/134814410/1",
+   "published": "2026-10-09T16:18:00+09:00",
+   "people": []
+  },
+  {
+   "id": "9c15c0aac7f9",
+   "source": "chosun",
+   "title": "장동혁 “李대통령, ‘능력도 안 되며 자리 요구’? 반성문인가”",
+   "link": "https://www.chosun.com/politics/assembly/2026/10/09/7QM3VTHAQJGMVHLVCRNI67JHZQ/",
+   "published": "2026-10-09T16:15:32+09:00",
+   "people": [
+    "ppp"
+   ]
+  },
+  {
+   "id": "e5ef6dcc64ae",
+   "source": "dailian",
+   "title": "'美 비자 보류' 정청래 \"극단적 주장, 국익에 도움되지 않아…자제해달라\"",
+   "link": "https://www.dailian.co.kr/news/view/1699807/?sc=rss",
+   "published": "2026-10-09T16:10:00+09:00",
+   "people": []
+  },
+  {
+   "id": "bb4d60950648",
+   "source": "segye",
+   "title": "정책 검증은 가고 쇼츠만 남나…국감 첫주 '막말·고성' 얼룩",
+   "link": "https://www.segye.com/newsView/20261009506266",
+   "published": "2026-10-09T16:08:32+09:00",
+   "people": []
+  },
+  {
+   "id": "63e61d695d60",
+   "source": "hankyung",
+   "title": "나경원 \"우크라이나에 감사서한\"…與 \"어느 나라 의원이냐\"",
+   "link": "https://www.hankyung.com/article/2026100927497",
+   "published": "2026-10-09T16:06:23+09:00",
+   "people": []
+  },
+  {
+   "id": "e7409db9f134",
+   "source": "hankyung",
+   "title": "조국 \"민주당 정신 차려라…내란 격퇴 연합 해체 임계점\"",
+   "link": "https://www.hankyung.com/article/2026100927277",
+   "published": "2026-10-09T15:53:40+09:00",
+   "people": []
+  },
+  {
+   "id": "6dec28dfa66b",
+   "source": "segye",
+   "title": "北지뢰제거·軍첨단전력 공개 이어 유엔서 외교대응도 착수",
+   "link": "https://www.segye.com/newsView/20261009504066",
+   "published": "2026-10-09T15:44:47+09:00",
+   "people": []
+  },
+  {
+   "id": "0c876dea91b2",
+   "source": "dailian",
+   "title": "李, 與 강경파 겨냥해 \"능력도 안 되면서 큰 자리 요구\"…장동혁 \"반성문?\"",
+   "link": "https://www.dailian.co.kr/news/view/1699800/?sc=rss",
+   "published": "2026-10-09T15:33:00+09:00",
+   "people": [
+    "ppp"
+   ]
+  },
+  {
+   "id": "5bc9f3b9a6f5",
+   "source": "kmib",
+   "title": "정청래 미국행 막혔는데…외교부 “한미관계와 연계 적절치 않아”",
+   "link": "https://www.kmib.co.kr/article/view.asp?arcid=9000021297",
+   "published": "2026-10-09T15:29:00+09:00",
+   "people": []
+  },
+  {
+   "id": "5de416f04c65",
+   "source": "segye",
+   "title": "주한외교단, 강원도 방문…DMZ 평화·첨단기술·전통문화 체험",
+   "link": "https://www.segye.com/newsView/20261009505946",
+   "published": "2026-10-09T15:19:00+09:00",
+   "people": []
+  },
+  {
+   "id": "c6382395070e",
+   "source": "segye",
+   "title": "李대통령 “우리의 말과 글의 힘이 곧 韓 경쟁력”",
+   "link": "https://www.segye.com/newsView/20261009505970",
+   "published": "2026-10-09T15:18:27+09:00",
+   "people": []
+  },
+  {
+   "id": "4ef3c7d692e9",
+   "source": "dailian",
+   "title": "나경원, 젤렌스키에 서한…\"北포로 한국행 결단에 경의\"",
+   "link": "https://www.dailian.co.kr/news/view/1699796/?sc=rss",
+   "published": "2026-10-09T15:02:00+09:00",
+   "people": []
+  },
+  {
+   "id": "287e77fd2106",
+   "source": "mk",
+   "title": "주호영 “우크라 몰아세우면 앞으로 북한군 포로는 러시아 포로와 교환될 것”",
+   "link": "https://www.mk.co.kr/news/politics/12172288",
+   "published": "2026-10-09T14:54:25+09:00",
+   "people": []
+  },
+  {
+   "id": "84f9be64212b",
+   "source": "mk",
+   "title": "“동무, 룰루레몬 좀 구해주시라요”…확 달라진 평양 여성들 증언 나왔다",
+   "link": "https://www.mk.co.kr/news/politics/12172287",
+   "published": "2026-10-09T14:53:14+09:00",
+   "people": []
+  },
+  {
+   "id": "7c90405fae11",
+   "source": "chosun",
+   "title": "정점식 “‘대북 굴종’ 정동영 발언, 北 지뢰 도발 알리바이 돼…경질 촉구”",
+   "link": "https://www.chosun.com/politics/politics_general/2026/10/09/VX7PBUS3ZRFEFLZGH2CGOPLNPM/",
+   "published": "2026-10-09T14:48:16+09:00",
+   "people": []
+  },
+  {
+   "id": "1a37ce92ca88",
+   "source": "kmib",
+   "title": "나경원도 한동훈도 ‘美 입국 불발’ 맹공… “겹망신살”",
+   "link": "https://www.kmib.co.kr/article/view.asp?arcid=9000021284",
+   "published": "2026-10-09T14:40:00+09:00",
+   "people": []
+  },
+  {
+   "id": "51db50036ade",
+   "source": "hankyung",
+   "title": "박진영 \"허점 많은 거 안다\"…배현진 \"법·절차 지켜라\"",
+   "link": "https://www.hankyung.com/article/2026100926587",
+   "published": "2026-10-09T14:39:57+09:00",
+   "people": []
+  },
+  {
+   "id": "a0274022531c",
+   "source": "kmib",
+   "title": "정점식 “얻어맞고도 입 다무는 정부…정동영 경질해야”",
+   "link": "https://www.kmib.co.kr/article/view.asp?arcid=9000021281",
+   "published": "2026-10-09T14:33:00+09:00",
+   "people": []
+  },
+  {
+   "id": "bf178958b308",
+   "source": "dailian",
+   "title": "\"능력도 안 되면서 큰자리 요구\"…李대통령, 與 강경파 겨냥 작심 비판",
+   "link": "https://www.dailian.co.kr/news/view/1699788/?sc=rss",
+   "published": "2026-10-09T14:27:00+09:00",
+   "people": [
+    "president"
+   ]
+  },
+  {
+   "id": "b1a5fb11ceaa",
+   "source": "donga",
+   "title": "정청래 비자 불발에 與 “4선 중진을…美, 신속 해결해야”",
+   "link": "https://www.donga.com/news/Politics/article/all/20261009/134814322/1",
+   "published": "2026-10-09T14:23:00+09:00",
+   "people": []
+  },
+  {
+   "id": "3ad076ec1d67",
+   "source": "hankyung",
+   "title": "美 비자 발급 보류에…정청래 \"극단적 주장 자제해달라\"",
+   "link": "https://www.hankyung.com/article/2026100926457",
+   "published": "2026-10-09T14:10:57+09:00",
+   "people": []
+  },
+  {
+   "id": "41e19d436060",
+   "source": "hankyung",
+   "title": "[단독] \"한국이 쫓아냈어\"…전셋집까지 내놓은 사장님 '눈물' [K갈라파고스: 족쇄의 세계]",
+   "link": "https://www.hankyung.com/article/202610080526H",
+   "published": "2026-10-09T14:07:35+09:00",
+   "people": []
+  },
+  {
+   "id": "fdf53425dce3",
+   "source": "segye",
+   "title": "韓 “DMZ 지뢰는 정전협정 위반”… 北, 유엔서 책임 부인",
+   "link": "https://www.segye.com/newsView/20261009505345",
+   "published": "2026-10-09T14:03:04+09:00",
+   "people": []
+  },
+  {
+   "id": "d496a9827fb6",
+   "source": "segye",
+   "title": "李대통령 “능력 안 되면서 큰 자리 요구, 급진개혁 내세워 내부공격”…작심 비판",
+   "link": "https://www.segye.com/newsView/20261009505338",
+   "published": "2026-10-09T14:02:27+09:00",
+   "people": []
+  },
+  {
+   "id": "8c276c295f73",
+   "source": "donga",
+   "title": "국힘 “정동영, 北 지뢰공격에 알리바이 제공…경질해야”",
+   "link": "https://www.donga.com/news/Politics/article/all/20261009/134814200/1",
+   "published": "2026-10-09T13:55:00+09:00",
+   "people": []
+  },
+  {
+   "id": "41ad81aeb42e",
+   "source": "kmib",
+   "title": "李대통령 “능력 안되면서 큰자리 요구, 개혁 명분으로 내부공격”…與 강경파 겨눠",
+   "link": "https://www.kmib.co.kr/article/view.asp?arcid=9000021274",
+   "published": "2026-10-09T13:46:00+09:00",
+   "people": []
+  },
+  {
+   "id": "91a13d500cad",
+   "source": "chosun",
+   "title": "나경원, 젤렌스키에 서한… “北포로 한국행 허용 결정 감사”",
+   "link": "https://www.chosun.com/politics/assembly/2026/10/09/2PC6RPLQTZENDFSI4Y7BGF3FPY/",
+   "published": "2026-10-09T13:37:08+09:00",
+   "people": []
+  },
+  {
+   "id": "2f735057daf9",
+   "source": "donga",
+   "title": "국힘 “실형 받은 사람이 대통령 협박해 가석방 요구…부당거래”",
+   "link": "https://www.donga.com/news/Politics/article/all/20261009/134814138/2",
+   "published": "2026-10-09T13:36:00+09:00",
+   "people": [
+    "president"
+   ]
+  },
+  {
+   "id": "12a9571076db",
+   "source": "segye",
+   "title": "[속보] 李 “능력도 안 되면서 큰 자리 요구”…여권 강경파에 직격탄",
+   "link": "https://www.segye.com/newsView/20261009505086",
+   "published": "2026-10-09T13:21:28+09:00",
+   "people": []
+  },
+  {
+   "id": "d4430ab521c2",
+   "source": "donga",
+   "title": "李 “능력도 안 되면서 큰 자리 요구”…‘김지용 반대’ 與 강경파 직격?",
+   "link": "https://www.donga.com/news/Politics/article/all/20261009/134814070/2",
+   "published": "2026-10-09T13:15:00+09:00",
+   "people": []
+  },
+  {
+   "id": "072a823f4ef5",
+   "source": "segye",
+   "title": "김여정, 대북 의료지원 구상에 “자작광대극 연속편” 맹비난",
+   "link": "https://www.segye.com/newsView/20261009503946",
+   "published": "2026-10-09T13:13:44+09:00",
+   "people": []
+  },
+  {
+   "id": "638e6075775c",
+   "source": "hankyung",
+   "title": "李대통령 \"능력도 안되면서 큰 자리 요구하며 내부 공격\"",
+   "link": "https://www.hankyung.com/article/2026100926187",
+   "published": "2026-10-09T13:07:04+09:00",
+   "people": []
+  },
+  {
+   "id": "ea0e306e2885",
+   "source": "segye",
+   "title": "李대통령 \"능력 안되면서 큰자리 요구, 개혁 명분으로 내부공격\"",
+   "link": "https://www.segye.com/newsView/20261009504968",
+   "published": "2026-10-09T12:56:41+09:00",
+   "people": []
+  },
+  {
+   "id": "03cb74e3f0ba",
+   "source": "chosun",
+   "title": "李대통령, 與강경파 겨냥 “능력도 안 되면서 큰 자리 요구하며 내부 공격”",
+   "link": "https://www.chosun.com/politics/politics_general/2026/10/09/LLZYJHHOUZDNFMA2E3YGNHYKUI/",
+   "published": "2026-10-09T12:55:38+09:00",
+   "people": []
+  },
+  {
+   "id": "78c2c0140c67",
+   "source": "segye",
+   "title": "[속보] 한동훈 “나라 위기인데 ‘한동훈’만 외쳐…민주당 정치 참 한심”",
+   "link": "https://www.segye.com/newsView/20261009503580",
+   "published": "2026-10-09T12:28:24+09:00",
+   "people": []
+  },
+  {
+   "id": "c0bace69a78c",
+   "source": "segye",
+   "title": "與 정청래 美 비자 발급 보류에 “깊은 유감…외교당국 신속한 해결 기대”",
+   "link": "https://www.segye.com/newsView/20261009504660",
+   "published": "2026-10-09T12:17:39+09:00",
+   "people": []
+  },
+  {
+   "id": "fbe6b6b22fcc",
+   "source": "segye",
+   "title": "李대통령 지지율 37%로 하락은 ‘일단 멈춤’…부정평가는 5%P 감소 [한국갤럽]",
+   "link": "https://www.segye.com/newsView/20261009504466",
+   "published": "2026-10-09T12:11:53+09:00",
+   "people": []
+  },
+  {
+   "id": "1d2290adf079",
+   "source": "donga",
+   "title": "李 “함께 잘 사는 개혁은 암수술…늦으면 수술비 더 들어”",
+   "link": "https://www.donga.com/news/Politics/article/all/20261009/134813904/2",
+   "published": "2026-10-09T12:07:00+09:00",
+   "people": []
+  },
+  {
+   "id": "931a3b908402",
+   "source": "chosun",
+   "title": "여권, 정청래 美 비자 보류에 “동맹국에 예의 아냐”",
+   "link": "https://www.chosun.com/politics/politics_general/2026/10/09/5HODROXQCJDSRIGLYH6K6OINLM/",
+   "published": "2026-10-09T12:04:43+09:00",
+   "people": []
+  },
+  {
+   "id": "6703cfca747f",
+   "source": "dailian",
+   "title": "李대통령 \"개혁, 꼭 해야하는 암 수술같은 것…늦어질수록 병 악화\"",
+   "link": "https://www.dailian.co.kr/news/view/1699763/?sc=rss",
+   "published": "2026-10-09T12:03:00+09:00",
+   "people": []
+  },
+  {
+   "id": "11bd88b02779",
+   "source": "hankyung",
+   "title": "李대통령 \"개혁은 꼭 해야 하는 암수술…늦을수록 병 악화",
+   "link": "https://www.hankyung.com/article/2026100925717",
+   "published": "2026-10-09T11:43:12+09:00",
+   "people": [
+    "president"
+   ]
+  },
+  {
+   "id": "1c66e555d174",
+   "source": "chosun",
+   "title": "정청래 美 비자 보류에…野 “한미관계 치명적 파탄”",
+   "link": "https://www.chosun.com/politics/assembly/2026/10/09/RZJCUH2E45FYZHUHSW7E3NPULE/",
+   "published": "2026-10-09T11:43:03+09:00",
+   "people": []
+  },
+  {
+   "id": "2046a8a527ae",
+   "source": "dailian",
+   "title": "정점식 \"北 지뢰 도발 책임 면해준 정동영…즉각 경질하라\"",
+   "link": "https://www.dailian.co.kr/news/view/1699749/?sc=rss",
+   "published": "2026-10-09T11:22:00+09:00",
+   "people": []
+  },
+  {
+   "id": "dc520e99c891",
+   "source": "donga",
+   "title": "與 지지율 35% 李정부 이후 최저치…국힘 26%",
+   "link": "https://www.donga.com/news/Politics/article/all/20261009/134813797/2",
+   "published": "2026-10-09T11:11:00+09:00",
+   "people": []
+  },
+  {
+   "id": "8f0e85a50792",
+   "source": "dailian",
+   "title": "DMZ 지뢰 폭발 놓고 유엔서 맞선 남북...사과 요구에 北 반발",
+   "link": "https://www.dailian.co.kr/news/view/1699726/?sc=rss",
+   "published": "2026-10-09T11:05:00+09:00",
+   "people": []
+  },
+  {
+   "id": "a17332dba6e4",
+   "source": "kmib",
+   "title": "李대통령, 한글날 맞아 “한글, 대한민국 성장·발전 뒷받침”",
+   "link": "https://www.kmib.co.kr/article/view.asp?arcid=9000021252",
+   "published": "2026-10-09T10:59:00+09:00",
+   "people": []
+  },
+  {
+   "id": "a793d8c19bc8",
+   "source": "dailian",
+   "title": "李대통령 지지율 37% 최저치 유지…민주당은 정부 출범 후 최저 [한국갤럽]",
+   "link": "https://www.dailian.co.kr/news/view/1699740/?sc=rss",
+   "published": "2026-10-09T10:57:00+09:00",
+   "people": []
+  },
+  {
+   "id": "b3d68f0e95ad",
+   "source": "hankyung",
+   "title": "김여정, 이틀째 韓 맹비난…\"소갈머리 얄팍한 천치들\"",
+   "link": "https://www.hankyung.com/article/202610092519i",
+   "published": "2026-10-09T10:53:26+09:00",
+   "people": []
+  },
+  {
+   "id": "bb83e44f85b5",
+   "source": "kmib",
+   "title": "李대통령 지지율 37% 취임 후 최저…안보 부정 평가 3%→15% 급증",
+   "link": "https://www.kmib.co.kr/article/view.asp?arcid=9000021250",
+   "published": "2026-10-09T10:53:00+09:00",
+   "people": []
+  },
+  {
+   "id": "457401a05285",
+   "source": "chosun",
+   "title": "민주당 지지율 35%... 李정부 출범후 최저",
+   "link": "https://www.chosun.com/politics/politics_general/2026/10/09/PC2HTYXKAJCTVFXE5NOA3EVUJU/",
+   "published": "2026-10-09T10:52:21+09:00",
+   "people": []
+  },
+  {
+   "id": "a9ec9dce82dc",
+   "source": "donga",
+   "title": "국힘 “한글날, 與 막말 돌아보길…말에는 책임 따라야”",
+   "link": "https://www.donga.com/news/Politics/article/all/20261009/134813732/2",
+   "published": "2026-10-09T10:50:00+09:00",
+   "people": []
+  },
+  {
+   "id": "66c67000ead1",
+   "source": "hankyung",
+   "title": "李대통령 지지율 37% 취임 후 최저 유지…부정평가는 5%P 내려",
+   "link": "https://www.hankyung.com/article/2026100925217",
+   "published": "2026-10-09T10:39:52+09:00",
+   "people": [
+    "president"
+   ]
+  },
+  {
+   "id": "e43fea87811d",
+   "source": "segye",
+   "title": "[속보] 李대통령 지지율 37%…부정평가 이유 1위는 ‘부동산’ [한국갤럽]",
+   "link": "https://www.segye.com/newsView/20261009503796",
+   "published": "2026-10-09T10:36:15+09:00",
+   "people": []
+  },
+  {
+   "id": "9d1596134854",
+   "source": "dailian",
+   "title": "국정원 이어 정청래도 美 비자 보류…野 \"경제·외교·안보 재앙의 경고\"",
+   "link": "https://www.dailian.co.kr/news/view/1699735/?sc=rss",
+   "published": "2026-10-09T10:31:00+09:00",
+   "people": []
+  },
   {
    "id": "36d8c7ba05ac",
    "source": "chosun",
@@ -336,7 +909,7 @@
   {
    "id": "e9ede4fce44e",
    "source": "donga",
-   "title": "김여정 “한국 인간쓰레기들 외면하고 무시할 것”…의료장비 지원 구상 비난",
+   "title": "김여정 “서울위정자들 소갈머리 얄팍한 천치…광대극 지켜볼 것”",
    "link": "https://www.donga.com/news/Politics/article/all/20261009/134813365/2",
    "published": "2026-10-09T08:39:00+09:00",
    "people": []
@@ -3729,14 +4302,6 @@
    "people": []
   },
   {
-   "id": "582db8844430",
-   "source": "dailian",
-   "title": "[단독] \"잘못 눌렀다\"했지만…산은 회장, '갑질 피해자'에 또 전화해 논란",
-   "link": "https://www.dailian.co.kr/news/view/1698960/?sc=rss",
-   "published": "2026-10-07T16:27:00+09:00",
-   "people": []
-  },
-  {
    "id": "77b8350d20cb",
    "source": "newdaily",
    "title": "[포토] 문체위 국감장에 등장한 가수 조정치",
@@ -3758,14 +4323,6 @@
    "title": "정동영 “DMZ 지뢰, 北 공격으로 단정 못해…고의적 의도 확인해야”",
    "link": "https://www.mk.co.kr/news/politics/12170554",
    "published": "2026-10-07T16:19:58+09:00",
-   "people": []
-  },
-  {
-   "id": "87739e8d1d7a",
-   "source": "dailian",
-   "title": "\"부엉이바위에 긁혔어?\" 국감서 설전…민주 \"김태규 징계해야\"",
-   "link": "https://www.dailian.co.kr/news/view/1699003/?sc=rss",
-   "published": "2026-10-07T16:19:00+09:00",
    "people": []
   },
   {
@@ -3801,14 +4358,6 @@
    "people": []
   },
   {
-   "id": "00958f4d1461",
-   "source": "dailian",
-   "title": "[2026 국감] 최민희 \"네이버 댓글, 중국 의심 세력 조작 정황…선거철 아웃링크해야\"",
-   "link": "https://www.dailian.co.kr/news/view/1698968/?sc=rss",
-   "published": "2026-10-07T15:54:00+09:00",
-   "people": []
-  },
-  {
    "id": "914cfe4db0cd",
    "source": "newdaily",
    "title": "[포토] 문체위 국감장에 등장한 가수 조정치",
@@ -3822,14 +4371,6 @@
    "title": "[포토] 질의에 답변하는 이소영 중소벤처기업부 장관",
    "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOOWQwVXJiMmYtRy1Rd3RzTGxCSDJWVkhIdEFnTFZPbC1VR0dtWlBiX1RCZlZIMTFhTEM2cEZZQjYzT1V2eGN5RUZyWnlrc0lVVXFOWHFuaWkyRTJQWXVFUWxxR21TNXpuMzZHY2JQbDY5Y1NhQVFkNERmbEdYd044bNIBgAFBVV95cUxOOWQwVXJiMmYtRy1Rd3RzTGxCSDJWVkhIdEFnTFZPbC1VR0dtWlBiX1RCZlZIMTFhTEM2cEZZQjYzT1V2eGN5RUZyWnlrc0lVVXFOWHFuaWkyRTJQWXVFUWxxR21TNXpuMzZHY2JQbDY5Y1NhQVFkNERmbEdYd044bA?oc=5",
    "published": "2026-10-07T15:50:25+09:00",
-   "people": []
-  },
-  {
-   "id": "cf7c75a0fdff",
-   "source": "dailian",
-   "title": "[2026 국감] 김석기 \"'암살자들' 직접 봤더니 너무 거짓말 많아…감독 불러 따져야\"",
-   "link": "https://www.dailian.co.kr/news/view/1698905/?sc=rss",
-   "published": "2026-10-07T15:48:00+09:00",
    "people": []
   },
   {
@@ -3953,14 +4494,6 @@
    "people": []
   },
   {
-   "id": "0c0c2a132e04",
-   "source": "dailian",
-   "title": "[2026 국감] '국감 출석' 박진영 \"K팝 한계 다다라…'패노메논' 민간 주도해야\"",
-   "link": "https://www.dailian.co.kr/news/view/1698871/?sc=rss",
-   "published": "2026-10-07T14:47:00+09:00",
-   "people": []
-  },
-  {
    "id": "679e9fa7fe83",
    "source": "newdaily",
    "title": "강신철 \"北, 軍 대응에 상당히 당황\" … '단호 대응'은 지뢰 제거·경고사격",
@@ -4001,38 +4534,6 @@
    "people": []
   },
   {
-   "id": "995ce17c31b2",
-   "source": "dailian",
-   "title": "오세훈, 이준석·한동훈과 연대하나…\"보수통합 필요, 역할 할 것\"",
-   "link": "https://www.dailian.co.kr/news/view/1698915/?sc=rss",
-   "published": "2026-10-07T14:22:00+09:00",
-   "people": []
-  },
-  {
-   "id": "3115af2587c4",
-   "source": "dailian",
-   "title": "\"대법원장도 국감 불러 감금하는데\"…정점식, 김현지 국감 출석 재차 압박",
-   "link": "https://www.dailian.co.kr/news/view/1698911/?sc=rss",
-   "published": "2026-10-07T14:16:00+09:00",
-   "people": []
-  },
-  {
-   "id": "e53f03094923",
-   "source": "dailian",
-   "title": "[2026 국감] 강신철, 北 잦은 월선에 \"행동보면 자기네 지역이라 판단하고 순찰\"",
-   "link": "https://www.dailian.co.kr/news/view/1698912/?sc=rss",
-   "published": "2026-10-07T14:16:00+09:00",
-   "people": []
-  },
-  {
-   "id": "b96001e69fe8",
-   "source": "dailian",
-   "title": "박정훈, '노무현 금품수수' 공방 가세…\"비난했던 자들의 '시체 팔이' 위선\"",
-   "link": "https://www.dailian.co.kr/news/view/1698902/?sc=rss",
-   "published": "2026-10-07T14:02:00+09:00",
-   "people": []
-  },
-  {
    "id": "ab40226bcc59",
    "source": "chosun",
    "title": "[단독] 조두순 전자장치 훼손, 6일간 아무도 몰랐다",
@@ -4070,14 +4571,6 @@
    "title": "강신철 “軍 대응에… 北, 상당히 당황했을 것”",
    "link": "https://www.chosun.com/politics/diplomacy-defense/2026/10/07/RDCFTF6LL5HEBCE3BK7PX657ZQ/",
    "published": "2026-10-07T13:03:10+09:00",
-   "people": []
-  },
-  {
-   "id": "d62b405b869c",
-   "source": "dailian",
-   "title": "[2026 국감] 한동훈 \"지뢰, 살상 외 다른 목적 있나\"…정동영 \"'공격' 특정할 수 없어\"",
-   "link": "https://www.dailian.co.kr/news/view/1698820/?sc=rss",
-   "published": "2026-10-07T13:03:00+09:00",
    "people": []
   },
   {
@@ -4484,132 +4977,6 @@
    "title": "[속보] 북한 “영토 1㎜라도 침범한다면 즉시적 강력대응할 것”",
    "link": "https://www.mk.co.kr/news/politics/12169692",
    "published": "2026-10-06T19:15:04+09:00",
-   "people": []
-  },
-  {
-   "id": "547557f06564",
-   "source": "chosun",
-   "title": "李대통령, 박진영 국감 출석에 “염치없지만 섭섭하더라도 조금 더 뛰어주시길”",
-   "link": "https://www.chosun.com/politics/blue_house/2026/10/06/6E6JQ2K22VBFDGRLA3FQMQSMAI/",
-   "published": "2026-10-06T18:55:42+09:00",
-   "people": []
-  },
-  {
-   "id": "f518fa1f8626",
-   "source": "chosun",
-   "title": "靑 “주우크라이나 대사 소환 검토”",
-   "link": "https://www.chosun.com/politics/politics_general/2026/10/06/6MTKTDMENFFHJAP2DIKGCVVVZQ/",
-   "published": "2026-10-06T18:33:45+09:00",
-   "people": [
-    "president"
-   ]
-  },
-  {
-   "id": "21bf7b6b25d8",
-   "source": "chosun",
-   "title": "‘좌아하게’로 논란 부른 李... “엉터리 단어 지적해야 언어 발전”",
-   "link": "https://www.chosun.com/politics/politics_general/2026/10/06/YFMXVBS3LZHARD2XVUII26PVQY/",
-   "published": "2026-10-06T17:37:21+09:00",
-   "people": []
-  },
-  {
-   "id": "90d5fb87c65c",
-   "source": "chosun",
-   "title": "통일硏, 北 지뢰 도발에 “국제법상 책임추궁 등 외교적 대응 검토 필요성”",
-   "link": "https://www.chosun.com/politics/north_korea/2026/10/06/765QU56LRRHSPBXBSG4WAXMGI4/",
-   "published": "2026-10-06T17:07:47+09:00",
-   "people": []
-  },
-  {
-   "id": "f43abb29f2a8",
-   "source": "chosun",
-   "title": "조국, 靑 검찰개혁 진실공방에 “소모적 문제, 무슨 의미 있나”",
-   "link": "https://www.chosun.com/politics/assembly/2026/10/06/GHCDI2TFKRHATGSFMVSZT25KYI/",
-   "published": "2026-10-06T16:22:44+09:00",
-   "people": [
-    "president"
-   ]
-  },
-  {
-   "id": "320def869608",
-   "source": "chosun",
-   "title": "국방부 “전역모 논란에 유감... 보충역 감축·폐지 궁극적 추진”",
-   "link": "https://www.chosun.com/politics/diplomacy-defense/2026/10/06/754TWNVKNBHNBAFPU3TZHB7RIU/",
-   "published": "2026-10-06T16:18:53+09:00",
-   "people": []
-  },
-  {
-   "id": "b337797a7e1d",
-   "source": "chosun",
-   "title": "국감 첫날 野김재섭 ‘소환조사’...상임위 곳곳서 여야 공방",
-   "link": "https://www.chosun.com/politics/assembly/2026/10/06/CIQVXTZBUFAMLMFY6R2HY3YQZM/",
-   "published": "2026-10-06T15:37:53+09:00",
-   "people": []
-  },
-  {
-   "id": "196e6064c0a2",
-   "source": "chosun",
-   "title": "‘AI 해킹’에 韓총리 “방치된 정부 웹사이트 폐쇄하라”",
-   "link": "https://www.chosun.com/politics/goverment/2026/10/06/HKB5WPPM2NETDG6NCL2FJYQGHI/",
-   "published": "2026-10-06T15:09:53+09:00",
-   "people": [
-    "pm"
-   ]
-  },
-  {
-   "id": "76dfd535e873",
-   "source": "chosun",
-   "title": "李대통령 “엉터리 단어 쓴 경우 많아… 지적해줘야 한글 정상 발전”",
-   "link": "https://www.chosun.com/politics/politics_general/2026/10/06/2EOIKWEWVBCODIO3L7MPVADMT4/",
-   "published": "2026-10-06T13:57:06+09:00",
-   "people": []
-  },
-  {
-   "id": "b360e6fca007",
-   "source": "chosun",
-   "title": "[단독] 선관위 직원은 선거 앞두고 휴직하면서…사회복무요원 85%가 주말근무",
-   "link": "https://www.chosun.com/politics/politics_general/2026/10/06/ZDB4WC5KQFAILOSJ37YA6ELHDA/",
-   "published": "2026-10-06T13:34:46+09:00",
-   "people": []
-  },
-  {
-   "id": "4155c08a6a1e",
-   "source": "chosun",
-   "title": "조현, ‘비공개 파기’에 주우크라 대사 소환 “포함해 검토… 단호한 조치”",
-   "link": "https://www.chosun.com/politics/diplomacy-defense/2026/10/06/4AULLXBXWFBBZKVQXV4Q7CJC5E/",
-   "published": "2026-10-06T13:27:56+09:00",
-   "people": []
-  },
-  {
-   "id": "214d1aeee253",
-   "source": "chosun",
-   "title": "통일부, 군의 北 지뢰 확인 최종 조사 발표에도 “선대선 소통”",
-   "link": "https://www.chosun.com/politics/north_korea/2026/10/06/ZGH5HDBGHJEAHBRBGV6GGCXXFM/",
-   "published": "2026-10-06T11:45:22+09:00",
-   "people": []
-  },
-  {
-   "id": "06ee8aabb65d",
-   "source": "chosun",
-   "title": "[단독] ‘보복대행’ 주소 알아내는 창구된 우체국...직원 78%가 개인정보 조회 가능",
-   "link": "https://www.chosun.com/politics/politics_general/2026/10/06/SRVHY3MQWNFW5BXRFIXHCISN3Y/",
-   "published": "2026-10-06T11:34:57+09:00",
-   "people": []
-  },
-  {
-   "id": "d5833d661998",
-   "source": "chosun",
-   "title": "외통위 ‘대북제재 결의안’ 대립... 野 요구에, 與 “국방위 논의 지켜봐야”",
-   "link": "https://www.chosun.com/politics/diplomacy-defense/2026/10/06/33VAHDWU45CEHA3VJOUULVPA5Y/",
-   "published": "2026-10-06T11:32:06+09:00",
-   "people": []
-  },
-  {
-   "id": "eb4a28f2dc3d",
-   "source": "chosun",
-   "title": "李, 검찰청 폐지에 “없는 죄 뒤집어씌우더니...국민의 역사적 결단”",
-   "link": "https://www.chosun.com/politics/politics_general/2026/10/06/VUDVDKFOAJGIPK2QRESGENDKZY/",
-   "published": "2026-10-06T10:56:12+09:00",
    "people": []
   }
  ]
