@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>전화번호 저장하기 - 쉬운 폰 배우기</title>
   <meta name="description" content="자주 연락하는 사람의 번호를 저장해 두면 이름만 보고 바로 전화할 수 있어요.">
   <link rel="stylesheet" href="../css/reset.css">
@@ -73,18 +75,28 @@
       <!-- 따라 하기 -->
       <section class="section guide__steps" aria-labelledby="steps-title">
         <h2 class="section__title" id="steps-title">이렇게 따라 해보세요</h2>
+        <p class="guide__legend">그림 속 파란 테두리가 누를 곳이에요.</p>
         <ol class="steps">
           <li class="steps__item">
             <h3 class="steps__title">전화 앱을 켜요</h3>
             <p class="steps__desc">초록색 수화기 모양 앱을 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/call-save-1.svg" alt="홈 화면에서 전화 앱이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">숫자판에 번호를 눌러요</h3>
             <p class="steps__desc">‘키패드’를 누르고 저장할 전화번호를 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/call-save-2.svg" alt="숫자판이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">‘연락처에 추가’를 눌러요</h3>
             <p class="steps__desc">‘새 연락처 만들기’ 또는 ‘새로운 연락처 생성’으로 보일 수도 있어요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/call-save-3.svg" alt="번호 아래 ‘연락처에 추가’가 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
 
@@ -97,10 +109,16 @@
           <li class="steps__item">
             <h3 class="steps__title">이름을 적어요</h3>
             <p class="steps__desc">‘우리 딸’, ‘김 약사’처럼 알아보기 쉽게 적으면 좋아요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/call-save-4.svg" alt="이름 칸이 표시된 새 연락처 화면 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">‘저장’을 눌러요</h3>
             <p class="steps__desc">연락처 목록에 이름이 보이면 끝이에요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/call-save-5.svg" alt="‘저장’ 버튼이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
       </section>

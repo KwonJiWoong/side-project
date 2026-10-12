@@ -42,7 +42,7 @@
 .font-control__btn[aria-pressed="true"] { background: var(--color-bg); color: var(--color-primary); }
 
 /* 메뉴 (햄버거 없이 항상 보이는 버튼) */
-.gnb { margin-bottom: var(--space-md); }
+.gnb { margin: var(--space-xs) 0 var(--space-md); }
 
 .gnb__list { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-xs); }
 
@@ -120,7 +120,7 @@
 
 /* 가이드 목록 (번호는 CSS 카운터) */
 .guide-list { counter-reset: guide; border-top: var(--border) solid var(--color-line); }
-
+.guide-list:empty { border-top: none; }
 .guide-list__item { counter-increment: guide; border-bottom: var(--border) solid var(--color-line); }
 
 .guide-list__link {
@@ -267,6 +267,17 @@
 .steps__title { font-size: var(--fs-lg); font-weight: 800; line-height: 1.4; }
 
 .steps__desc { margin-top: var(--space-xs); }
+
+/* 단계 그림 (파란 테두리 = 누를 곳) */
+.steps__figure {
+  grid-column: 2;
+  width: min(100%, 11rem);
+  margin-top: var(--space-sm);
+}
+
+.steps__img { width: 100%; height: auto; }
+
+.guide__legend { margin-top: var(--space-xs); font-size: var(--fs-sm); }
 
 /* 알아두세요 */
 .tip {

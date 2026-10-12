@@ -20,7 +20,10 @@ const initFontControl = () => {
   const buttons = document.querySelectorAll('.font-control__btn');
   if (!buttons.length) return;
 
+  const SIZES = ['base', 'lg', 'xl'];
+
   const apply = (size) => {
+    if (!SIZES.includes(size)) size = 'base';
     if (size === 'base') root.removeAttribute('data-font');
     else root.setAttribute('data-font', size);
     buttons.forEach((btn) => btn.setAttribute('aria-pressed', String(btn.dataset.size === size)));
@@ -32,6 +35,7 @@ const initFontControl = () => {
 
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
+      if (!SIZES.includes(btn.dataset.size)) return;
       apply(btn.dataset.size);
       try { localStorage.setItem('fontSize', btn.dataset.size); } catch (e) { /* 저장소 사용 불가 */ }
     });

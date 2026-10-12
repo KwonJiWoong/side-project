@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>문자 보내기 - 쉬운 폰 배우기</title>
   <meta name="description" content="전화하기 어려울 때 짧은 글로 소식을 전해 보세요.">
   <link rel="stylesheet" href="../css/reset.css">
@@ -73,18 +75,28 @@
       <!-- 따라 하기 -->
       <section class="section guide__steps" aria-labelledby="steps-title">
         <h2 class="section__title" id="steps-title">이렇게 따라 해보세요</h2>
+        <p class="guide__legend">그림 속 파란 테두리가 누를 곳이에요.</p>
         <ol class="steps">
           <li class="steps__item">
             <h3 class="steps__title">메시지 앱을 켜요</h3>
             <p class="steps__desc">말풍선 모양의 ‘메시지’ 앱을 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/call-message-1.svg" alt="홈 화면에서 메시지 앱이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">새 메시지 버튼을 눌러요</h3>
             <p class="steps__desc">연필 모양이나 ＋ 모양 버튼을 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/call-message-2.svg" alt="오른쪽 위 새 메시지 버튼이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">받는 사람을 적어요</h3>
             <p class="steps__desc">이름이나 전화번호를 적고, 나타나는 사람을 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/call-message-3.svg" alt="받는 사람 칸과 나타난 이름이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
 
@@ -97,10 +109,16 @@
           <li class="steps__item">
             <h3 class="steps__title">아래 칸에 글을 써요</h3>
             <p class="steps__desc">글 쓰는 칸을 누르면 글자판이 나와요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/call-message-4.svg" alt="아래 글 쓰는 칸이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">보내기 버튼을 눌러요</h3>
             <p class="steps__desc">화살표 모양 버튼을 누르면 보내져요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/call-message-5.svg" alt="오른쪽 아래 보내기 버튼이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
       </section>

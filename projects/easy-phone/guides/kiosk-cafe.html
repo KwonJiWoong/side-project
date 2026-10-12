@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>카페 키오스크로 음료 주문하기 - 쉬운 폰 배우기</title>
   <meta name="description" content="카페 주문기는 영어가 섞여 있어 헷갈리기 쉬워요. 자주 나오는 말도 함께 알려드려요.">
   <link rel="stylesheet" href="../css/reset.css">
@@ -73,18 +75,28 @@
       <!-- 따라 하기 -->
       <section class="section guide__steps" aria-labelledby="steps-title">
         <h2 class="section__title" id="steps-title">이렇게 따라 해보세요</h2>
+        <p class="guide__legend">그림 속 파란 테두리가 누를 곳이에요.</p>
         <ol class="steps">
           <li class="steps__item">
             <h3 class="steps__title">화면을 눌러 시작해요</h3>
             <p class="steps__desc">‘주문하기’ 또는 화면 아무 곳이나 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kiosk-cafe-1.svg" alt="키오스크 첫 화면에서 주문 시작 버튼이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">음료를 골라요</h3>
             <p class="steps__desc">커피, 차, 주스 등 종류를 누른 뒤 원하는 음료를 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kiosk-cafe-2.svg" alt="음료 목록에서 원하는 음료가 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">따뜻한 것과 차가운 것을 골라요</h3>
             <p class="steps__desc">HOT은 따뜻한 음료, ICE는 얼음이 든 차가운 음료예요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kiosk-cafe-3.svg" alt="HOT과 ICE 버튼이 있는 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
 
@@ -97,14 +109,23 @@
           <li class="steps__item">
             <h3 class="steps__title">크기를 골라요</h3>
             <p class="steps__desc">보통 작은 것부터 큰 것 순서로 나와요. 잘 모르면 가장 작은 것을 고르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kiosk-cafe-4.svg" alt="크기 버튼 중 가장 작은 것이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">‘담기’를 누르고 ‘결제하기’를 눌러요</h3>
             <p class="steps__desc">주문 내역에 음료가 들어갔는지 확인하세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kiosk-cafe-5.svg" alt="주문 내역 아래 결제 버튼이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">카드로 결제하고 진동벨을 받아요</h3>
             <p class="steps__desc">카드를 꽂아 결제한 뒤, 진동벨이나 번호표를 받아 기다리세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kiosk-cafe-6.svg" alt="카드 투입구가 표시된 키오스크 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
       </section>

@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>카카오톡 친구 추가하기 - 쉬운 폰 배우기</title>
   <meta name="description" content="새로 알게 된 사람을 전화번호로 카카오톡 친구에 넣는 방법이에요.">
   <link rel="stylesheet" href="../css/reset.css">
@@ -73,18 +75,28 @@
       <!-- 따라 하기 -->
       <section class="section guide__steps" aria-labelledby="steps-title">
         <h2 class="section__title" id="steps-title">이렇게 따라 해보세요</h2>
+        <p class="guide__legend">그림 속 파란 테두리가 누를 곳이에요.</p>
         <ol class="steps">
           <li class="steps__item">
             <h3 class="steps__title">카카오톡을 켜요</h3>
             <p class="steps__desc">노란 말풍선 그림의 앱을 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kakaotalk-friend-1.svg" alt="홈 화면에서 카카오톡 앱이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">‘친구’ 화면으로 가요</h3>
             <p class="steps__desc">아래쪽 맨 왼쪽의 사람 모양을 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kakaotalk-friend-2.svg" alt="아래쪽 맨 왼쪽 ‘친구’ 버튼이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">친구 추가 버튼을 눌러요</h3>
             <p class="steps__desc">오른쪽 위에 있는 사람 옆에 ＋가 붙은 모양을 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kakaotalk-friend-3.svg" alt="친구 화면 오른쪽 위 친구 추가 버튼이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
 
@@ -97,14 +109,23 @@
           <li class="steps__item">
             <h3 class="steps__title">‘연락처로 추가’를 골라요</h3>
             <p class="steps__desc">이름과 전화번호를 적는 칸이 나옵니다.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kakaotalk-friend-4.svg" alt="친구 추가 메뉴에서 ‘연락처로 추가’가 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">이름과 번호를 적어요</h3>
             <p class="steps__desc">이름은 알아보기 쉽게, 번호는 숫자만 적으세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kakaotalk-friend-5.svg" alt="이름과 전화번호를 적는 칸이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">‘친구 추가’를 눌러요</h3>
             <p class="steps__desc">친구 목록에 이름이 보이면 끝이에요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kakaotalk-friend-6.svg" alt="아래 ‘친구 추가’ 버튼이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
       </section>

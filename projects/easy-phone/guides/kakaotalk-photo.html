@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>카카오톡으로 사진 보내기 - 쉬운 폰 배우기</title>
   <meta name="description" content="손주 사진, 꽃 사진을 가족에게 보내 보세요. 버튼 몇 번만 누르면 됩니다.">
   <link rel="stylesheet" href="../css/reset.css">
@@ -73,18 +75,28 @@
       <!-- 따라 하기 -->
       <section class="section guide__steps" aria-labelledby="steps-title">
         <h2 class="section__title" id="steps-title">이렇게 따라 해보세요</h2>
+        <p class="guide__legend">그림 속 파란 테두리가 누를 곳이에요.</p>
         <ol class="steps">
           <li class="steps__item">
             <h3 class="steps__title">카카오톡을 켜요</h3>
             <p class="steps__desc">노란 바탕에 말풍선 그림이 있는 앱을 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kakaotalk-photo-1.svg" alt="홈 화면에서 카카오톡 앱이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">보낼 사람의 대화방을 열어요</h3>
             <p class="steps__desc">아래쪽 말풍선 모양 ‘채팅’을 누르고, 사진을 보낼 사람의 이름을 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kakaotalk-photo-2.svg" alt="채팅 목록에서 보낼 사람의 대화방이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">＋ 버튼을 눌러요</h3>
             <p class="steps__desc">글 쓰는 칸 왼쪽에 있는 ＋ 모양 버튼을 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kakaotalk-photo-3.svg" alt="대화방 아래 왼쪽의 ＋ 버튼이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
 
@@ -97,14 +109,23 @@
           <li class="steps__item">
             <h3 class="steps__title">‘앨범’을 눌러요</h3>
             <p class="steps__desc">휴대폰에 저장된 사진들이 작게 나타납니다.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kakaotalk-photo-4.svg" alt="＋ 버튼을 누른 뒤 나온 메뉴에서 ‘앨범’이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">보낼 사진을 골라요</h3>
             <p class="steps__desc">사진을 누르면 체크 표시가 생겨요. 여러 장을 한꺼번에 고를 수도 있어요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kakaotalk-photo-5.svg" alt="사진 목록에서 고른 사진에 체크 표시가 생긴 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">‘전송’을 눌러요</h3>
             <p class="steps__desc">대화방에 사진이 올라가면 다 보낸 거예요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/kakaotalk-photo-6.svg" alt="사진을 고른 뒤 아래 ‘전송’ 버튼이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
       </section>

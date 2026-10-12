@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>글자 크게 만들기 - 쉬운 폰 배우기</title>
   <meta name="description" content="휴대폰 글씨가 작아 보이면 설정에서 한 번에 키울 수 있어요.">
   <link rel="stylesheet" href="../css/reset.css">
@@ -73,14 +75,21 @@
       <!-- 따라 하기 -->
       <section class="section guide__steps" aria-labelledby="steps-title">
         <h2 class="section__title" id="steps-title">이렇게 따라 해보세요</h2>
+        <p class="guide__legend">그림 속 파란 테두리가 누를 곳이에요.</p>
         <ol class="steps">
           <li class="steps__item">
             <h3 class="steps__title">설정 앱을 켜요</h3>
             <p class="steps__desc">톱니바퀴 모양 앱을 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/setting-font-1.svg" alt="홈 화면에서 설정 앱이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">글자 크기 메뉴로 가요</h3>
             <p class="steps__desc">삼성은 ‘디스플레이’ → ‘글자 크기와 스타일’, 아이폰은 ‘디스플레이 및 밝기’ → ‘텍스트 크기’를 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/setting-font-2.svg" alt="설정 목록에서 ‘디스플레이’가 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
 
@@ -93,10 +102,16 @@
           <li class="steps__item">
             <h3 class="steps__title">막대를 오른쪽으로 밀어요</h3>
             <p class="steps__desc">오른쪽으로 갈수록 글자가 커져요. 위쪽 예시 글을 보며 맞추세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/setting-font-3.svg" alt="글자 크기 막대를 오른쪽으로 민 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">뒤로 나가 확인해요</h3>
             <p class="steps__desc">다른 앱에서도 글자가 커졌는지 확인해 보세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/setting-font-4.svg" alt="다른 앱에서도 글자가 커진 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
       </section>

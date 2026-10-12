@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>휴대폰으로 사진 찍기 - 쉬운 폰 배우기</title>
   <meta name="description" content="꽃이나 손주 모습을 선명하게 담는 기본 방법이에요.">
   <link rel="stylesheet" href="../css/reset.css">
@@ -73,18 +75,28 @@
       <!-- 따라 하기 -->
       <section class="section guide__steps" aria-labelledby="steps-title">
         <h2 class="section__title" id="steps-title">이렇게 따라 해보세요</h2>
+        <p class="guide__legend">그림 속 파란 테두리가 누를 곳이에요.</p>
         <ol class="steps">
           <li class="steps__item">
             <h3 class="steps__title">카메라 앱을 켜요</h3>
             <p class="steps__desc">사진기 모양 그림의 앱을 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/photo-take-1.svg" alt="홈 화면에서 카메라 앱이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">찍을 것을 화면에 맞춰요</h3>
             <p class="steps__desc">휴대폰을 두 손으로 잡고 화면 가운데에 찍을 것이 오게 하세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/photo-take-2.svg" alt="카메라 화면 가운데에 찍을 것이 오도록 한 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">흐리면 화면을 한 번 눌러요</h3>
             <p class="steps__desc">찍을 것을 손가락으로 한 번 누르면 그 부분이 또렷해져요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/photo-take-3.svg" alt="찍을 것을 손가락으로 눌러 초점을 맞추는 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
 
@@ -97,10 +109,16 @@
           <li class="steps__item">
             <h3 class="steps__title">큰 동그라미 버튼을 눌러요</h3>
             <p class="steps__desc">화면 아래 가운데 하얀 동그라미가 사진 찍는 버튼이에요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/photo-take-4.svg" alt="화면 아래 가운데 하얀 동그라미 버튼이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">찍은 사진을 확인해요</h3>
             <p class="steps__desc">왼쪽(또는 오른쪽) 아래 작은 사진을 누르면 크게 볼 수 있어요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/photo-take-5.svg" alt="아래 구석의 작은 사진이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
       </section>

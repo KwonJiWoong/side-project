@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>은행앱으로 돈 보내기 - 쉬운 폰 배우기</title>
   <meta name="description" content="은행에 가지 않고 휴대폰으로 돈을 보내는 방법이에요. 보내기 전 이름 확인이 가장 중요해요.">
   <link rel="stylesheet" href="../css/reset.css">
@@ -73,18 +75,28 @@
       <!-- 따라 하기 -->
       <section class="section guide__steps" aria-labelledby="steps-title">
         <h2 class="section__title" id="steps-title">이렇게 따라 해보세요</h2>
+        <p class="guide__legend">그림 속 파란 테두리가 누를 곳이에요.</p>
         <ol class="steps">
           <li class="steps__item">
             <h3 class="steps__title">은행 앱을 켜고 로그인해요</h3>
             <p class="steps__desc">간편 비밀번호(숫자 6자리)나 지문으로 들어가세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/bank-transfer-1.svg" alt="은행 앱 간편 비밀번호 입력 화면 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">‘이체’ 또는 ‘보내기’를 눌러요</h3>
             <p class="steps__desc">첫 화면에서 가장 크게 보이는 버튼인 경우가 많아요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/bank-transfer-2.svg" alt="은행 앱 첫 화면에서 ‘이체’ 버튼이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">받는 사람의 은행과 계좌번호를 넣어요</h3>
             <p class="steps__desc">은행을 고르고, 계좌번호는 ‘-’ 없이 숫자만 적으세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/bank-transfer-3.svg" alt="받는 은행과 계좌번호 칸이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
 
@@ -97,14 +109,23 @@
           <li class="steps__item">
             <h3 class="steps__title">보낼 금액을 적어요</h3>
             <p class="steps__desc">0의 개수를 한 번 더 세어 보세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/bank-transfer-4.svg" alt="보낼 금액 칸이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">받는 사람 이름을 꼭 확인해요</h3>
             <p class="steps__desc">화면에 나온 이름이 보내려는 사람과 다르면 바로 멈추세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/bank-transfer-5.svg" alt="받는 분 이름이 표시된 확인 화면 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">비밀번호를 넣어 마무리해요</h3>
             <p class="steps__desc">‘이체 완료’ 화면이 나오면 끝이에요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/bank-transfer-6.svg" alt="‘이체 완료’ 화면 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
       </section>

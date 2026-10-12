@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>은행앱으로 잔액 확인하기 - 쉬운 폰 배우기</title>
   <meta name="description" content="내 통장에 돈이 얼마나 있는지, 언제 들어오고 나갔는지 확인해 보세요.">
   <link rel="stylesheet" href="../css/reset.css">
@@ -73,14 +75,21 @@
       <!-- 따라 하기 -->
       <section class="section guide__steps" aria-labelledby="steps-title">
         <h2 class="section__title" id="steps-title">이렇게 따라 해보세요</h2>
+        <p class="guide__legend">그림 속 파란 테두리가 누를 곳이에요.</p>
         <ol class="steps">
           <li class="steps__item">
             <h3 class="steps__title">은행 앱을 켜고 로그인해요</h3>
             <p class="steps__desc">간편 비밀번호나 지문으로 들어가세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/bank-balance-1.svg" alt="은행 앱 간편 비밀번호 입력 화면 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">첫 화면에서 잔액을 봐요</h3>
             <p class="steps__desc">내 계좌 이름 아래 적힌 금액이 지금 남은 돈이에요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/bank-balance-2.svg" alt="첫 화면에서 남은 돈 금액이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
 
@@ -93,10 +102,16 @@
           <li class="steps__item">
             <h3 class="steps__title">계좌를 눌러요</h3>
             <p class="steps__desc">들어오고 나간 돈의 목록(거래 내역)이 나와요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/bank-balance-3.svg" alt="내 통장 칸 전체가 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">날짜별로 확인해요</h3>
             <p class="steps__desc">보통 들어온 돈은 파란색, 나간 돈은 빨간색 등 다른 색으로 표시돼요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/bank-balance-4.svg" alt="거래 내역에서 들어온 돈과 나간 돈 금액이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
       </section>

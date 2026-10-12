@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>벨소리 크게 만들기 - 쉬운 폰 배우기</title>
   <meta name="description" content="전화 오는 소리를 못 들을 때가 있다면 벨소리를 키워 보세요.">
   <link rel="stylesheet" href="../css/reset.css">
@@ -73,14 +75,21 @@
       <!-- 따라 하기 -->
       <section class="section guide__steps" aria-labelledby="steps-title">
         <h2 class="section__title" id="steps-title">이렇게 따라 해보세요</h2>
+        <p class="guide__legend">그림 속 파란 테두리가 누를 곳이에요.</p>
         <ol class="steps">
           <li class="steps__item">
             <h3 class="steps__title">설정 앱을 켜요</h3>
             <p class="steps__desc">톱니바퀴 모양 앱을 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/setting-volume-1.svg" alt="홈 화면에서 설정 앱이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">소리 메뉴로 가요</h3>
             <p class="steps__desc">삼성은 ‘소리 및 진동’, 아이폰은 ‘사운드 및 햅틱’을 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/setting-volume-2.svg" alt="설정 목록에서 ‘소리 및 진동’이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
 
@@ -93,10 +102,16 @@
           <li class="steps__item">
             <h3 class="steps__title">벨소리 막대를 오른쪽으로 밀어요</h3>
             <p class="steps__desc">삼성은 ‘음량’ → ‘벨소리’ 막대, 아이폰은 ‘벨소리 및 알림’ 막대를 미세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/setting-volume-3.svg" alt="벨소리 막대를 오른쪽으로 민 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">무음·진동이 꺼져 있는지 확인해요</h3>
             <p class="steps__desc">무음이나 진동으로 되어 있으면 소리가 나지 않아요. ‘소리’로 바꿔 주세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/setting-volume-4.svg" alt="소리·진동·무음 중 ‘소리’가 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
       </section>

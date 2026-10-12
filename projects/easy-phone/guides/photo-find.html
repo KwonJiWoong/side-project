@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>찍은 사진 찾아보기 - 쉬운 폰 배우기</title>
   <meta name="description" content="찍어둔 사진이나 받은 사진이 어디 있는지 찾는 방법이에요.">
   <link rel="stylesheet" href="../css/reset.css">
@@ -73,18 +75,28 @@
       <!-- 따라 하기 -->
       <section class="section guide__steps" aria-labelledby="steps-title">
         <h2 class="section__title" id="steps-title">이렇게 따라 해보세요</h2>
+        <p class="guide__legend">그림 속 파란 테두리가 누를 곳이에요.</p>
         <ol class="steps">
           <li class="steps__item">
             <h3 class="steps__title">사진 앱을 켜요</h3>
             <p class="steps__desc">삼성 휴대폰은 ‘갤러리’, 아이폰은 ‘사진’ 앱을 누르세요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/photo-find-1.svg" alt="홈 화면에서 사진 앱이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">최근 사진을 찾아요</h3>
             <p class="steps__desc">가장 최근에 찍은 사진은 보통 목록의 맨 아래(또는 맨 앞)에 있어요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/photo-find-2.svg" alt="사진 목록에서 가장 최근 사진이 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">사진을 눌러 크게 봐요</h3>
             <p class="steps__desc">옆으로 밀면 다음 사진으로 넘어가요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/photo-find-3.svg" alt="사진 한 장을 크게 본 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
 
@@ -97,10 +109,16 @@
           <li class="steps__item">
             <h3 class="steps__title">두 손가락으로 벌려 확대해요</h3>
             <p class="steps__desc">엄지와 검지를 화면에 대고 벌리면 크게, 오므리면 작게 보여요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/photo-find-4.svg" alt="두 손가락으로 사진을 확대한 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
           <li class="steps__item">
             <h3 class="steps__title">뒤로 나가요</h3>
             <p class="steps__desc">뒤로가기 버튼이나 왼쪽 위 화살표를 누르면 목록으로 돌아가요.</p>
+            <figure class="steps__figure">
+              <img class="steps__img" src="../images/guides/photo-find-5.svg" alt="왼쪽 위 뒤로가기 화살표가 표시된 그림" width="220" height="400" loading="lazy">
+            </figure>
           </li>
         </ol>
       </section>
