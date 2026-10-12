@@ -1,0 +1,99 @@
+/* 디자인 토큰 (컬러 3가지: 파랑 / 검정 / 흰색 + 광고용 회색) */
+:root {
+  --color-primary: #0a4fa8;
+  --color-primary-dark: #083c80;
+  --color-text: #111111;
+  --color-bg: #ffffff;
+  --color-line: #c4c4c4;
+  --color-soft: #f2f5fa;
+  --color-ad-bg: #ececec;
+  --color-ad-line: #b5b5b5;
+  --color-ad-text: #555555;
+
+  --font-base: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --fs-sm: 0.9rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.15rem;
+  --fs-xl: 1.35rem;
+  --fs-xxl: clamp(1.5rem, 1.3rem + 1vw, 1.9rem);
+
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+
+  --radius: 0.75rem;
+  --border: 0.15rem;
+  --focus: 0.2rem solid #111111;
+  --wrap-max: 60rem;
+  --touch: 3.5rem;
+}
+
+/* 글자 크기 단계 (본문 20px 기준) */
+html { font-size: 125%; }
+html[data-font="lg"] { font-size: 137.5%; }
+html[data-font="xl"] { font-size: 150%; }
+
+body {
+  font-family: var(--font-base);
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 공통 레이아웃 */
+.wrap {
+  width: 100%;
+  max-width: var(--wrap-max);
+  margin: 0 auto;
+  padding: 0 clamp(0.8rem, 4%, 2rem);
+}
+
+.section { padding: var(--space-lg) 0; }
+
+.section__title {
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  margin-bottom: var(--space-md);
+}
+
+/* 키보드 포커스 */
+:focus-visible {
+  outline: var(--focus);
+  outline-offset: 0.2rem;
+  box-shadow: 0 0 0 0.35rem #ffffff;
+}
+
+/* 본문 바로가기 */
+.skip-link {
+  position: absolute;
+  left: var(--space-sm);
+  top: -10rem;
+  z-index: 100;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-weight: 700;
+  border-radius: var(--radius);
+}
+
+.skip-link:focus { top: var(--space-sm); }
+
+/* 스크린리더 전용 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* 효과 최소화 */
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; transition: none !important; }
+}

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>쉬운 폰 배우기 - 어르신 스마트폰·키오스크 사용법</title>
+  <meta name="description" content="카카오톡, 키오스크, 은행앱, 사진, 전화·문자 사용법을 큰 글씨로 천천히 알려드립니다.">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="wrap">
+      <div class="header__top">
+        <h1 class="header__title">
+          <a class="header__logo" href="index.html"><span aria-hidden="true">📱</span> 쉬운 폰 배우기</a>
+        </h1>
+
+        <div class="font-control" role="group" aria-labelledby="font-control-title">
+          <span class="font-control__title" id="font-control-title">글자 크기</span>
+          <button class="font-control__btn" type="button" data-size="base" aria-pressed="true">보통</button>
+          <button class="font-control__btn" type="button" data-size="lg" aria-pressed="false">크게</button>
+          <button class="font-control__btn" type="button" data-size="xl" aria-pressed="false">더 크게</button>
+        </div>
+      </div>
+
+      <p class="header__desc">천천히, 하나씩 따라 해보세요</p>
+
+      <nav class="gnb" aria-label="주 메뉴">
+        <ul class="gnb__list">
+          <li><a class="gnb__link" href="index.html" aria-current="page">처음으로</a></li>
+          <li><a class="gnb__link" href="#categories">분야 고르기</a></li>
+          <li><a class="gnb__link" href="#popular">많이 본 글</a></li>
+        </ul>
+      </nav>
+
+      <form class="search" id="search-form" role="search" action="#" novalidate>
+        <label class="search__label" for="search-input">궁금한 것을 적어보세요</label>
+        <div class="search__row">
+          <input class="search__input" id="search-input" type="search" name="q" placeholder="예) 카톡 사진" autocomplete="off">
+          <button class="search__btn" type="submit">찾기</button>
+        </div>
+      </form>
+    </div>
+  </header>
+
+  <!-- 광고 안내 -->
+  <div class="notice">
+    <p class="wrap notice__text">회색 상자에 ‘광고’라고 적힌 부분은 광고입니다.</p>
+  </div>
+
+  <main class="wrap" id="main">
+    <!-- 검색 결과 -->
+    <section class="section search-result" id="search-result" aria-labelledby="search-result-title" hidden>
+      <h2 class="section__title" id="search-result-title" tabindex="-1">찾은 결과</h2>
+      <p class="search-result__msg" id="search-result-msg" aria-live="polite"></p>
+      <ol class="guide-list" id="search-result-list"></ol>
+    </section>
+
+    <!-- 카테고리 -->
+    <section class="section category" id="categories" aria-labelledby="categories-title">
+      <h2 class="section__title" id="categories-title">무엇을 배우고 싶으세요?</h2>
+      <ul class="category__list">
+        <li><a class="category__link" href="guides/kakaotalk.html"><span class="category__icon" aria-hidden="true">💬</span>카카오톡</a></li>
+        <li><a class="category__link" href="guides/kiosk.html"><span class="category__icon" aria-hidden="true">🖥️</span>키오스크</a></li>
+        <li><a class="category__link" href="guides/bank.html"><span class="category__icon" aria-hidden="true">🏦</span>은행앱</a></li>
+        <li><a class="category__link" href="guides/photo.html"><span class="category__icon" aria-hidden="true">📷</span>사진</a></li>
+        <li><a class="category__link" href="guides/call.html"><span class="category__icon" aria-hidden="true">📞</span>전화·문자</a></li>
+        <li><a class="category__link" href="guides/setting.html"><span class="category__icon" aria-hidden="true">⚙️</span>기본설정</a></li>
+      </ul>
+    </section>
+
+    <!-- 광고 영역 1 -->
+    <aside class="ad" aria-label="광고">
+      <span class="ad__label">광고</span>
+      <div class="ad__slot">광고 영역 1</div>
+    </aside>
+
+    <!-- 인기 가이드 -->
+    <section class="section" id="popular" aria-labelledby="popular-title">
+      <h2 class="section__title" id="popular-title">많이 본 가이드</h2>
+      <ol class="guide-list">
+        <li class="guide-list__item"><a class="guide-list__link" href="guides/kakaotalk-photo.html"><span class="guide-list__title">카카오톡으로 사진 보내기</span></a></li>
+        <li class="guide-list__item"><a class="guide-list__link" href="guides/kiosk-fastfood.html"><span class="guide-list__title">패스트푸드점 키오스크 주문하기</span></a></li>
+        <li class="guide-list__item"><a class="guide-list__link" href="guides/setting-font.html"><span class="guide-list__title">글자 크게 만들기</span></a></li>
+        <li class="guide-list__item"><a class="guide-list__link" href="guides/bank-transfer.html"><span class="guide-list__title">은행앱으로 돈 보내기</span></a></li>
+      </ol>
+    </section>
+
+    <!-- 광고 영역 2 -->
+    <aside class="ad" aria-label="광고">
+      <span class="ad__label">광고</span>
+      <div class="ad__slot">광고 영역 2</div>
+    </aside>
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <div class="wrap">
+      <p class="footer__warn">모르는 번호로 온 문자 속 링크는 누르지 마세요.</p>
+      <a class="footer__call" href="tel:1332"><span aria-hidden="true">📞</span> 금융사기 신고 1332</a>
+      <p class="footer__info">이 사이트는 광고 수익으로 운영되며, 무료로 이용하실 수 있습니다.</p>
+    </div>
+  </footer>
+</body>
+</html>
