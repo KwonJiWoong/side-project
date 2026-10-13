@@ -93,6 +93,15 @@ body {
   white-space: nowrap;
 }
 
+/* 아이콘 (색은 글자색을 따름) */
+.ico {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 1.25em;
+  height: 1.25em;
+  vertical-align: middle;
+}
+
 /* 효과 최소화 */
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; transition: none !important; }

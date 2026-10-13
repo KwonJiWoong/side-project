@@ -15,27 +15,43 @@
 <body>
   <a class="skip-link" href="#main">본문 바로가기</a>
 
+  <!-- 아이콘 모음 -->
+  <svg class="sr-only" aria-hidden="true" focusable="false">
+    <symbol id="i-font" viewBox="0 0 24 24"><path d="M4 7V5h16v2M12 5v14M8.5 19h7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.5 15.5 21 21" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 9.5V20h5v-6h4v6h5V9.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.2"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="4.5" cy="6" r="1.5" fill="currentColor"/><circle cx="4.5" cy="12" r="1.5" fill="currentColor"/><circle cx="4.5" cy="18" r="1.5" fill="currentColor"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4.5-2 1.3a11 11 0 0 0 5.7 5.7l1.3-2 4.5 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5.5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M12 4c4.7 0 8.5 3 8.5 6.8s-3.8 6.7-8.5 6.7c-.9 0-1.7-.1-2.5-.3L5 19.5l1-3.6C4.5 14.6 3.5 12.8 3.5 10.8 3.5 7 7.3 4 12 4z" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/></symbol>
+    <symbol id="i-kiosk" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M9 21.5h6M12 16.5v5M8.5 7h7M8.5 11h4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></symbol>
+    <symbol id="i-bank" viewBox="0 0 24 24"><path d="M3 9.5 12 4l9 5.5M4.5 20.5h15M6 10.5v7M10 10.5v7M14 10.5v7M18 10.5v7" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 7.5h3.5L9 5h6l1.5 2.5H20a1 1 0 0 1 1 1V19a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8.5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/><circle cx="12" cy="13.5" r="3.5" fill="none" stroke="currentColor" stroke-width="2.1"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5.5 5.5l1.9 1.9M16.6 16.6l1.9 1.9M5.5 18.5l1.9-1.9M16.6 7.4l1.9-1.9" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><circle cx="12" cy="12" r="6.3" fill="none" stroke="currentColor" stroke-width="2.1"/></symbol>
+  </svg>
+
   <!-- 헤더 -->
   <header class="header">
     <div class="wrap">
       <div class="header__top">
         <p class="header__title">
-          <a class="header__logo" href="../index.html"><span aria-hidden="true">📱</span> 쉬운 폰 배우기</a>
+          <a class="header__logo" href="../index.html"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg> 쉬운 폰 배우기</a>
         </p>
 
         <div class="font-control" role="group" aria-labelledby="font-control-title">
           <span class="font-control__title" id="font-control-title">글자 크기</span>
-          <button class="font-control__btn" type="button" data-size="base" aria-pressed="true">보통</button>
-          <button class="font-control__btn" type="button" data-size="lg" aria-pressed="false">크게</button>
-          <button class="font-control__btn" type="button" data-size="xl" aria-pressed="false">더 크게</button>
+          <button class="font-control__btn" type="button" data-size="base" aria-pressed="true"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-font"></use></svg> 보통</button>
+          <button class="font-control__btn" type="button" data-size="lg" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-font"></use></svg> 크게</button>
+          <button class="font-control__btn" type="button" data-size="xl" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-font"></use></svg> 더 크게</button>
         </div>
       </div>
 
       <nav class="gnb" aria-label="주 메뉴">
         <ul class="gnb__list">
-          <li><a class="gnb__link" href="../index.html">처음으로</a></li>
-          <li><a class="gnb__link" href="../index.html#categories">분야 고르기</a></li>
-          <li><a class="gnb__link" href="../index.html#popular">많이 본 글</a></li>
+          <li><a class="gnb__link" href="../index.html"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg> 처음으로</a></li>
+          <li><a class="gnb__link" href="../index.html#categories"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-grid"></use></svg> 분야 고르기</a></li>
+          <li><a class="gnb__link" href="../index.html#popular"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> 많이 본 글</a></li>
         </ul>
       </nav>
 
@@ -43,7 +59,7 @@
         <label class="search__label" for="search-input">궁금한 것을 적어보세요</label>
         <div class="search__row">
           <input class="search__input" id="search-input" type="search" name="q" placeholder="예) 카톡 사진" autocomplete="off">
-          <button class="search__btn" type="submit">찾기</button>
+          <button class="search__btn" type="submit"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-search"></use></svg> 찾기</button>
         </div>
       </form>
     </div>
@@ -64,7 +80,7 @@
 
     <!-- 분야 소개 -->
     <section class="page-head" aria-labelledby="page-title">
-      <h1 class="page-head__title" id="page-title"><span aria-hidden="true">💬</span> 카카오톡 배우기</h1>
+      <h1 class="page-head__title" id="page-title"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-chat"></use></svg> 카카오톡 배우기</h1>
       <p class="page-head__desc">가족·친구와 사진과 글을 주고받는 방법을 알려드려요.</p>
     </section>
 
@@ -83,14 +99,14 @@
         <div class="ad__slot">광고 영역 1</div>
       </aside>
 
-    <a class="back-link" href="../index.html#categories">다른 분야 고르기</a>
+    <a class="back-link" href="../index.html#categories"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-grid"></use></svg> 다른 분야 고르기</a>
   </main>
 
   <!-- 푸터 -->
   <footer class="footer">
     <div class="wrap">
       <p class="footer__warn">모르는 번호로 온 문자 속 링크는 누르지 마세요.</p>
-      <a class="footer__call" href="tel:1332"><span aria-hidden="true">📞</span> 금융사기 신고 1332</a>
+      <a class="footer__call" href="tel:1332"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg> 금융사기 신고 1332</a>
       <p class="footer__info">이 사이트는 광고 수익으로 운영되며, 무료로 이용하실 수 있습니다.</p>
     </div>
   </footer>
