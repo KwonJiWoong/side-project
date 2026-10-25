@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="아침·점심·저녁·자기 전에 먹을 약을 등록하고, 먹었는지 큰 버튼으로 표시하세요. 오늘 몸 상태와 최근 7일 기록도 한눈에 볼 수 있어요.">
+  <meta name="theme-color" content="#1a4b80">
+  <title>오늘 약 챙기기 | 약 먹는 시간표와 몸 상태 기록</title>
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" integrity="sha384-ei/b2Mz3F5J8nqTvpKS89CkzDCuD7Cc+/F+OsaPUKItzHgLNKnGq3rjtYq/B7RnO" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <!-- 아이콘 모음 -->
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" hidden>
+    <symbol id="i-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M3 11.5 12 4l9 7.5M6 10v10h12V10"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M10 20v-5h4v5"/></symbol>
+    <symbol id="i-text-minus" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="10.5" cy="10.5" r="6.5"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="m15.5 15.5 5 5M7.5 10.5h6"/></symbol>
+    <symbol id="i-text-plus" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="10.5" cy="10.5" r="6.5"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="m15.5 15.5 5 5M7.5 10.5h6M10.5 7.5v6"/></symbol>
+    <symbol id="i-contrast" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="8.5"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></symbol>
+    <symbol id="i-pill" viewBox="0 0 24 24"><g transform="rotate(-40 12 12)"><rect fill="none" stroke="currentColor" stroke-width="2.2" x="3" y="8" width="18" height="8" rx="4"/><path fill="currentColor" d="M12 8h5a4 4 0 0 1 0 8h-5z"/></g></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect fill="none" stroke="currentColor" stroke-width="2.2" x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="8.5"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-undo" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 9h11a5 5 0 0 1 0 10H9"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m8 5-4 4 4 4"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13M10 11v5.5M14 11v5.5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-sunrise" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M7 17a5 5 0 0 1 10 0M3 20h18M12 4v3M5 9l1.5 1.5M19 9l-1.5 1.5"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="4"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></symbol>
+    <symbol id="i-sunset" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M7 16a5 5 0 0 1 10 0M3 19.5h18M12 9V3.5M9.5 6 12 3.5 14.5 6"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></symbol>
+    <symbol id="i-good" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="9"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M8 14.5a5 5 0 0 0 8 0M9 9.5v.5M15 9.5v.5"/></symbol>
+    <symbol id="i-soso" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="9"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M8.5 15h7M9 9.5v.5M15 9.5v.5"/></symbol>
+    <symbol id="i-bad" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="9"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M8 16.5a5 5 0 0 1 8 0M9 9.5v.5M15 9.5v.5"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M12 3 2 20h20z"/><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M12 10v4.5M12 17.5v.5"/></symbol>
+  </svg>
+
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="container header__inner">
+      <h1 class="header__title">
+        <img class="header__logo" src="images/logo.svg" alt="" width="48" height="48">
+        오늘 약 챙기기
+      </h1>
+      <a class="btn btn--home" href="#today"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg> 처음으로</a>
+
+      <div class="tools" role="group" aria-label="보기 설정">
+        <p class="tools__label">글자 크기: <strong id="sizeText">보통</strong></p>
+        <button type="button" class="btn btn--tool" id="fontDown"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-text-minus"></use></svg> 글자 작게</button>
+        <button type="button" class="btn btn--tool" id="fontUp"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-text-plus"></use></svg> 글자 크게</button>
+        <button type="button" class="btn btn--tool btn--toggle" id="contrastBtn" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-contrast"></use></svg> 고대비 보기</button>
+      </div>
+    </div>
+
+    <!-- 주요 메뉴 -->
+    <nav class="gnb" aria-label="주요 메뉴">
+      <ul class="container gnb__list">
+        <li><a class="gnb__link" href="#today" aria-current="page"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pill"></use></svg> 오늘 약</a></li>
+        <li><a class="gnb__link" href="#meds"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 약 등록</a></li>
+        <li><a class="gnb__link" href="#health"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-heart"></use></svg> 몸 상태</a></li>
+        <li><a class="gnb__link" href="#history"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-calendar"></use></svg> 지난 기록</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="container">
+
+      <!-- 오늘 먹을 약 -->
+      <section class="panel" id="today" aria-labelledby="todayTitle">
+        <h2 class="panel__title" id="todayTitle" tabindex="-1">오늘 먹을 약</h2>
+        <p class="panel__lead">오늘은 <strong id="todayText">오늘</strong>이에요.</p>
+
+        <section class="progress" id="progressBox" aria-labelledby="progressText" hidden>
+          <p class="progress__text" id="progressText"></p>
+          <progress class="progress__bar" id="progressBar" max="1" value="0" aria-labelledby="progressText"></progress>
+        </section>
+
+        <p class="empty" id="todayEmpty" hidden>아직 등록한 약이 없어요.<br>먼저 <strong>약 등록</strong>에서 드시는 약을 적어 주세요.</p>
+        <a class="btn btn--primary btn--block empty__btn" href="#meds" id="todayEmptyBtn" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 약 등록하러 가기</a>
+
+        <ol class="slots" id="slotList"></ol>
+
+        <aside class="tip" aria-labelledby="tipTitle">
+          <h3 class="tip__title" id="tipTitle">꼭 지켜 주세요</h3>
+          <p>이 수첩은 <strong>먹었는지 기억을 돕는 도구</strong>예요. 약의 양과 시간은 의사·약사가 알려 준 대로 드시고, 먹은 걸 잊었을 때 한 번 더 먹지 마세요.</p>
+        </aside>
+      </section>
+
+      <!-- 약 등록 -->
+      <section class="panel" id="meds" aria-labelledby="medsTitle" hidden>
+        <h2 class="panel__title" id="medsTitle" tabindex="-1">약 등록</h2>
+        <p class="panel__lead">드시는 약 이름과 먹는 때를 골라 주세요.</p>
+
+        <form class="form" id="medForm" novalidate aria-labelledby="formTitle">
+          <h3 class="form__title" id="formTitle">새 약 등록하기</h3>
+
+          <p class="form__field">
+            <label class="form__label" for="medName">약 이름</label>
+            <span class="form__hint" id="medNameHint">예: 혈압약, 당뇨약, 비타민</span>
+            <input class="form__input" type="text" id="medName" name="name" maxlength="30" autocomplete="off" aria-describedby="medNameHint medNameError" required>
+            <span class="form__error" id="medNameError" hidden></span>
+          </p>
+
+          <fieldset class="form__group" aria-describedby="timesError">
+            <legend class="form__label">먹는 때 <span class="form__legend-hint">(여러 개 고를 수 있어요)</span></legend>
+            <ul class="choice-list">
+              <li><input class="choice__input" type="checkbox" id="t-morning" name="times" value="morning"><label class="choice" for="t-morning"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sunrise"></use></svg> 아침</label></li>
+              <li><input class="choice__input" type="checkbox" id="t-lunch" name="times" value="lunch"><label class="choice" for="t-lunch"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sun"></use></svg> 점심</label></li>
+              <li><input class="choice__input" type="checkbox" id="t-evening" name="times" value="evening"><label class="choice" for="t-evening"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sunset"></use></svg> 저녁</label></li>
+              <li><input class="choice__input" type="checkbox" id="t-bed" name="times" value="bed"><label class="choice" for="t-bed"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-moon"></use></svg> 자기 전</label></li>
+            </ul>
+            <span class="form__error" id="timesError" hidden></span>
+          </fieldset>
+
+          <fieldset class="form__group">
+            <legend class="form__label">식사와 함께</legend>
+            <ul class="choice-list choice-list--3">
+              <li><input class="choice__input" type="radio" id="meal-before" name="meal" value="before"><label class="choice" for="meal-before">식사 전</label></li>
+              <li><input class="choice__input" type="radio" id="meal-after" name="meal" value="after" checked><label class="choice" for="meal-after">식사 후</label></li>
+              <li><input class="choice__input" type="radio" id="meal-any" name="meal" value="any"><label class="choice" for="meal-any">상관없음</label></li>
+            </ul>
+          </fieldset>
+
+          <p class="form__field">
+            <label class="form__label" for="medMemo">메모 <span class="form__legend-hint">(안 써도 돼요)</span></label>
+            <span class="form__hint" id="medMemoHint">예: 한 알씩, 물 한 컵과 함께</span>
+            <input class="form__input" type="text" id="medMemo" name="memo" maxlength="40" autocomplete="off" aria-describedby="medMemoHint">
+          </p>
+
+          <p class="form__btns">
+            <button type="submit" class="btn btn--primary btn--block" id="submitBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> <span id="submitText">약 등록하기</span></button>
+            <button type="button" class="btn btn--block" id="cancelEdit" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-close"></use></svg> 고치기 그만두기</button>
+          </p>
+        </form>
+
+        <section class="my-meds" aria-labelledby="myMedsTitle">
+          <h3 class="my-meds__title" id="myMedsTitle">등록한 약 <span id="medCount">0개</span></h3>
+          <p class="empty" id="medEmpty">아직 등록한 약이 없어요. 위에서 첫 약을 등록해 보세요.</p>
+          <ul class="my-meds__list" id="medList"></ul>
+        </section>
+      </section>
+
+      <!-- 몸 상태 -->
+      <section class="panel" id="health" aria-labelledby="healthTitle" hidden>
+        <h2 class="panel__title" id="healthTitle" tabindex="-1">몸 상태</h2>
+        <p class="panel__lead">오늘 몸이 어떤지 하나만 눌러 주세요. 병원 갈 때 보여 드리기 좋아요.</p>
+
+        <p class="saved" id="healthSaved" hidden></p>
+
+        <form class="form" id="healthForm" novalidate aria-labelledby="healthFormTitle">
+          <h3 class="form__title" id="healthFormTitle">오늘 몸 상태 적기</h3>
+
+          <fieldset class="form__group" aria-describedby="moodError">
+            <legend class="form__label">오늘 몸 상태는 어떠세요?</legend>
+            <ul class="choice-list choice-list--3">
+              <li><input class="choice__input" type="radio" id="mood-good" name="mood" value="good"><label class="choice choice--big" for="mood-good"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-good"></use></svg> 좋아요</label></li>
+              <li><input class="choice__input" type="radio" id="mood-soso" name="mood" value="soso"><label class="choice choice--big" for="mood-soso"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-soso"></use></svg> 보통이에요</label></li>
+              <li><input class="choice__input" type="radio" id="mood-bad" name="mood" value="bad"><label class="choice choice--big" for="mood-bad"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-bad"></use></svg> 안 좋아요</label></li>
+            </ul>
+            <span class="form__error" id="moodError" hidden></span>
+          </fieldset>
+
+          <p class="form__field">
+            <label class="form__label" for="healthMemo">더 적어 둘 말 <span class="form__legend-hint">(안 써도 돼요)</span></label>
+            <span class="form__hint" id="healthMemoHint">예: 아침에 머리가 조금 아팠어요</span>
+            <textarea class="form__input form__textarea" id="healthMemo" name="memo" rows="3" maxlength="100" aria-describedby="healthMemoHint"></textarea>
+          </p>
+
+          <p class="form__btns">
+            <button type="submit" class="btn btn--primary btn--block"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> 오늘 몸 상태 저장</button>
+          </p>
+        </form>
+
+        <aside class="tip tip--alert" aria-labelledby="healthTipTitle">
+          <h3 class="tip__title" id="healthTipTitle"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg> 많이 아프시면</h3>
+          <p>기록만 하지 마시고 다니는 병원에 연락하세요. 숨이 차거나 가슴이 아프면 바로 <strong>119</strong>에 전화하세요.</p>
+          <a class="btn btn--danger tip__call" href="tel:119">119에 전화하기</a>
+        </aside>
+      </section>
+
+      <!-- 지난 기록 -->
+      <section class="panel" id="history" aria-labelledby="historyTitle" hidden>
+        <h2 class="panel__title" id="historyTitle" tabindex="-1">지난 기록</h2>
+        <p class="panel__lead">최근 7일 동안 약을 얼마나 챙겼는지 보여 드려요.</p>
+
+        <table class="history" role="table">
+          <caption class="sr-only">최근 7일 약 먹은 기록과 몸 상태</caption>
+          <thead role="rowgroup">
+            <tr role="row">
+              <th scope="col" role="columnheader">날짜</th>
+              <th scope="col" role="columnheader">먹은 약</th>
+              <th scope="col" role="columnheader">몸 상태</th>
+            </tr>
+          </thead>
+          <tbody id="historyBody" role="rowgroup"></tbody>
+        </table>
+
+        <section class="reset" aria-labelledby="resetTitle">
+          <h3 class="reset__title" id="resetTitle">기록 지우기</h3>
+          <p>약 먹은 기록과 몸 상태 기록을 모두 지워요. 등록한 약은 남아 있어요.</p>
+          <button type="button" class="btn btn--danger" id="resetBtn" aria-expanded="false" aria-controls="resetConfirm"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-trash"></use></svg> 기록 모두 지우기</button>
+          <div class="confirm" id="resetConfirm" role="group" aria-labelledby="resetConfirmText" hidden>
+            <p class="confirm__text" id="resetConfirmText">정말 지울까요? 지운 기록은 되살릴 수 없어요.</p>
+            <p class="confirm__btns">
+              <button type="button" class="btn btn--danger" id="resetYes"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-trash"></use></svg> 네, 지울게요</button>
+              <button type="button" class="btn" id="resetNo"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-close"></use></svg> 아니요</button>
+            </p>
+          </div>
+        </section>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <div class="container">
+      <p>오늘도 약 잘 챙기시고 건강한 하루 보내세요.</p>
+      <p class="footer__note">기록은 이 기기에만 저장되고 서버로 보내지 않아요. 약에 대한 궁금한 점은 의사나 약사에게 물어보세요.</p>
+    </div>
+  </footer>
+
+  <p class="toast" id="notice" role="status" aria-live="polite"></p>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
