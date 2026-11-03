@@ -15,8 +15,8 @@
 
   --font-sans: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   --font-num: "SF Pro Display", "Segoe UI", "Roboto", "Pretendard", sans-serif;
-  --fs-xs: 0.75rem;
-  --fs-sm: 0.875rem;
+  --fs-xs: 0.875rem;
+  --fs-sm: 0.9375rem;
   --fs-md: 1rem;
   --fs-lg: 1.125rem;
   --fs-xl: 1.375rem;
@@ -150,7 +150,7 @@ body {
 .btn--block { width: 100%; }
 
 .btn--sm {
-  min-height: 2.75rem;
+  min-height: var(--touch);
   padding: 0.5rem 1rem;
   font-size: var(--fs-sm);
 }

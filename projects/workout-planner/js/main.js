@@ -138,6 +138,7 @@
       fieldset: $('timer-fieldset'), title: $('timer-name'), ring: $('ring'), bar: $('ring-bar'),
       phase: $('timer-phase'), time: $('timer-time'), set: $('timer-set'), dots: $('timer-dots'),
       toggle: $('timer-toggle'), toggleText: $('timer-toggle-text'), reset: $('timer-reset'),
+      skip: $('timer-skip'), skipText: $('timer-skip-text'), goal: $('timer-goal'),
       sound: $('timer-sound'), status: $('timer-status')
     };
     const toggleIcon = el.toggle.querySelector('use');
@@ -154,6 +155,13 @@
       const value = params.get(key);
       if (value !== null) el[key].value = key === 'name' ? value.slice(0, 20) : value;
     });
+
+    // 목표 횟수 (루틴에서 넘어온 경우)
+    const reps = (params.get('reps') || '').trim().slice(0, 12);
+    if (reps) {
+      el.goal.textContent = `세트마다 목표 ${/^\d+$/.test(reps) ? `${reps}회` : reps}`;
+      el.goal.hidden = false;
+    }
 
     const format = (s) => `${pad(Math.floor(s / 60))}:${pad(s % 60)}`;
     const announce = (text) => { el.status.textContent = text; };
@@ -213,6 +221,8 @@
       el.toggleText.textContent = label;
       toggleIcon.setAttribute('href', icon);
       el.fieldset.disabled = isActive();
+      el.skip.disabled = !isActive();
+      el.skipText.textContent = state.phase === 'rest' ? '다음 세트' : '세트 완료';
     }
 
     function prepare() {
@@ -238,6 +248,7 @@
       state.end = Date.now() + state.total * 1000;
       announce(phase === 'work' ? `${state.set}세트 운동 시작` : `휴식 ${cfg.rest}초`);
       beep(phase === 'work' ? 880 : 520, 0.25);
+      el.skipText.textContent = phase === 'rest' ? '다음 세트' : '세트 완료';
       render();
     }
 
@@ -256,8 +267,10 @@
       announce('모든 세트를 마쳤어요');
       showAlert({
         title: '운동 완료!',
-        message: `${state.cfg.sets}세트를 모두 마쳤어요.${saved ? ' 오늘 날짜가 주간 기록에 체크됐어요.' : ''}`
-      });
+        message: `${state.cfg.sets}세트를 모두 마쳤어요.${saved ? ' 오늘 날짜가 주간 기록에 체크됐어요.' : ''}`,
+        okText: saved ? '기록 보기' : '확인',
+        cancelText: saved ? '닫기' : ''
+      }).then((ok) => { if (ok && saved) location.href = 'record.html'; });
     }
 
     function next() {
@@ -303,6 +316,20 @@
     }
 
     el.toggle.addEventListener('click', () => (state.timerId ? pause() : play()));
+
+    // 세트 완료 · 휴식 건너뛰고 다음 세트
+    el.skip.addEventListener('click', () => {
+      if (!isActive()) return;
+      next();
+      if (state.timerId) state.end = Date.now() + state.remain * 1000;
+    });
+
+    // 진행 중에 페이지를 떠나면 확인
+    window.addEventListener('beforeunload', (e) => {
+      if (!isActive()) return;
+      e.preventDefault();
+      e.returnValue = '';
+    });
 
     el.reset.addEventListener('click', () => {
       stopTick();
@@ -486,7 +513,7 @@
 
     function buildItem(item) {
       const node = tpl.content.firstElementChild.cloneNode(true);
-      const query = new URLSearchParams({ name: item.name, sets: item.sets, rest: item.rest });
+      const query = new URLSearchParams({ name: item.name, sets: item.sets, rest: item.rest, reps: item.reps });
       node.querySelector('[data-field="part"]').textContent = item.part;
       node.querySelector('[data-field="name"]').textContent = item.name;
       node.querySelector('[data-field="meta"]').textContent = `${item.sets}세트 × ${item.reps}회 · 휴식 ${item.rest}초`;
