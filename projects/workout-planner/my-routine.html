@@ -7,8 +7,9 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#0e1013">
   <title>나만의 루틴 만들기 | 핏루틴</title>
-  <meta name="description" content="자주 하는 운동을 세트·횟수·휴식 시간과 함께 저장해 두고 타이머로 바로 시작하세요.">
+  <meta name="description" content="요일별·목적별로 나만의 운동 루틴을 여러 개 만들고, 운동 순서를 정해 타이머로 처음부터 끝까지 이어서 진행하세요.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <script src="js/mode.js"></script>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/common.css">
   <link rel="stylesheet" href="css/style.css">
@@ -24,88 +25,131 @@
     <symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 9.5v4l2.5 2M9.5 2.5h5M12 2.5V6" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
-    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8.5 5.5v13M15.5 5.5v13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="i-skip" viewBox="0 0 24 24"><path d="M6 5.5v13l9-6.5zM18 5.5v13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3L4.5 9M4.5 4.5V9H9" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M15.5 9a4.5 4.5 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5 21 19.5H3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4M12 16.9v.1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M5.5 14.5 12 8l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M5.5 9.5 12 16l6.5-6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c.8 3.2 5.5 5.3 5.5 10.5a5.5 5.5 0 0 1-11 0c0-2.6 1.4-4.3 2.6-5.3.2 2 1.2 3.1 2.4 3.3-.4-3.1.1-5.8.5-8.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4.5 19.5h4l10-10-4-4-10 10zM13 7l4 4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 4.5 3.5 8 7 11.5M3.5 8h13M17 12.5l3.5 3.5-3.5 3.5M20.5 16h-13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-font" viewBox="0 0 24 24"><path d="M4 7V5h16v2M12 5v14M8.5 19h7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-tip" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 11v5.5M12 7.5v.1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-chair" viewBox="0 0 24 24"><path d="M7 3.5v9h10v-9M7 12.5v8M17 12.5v8M5.5 12.5h13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </svg>
 
   <!-- 헤더 -->
   <header class="header">
     <div class="wrap header__inner">
-      <a class="header__logo" href="index.html"><svg class="ico header__mark" aria-hidden="true" focusable="false"><use href="#i-dumbbell"></use></svg>핏루틴</a>
+      <a class="header__logo" href="routine.html"><svg class="ico header__mark" aria-hidden="true" focusable="false"><use href="#i-dumbbell"></use></svg>핏루틴</a>
       <nav class="gnb" aria-label="주 메뉴">
         <ul class="gnb__list">
-          <li><a class="gnb__link" href="index.html"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-list"></use></svg>루틴</a></li>
+          <li><a class="gnb__link" href="routine.html"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-list"></use></svg>루틴</a></li>
           <li><a class="gnb__link" href="timer.html"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머</a></li>
           <li><a class="gnb__link" href="record.html"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-calendar"></use></svg>기록</a></li>
           <li><a class="gnb__link" href="my-routine.html" aria-current="page"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg>내 루틴</a></li>
         </ul>
       </nav>
+      <div class="header__tools">
+        <button class="btn btn--sm btn--toggle" id="font-toggle" type="button" aria-pressed="false" data-mode-only="senior"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-font"></use></svg>글자 크게<svg class="ico btn__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg></button>
+        <a class="btn btn--sm" href="index.html?select=1"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-swap"></use></svg>화면 바꾸기</a>
+      </div>
     </div>
   </header>
 
   <main class="wrap" id="main">
     <!-- 페이지 제목 -->
     <section class="page-head" aria-labelledby="page-title">
-      <p class="page-head__eyebrow">My Routine</p>
+      <p class="page-head__eyebrow" data-mode-only="general">My Routine</p>
       <h1 class="page-head__title" id="page-title">나만의 루틴 만들기</h1>
-      <p class="page-head__desc">자주 하는 운동을 저장해 두고, 타이머로 바로 시작하세요.</p>
+      <p class="page-head__desc">루틴을 여러 개 만들고 운동 순서를 정해 두세요. ‘이 루틴 시작’을 누르면 타이머가 순서대로 이어서 진행해요.</p>
     </section>
 
     <div class="my">
-      <!-- 운동 추가 -->
-      <section class="panel my__add" aria-labelledby="add-title">
-        <h2 class="panel__title" id="add-title">운동 추가하기</h2>
-        <form class="my-form" id="my-form" novalidate>
-          <div class="field field--full">
-            <label class="field__label" for="my-name">운동 이름 <span class="field__opt">(필수)</span></label>
-            <input class="field__input" id="my-name" name="name" type="text" maxlength="20" placeholder="예) 덤벨 숄더 프레스" autocomplete="off" required aria-describedby="my-name-error">
-            <p class="field__error" id="my-name-error" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg><span data-msg></span></p>
-          </div>
-          <div class="field field--full">
-            <label class="field__label" for="my-part">부위</label>
-            <select class="field__input" id="my-part" name="part">
-              <option>가슴</option>
-              <option>등</option>
-              <option>하체</option>
-              <option>어깨</option>
-              <option>팔</option>
-              <option>코어</option>
-              <option>전신</option>
-            </select>
-          </div>
+      <div class="my__side">
+        <!-- 루틴 고르기 -->
+        <section class="panel" aria-labelledby="rt-title">
+          <h2 class="panel__title" id="rt-title">루틴 고르기</h2>
           <div class="field">
-            <label class="field__label" for="my-sets">세트</label>
-            <input class="field__input" id="my-sets" name="sets" type="number" inputmode="numeric" min="1" max="10" value="3" required aria-describedby="my-sets-error">
-            <p class="field__error" id="my-sets-error" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg><span data-msg></span></p>
+            <label class="field__label" for="rt-select">편집할 루틴</label>
+            <select class="field__input" id="rt-select"></select>
           </div>
-          <div class="field">
-            <label class="field__label" for="my-reps">횟수</label>
-            <input class="field__input" id="my-reps" name="reps" type="number" inputmode="numeric" min="1" max="100" value="12" required aria-describedby="my-reps-error">
-            <p class="field__error" id="my-reps-error" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg><span data-msg></span></p>
+          <div class="rt__actions">
+            <button class="btn btn--sm" id="rt-new" type="button" aria-controls="rt-form" aria-expanded="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg>새 루틴</button>
+            <button class="btn btn--sm" id="rt-rename" type="button" aria-controls="rt-form" aria-expanded="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-edit"></use></svg>이름 바꾸기</button>
+            <button class="btn btn--sm btn--danger" id="rt-delete" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-trash"></use></svg>루틴 삭제</button>
           </div>
-          <div class="field field--full">
-            <label class="field__label" for="my-rest">세트 사이 휴식</label>
-            <select class="field__input" id="my-rest" name="rest">
-              <option value="30">30초</option>
-              <option value="45">45초</option>
-              <option value="60" selected>60초</option>
-              <option value="90">90초</option>
-              <option value="120">120초</option>
-            </select>
-          </div>
-          <button class="btn btn--primary btn--block field--full" type="submit"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg>루틴에 추가</button>
-        </form>
-      </section>
+          <form class="rt-form" id="rt-form" hidden novalidate>
+            <div class="field">
+              <label class="field__label" id="rt-form-label" for="rt-name">새 루틴 이름</label>
+              <input class="field__input" id="rt-name" name="rtname" type="text" maxlength="20" placeholder="예) 월요일 상체" autocomplete="off" required aria-describedby="rt-name-error">
+              <p class="field__error" id="rt-name-error" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg><span data-msg></span></p>
+            </div>
+            <div class="rt-form__actions">
+              <button class="btn btn--primary" id="rt-form-submit" type="submit"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg><span id="rt-form-submit-text">만들기</span></button>
+              <button class="btn" id="rt-form-cancel" type="button">취소</button>
+            </div>
+          </form>
+        </section>
 
-      <!-- 내 루틴 목록 -->
+        <!-- 운동 추가·수정 -->
+        <section class="panel my__add" aria-labelledby="add-title">
+          <h2 class="panel__title" id="add-title">운동 추가하기</h2>
+          <form class="my-form" id="my-form" novalidate>
+            <div class="field field--full">
+              <label class="field__label" for="my-name">운동 이름 <span class="field__opt">(필수)</span></label>
+              <input class="field__input" id="my-name" name="name" type="text" maxlength="20" placeholder="예) 덤벨 숄더 프레스" autocomplete="off" required aria-describedby="my-name-error">
+              <p class="field__error" id="my-name-error" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg><span data-msg></span></p>
+            </div>
+            <div class="field field--full">
+              <label class="field__label" for="my-part">부위</label>
+              <select class="field__input" id="my-part" name="part"><option>가슴</option><option>등</option><option>하체</option><option>어깨</option><option>팔</option><option>코어</option><option>상체</option><option>스트레칭</option><option>균형·걷기</option><option>전신</option></select>
+            </div>
+            <div class="field">
+              <label class="field__label" for="my-sets">세트</label>
+              <input class="field__input" id="my-sets" name="sets" type="number" inputmode="numeric" min="1" max="10" value="3" required aria-describedby="my-sets-error">
+              <p class="field__error" id="my-sets-error" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg><span data-msg></span></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="my-reps">횟수</label>
+              <input class="field__input" id="my-reps" name="reps" type="number" inputmode="numeric" min="1" max="100" value="12" required aria-describedby="my-reps-error">
+              <p class="field__error" id="my-reps-error" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg><span data-msg></span></p>
+            </div>
+            <div class="field field--full">
+              <label class="field__label" for="my-rest">세트 사이 휴식</label>
+              <select class="field__input" id="my-rest" name="rest">
+                <option value="15">15초</option>
+                <option value="30">30초</option>
+                <option value="45">45초</option>
+                <option value="60" selected>60초</option>
+                <option value="90">90초</option>
+                <option value="120">120초</option>
+              </select>
+            </div>
+            <div class="my-form__actions">
+              <button class="btn btn--primary btn--block" id="my-submit" type="submit"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg><span id="my-submit-text">루틴에 추가</span></button>
+              <button class="btn btn--block" id="my-cancel" type="button" hidden>수정 취소</button>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <!-- 루틴 속 운동 목록 -->
       <section class="my__list" aria-labelledby="list-title">
         <div class="my__head">
           <h2 class="my__title" id="list-title" tabindex="-1">내 루틴</h2>
           <p class="my__count" id="my-count">0개 운동</p>
         </div>
-        <p class="my__empty" id="my-empty">아직 추가한 운동이 없어요. ‘운동 추가하기’에서 첫 운동을 등록해 보세요.</p>
-        <ul class="my-list" id="my-list"></ul>
+        <a class="btn btn--primary btn--block my__start" id="rt-start" href="timer.html" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg>이 루틴 시작</a>
+        <p class="my__empty" id="my-empty">아직 추가한 운동이 없어요. ‘운동 추가하기’에서 첫 운동을 등록하면 루틴을 시작할 수 있어요.</p>
+        <ol class="my-list" id="my-list"></ol>
         <p class="sr-only" id="my-status" aria-live="polite"></p>
       </section>
     </div>
@@ -115,13 +159,19 @@
       <li>
         <article class="my-item">
           <header class="my-item__head">
+            <span class="my-item__num" data-field="num"></span>
             <span class="my-item__part" data-field="part"></span>
-            <h3 class="my-item__name" data-field="name"></h3>
           </header>
+          <h3 class="my-item__name" data-field="name"></h3>
           <p class="my-item__meta" data-field="meta"></p>
           <div class="my-item__actions">
-            <a class="btn btn--sm" data-field="timer" href="timer.html"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작</a>
+            <a class="btn btn--sm" data-field="timer" href="timer.html"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기</a>
+            <button class="btn btn--sm" type="button" data-act="edit"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-edit"></use></svg>수정</button>
             <button class="btn btn--sm btn--danger" type="button" data-act="delete"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-trash"></use></svg>삭제</button>
+          </div>
+          <div class="my-item__order">
+            <button class="btn btn--sm" type="button" data-act="up"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg>위로</button>
+            <button class="btn btn--sm" type="button" data-act="down"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-down"></use></svg>아래로</button>
           </div>
         </article>
       </li>
@@ -140,7 +190,7 @@
   <dialog class="alert" id="alert" aria-labelledby="alert-title" aria-describedby="alert-message">
     <form method="dialog">
       <div class="alert__head">
-        <svg class="ico alert__ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg>
+        <svg class="ico alert__ico" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>
         <h2 class="alert__title" id="alert-title">알림</h2>
       </div>
       <p class="alert__message" id="alert-message"></p>

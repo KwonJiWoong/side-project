@@ -18,11 +18,16 @@
 
 .header__inner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-sm);
+  gap: 0.5rem var(--space-sm);
   min-height: 3.75rem;
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
 }
+
+.header__tools { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.5rem; }
 
 .header__logo {
   display: inline-flex;
@@ -36,6 +41,10 @@
 }
 
 .header__mark { width: 1.75rem; height: 1.75rem; color: var(--color-primary); }
+
+@media (min-width: 768px) {
+  .gnb { margin-left: auto; }
+}
 
 /* 주 메뉴 (모바일: 하단 탭바) */
 .gnb {
@@ -253,6 +262,58 @@
 
 .exercise__link { justify-self: start; }
 
+/* 자세 팁 (펼치기) */
+.exercise__tip { border-top: var(--border-w) solid var(--color-line); }
+
+.exercise__tip-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: var(--touch);
+  font-weight: 700;
+  color: var(--color-primary);
+  list-style: none;
+  cursor: pointer;
+}
+
+.exercise__tip-btn::-webkit-details-marker { display: none; }
+
+.exercise__tip-btn::after {
+  margin-left: auto;
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  content: "+";
+}
+
+.exercise__tip[open] .exercise__tip-btn::after { content: "−"; }
+
+.exercise__tip-list {
+  display: grid;
+  gap: 0.375rem;
+  padding: 0 0 0.5rem 1.25rem;
+  font-size: var(--fs-sm);
+  list-style: disc;
+  color: var(--color-muted);
+}
+
+/* 루틴 전체 시작 */
+.routine__start { justify-self: start; margin-top: 0.5rem; }
+
+/* 노약자 안전 안내 */
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  margin-bottom: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  font-weight: 600;
+  background: color-mix(in srgb, var(--color-accent) 7%, var(--color-bg));
+  border: 0.125rem solid var(--color-accent);
+  border-radius: var(--radius);
+}
+
+.notice__ico { width: 1.5rem; height: 1.5rem; margin-top: 0.125rem; color: var(--color-accent); }
+
 /* 타이머 */
 .timer {
   display: grid;
@@ -273,6 +334,51 @@
   border-radius: var(--radius-pill);
 }
 
+.timer__step {
+  margin-bottom: calc(var(--space-md) * -0.75);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+/* 루틴 순서 */
+.plan__list { display: grid; gap: 0.5rem; margin-bottom: var(--space-md); }
+
+.plan__item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: var(--border-w) solid var(--color-line);
+  border-radius: var(--radius);
+}
+
+.plan__item[aria-current="step"] { border: 0.125rem solid var(--color-primary); }
+
+.plan__item[data-state="done"] { color: var(--color-muted); }
+
+.plan__num { font-family: var(--font-num); font-weight: 800; color: var(--color-muted); }
+
+.plan__item[aria-current="step"] .plan__num { color: var(--color-primary); }
+
+.plan__info { display: grid; }
+
+.plan__name { font-weight: 700; }
+
+.plan__meta { font-size: var(--fs-sm); color: var(--color-muted); }
+
+.plan__state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.plan__item[aria-current="step"] .plan__state { color: var(--color-primary); }
+
 .timer__sub { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-xs); }
 
 .timer__dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.375rem; }
@@ -290,7 +396,7 @@
 
 .timer__controls { display: flex; gap: var(--space-xs); width: 100%; max-width: 24rem; }
 
-.timer__btn { flex: 1; min-height: 3.5rem; font-size: var(--fs-lg); }
+.timer__btn { flex: 1; min-height: 3.5rem; padding-inline: 0.75rem; font-size: var(--fs-lg); white-space: nowrap; }
 
 @media (min-width: 1024px) {
   .timer { grid-template-columns: 1.2fr 1fr; align-items: start; }
@@ -515,6 +621,24 @@
   padding-bottom: var(--space-xl);
 }
 
+.my__side { display: grid; align-content: start; gap: var(--space-md); }
+
+.rt__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: var(--space-sm); }
+
+.rt-form {
+  display: grid;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: var(--border-w) solid var(--color-line);
+}
+
+.rt-form__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.my-form__actions { display: grid; grid-column: 1 / -1; gap: 0.5rem; }
+
+.my__start { margin-bottom: var(--space-sm); }
+
 .my-form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -559,7 +683,11 @@
   border-radius: var(--radius-lg);
 }
 
-.my-item__head { display: grid; justify-items: start; gap: 0.375rem; }
+.my-item--editing { border: 0.125rem solid var(--color-primary); }
+
+.my-item__head { display: flex; align-items: center; gap: 0.5rem; }
+
+.my-item__num { font-family: var(--font-num); font-weight: 800; color: var(--color-primary); }
 
 .my-item__part {
   padding: 0.0625rem 0.625rem;
@@ -574,11 +702,13 @@
 
 .my-item__meta { font-family: var(--font-num); font-size: var(--fs-sm); color: var(--color-muted); }
 
-.my-item__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.my-item__actions,
+.my-item__order { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+.my-item__order { padding-top: 0.625rem; border-top: var(--border-w) solid var(--color-line); }
 
 @media (min-width: 1024px) {
   .my { grid-template-columns: minmax(0, 24rem) 1fr; align-items: start; }
-  .my__add { position: sticky; top: 5rem; }
 }
 
 /* 푸터 */
@@ -591,3 +721,89 @@
 }
 
 .footer__copy { margin-top: 0.25rem; font-size: var(--fs-xs); }
+
+/* 첫 화면: 화면 선택 */
+.choice-page { padding-bottom: var(--space-xl); }
+
+.choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: var(--space-md);
+}
+
+.choice {
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  gap: 0.75rem;
+  width: 100%;
+  padding: var(--space-lg) var(--space-md);
+  text-align: left;
+  background: var(--color-surface);
+  border: 0.125rem solid var(--color-line);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.15s;
+}
+
+.choice:hover { border-color: var(--color-primary); }
+
+.choice[aria-pressed="true"] { border-color: var(--color-primary); box-shadow: var(--glow); }
+
+.choice__top { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+
+.choice__ico {
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0.625rem;
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  border-radius: var(--radius);
+}
+
+.choice__current {
+  padding: 0.125rem 0.75rem;
+  font-size: var(--fs-sm);
+  font-weight: 800;
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  border-radius: var(--radius-pill);
+}
+
+.choice[aria-pressed="false"] .choice__current { display: none; }
+
+.choice__title { font-size: var(--fs-xxl); font-weight: 800; line-height: 1.2; }
+
+.choice__desc { color: var(--color-muted); }
+
+.choice__list { display: grid; gap: 0.375rem; }
+
+.choice__item { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; }
+
+.choice__check { color: var(--color-primary); }
+
+.choice__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+  font-size: var(--fs-lg);
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+@media (min-width: 768px) {
+  .choice { padding: var(--space-xl) var(--space-lg); }
+}
+
+/* 노약자용 보정 */
+html[data-mode="senior"] .ring__bar { filter: none; }
+
+html[data-mode="senior"] .routine__head { background: var(--color-surface); }
+
+html[data-mode="senior"] .exercise__tip-list { font-size: var(--fs-md); color: var(--color-text); }
+
+html[data-mode="senior"] .tabs__tab,
+html[data-mode="senior"] .exercise,
+html[data-mode="senior"] .panel,
+html[data-mode="senior"] .stats__item,
+html[data-mode="senior"] .my-item { border-width: 0.125rem; }
