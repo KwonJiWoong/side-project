@@ -43,6 +43,8 @@
     <symbol id="i-font" viewBox="0 0 24 24"><path d="M4 7V5h16v2M12 5v14M8.5 19h7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-tip" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 11v5.5M12 7.5v.1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
     <symbol id="i-chair" viewBox="0 0 24 24"><path d="M7 3.5v9h10v-9M7 12.5v8M17 12.5v8M5.5 12.5h13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/></symbol>
   </svg>
 
   <!-- 헤더 -->
@@ -51,6 +53,7 @@
       <a class="header__logo" href="routine.html"><svg class="ico header__mark" aria-hidden="true" focusable="false"><use href="#i-dumbbell"></use></svg>핏루틴</a>
       <div class="header__tools">
         <button class="btn btn--sm btn--toggle" id="font-toggle" type="button" aria-pressed="false" data-mode-only="senior"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-font"></use></svg>글자 크게<svg class="ico btn__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg></button>
+        <button class="btn btn--sm btn--toggle" id="theme-toggle" type="button" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-moon"></use></svg><span data-theme-label>어둡게</span></button>
         <a class="btn btn--sm" href="index.html?select=1"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-swap"></use></svg>화면 바꾸기</a>
       </div>
     </div>
@@ -63,12 +66,23 @@
       <p class="page-head__desc">한 번 고르면 기억해 두고, 다음부터는 바로 운동 화면으로 이동해요. 언제든 위쪽 ‘화면 바꾸기’로 바꿀 수 있어요.</p>
     </section>
 
+    <!-- 화면 밝기 -->
+    <fieldset class="theme-pick">
+      <legend class="theme-pick__title">화면 밝기</legend>
+      <p class="theme-pick__desc">‘자동’은 낮(오전 7시~오후 7시)에는 밝게, 밤에는 어둡게 바뀌어요.</p>
+      <div class="theme-pick__list">
+        <label class="theme-pick__item"><input class="theme-pick__input" type="radio" name="theme" value="auto" checked><span class="theme-pick__label"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>자동</span></label>
+        <label class="theme-pick__item"><input class="theme-pick__input" type="radio" name="theme" value="light"><span class="theme-pick__label"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sun"></use></svg>밝게</span></label>
+        <label class="theme-pick__item"><input class="theme-pick__input" type="radio" name="theme" value="dark"><span class="theme-pick__label"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-moon"></use></svg>어둡게</span></label>
+      </div>
+    </fieldset>
+
     <!-- 화면 선택 -->
     <div class="choices" role="group" aria-label="화면 종류">
       <button class="choice" type="button" data-choose-mode="general" aria-pressed="false">
         <span class="choice__top"><svg class="ico choice__ico" aria-hidden="true" focusable="false"><use href="#i-dumbbell"></use></svg><span class="choice__current">지금 사용 중</span></span>
         <span class="choice__title">일반용</span>
-        <span class="choice__desc">헬스장·홈트레이닝 근력 운동 · 어두운 화면</span>
+        <span class="choice__desc">헬스장·홈트레이닝 근력 운동 · 네온 포인트 화면</span>
         <span class="choice__list">
           <span class="choice__item"><svg class="ico choice__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>가슴·등·하체 등 부위별 루틴 6가지</span>
           <span class="choice__item"><svg class="ico choice__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>타바타·인터벌 타이머</span>
@@ -79,7 +93,7 @@
       <button class="choice" type="button" data-choose-mode="senior" aria-pressed="false">
         <span class="choice__top"><svg class="ico choice__ico" aria-hidden="true" focusable="false"><use href="#i-chair"></use></svg><span class="choice__current">지금 사용 중</span></span>
         <span class="choice__title">노약자용</span>
-        <span class="choice__desc">무리 없는 운동 · 밝은 화면과 큰 글씨</span>
+        <span class="choice__desc">무리 없는 운동 · 큰 글씨와 큰 버튼</span>
         <span class="choice__list">
           <span class="choice__item"><svg class="ico choice__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>의자 운동·스트레칭·균형 운동</span>
           <span class="choice__item"><svg class="ico choice__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>큰 글씨, 큰 버튼, 글자 크기 조절</span>
