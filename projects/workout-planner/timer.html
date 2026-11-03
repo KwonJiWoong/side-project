@@ -26,6 +26,7 @@
     <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
     <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8.5 5.5v13M15.5 5.5v13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="i-skip" viewBox="0 0 24 24"><path d="M6 5.5v13l9-6.5zM18 5.5v13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3L4.5 9M4.5 4.5V9H9" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M15.5 9a4.5 4.5 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -52,13 +53,14 @@
     <section class="page-head" aria-labelledby="page-title">
       <p class="page-head__eyebrow">Timer</p>
       <h1 class="page-head__title" id="page-title">운동 타이머</h1>
-      <p class="page-head__desc">운동·휴식 시간과 세트 수를 정하고 시작하세요. 끝까지 마치면 오늘 기록에 자동으로 체크돼요.</p>
+      <p class="page-head__desc">운동·휴식 시간과 세트 수를 정하고 시작하세요. 횟수를 다 채웠으면 ‘세트 완료’를 눌러 바로 휴식으로 넘어가요. 끝까지 마치면 오늘 기록에 자동으로 체크돼요.</p>
     </section>
 
     <div class="timer">
       <!-- 타이머 화면 -->
       <section class="panel timer__display" aria-labelledby="timer-name">
         <h2 class="timer__name" id="timer-name">자유 운동</h2>
+        <p class="timer__goal" id="timer-goal" hidden></p>
 
         <div class="ring" id="ring" data-phase="ready">
           <svg class="ring__svg" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
@@ -76,10 +78,13 @@
 
         <div class="timer__controls">
           <button class="btn btn--primary timer__btn" id="timer-toggle" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg><span id="timer-toggle-text">시작</span></button>
-          <button class="btn timer__btn" id="timer-reset" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-reset"></use></svg>처음부터</button>
+          <button class="btn timer__btn" id="timer-skip" type="button" disabled><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-skip"></use></svg><span id="timer-skip-text">세트 완료</span></button>
         </div>
 
-        <button class="btn btn--sm btn--toggle" id="timer-sound" type="button" aria-pressed="true"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sound"></use></svg>알림음<svg class="ico btn__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg></button>
+        <div class="timer__sub">
+          <button class="btn btn--sm" id="timer-reset" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-reset"></use></svg>처음부터</button>
+          <button class="btn btn--sm btn--toggle" id="timer-sound" type="button" aria-pressed="true"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sound"></use></svg>알림음<svg class="ico btn__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg></button>
+        </div>
 
         <p class="sr-only" id="timer-status" aria-live="polite"></p>
       </section>
