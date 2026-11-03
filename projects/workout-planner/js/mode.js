@@ -13,10 +13,17 @@
   if (mode === 'general' || mode === 'senior') root.setAttribute('data-mode', mode);
   if (mode === 'senior' && font === 'lg') root.setAttribute('data-font', 'lg');
 
-  // 밝기: 자동이면 오전 7시~오후 7시는 밝게, 나머지는 어둡게
+  // 밝기: 자동이면 기기의 다크 모드 설정을 먼저 따르고, 알 수 없을 때만 시간 기준 (오전 7시~오후 7시 밝게)
   if (theme !== 'light' && theme !== 'dark') theme = 'auto';
-  var hour = new Date().getHours();
-  var resolved = theme === 'auto' ? (hour >= 7 && hour < 19 ? 'light' : 'dark') : theme;
+  var autoTheme = function () {
+    if (window.matchMedia) {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+      if (window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
+    }
+    var hour = new Date().getHours();
+    return hour >= 7 && hour < 19 ? 'light' : 'dark';
+  };
+  var resolved = theme === 'auto' ? autoTheme() : theme;
   root.setAttribute('data-theme-pref', theme);
   root.setAttribute('data-theme', resolved);
 
