@@ -1,0 +1,1081 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#0e1013">
+  <title>운동 루틴 | 핏루틴</title>
+  <meta name="description" content="부위별 근력 루틴과 어르신용 의자 운동·스트레칭·균형 운동을 자세 팁과 함께 확인하고 타이머로 바로 시작하세요.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <script src="js/mode.js"></script>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <!-- 아이콘 모음 -->
+  <svg class="sr-only" aria-hidden="true" focusable="false">
+    <symbol id="i-dumbbell" viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="4.5" cy="6" r="1.5" fill="currentColor"/><circle cx="4.5" cy="12" r="1.5" fill="currentColor"/><circle cx="4.5" cy="18" r="1.5" fill="currentColor"/></symbol>
+    <symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 9.5v4l2.5 2M9.5 2.5h5M12 2.5V6" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8.5 5.5v13M15.5 5.5v13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="i-skip" viewBox="0 0 24 24"><path d="M6 5.5v13l9-6.5zM18 5.5v13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3L4.5 9M4.5 4.5V9H9" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M15.5 9a4.5 4.5 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5 21 19.5H3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4M12 16.9v.1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M5.5 14.5 12 8l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M5.5 9.5 12 16l6.5-6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c.8 3.2 5.5 5.3 5.5 10.5a5.5 5.5 0 0 1-11 0c0-2.6 1.4-4.3 2.6-5.3.2 2 1.2 3.1 2.4 3.3-.4-3.1.1-5.8.5-8.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4.5 19.5h4l10-10-4-4-10 10zM13 7l4 4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 4.5 3.5 8 7 11.5M3.5 8h13M17 12.5l3.5 3.5-3.5 3.5M20.5 16h-13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-font" viewBox="0 0 24 24"><path d="M4 7V5h16v2M12 5v14M8.5 19h7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-tip" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 11v5.5M12 7.5v.1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-chair" viewBox="0 0 24 24"><path d="M7 3.5v9h10v-9M7 12.5v8M17 12.5v8M5.5 12.5h13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="wrap header__inner">
+      <a class="header__logo" href="routine.html"><svg class="ico header__mark" aria-hidden="true" focusable="false"><use href="#i-dumbbell"></use></svg>핏루틴</a>
+      <nav class="gnb" aria-label="주 메뉴">
+        <ul class="gnb__list">
+          <li><a class="gnb__link" href="routine.html" aria-current="page"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-list"></use></svg>루틴</a></li>
+          <li><a class="gnb__link" href="timer.html"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머</a></li>
+          <li><a class="gnb__link" href="record.html"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-calendar"></use></svg>기록</a></li>
+          <li><a class="gnb__link" href="my-routine.html"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg>내 루틴</a></li>
+        </ul>
+      </nav>
+      <div class="header__tools">
+        <button class="btn btn--sm btn--toggle" id="font-toggle" type="button" aria-pressed="false" data-mode-only="senior"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-font"></use></svg>글자 크게<svg class="ico btn__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg></button>
+        <a class="btn btn--sm" href="index.html?select=1"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-swap"></use></svg>화면 바꾸기</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="main">
+    <!-- 페이지 제목 -->
+    <section class="page-head" aria-labelledby="page-title">
+      <p class="page-head__eyebrow" data-mode-only="general">Routine</p>
+      <h1 class="page-head__title" id="page-title">오늘의 운동 루틴</h1>
+      <p class="page-head__desc"><span data-mode-only="general">오늘 운동할 부위를 고르세요. 루틴 전체를 순서대로 하거나, 운동 하나만 골라 할 수 있어요.</span><span data-mode-only="senior">오늘 할 운동을 고르세요. ‘자세 팁’을 누르면 동작 요령을 볼 수 있어요.</span></p>
+    </section>
+
+    <p class="notice" data-mode-only="senior"><svg class="ico notice__ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg><span>통증이나 어지러움이 있으면 바로 멈추세요. 지병이 있다면 의사와 상의한 뒤 시작하세요.</span></p>
+
+    <div class="tabs__list" role="tablist" aria-label="운동 부위" data-mode-only="general">
+      <button class="tabs__tab" id="tab-chest" type="button" role="tab" aria-selected="true" aria-controls="panel-chest" data-part="chest">가슴</button>
+      <button class="tabs__tab" id="tab-back" type="button" role="tab" aria-selected="false" aria-controls="panel-back" data-part="back" tabindex="-1">등</button>
+      <button class="tabs__tab" id="tab-legs" type="button" role="tab" aria-selected="false" aria-controls="panel-legs" data-part="legs" tabindex="-1">하체</button>
+      <button class="tabs__tab" id="tab-shoulder" type="button" role="tab" aria-selected="false" aria-controls="panel-shoulder" data-part="shoulder" tabindex="-1">어깨</button>
+      <button class="tabs__tab" id="tab-arm" type="button" role="tab" aria-selected="false" aria-controls="panel-arm" data-part="arm" tabindex="-1">팔</button>
+      <button class="tabs__tab" id="tab-core" type="button" role="tab" aria-selected="false" aria-controls="panel-core" data-part="core" tabindex="-1">코어</button>
+    </div>
+    <section class="routine" id="panel-chest" role="tabpanel" aria-labelledby="tab-chest" data-mode-only="general">
+      <header class="routine__head">
+        <h2 class="routine__title">가슴 루틴</h2>
+        <p class="routine__desc">밀어내는 힘을 기르는 기본 4종. 푸시업으로 몸을 데우고 시작해요.</p>
+        <ul class="routine__stats">
+          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
+          <li class="routine__stat"><strong class="routine__num">14</strong>세트</li>
+          <li class="routine__stat">약 <strong class="routine__num">26</strong>분</li>
+        </ul>
+        <a class="btn btn--primary routine__start" href="timer.html?plan=%5B%7B%22n%22%3A%22%ED%91%B8%EC%8B%9C%EC%97%85%22%2C%22s%22%3A4%2C%22r%22%3A60%2C%22p%22%3A%2215%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EB%B2%A4%EC%B9%98%ED%94%84%EB%A0%88%EC%8A%A4%22%2C%22s%22%3A4%2C%22r%22%3A90%2C%22p%22%3A%2210%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EC%9D%B8%ED%81%B4%EB%9D%BC%EC%9D%B8%20%EB%8D%A4%EB%B2%A8%20%ED%94%84%EB%A0%88%EC%8A%A4%22%2C%22s%22%3A3%2C%22r%22%3A60%2C%22p%22%3A%2212%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EB%94%A5%EC%8A%A4%22%2C%22s%22%3A3%2C%22r%22%3A60%2C%22p%22%3A%2210%ED%9A%8C%22%7D%5D"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg>가슴 루틴 처음부터 끝까지 하기</a>
+      </header>
+      <ol class="routine__list">
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">01</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">푸시업</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">4</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">15회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 푸시업</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">손은 어깨보다 조금 넓게, 머리부터 발끝까지 일직선을 유지해요.</li>
+                  <li class="exercise__tip-item">내려갈 때 팔꿈치가 옆으로 벌어지지 않게 45도 정도로 모아요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%ED%91%B8%EC%8B%9C%EC%97%85&amp;reps=15%ED%9A%8C&amp;sets=4&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 푸시업</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">02</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">벤치프레스</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">4</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">10회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">90초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 벤치프레스</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">어깨뼈를 모으고 가슴을 살짝 들어 고정해요.</li>
+                  <li class="exercise__tip-item">바는 가슴 중간으로 천천히 내리고, 무거우면 보조자와 함께 해요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EB%B2%A4%EC%B9%98%ED%94%84%EB%A0%88%EC%8A%A4&amp;reps=10%ED%9A%8C&amp;sets=4&amp;rest=90"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 벤치프레스</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">03</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">인클라인 덤벨 프레스</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 인클라인 덤벨 프레스</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">벤치 각도는 30~45도가 적당해요.</li>
+                  <li class="exercise__tip-item">덤벨을 올릴 때 서로 부딪치지 않게 살짝 모아요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%9D%B8%ED%81%B4%EB%9D%BC%EC%9D%B8%20%EB%8D%A4%EB%B2%A8%20%ED%94%84%EB%A0%88%EC%8A%A4&amp;reps=12%ED%9A%8C&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 인클라인 덤벨 프레스</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">04</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">딥스</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">10회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 딥스</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">상체를 약간 앞으로 숙이면 가슴에 더 자극이 와요.</li>
+                  <li class="exercise__tip-item">어깨가 아프면 내려가는 깊이를 줄여요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EB%94%A5%EC%8A%A4&amp;reps=10%ED%9A%8C&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 딥스</span></a>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+    <section class="routine" id="panel-back" role="tabpanel" aria-labelledby="tab-back" data-mode-only="general" hidden>
+      <header class="routine__head">
+        <h2 class="routine__title">등 루틴</h2>
+        <p class="routine__desc">당기는 동작 위주. 어깨를 내리고 팔꿈치로 당긴다는 느낌을 기억하세요.</p>
+        <ul class="routine__stats">
+          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
+          <li class="routine__stat"><strong class="routine__num">14</strong>세트</li>
+          <li class="routine__stat">약 <strong class="routine__num">28</strong>분</li>
+        </ul>
+        <a class="btn btn--primary routine__start" href="timer.html?plan=%5B%7B%22n%22%3A%22%ED%92%80%EC%97%85%22%2C%22s%22%3A4%2C%22r%22%3A90%2C%22p%22%3A%228%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EB%B0%94%EB%B2%A8%20%EB%A1%9C%EC%9A%B0%22%2C%22s%22%3A4%2C%22r%22%3A90%2C%22p%22%3A%2210%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EB%9E%AB%ED%92%80%EB%8B%A4%EC%9A%B4%22%2C%22s%22%3A3%2C%22r%22%3A60%2C%22p%22%3A%2212%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EC%8B%9C%ED%8B%B0%EB%93%9C%20%EC%BC%80%EC%9D%B4%EB%B8%94%20%EB%A1%9C%EC%9A%B0%22%2C%22s%22%3A3%2C%22r%22%3A60%2C%22p%22%3A%2212%ED%9A%8C%22%7D%5D"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg>등 루틴 처음부터 끝까지 하기</a>
+      </header>
+      <ol class="routine__list">
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">01</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">풀업</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">4</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">8회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">90초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 풀업</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">어깨를 먼저 내린 뒤 팔꿈치로 당겨요.</li>
+                  <li class="exercise__tip-item">한 개도 어렵다면 점프해서 올라간 뒤 천천히 내려오기부터 해요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%ED%92%80%EC%97%85&amp;reps=8%ED%9A%8C&amp;sets=4&amp;rest=90"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 풀업</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">02</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">바벨 로우</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">4</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">10회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">90초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 바벨 로우</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">허리를 곧게 펴고 상체를 45도 정도 숙여요.</li>
+                  <li class="exercise__tip-item">바를 배꼽 쪽으로 당겨요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EB%B0%94%EB%B2%A8%20%EB%A1%9C%EC%9A%B0&amp;reps=10%ED%9A%8C&amp;sets=4&amp;rest=90"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 바벨 로우</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">03</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">랫풀다운</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 랫풀다운</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">바를 쇄골 쪽으로 당기고, 목 뒤로 당기지 않아요.</li>
+                  <li class="exercise__tip-item">몸을 뒤로 크게 젖혀 반동을 쓰지 않아요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EB%9E%AB%ED%92%80%EB%8B%A4%EC%9A%B4&amp;reps=12%ED%9A%8C&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 랫풀다운</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">04</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">시티드 케이블 로우</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 시티드 케이블 로우</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">가슴을 펴고 손잡이를 배꼽 쪽으로 당겨요.</li>
+                  <li class="exercise__tip-item">돌아갈 때 어깨가 앞으로 말리지 않게 해요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%8B%9C%ED%8B%B0%EB%93%9C%20%EC%BC%80%EC%9D%B4%EB%B8%94%20%EB%A1%9C%EC%9A%B0&amp;reps=12%ED%9A%8C&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 시티드 케이블 로우</span></a>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+    <section class="routine" id="panel-legs" role="tabpanel" aria-labelledby="tab-legs" data-mode-only="general" hidden>
+      <header class="routine__head">
+        <h2 class="routine__title">하체 루틴</h2>
+        <p class="routine__desc">가장 큰 근육을 쓰는 날. 무릎이 발끝 방향을 따라가게 해주세요.</p>
+        <ul class="routine__stats">
+          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
+          <li class="routine__stat"><strong class="routine__num">14</strong>세트</li>
+          <li class="routine__stat">약 <strong class="routine__num">27</strong>분</li>
+        </ul>
+        <a class="btn btn--primary routine__start" href="timer.html?plan=%5B%7B%22n%22%3A%22%EC%8A%A4%EC%BF%BC%ED%8A%B8%22%2C%22s%22%3A4%2C%22r%22%3A90%2C%22p%22%3A%2212%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EB%9F%B0%EC%A7%80%22%2C%22s%22%3A3%2C%22r%22%3A60%2C%22p%22%3A%22%EB%8B%A4%EB%A6%AC%EB%B3%84%2012%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EB%A0%88%EA%B7%B8%20%ED%94%84%EB%A0%88%EC%8A%A4%22%2C%22s%22%3A4%2C%22r%22%3A90%2C%22p%22%3A%2212%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EC%B9%B4%ED%94%84%20%EB%A0%88%EC%9D%B4%EC%A6%88%22%2C%22s%22%3A3%2C%22r%22%3A45%2C%22p%22%3A%2220%ED%9A%8C%22%7D%5D"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg>하체 루틴 처음부터 끝까지 하기</a>
+      </header>
+      <ol class="routine__list">
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">01</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">스쿼트</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">4</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">90초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 스쿼트</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">발은 어깨너비, 발끝은 살짝 바깥을 향해요.</li>
+                  <li class="exercise__tip-item">무릎이 발끝 방향을 따라가게 하고 허리는 곧게 펴요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%8A%A4%EC%BF%BC%ED%8A%B8&amp;reps=12%ED%9A%8C&amp;sets=4&amp;rest=90"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 스쿼트</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">02</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">런지</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">다리별 12회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 런지</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">앞 무릎이 발끝보다 너무 앞으로 나가지 않게 해요.</li>
+                  <li class="exercise__tip-item">상체는 세우고 뒷무릎을 바닥 쪽으로 내려요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EB%9F%B0%EC%A7%80&amp;reps=%EB%8B%A4%EB%A6%AC%EB%B3%84%2012%ED%9A%8C&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 런지</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">03</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">레그 프레스</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">4</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">90초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 레그 프레스</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">무릎을 끝까지 펴서 잠그지 않아요.</li>
+                  <li class="exercise__tip-item">허리가 등받이에서 뜨지 않는 깊이까지만 내려요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EB%A0%88%EA%B7%B8%20%ED%94%84%EB%A0%88%EC%8A%A4&amp;reps=12%ED%9A%8C&amp;sets=4&amp;rest=90"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 레그 프레스</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">04</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">카프 레이즈</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">20회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">45초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 카프 레이즈</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">끝까지 올라가서 1초 멈춰요.</li>
+                  <li class="exercise__tip-item">내려올 때 천천히, 반동 없이 해요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%B9%B4%ED%94%84%20%EB%A0%88%EC%9D%B4%EC%A6%88&amp;reps=20%ED%9A%8C&amp;sets=3&amp;rest=45"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 카프 레이즈</span></a>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+    <section class="routine" id="panel-shoulder" role="tabpanel" aria-labelledby="tab-shoulder" data-mode-only="general" hidden>
+      <header class="routine__head">
+        <h2 class="routine__title">어깨 루틴</h2>
+        <p class="routine__desc">가벼운 무게로 정확하게. 앞·옆·뒤를 고르게 채워요.</p>
+        <ul class="routine__stats">
+          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
+          <li class="routine__stat"><strong class="routine__num">13</strong>세트</li>
+          <li class="routine__stat">약 <strong class="routine__num">22</strong>분</li>
+        </ul>
+        <a class="btn btn--primary routine__start" href="timer.html?plan=%5B%7B%22n%22%3A%22%EC%98%A4%EB%B2%84%ED%97%A4%EB%93%9C%20%ED%94%84%EB%A0%88%EC%8A%A4%22%2C%22s%22%3A4%2C%22r%22%3A90%2C%22p%22%3A%2210%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EC%82%AC%EC%9D%B4%EB%93%9C%20%EB%A0%88%ED%84%B0%EB%9F%B4%20%EB%A0%88%EC%9D%B4%EC%A6%88%22%2C%22s%22%3A3%2C%22r%22%3A45%2C%22p%22%3A%2215%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%ED%8E%98%EC%9D%B4%EC%8A%A4%20%ED%92%80%22%2C%22s%22%3A3%2C%22r%22%3A45%2C%22p%22%3A%2215%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EB%A6%AC%EC%96%B4%20%EB%8D%B8%ED%8A%B8%20%ED%94%8C%EB%9D%BC%EC%9D%B4%22%2C%22s%22%3A3%2C%22r%22%3A45%2C%22p%22%3A%2215%ED%9A%8C%22%7D%5D"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg>어깨 루틴 처음부터 끝까지 하기</a>
+      </header>
+      <ol class="routine__list">
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">01</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">오버헤드 프레스</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">4</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">10회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">90초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 오버헤드 프레스</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">배에 힘을 주고 허리를 과하게 젖히지 않아요.</li>
+                  <li class="exercise__tip-item">바는 얼굴 가까이 수직으로 올려요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%98%A4%EB%B2%84%ED%97%A4%EB%93%9C%20%ED%94%84%EB%A0%88%EC%8A%A4&amp;reps=10%ED%9A%8C&amp;sets=4&amp;rest=90"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 오버헤드 프레스</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">02</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">사이드 레터럴 레이즈</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">15회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">45초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 사이드 레터럴 레이즈</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">팔꿈치를 살짝 굽히고 어깨 높이까지만 들어요.</li>
+                  <li class="exercise__tip-item">어깨가 귀 쪽으로 으쓱 올라가지 않게 해요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%82%AC%EC%9D%B4%EB%93%9C%20%EB%A0%88%ED%84%B0%EB%9F%B4%20%EB%A0%88%EC%9D%B4%EC%A6%88&amp;reps=15%ED%9A%8C&amp;sets=3&amp;rest=45"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 사이드 레터럴 레이즈</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">03</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">페이스 풀</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">15회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">45초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 페이스 풀</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">로프를 얼굴 쪽으로 당기며 양손을 벌려요.</li>
+                  <li class="exercise__tip-item">팔꿈치가 손과 같거나 더 높게 유지해요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%ED%8E%98%EC%9D%B4%EC%8A%A4%20%ED%92%80&amp;reps=15%ED%9A%8C&amp;sets=3&amp;rest=45"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 페이스 풀</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">04</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">리어 델트 플라이</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">15회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">45초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 리어 델트 플라이</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">상체를 숙이고 팔을 옆으로 벌려요.</li>
+                  <li class="exercise__tip-item">가벼운 무게로 어깨 뒤쪽에 집중해요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EB%A6%AC%EC%96%B4%20%EB%8D%B8%ED%8A%B8%20%ED%94%8C%EB%9D%BC%EC%9D%B4&amp;reps=15%ED%9A%8C&amp;sets=3&amp;rest=45"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 리어 델트 플라이</span></a>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+    <section class="routine" id="panel-arm" role="tabpanel" aria-labelledby="tab-arm" data-mode-only="general" hidden>
+      <header class="routine__head">
+        <h2 class="routine__title">팔 루틴</h2>
+        <p class="routine__desc">이두와 삼두를 번갈아 진행해요. 반동 없이 천천히 내리는 게 핵심이에요.</p>
+        <ul class="routine__stats">
+          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
+          <li class="routine__stat"><strong class="routine__num">12</strong>세트</li>
+          <li class="routine__stat">약 <strong class="routine__num">20</strong>분</li>
+        </ul>
+        <a class="btn btn--primary routine__start" href="timer.html?plan=%5B%7B%22n%22%3A%22%EB%B0%94%EB%B2%A8%20%EC%BB%AC%22%2C%22s%22%3A3%2C%22r%22%3A60%2C%22p%22%3A%2212%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%ED%8A%B8%EB%9D%BC%EC%9D%B4%EC%85%89%EC%8A%A4%20%ED%91%B8%EC%8B%9C%EB%8B%A4%EC%9A%B4%22%2C%22s%22%3A3%2C%22r%22%3A60%2C%22p%22%3A%2212%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%ED%95%B4%EB%A8%B8%20%EC%BB%AC%22%2C%22s%22%3A3%2C%22r%22%3A60%2C%22p%22%3A%2212%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EC%98%A4%EB%B2%84%ED%97%A4%EB%93%9C%20%EC%9D%B5%EC%8A%A4%ED%85%90%EC%85%98%22%2C%22s%22%3A3%2C%22r%22%3A60%2C%22p%22%3A%2212%ED%9A%8C%22%7D%5D"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg>팔 루틴 처음부터 끝까지 하기</a>
+      </header>
+      <ol class="routine__list">
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">01</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">바벨 컬</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 바벨 컬</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">팔꿈치를 옆구리에 붙여 고정해요.</li>
+                  <li class="exercise__tip-item">몸을 흔들어 반동을 쓰지 않아요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EB%B0%94%EB%B2%A8%20%EC%BB%AC&amp;reps=12%ED%9A%8C&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 바벨 컬</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">02</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">트라이셉스 푸시다운</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 트라이셉스 푸시다운</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">팔꿈치는 몸 옆에 고정하고 아래팔만 움직여요.</li>
+                  <li class="exercise__tip-item">끝까지 펴고 1초 멈춰요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%ED%8A%B8%EB%9D%BC%EC%9D%B4%EC%85%89%EC%8A%A4%20%ED%91%B8%EC%8B%9C%EB%8B%A4%EC%9A%B4&amp;reps=12%ED%9A%8C&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 트라이셉스 푸시다운</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">03</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">해머 컬</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 해머 컬</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">손바닥이 서로 마주 보게 잡아요.</li>
+                  <li class="exercise__tip-item">천천히 내리며 긴장을 유지해요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%ED%95%B4%EB%A8%B8%20%EC%BB%AC&amp;reps=12%ED%9A%8C&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 해머 컬</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">04</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">오버헤드 익스텐션</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 오버헤드 익스텐션</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">팔꿈치가 양옆으로 벌어지지 않게 해요.</li>
+                  <li class="exercise__tip-item">머리 뒤로 천천히 내렸다가 펴요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%98%A4%EB%B2%84%ED%97%A4%EB%93%9C%20%EC%9D%B5%EC%8A%A4%ED%85%90%EC%85%98&amp;reps=12%ED%9A%8C&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 오버헤드 익스텐션</span></a>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+    <section class="routine" id="panel-core" role="tabpanel" aria-labelledby="tab-core" data-mode-only="general" hidden>
+      <header class="routine__head">
+        <h2 class="routine__title">코어 루틴</h2>
+        <p class="routine__desc">매트만 있으면 어디서든 OK. 허리가 바닥에서 뜨지 않게 주의하세요.</p>
+        <ul class="routine__stats">
+          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
+          <li class="routine__stat"><strong class="routine__num">12</strong>세트</li>
+          <li class="routine__stat">약 <strong class="routine__num">15</strong>분</li>
+        </ul>
+        <a class="btn btn--primary routine__start" href="timer.html?plan=%5B%7B%22n%22%3A%22%ED%94%8C%EB%9E%AD%ED%81%AC%22%2C%22s%22%3A3%2C%22r%22%3A30%2C%22w%22%3A45%7D%2C%7B%22n%22%3A%22%ED%81%AC%EB%9F%B0%EC%B9%98%22%2C%22s%22%3A3%2C%22r%22%3A30%2C%22p%22%3A%2220%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EB%A0%88%EA%B7%B8%20%EB%A0%88%EC%9D%B4%EC%A6%88%22%2C%22s%22%3A3%2C%22r%22%3A45%2C%22p%22%3A%2215%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EB%9F%AC%EC%8B%9C%EC%95%88%20%ED%8A%B8%EC%9C%84%EC%8A%A4%ED%8A%B8%22%2C%22s%22%3A3%2C%22r%22%3A30%2C%22p%22%3A%2220%ED%9A%8C%22%7D%5D"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg>코어 루틴 처음부터 끝까지 하기</a>
+      </header>
+      <ol class="routine__list">
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">01</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">플랭크</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">시간</dt><dd class="exercise__def">45초</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">30초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 플랭크</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">팔꿈치는 어깨 바로 아래에 둬요.</li>
+                  <li class="exercise__tip-item">엉덩이가 처지거나 올라가지 않게 일직선을 유지해요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%ED%94%8C%EB%9E%AD%ED%81%AC&amp;work=45&amp;sets=3&amp;rest=30"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 플랭크</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">02</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">크런치</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">20회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">30초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 크런치</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">목을 당기지 말고 배 힘으로 올라와요.</li>
+                  <li class="exercise__tip-item">어깨뼈가 바닥에서 뜰 정도면 충분해요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%ED%81%AC%EB%9F%B0%EC%B9%98&amp;reps=20%ED%9A%8C&amp;sets=3&amp;rest=30"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 크런치</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">03</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">레그 레이즈</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">15회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">45초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 레그 레이즈</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">허리가 뜨면 무릎을 굽혀서 해요.</li>
+                  <li class="exercise__tip-item">내릴 때 천천히, 바닥에 닿기 직전에 멈춰요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EB%A0%88%EA%B7%B8%20%EB%A0%88%EC%9D%B4%EC%A6%88&amp;reps=15%ED%9A%8C&amp;sets=3&amp;rest=45"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 레그 레이즈</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">04</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">러시안 트위스트</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">20회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">30초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 러시안 트위스트</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">등을 둥글게 말지 말고 곧게 펴요.</li>
+                  <li class="exercise__tip-item">어렵다면 발을 바닥에 두고 해요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EB%9F%AC%EC%8B%9C%EC%95%88%20%ED%8A%B8%EC%9C%84%EC%8A%A4%ED%8A%B8&amp;reps=20%ED%9A%8C&amp;sets=3&amp;rest=30"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 러시안 트위스트</span></a>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+    <div class="tabs__list" role="tablist" aria-label="운동 종류" data-mode-only="senior">
+      <button class="tabs__tab" id="tab-s-upper" type="button" role="tab" aria-selected="true" aria-controls="panel-s-upper" data-part="s-upper">상체</button>
+      <button class="tabs__tab" id="tab-s-lower" type="button" role="tab" aria-selected="false" aria-controls="panel-s-lower" data-part="s-lower" tabindex="-1">하체</button>
+      <button class="tabs__tab" id="tab-s-stretch" type="button" role="tab" aria-selected="false" aria-controls="panel-s-stretch" data-part="s-stretch" tabindex="-1">스트레칭</button>
+      <button class="tabs__tab" id="tab-s-balance" type="button" role="tab" aria-selected="false" aria-controls="panel-s-balance" data-part="s-balance" tabindex="-1">균형·걷기</button>
+    </div>
+    <section class="routine" id="panel-s-upper" role="tabpanel" aria-labelledby="tab-s-upper" data-mode-only="senior">
+      <header class="routine__head">
+        <h2 class="routine__title">상체 운동</h2>
+        <p class="routine__desc">의자에 앉아서 하는 상체 운동이에요. 무게 없이 시작해도 충분해요.</p>
+        <ul class="routine__stats">
+          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
+          <li class="routine__stat"><strong class="routine__num">8</strong>세트</li>
+          <li class="routine__stat">약 <strong class="routine__num">13</strong>분</li>
+        </ul>
+        <a class="btn btn--primary routine__start" href="timer.html?plan=%5B%7B%22n%22%3A%22%EC%95%89%EC%95%84%EC%84%9C%20%ED%8C%94%20%EC%95%9E%EC%9C%BC%EB%A1%9C%20%EB%93%A4%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A60%2C%22p%22%3A%2210%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EB%B2%BD%20%EC%A7%9A%EA%B3%A0%20%ED%8C%94%EA%B5%BD%ED%98%80%ED%8E%B4%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A60%2C%22p%22%3A%228%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EB%AC%BC%EB%B3%91%20%EB%93%A4%EA%B3%A0%20%ED%8C%94%20%EA%B5%BD%ED%9E%88%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A60%2C%22p%22%3A%2210%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EC%95%89%EC%95%84%EC%84%9C%20%EC%96%B4%EA%B9%A8%20%EB%8F%8C%EB%A6%AC%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A30%2C%22p%22%3A%2210%ED%9A%8C%22%7D%5D"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg>상체 운동 처음부터 끝까지 하기</a>
+      </header>
+      <ol class="routine__list">
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">01</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">앉아서 팔 앞으로 들기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">10회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 앉아서 팔 앞으로 들기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">등받이에서 등을 떼고 바르게 앉아요.</li>
+                  <li class="exercise__tip-item">어깨 높이까지만 천천히 들었다 내려요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%95%89%EC%95%84%EC%84%9C%20%ED%8C%94%20%EC%95%9E%EC%9C%BC%EB%A1%9C%20%EB%93%A4%EA%B8%B0&amp;reps=10%ED%9A%8C&amp;sets=2&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 앉아서 팔 앞으로 들기</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">02</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">벽 짚고 팔굽혀펴기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">8회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 벽 짚고 팔굽혀펴기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">벽에서 한 걸음 떨어져 손을 어깨 높이에 대요.</li>
+                  <li class="exercise__tip-item">몸을 곧게 유지하며 천천히 벽 쪽으로 다가가요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EB%B2%BD%20%EC%A7%9A%EA%B3%A0%20%ED%8C%94%EA%B5%BD%ED%98%80%ED%8E%B4%EA%B8%B0&amp;reps=8%ED%9A%8C&amp;sets=2&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 벽 짚고 팔굽혀펴기</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">03</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">물병 들고 팔 굽히기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">10회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 물병 들고 팔 굽히기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">500ml 물병 정도의 가벼운 무게로 해요.</li>
+                  <li class="exercise__tip-item">팔꿈치를 옆구리에 붙이고 천천히 굽혀요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EB%AC%BC%EB%B3%91%20%EB%93%A4%EA%B3%A0%20%ED%8C%94%20%EA%B5%BD%ED%9E%88%EA%B8%B0&amp;reps=10%ED%9A%8C&amp;sets=2&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 물병 들고 팔 굽히기</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">04</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">앉아서 어깨 돌리기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">10회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">30초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 앉아서 어깨 돌리기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">앞으로 5번, 뒤로 5번 크게 돌려요.</li>
+                  <li class="exercise__tip-item">숨을 참지 말고 편하게 쉬어요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%95%89%EC%95%84%EC%84%9C%20%EC%96%B4%EA%B9%A8%20%EB%8F%8C%EB%A6%AC%EA%B8%B0&amp;reps=10%ED%9A%8C&amp;sets=2&amp;rest=30"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 앉아서 어깨 돌리기</span></a>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+    <section class="routine" id="panel-s-lower" role="tabpanel" aria-labelledby="tab-s-lower" data-mode-only="senior" hidden>
+      <header class="routine__head">
+        <h2 class="routine__title">하체 운동</h2>
+        <p class="routine__desc">넘어지지 않게 튼튼한 의자를 옆에 두고 하세요.</p>
+        <ul class="routine__stats">
+          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
+          <li class="routine__stat"><strong class="routine__num">8</strong>세트</li>
+          <li class="routine__stat">약 <strong class="routine__num">13</strong>분</li>
+        </ul>
+        <a class="btn btn--primary routine__start" href="timer.html?plan=%5B%7B%22n%22%3A%22%EC%9D%98%EC%9E%90%EC%97%90%EC%84%9C%20%EC%95%89%EC%95%98%EB%8B%A4%20%EC%9D%BC%EC%96%B4%EC%84%9C%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A60%2C%22p%22%3A%228%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EC%95%89%EC%95%84%EC%84%9C%20%EB%8B%A4%EB%A6%AC%20%ED%8E%B4%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A45%2C%22p%22%3A%22%EB%8B%A4%EB%A6%AC%EB%B3%84%2010%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EC%9D%98%EC%9E%90%20%EC%9E%A1%EA%B3%A0%20%EB%B0%9C%EB%92%A4%EA%BF%88%EC%B9%98%20%EB%93%A4%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A45%2C%22p%22%3A%2210%ED%9A%8C%22%7D%2C%7B%22n%22%3A%22%EC%9D%98%EC%9E%90%20%EC%9E%A1%EA%B3%A0%20%EB%8B%A4%EB%A6%AC%20%EC%98%86%EC%9C%BC%EB%A1%9C%20%EB%93%A4%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A60%2C%22p%22%3A%22%EB%8B%A4%EB%A6%AC%EB%B3%84%208%ED%9A%8C%22%7D%5D"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg>하체 운동 처음부터 끝까지 하기</a>
+      </header>
+      <ol class="routine__list">
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">01</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">의자에서 앉았다 일어서기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">8회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 의자에서 앉았다 일어서기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">팔걸이가 있는 튼튼한 의자를 써요.</li>
+                  <li class="exercise__tip-item">힘들면 손으로 무릎을 짚고 일어나도 괜찮아요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%9D%98%EC%9E%90%EC%97%90%EC%84%9C%20%EC%95%89%EC%95%98%EB%8B%A4%20%EC%9D%BC%EC%96%B4%EC%84%9C%EA%B8%B0&amp;reps=8%ED%9A%8C&amp;sets=2&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 의자에서 앉았다 일어서기</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">02</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">앉아서 다리 펴기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">다리별 10회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">45초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 앉아서 다리 펴기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">무릎을 쭉 펴고 2초 멈춰요.</li>
+                  <li class="exercise__tip-item">발끝은 몸 쪽으로 당겨요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%95%89%EC%95%84%EC%84%9C%20%EB%8B%A4%EB%A6%AC%20%ED%8E%B4%EA%B8%B0&amp;reps=%EB%8B%A4%EB%A6%AC%EB%B3%84%2010%ED%9A%8C&amp;sets=2&amp;rest=45"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 앉아서 다리 펴기</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">03</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">의자 잡고 발뒤꿈치 들기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">10회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">45초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 의자 잡고 발뒤꿈치 들기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">의자 등받이를 두 손으로 잡아요.</li>
+                  <li class="exercise__tip-item">천천히 올라갔다 천천히 내려와요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%9D%98%EC%9E%90%20%EC%9E%A1%EA%B3%A0%20%EB%B0%9C%EB%92%A4%EA%BF%88%EC%B9%98%20%EB%93%A4%EA%B8%B0&amp;reps=10%ED%9A%8C&amp;sets=2&amp;rest=45"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 의자 잡고 발뒤꿈치 들기</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">04</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">의자 잡고 다리 옆으로 들기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">다리별 8회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 의자 잡고 다리 옆으로 들기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">상체가 기울지 않게 바로 서요.</li>
+                  <li class="exercise__tip-item">작게 들어도 괜찮으니 천천히 정확하게 해요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%9D%98%EC%9E%90%20%EC%9E%A1%EA%B3%A0%20%EB%8B%A4%EB%A6%AC%20%EC%98%86%EC%9C%BC%EB%A1%9C%20%EB%93%A4%EA%B8%B0&amp;reps=%EB%8B%A4%EB%A6%AC%EB%B3%84%208%ED%9A%8C&amp;sets=2&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 의자 잡고 다리 옆으로 들기</span></a>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+    <section class="routine" id="panel-s-stretch" role="tabpanel" aria-labelledby="tab-s-stretch" data-mode-only="senior" hidden>
+      <header class="routine__head">
+        <h2 class="routine__title">스트레칭</h2>
+        <p class="routine__desc">운동 전후나 오래 앉아 있었을 때 해주세요.</p>
+        <ul class="routine__stats">
+          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
+          <li class="routine__stat"><strong class="routine__num">8</strong>세트</li>
+          <li class="routine__stat">약 <strong class="routine__num">6</strong>분</li>
+        </ul>
+        <a class="btn btn--primary routine__start" href="timer.html?plan=%5B%7B%22n%22%3A%22%EB%AA%A9%20%EC%98%86%EC%9C%BC%EB%A1%9C%20%EB%8A%98%EC%9D%B4%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A15%2C%22w%22%3A20%7D%2C%7B%22n%22%3A%22%EC%95%89%EC%95%84%EC%84%9C%20%ED%97%88%EB%A6%AC%20%EB%B9%84%ED%8B%80%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A15%2C%22w%22%3A20%7D%2C%7B%22n%22%3A%22%EC%95%89%EC%95%84%EC%84%9C%20%ED%97%88%EB%B2%85%EC%A7%80%20%EB%92%A4%20%EB%8A%98%EC%9D%B4%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A15%2C%22w%22%3A20%7D%2C%7B%22n%22%3A%22%EC%86%90%EB%AA%A9%C2%B7%EB%B0%9C%EB%AA%A9%20%EB%8F%8C%EB%A6%AC%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A15%2C%22p%22%3A%2210%ED%9A%8C%22%7D%5D"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg>스트레칭 처음부터 끝까지 하기</a>
+      </header>
+      <ol class="routine__list">
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">01</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">목 옆으로 늘이기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">시간</dt><dd class="exercise__def">20초</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">15초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 목 옆으로 늘이기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">귀를 어깨 쪽으로 천천히 기울여요.</li>
+                  <li class="exercise__tip-item">아프지 않을 만큼만, 반동 없이 해요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EB%AA%A9%20%EC%98%86%EC%9C%BC%EB%A1%9C%20%EB%8A%98%EC%9D%B4%EA%B8%B0&amp;work=20&amp;sets=2&amp;rest=15"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 목 옆으로 늘이기</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">02</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">앉아서 허리 비틀기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">시간</dt><dd class="exercise__def">20초</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">15초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 앉아서 허리 비틀기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">엉덩이는 의자에 붙이고 상체만 돌려요.</li>
+                  <li class="exercise__tip-item">숨을 내쉬며 천천히 돌려요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%95%89%EC%95%84%EC%84%9C%20%ED%97%88%EB%A6%AC%20%EB%B9%84%ED%8B%80%EA%B8%B0&amp;work=20&amp;sets=2&amp;rest=15"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 앉아서 허리 비틀기</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">03</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">앉아서 허벅지 뒤 늘이기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">시간</dt><dd class="exercise__def">다리별 20초</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">15초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 앉아서 허벅지 뒤 늘이기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">한쪽 다리를 앞으로 뻗고 발끝을 몸 쪽으로 당겨요.</li>
+                  <li class="exercise__tip-item">허리를 펴고 몸을 살짝 앞으로 기울여요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%95%89%EC%95%84%EC%84%9C%20%ED%97%88%EB%B2%85%EC%A7%80%20%EB%92%A4%20%EB%8A%98%EC%9D%B4%EA%B8%B0&amp;work=20&amp;sets=2&amp;rest=15"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 앉아서 허벅지 뒤 늘이기</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">04</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">손목·발목 돌리기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">10회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">15초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 손목·발목 돌리기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">양쪽 방향으로 번갈아 돌려요.</li>
+                  <li class="exercise__tip-item">아침에 일어났을 때 하면 좋아요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%86%90%EB%AA%A9%C2%B7%EB%B0%9C%EB%AA%A9%20%EB%8F%8C%EB%A6%AC%EA%B8%B0&amp;reps=10%ED%9A%8C&amp;sets=2&amp;rest=15"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 손목·발목 돌리기</span></a>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+    <section class="routine" id="panel-s-balance" role="tabpanel" aria-labelledby="tab-s-balance" data-mode-only="senior" hidden>
+      <header class="routine__head">
+        <h2 class="routine__title">균형·걷기</h2>
+        <p class="routine__desc">넘어짐을 예방하는 운동이에요. 꼭 잡을 곳을 옆에 두세요.</p>
+        <ul class="routine__stats">
+          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
+          <li class="routine__stat"><strong class="routine__num">8</strong>세트</li>
+          <li class="routine__stat">약 <strong class="routine__num">10</strong>분</li>
+        </ul>
+        <a class="btn btn--primary routine__start" href="timer.html?plan=%5B%7B%22n%22%3A%22%EC%9D%98%EC%9E%90%20%EC%9E%A1%EA%B3%A0%20%ED%95%9C%20%EB%B0%9C%20%EC%84%9C%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A30%2C%22w%22%3A15%7D%2C%7B%22n%22%3A%22%EC%A0%9C%EC%9E%90%EB%A6%AC%20%EA%B1%B7%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A60%2C%22w%22%3A60%7D%2C%7B%22n%22%3A%22%EC%9D%BC%EC%9E%90%EB%A1%9C%20%EA%B1%B7%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A30%2C%22w%22%3A30%7D%2C%7B%22n%22%3A%22%EC%95%89%EC%95%84%EC%84%9C%20%EB%B0%9C%EB%81%9D%C2%B7%EB%92%A4%EA%BF%88%EC%B9%98%20%EB%93%A4%EA%B8%B0%22%2C%22s%22%3A2%2C%22r%22%3A30%2C%22p%22%3A%2215%ED%9A%8C%22%7D%5D"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg>균형·걷기 처음부터 끝까지 하기</a>
+      </header>
+      <ol class="routine__list">
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">01</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">의자 잡고 한 발 서기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">시간</dt><dd class="exercise__def">다리별 15초</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">30초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 의자 잡고 한 발 서기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">반드시 의자나 벽을 잡고 해요.</li>
+                  <li class="exercise__tip-item">익숙해지면 한 손만 잡아요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%9D%98%EC%9E%90%20%EC%9E%A1%EA%B3%A0%20%ED%95%9C%20%EB%B0%9C%20%EC%84%9C%EA%B8%B0&amp;work=15&amp;sets=2&amp;rest=30"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 의자 잡고 한 발 서기</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">02</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">제자리 걷기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">시간</dt><dd class="exercise__def">1분</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 제자리 걷기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">무릎을 편안한 높이로 들어요.</li>
+                  <li class="exercise__tip-item">팔을 함께 흔들며 리듬 있게 걸어요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%A0%9C%EC%9E%90%EB%A6%AC%20%EA%B1%B7%EA%B8%B0&amp;work=60&amp;sets=2&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 제자리 걷기</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">03</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">일자로 걷기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">시간</dt><dd class="exercise__def">30초</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">30초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 일자로 걷기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">벽을 따라 걸으며 필요하면 벽을 짚어요.</li>
+                  <li class="exercise__tip-item">한 발 뒤꿈치를 다른 발 앞꿈치에 붙이며 걸어요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%9D%BC%EC%9E%90%EB%A1%9C%20%EA%B1%B7%EA%B8%B0&amp;work=30&amp;sets=2&amp;rest=30"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 일자로 걷기</span></a>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="exercise">
+            <span class="exercise__num" aria-hidden="true">04</span>
+            <div class="exercise__body">
+              <h3 class="exercise__name">앉아서 발끝·뒤꿈치 들기</h3>
+              <dl class="exercise__meta">
+                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">2</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">15회</dd></div>
+                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">30초</dd></div>
+              </dl>
+              <details class="exercise__tip">
+                <summary class="exercise__tip-btn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-tip"></use></svg>자세 팁<span class="sr-only">: 앉아서 발끝·뒤꿈치 들기</span></summary>
+                <ul class="exercise__tip-list">
+                  <li class="exercise__tip-item">앞꿈치와 뒤꿈치를 번갈아 들어요.</li>
+                  <li class="exercise__tip-item">TV를 보면서도 할 수 있어요.</li>
+                </ul>
+              </details>
+              <a class="btn btn--sm exercise__link" href="timer.html?name=%EC%95%89%EC%95%84%EC%84%9C%20%EB%B0%9C%EB%81%9D%C2%B7%EB%92%A4%EA%BF%88%EC%B9%98%20%EB%93%A4%EA%B8%B0&amp;reps=15%ED%9A%8C&amp;sets=2&amp;rest=30"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>이 운동만 하기<span class="sr-only">: 앉아서 발끝·뒤꿈치 들기</span></a>
+            </div>
+          </article>
+        </li>
+      </ol>
+    </section>
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <div class="wrap">
+      <p class="footer__text">기록과 내 루틴은 이 브라우저에만 저장돼요.</p>
+      <p class="footer__copy">© 2026 핏루틴 · 웹 퍼블리싱 포트폴리오</p>
+    </div>
+  </footer>
+</body>
+</html>

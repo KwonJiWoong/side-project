@@ -37,8 +37,30 @@
   --gnb-h: 4.25rem;
 }
 
+/* 노약자용: 밝은 화면 · 큰 글씨 (본문 18px) */
+html[data-mode="senior"] {
+  color-scheme: light;
+  font-size: 112.5%;
+
+  --color-bg: #ffffff;
+  --color-surface: #f2f5f9;
+  --color-text: #141414;     /* 흰 배경 대비 약 18:1 */
+  --color-primary: #0a4fa8;  /* 흰 배경 대비 약 8:1 */
+  --color-accent: #a3201a;   /* 흰 배경 대비 약 7.6:1 */
+  --color-muted: color-mix(in srgb, var(--color-text) 80%, var(--color-bg));
+  --color-line: color-mix(in srgb, var(--color-text) 28%, var(--color-bg));
+  --glow: none;
+  --touch: 3.5rem;
+}
+
+/* 노약자용 글자 크게 (본문 21px) */
+html[data-mode="senior"][data-font="lg"] { font-size: 131.25%; }
+
+/* 모드별로만 보이는 요소 */
+html[data-mode="senior"] [data-mode-only="general"],
+html:not([data-mode="senior"]) [data-mode-only="senior"] { display: none; }
+
 body {
-  padding-bottom: calc(var(--gnb-h) + env(safe-area-inset-bottom, 0px)); /* 하단 탭바 높이만큼 */
   font-family: var(--font-sans);
   font-size: var(--fs-md);
   line-height: 1.6;
@@ -47,6 +69,9 @@ body {
   word-break: keep-all;
   overflow-wrap: break-word;
 }
+
+/* 하단 탭바 높이만큼 여백 (탭바가 있는 페이지만) */
+body:has(.gnb) { padding-bottom: calc(var(--gnb-h) + env(safe-area-inset-bottom, 0px)); }
 
 ::selection { color: var(--color-on-primary); background: var(--color-primary); }
 
@@ -163,6 +188,10 @@ body {
 
 .btn[disabled]:hover { border-color: var(--color-line); }
 
+html[data-mode="senior"] .btn { border-width: 0.125rem; font-size: var(--fs-lg); }
+
+html[data-mode="senior"] .btn--sm { font-size: var(--fs-md); }
+
 /* 입력 필드 */
 .field { display: grid; gap: 0.375rem; }
 
@@ -241,7 +270,7 @@ body {
 
 /* 태블릿 이상: 하단 탭바 없음 */
 @media (min-width: 768px) {
-  body { padding-bottom: 0; }
+  body:has(.gnb) { padding-bottom: 0; }
   .panel { padding: var(--space-lg); }
 }
 

@@ -9,6 +9,7 @@
   <title>주간 운동 기록 | 핏루틴</title>
   <meta name="description" content="운동한 날을 주간 캘린더에 체크하고 연속 운동일, 이번 달 운동일, 주간 목표 달성률을 확인하세요.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <script src="js/mode.js"></script>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/common.css">
   <link rel="stylesheet" href="css/style.css">
@@ -24,31 +25,49 @@
     <symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 9.5v4l2.5 2M9.5 2.5h5M12 2.5V6" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8.5 5.5v13M15.5 5.5v13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="i-skip" viewBox="0 0 24 24"><path d="M6 5.5v13l9-6.5zM18 5.5v13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3L4.5 9M4.5 4.5V9H9" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M15.5 9a4.5 4.5 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5 21 19.5H3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4M12 16.9v.1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
     <symbol id="i-left" viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M5.5 14.5 12 8l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M5.5 9.5 12 16l6.5-6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c.8 3.2 5.5 5.3 5.5 10.5a5.5 5.5 0 0 1-11 0c0-2.6 1.4-4.3 2.6-5.3.2 2 1.2 3.1 2.4 3.3-.4-3.1.1-5.8.5-8.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4.5 19.5h4l10-10-4-4-10 10zM13 7l4 4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 4.5 3.5 8 7 11.5M3.5 8h13M17 12.5l3.5 3.5-3.5 3.5M20.5 16h-13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-font" viewBox="0 0 24 24"><path d="M4 7V5h16v2M12 5v14M8.5 19h7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-tip" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 11v5.5M12 7.5v.1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-chair" viewBox="0 0 24 24"><path d="M7 3.5v9h10v-9M7 12.5v8M17 12.5v8M5.5 12.5h13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </svg>
 
   <!-- 헤더 -->
   <header class="header">
     <div class="wrap header__inner">
-      <a class="header__logo" href="index.html"><svg class="ico header__mark" aria-hidden="true" focusable="false"><use href="#i-dumbbell"></use></svg>핏루틴</a>
+      <a class="header__logo" href="routine.html"><svg class="ico header__mark" aria-hidden="true" focusable="false"><use href="#i-dumbbell"></use></svg>핏루틴</a>
       <nav class="gnb" aria-label="주 메뉴">
         <ul class="gnb__list">
-          <li><a class="gnb__link" href="index.html"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-list"></use></svg>루틴</a></li>
+          <li><a class="gnb__link" href="routine.html"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-list"></use></svg>루틴</a></li>
           <li><a class="gnb__link" href="timer.html"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머</a></li>
           <li><a class="gnb__link" href="record.html" aria-current="page"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-calendar"></use></svg>기록</a></li>
           <li><a class="gnb__link" href="my-routine.html"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg>내 루틴</a></li>
         </ul>
       </nav>
+      <div class="header__tools">
+        <button class="btn btn--sm btn--toggle" id="font-toggle" type="button" aria-pressed="false" data-mode-only="senior"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-font"></use></svg>글자 크게<svg class="ico btn__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg></button>
+        <a class="btn btn--sm" href="index.html?select=1"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-swap"></use></svg>화면 바꾸기</a>
+      </div>
     </div>
   </header>
 
   <main class="wrap" id="main">
     <!-- 페이지 제목 -->
     <section class="page-head" aria-labelledby="page-title">
-      <p class="page-head__eyebrow">Record</p>
+      <p class="page-head__eyebrow" data-mode-only="general">Record</p>
       <h1 class="page-head__title" id="page-title">주간 운동 기록</h1>
       <p class="page-head__desc">운동한 날을 눌러 체크하세요. 타이머를 끝까지 마치면 자동으로 체크돼요.</p>
     </section>

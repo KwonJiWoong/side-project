@@ -1,14 +1,15 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-page="select">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#0e1013">
-  <title>부위별 운동 루틴 | 핏루틴</title>
-  <meta name="description" content="가슴, 등, 하체, 어깨, 팔, 코어 부위별 운동 루틴을 세트·횟수·휴식 시간과 함께 확인하고 타이머로 바로 시작하세요.">
+  <title>핏루틴 - 일반용·노약자용 운동 루틴 플래너</title>
+  <meta name="description" content="근력 운동 루틴과 어르신을 위한 의자 운동·스트레칭·균형 운동을 타이머와 기록으로 관리하는 운동 플래너입니다.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <script src="js/mode.js"></script>
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/common.css">
   <link rel="stylesheet" href="css/style.css">
@@ -24,466 +25,69 @@
     <symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 9.5v4l2.5 2M9.5 2.5h5M12 2.5V6" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8.5 5.5v13M15.5 5.5v13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+    <symbol id="i-skip" viewBox="0 0 24 24"><path d="M6 5.5v13l9-6.5zM18 5.5v13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3L4.5 9M4.5 4.5V9H9" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M15.5 9a4.5 4.5 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5 21 19.5H3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4M12 16.9v.1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M5.5 14.5 12 8l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M5.5 9.5 12 16l6.5-6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c.8 3.2 5.5 5.3 5.5 10.5a5.5 5.5 0 0 1-11 0c0-2.6 1.4-4.3 2.6-5.3.2 2 1.2 3.1 2.4 3.3-.4-3.1.1-5.8.5-8.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4.5 19.5h4l10-10-4-4-10 10zM13 7l4 4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><path d="M7 4.5 3.5 8 7 11.5M3.5 8h13M17 12.5l3.5 3.5-3.5 3.5M20.5 16h-13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-font" viewBox="0 0 24 24"><path d="M4 7V5h16v2M12 5v14M8.5 19h7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-tip" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 11v5.5M12 7.5v.1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-chair" viewBox="0 0 24 24"><path d="M7 3.5v9h10v-9M7 12.5v8M17 12.5v8M5.5 12.5h13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </svg>
 
   <!-- 헤더 -->
   <header class="header">
     <div class="wrap header__inner">
-      <a class="header__logo" href="index.html"><svg class="ico header__mark" aria-hidden="true" focusable="false"><use href="#i-dumbbell"></use></svg>핏루틴</a>
-      <nav class="gnb" aria-label="주 메뉴">
-        <ul class="gnb__list">
-          <li><a class="gnb__link" href="index.html" aria-current="page"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-list"></use></svg>루틴</a></li>
-          <li><a class="gnb__link" href="timer.html"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머</a></li>
-          <li><a class="gnb__link" href="record.html"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-calendar"></use></svg>기록</a></li>
-          <li><a class="gnb__link" href="my-routine.html"><svg class="ico gnb__ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg>내 루틴</a></li>
-        </ul>
-      </nav>
+      <a class="header__logo" href="routine.html"><svg class="ico header__mark" aria-hidden="true" focusable="false"><use href="#i-dumbbell"></use></svg>핏루틴</a>
+      <div class="header__tools">
+        <button class="btn btn--sm btn--toggle" id="font-toggle" type="button" aria-pressed="false" data-mode-only="senior"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-font"></use></svg>글자 크게<svg class="ico btn__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg></button>
+        <a class="btn btn--sm" href="index.html?select=1"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-swap"></use></svg>화면 바꾸기</a>
+      </div>
     </div>
   </header>
 
-  <main class="wrap" id="main">
-    <!-- 페이지 제목 -->
+  <main class="wrap choice-page" id="main">
     <section class="page-head" aria-labelledby="page-title">
-      <p class="page-head__eyebrow">Routine</p>
-      <h1 class="page-head__title" id="page-title">부위별 운동 루틴</h1>
-      <p class="page-head__desc">오늘 운동할 부위를 고르세요. 운동마다 타이머로 바로 시작할 수 있어요.</p>
+      <p class="page-head__eyebrow">Welcome</p>
+      <h1 class="page-head__title" id="page-title">어떤 화면으로 운동할까요?</h1>
+      <p class="page-head__desc">한 번 고르면 기억해 두고, 다음부터는 바로 운동 화면으로 이동해요. 언제든 위쪽 ‘화면 바꾸기’로 바꿀 수 있어요.</p>
     </section>
 
-    <!-- 부위 탭 -->
-    <div class="tabs__list" role="tablist" aria-label="운동 부위">
-      <button class="tabs__tab" id="tab-chest" type="button" role="tab" aria-selected="true" aria-controls="panel-chest" data-part="chest">가슴</button>
-      <button class="tabs__tab" id="tab-back" type="button" role="tab" aria-selected="false" aria-controls="panel-back" data-part="back" tabindex="-1">등</button>
-      <button class="tabs__tab" id="tab-legs" type="button" role="tab" aria-selected="false" aria-controls="panel-legs" data-part="legs" tabindex="-1">하체</button>
-      <button class="tabs__tab" id="tab-shoulder" type="button" role="tab" aria-selected="false" aria-controls="panel-shoulder" data-part="shoulder" tabindex="-1">어깨</button>
-      <button class="tabs__tab" id="tab-arm" type="button" role="tab" aria-selected="false" aria-controls="panel-arm" data-part="arm" tabindex="-1">팔</button>
-      <button class="tabs__tab" id="tab-core" type="button" role="tab" aria-selected="false" aria-controls="panel-core" data-part="core" tabindex="-1">코어</button>
+    <!-- 화면 선택 -->
+    <div class="choices" role="group" aria-label="화면 종류">
+      <button class="choice" type="button" data-choose-mode="general" aria-pressed="false">
+        <span class="choice__top"><svg class="ico choice__ico" aria-hidden="true" focusable="false"><use href="#i-dumbbell"></use></svg><span class="choice__current">지금 사용 중</span></span>
+        <span class="choice__title">일반용</span>
+        <span class="choice__desc">헬스장·홈트레이닝 근력 운동 · 어두운 화면</span>
+        <span class="choice__list">
+          <span class="choice__item"><svg class="ico choice__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>가슴·등·하체 등 부위별 루틴 6가지</span>
+          <span class="choice__item"><svg class="ico choice__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>타바타·인터벌 타이머</span>
+          <span class="choice__item"><svg class="ico choice__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>주간 기록과 나만의 루틴</span>
+        </span>
+        <span class="choice__go">일반용으로 시작<svg class="ico" aria-hidden="true" focusable="false"><use href="#i-right"></use></svg></span>
+      </button>
+      <button class="choice" type="button" data-choose-mode="senior" aria-pressed="false">
+        <span class="choice__top"><svg class="ico choice__ico" aria-hidden="true" focusable="false"><use href="#i-chair"></use></svg><span class="choice__current">지금 사용 중</span></span>
+        <span class="choice__title">노약자용</span>
+        <span class="choice__desc">무리 없는 운동 · 밝은 화면과 큰 글씨</span>
+        <span class="choice__list">
+          <span class="choice__item"><svg class="ico choice__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>의자 운동·스트레칭·균형 운동</span>
+          <span class="choice__item"><svg class="ico choice__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>큰 글씨, 큰 버튼, 글자 크기 조절</span>
+          <span class="choice__item"><svg class="ico choice__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>천천히 쉬어 가는 타이머</span>
+        </span>
+        <span class="choice__go">노약자용으로 시작<svg class="ico" aria-hidden="true" focusable="false"><use href="#i-right"></use></svg></span>
+      </button>
     </div>
-
-    <!-- 가슴 -->
-    <section class="routine" id="panel-chest" role="tabpanel" aria-labelledby="tab-chest">
-      <header class="routine__head">
-        <h2 class="routine__title">가슴 루틴</h2>
-        <p class="routine__desc">밀어내는 힘을 기르는 기본 4종. 푸시업으로 몸을 데우고 시작해요.</p>
-        <ul class="routine__stats">
-          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
-          <li class="routine__stat"><strong class="routine__num">14</strong>세트</li>
-          <li class="routine__stat">약 <strong class="routine__num">25</strong>분</li>
-        </ul>
-      </header>
-      <ol class="routine__list">
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">01</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">푸시업</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">4</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">15회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=푸시업&amp;reps=15회&amp;sets=4&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 푸시업</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">02</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">벤치프레스</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">4</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">10회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">90초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=벤치프레스&amp;reps=10회&amp;sets=4&amp;rest=90"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 벤치프레스</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">03</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">인클라인 덤벨 프레스</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=인클라인%20덤벨%20프레스&amp;reps=12회&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 인클라인 덤벨 프레스</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">04</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">딥스</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">10회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=딥스&amp;reps=10회&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 딥스</span></a>
-            </div>
-          </article>
-        </li>
-      </ol>
-    </section>
-
-    <!-- 등 -->
-    <section class="routine" id="panel-back" role="tabpanel" aria-labelledby="tab-back" hidden>
-      <header class="routine__head">
-        <h2 class="routine__title">등 루틴</h2>
-        <p class="routine__desc">당기는 동작 위주. 어깨를 내리고 팔꿈치로 당긴다는 느낌을 기억하세요.</p>
-        <ul class="routine__stats">
-          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
-          <li class="routine__stat"><strong class="routine__num">14</strong>세트</li>
-          <li class="routine__stat">약 <strong class="routine__num">27</strong>분</li>
-        </ul>
-      </header>
-      <ol class="routine__list">
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">01</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">풀업</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">4</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">8회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">90초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=풀업&amp;reps=8회&amp;sets=4&amp;rest=90"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 풀업</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">02</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">바벨 로우</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">4</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">10회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">90초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=바벨%20로우&amp;reps=10회&amp;sets=4&amp;rest=90"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 바벨 로우</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">03</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">랫풀다운</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=랫풀다운&amp;reps=12회&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 랫풀다운</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">04</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">시티드 케이블 로우</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=시티드%20케이블%20로우&amp;reps=12회&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 시티드 케이블 로우</span></a>
-            </div>
-          </article>
-        </li>
-      </ol>
-    </section>
-
-    <!-- 하체 -->
-    <section class="routine" id="panel-legs" role="tabpanel" aria-labelledby="tab-legs" hidden>
-      <header class="routine__head">
-        <h2 class="routine__title">하체 루틴</h2>
-        <p class="routine__desc">가장 큰 근육을 쓰는 날. 무릎이 발끝 방향을 따라가게 해주세요.</p>
-        <ul class="routine__stats">
-          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
-          <li class="routine__stat"><strong class="routine__num">14</strong>세트</li>
-          <li class="routine__stat">약 <strong class="routine__num">27</strong>분</li>
-        </ul>
-      </header>
-      <ol class="routine__list">
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">01</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">스쿼트</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">4</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">90초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=스쿼트&amp;reps=12회&amp;sets=4&amp;rest=90"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 스쿼트</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">02</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">런지</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">다리별 12회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=런지&amp;reps=다리별%2012회&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 런지</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">03</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">레그 프레스</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">4</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">90초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=레그%20프레스&amp;reps=12회&amp;sets=4&amp;rest=90"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 레그 프레스</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">04</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">카프 레이즈</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">20회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">45초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=카프%20레이즈&amp;reps=20회&amp;sets=3&amp;rest=45"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 카프 레이즈</span></a>
-            </div>
-          </article>
-        </li>
-      </ol>
-    </section>
-
-    <!-- 어깨 -->
-    <section class="routine" id="panel-shoulder" role="tabpanel" aria-labelledby="tab-shoulder" hidden>
-      <header class="routine__head">
-        <h2 class="routine__title">어깨 루틴</h2>
-        <p class="routine__desc">가벼운 무게로 정확하게. 앞·옆·뒤를 고르게 채워요.</p>
-        <ul class="routine__stats">
-          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
-          <li class="routine__stat"><strong class="routine__num">13</strong>세트</li>
-          <li class="routine__stat">약 <strong class="routine__num">21</strong>분</li>
-        </ul>
-      </header>
-      <ol class="routine__list">
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">01</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">오버헤드 프레스</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">4</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">10회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">90초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=오버헤드%20프레스&amp;reps=10회&amp;sets=4&amp;rest=90"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 오버헤드 프레스</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">02</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">사이드 레터럴 레이즈</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">15회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">45초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=사이드%20레터럴%20레이즈&amp;reps=15회&amp;sets=3&amp;rest=45"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 사이드 레터럴 레이즈</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">03</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">페이스 풀</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">15회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">45초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=페이스%20풀&amp;reps=15회&amp;sets=3&amp;rest=45"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 페이스 풀</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">04</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">리어 델트 플라이</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">15회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">45초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=리어%20델트%20플라이&amp;reps=15회&amp;sets=3&amp;rest=45"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 리어 델트 플라이</span></a>
-            </div>
-          </article>
-        </li>
-      </ol>
-    </section>
-
-    <!-- 팔 -->
-    <section class="routine" id="panel-arm" role="tabpanel" aria-labelledby="tab-arm" hidden>
-      <header class="routine__head">
-        <h2 class="routine__title">팔 루틴</h2>
-        <p class="routine__desc">이두와 삼두를 번갈아 진행해요. 반동 없이 천천히 내리는 게 핵심이에요.</p>
-        <ul class="routine__stats">
-          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
-          <li class="routine__stat"><strong class="routine__num">12</strong>세트</li>
-          <li class="routine__stat">약 <strong class="routine__num">20</strong>분</li>
-        </ul>
-      </header>
-      <ol class="routine__list">
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">01</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">바벨 컬</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=바벨%20컬&amp;reps=12회&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 바벨 컬</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">02</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">트라이셉스 푸시다운</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=트라이셉스%20푸시다운&amp;reps=12회&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 트라이셉스 푸시다운</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">03</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">해머 컬</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=해머%20컬&amp;reps=12회&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 해머 컬</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">04</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">오버헤드 익스텐션</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">12회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">60초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=오버헤드%20익스텐션&amp;reps=12회&amp;sets=3&amp;rest=60"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 오버헤드 익스텐션</span></a>
-            </div>
-          </article>
-        </li>
-      </ol>
-    </section>
-
-    <!-- 코어 -->
-    <section class="routine" id="panel-core" role="tabpanel" aria-labelledby="tab-core" hidden>
-      <header class="routine__head">
-        <h2 class="routine__title">코어 루틴</h2>
-        <p class="routine__desc">매트만 있으면 어디서든 OK. 허리가 바닥에서 뜨지 않게 주의하세요.</p>
-        <ul class="routine__stats">
-          <li class="routine__stat"><strong class="routine__num">4</strong>개 운동</li>
-          <li class="routine__stat"><strong class="routine__num">12</strong>세트</li>
-          <li class="routine__stat">약 <strong class="routine__num">15</strong>분</li>
-        </ul>
-      </header>
-      <ol class="routine__list">
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">01</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">플랭크</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">시간</dt><dd class="exercise__def">45초</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">30초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=플랭크&amp;work=45&amp;sets=3&amp;rest=30"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 플랭크</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">02</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">크런치</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">20회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">30초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=크런치&amp;reps=20회&amp;sets=3&amp;rest=30"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 크런치</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">03</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">레그 레이즈</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">15회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">45초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=레그%20레이즈&amp;reps=15회&amp;sets=3&amp;rest=45"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 레그 레이즈</span></a>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="exercise">
-            <span class="exercise__num" aria-hidden="true">04</span>
-            <div class="exercise__body">
-              <h3 class="exercise__name">러시안 트위스트</h3>
-              <dl class="exercise__meta">
-                <div class="exercise__item"><dt class="exercise__term">세트</dt><dd class="exercise__def">3</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">횟수</dt><dd class="exercise__def">20회</dd></div>
-                <div class="exercise__item"><dt class="exercise__term">휴식</dt><dd class="exercise__def">30초</dd></div>
-              </dl>
-              <a class="btn btn--sm exercise__link" href="timer.html?name=러시안%20트위스트&amp;reps=20회&amp;sets=3&amp;rest=30"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머로 시작<span class="sr-only">: 러시안 트위스트</span></a>
-            </div>
-          </article>
-        </li>
-      </ol>
-    </section>
   </main>
 
   <!-- 푸터 -->
