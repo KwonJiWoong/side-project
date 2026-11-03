@@ -63,7 +63,8 @@
 │  ├─ garden-guide/     우리집 텃밭 수첩
 │  ├─ menu/             오늘 뭐 먹지?
 │  ├─ menu-cute/        밥풀이의 오늘 뭐 먹지? (귀여운 버전)
-│  └─ politics-news/    오늘의 정치 소식 (scraper/를 GitHub Actions가 하루 3번(07·12·18시) 실행해 data/news.json 갱신)
+│  ├─ politics-news/    오늘의 정치 소식 (scraper/를 GitHub Actions가 하루 3번(07·12·18시) 실행해 data/news.json 갱신)
+│  └─ workout-planner/  핏루틴 (20~30대 운동 루틴 플래너, 다크 테마)
 ├─ docs/                작업 규칙 문서 (포트폴리오에는 노출하지 않음)
 │  ├─ CODING_GUIDE.md
 │  ├─ CSS_GUIDE.md
