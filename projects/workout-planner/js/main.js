@@ -3,7 +3,7 @@
 
   /* 저장소 (localStorage를 쓸 수 없어도 동작) */
   const KEY = {
-    records: 'fr-records', goal: 'fr-goal', mode: 'fr-mode', font: 'fr-font',
+    records: 'fr-records', goal: 'fr-goal', mode: 'fr-mode', font: 'fr-font', theme: 'fr-theme',
     routines: 'fr-routines', oldMy: 'fr-my-routine'
   };
 
@@ -115,6 +115,56 @@
       store.set(KEY.mode, mode);
       location.href = 'routine.html';
     }));
+  }
+
+  /* ===== 화면 밝기: 자동(시간) / 밝게 / 어둡게 ===== */
+  function initTheme() {
+    const meta = document.querySelector('meta[name="theme-color"]');
+    const toggle = $('theme-toggle');
+    const radios = [...document.querySelectorAll('input[name="theme"]')];
+    const byTime = () => {
+      const hour = new Date().getHours();
+      return hour >= 7 && hour < 19 ? 'light' : 'dark';
+    };
+
+    function apply(pref) {
+      const theme = pref === 'auto' ? byTime() : pref;
+      root.dataset.themePref = pref;
+      root.dataset.theme = theme;
+      if (meta) meta.content = getComputedStyle(root).getPropertyValue('--color-bg').trim() || meta.content;
+      if (toggle) {
+        const dark = theme === 'dark';
+        toggle.setAttribute('aria-pressed', String(dark));
+        toggle.querySelector('use').setAttribute('href', dark ? '#i-sun' : '#i-moon');
+        toggle.querySelector('[data-theme-label]').textContent = dark ? '밝게' : '어둡게';
+      }
+      radios.forEach((r) => { r.checked = r.value === pref; });
+    }
+
+    // 머리글 버튼: 지금과 반대 밝기로 고정
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        store.set(KEY.theme, next);
+        apply(next);
+      });
+    }
+
+    // 첫 화면 선택지
+    radios.forEach((r) => r.addEventListener('change', () => {
+      store.set(KEY.theme, r.value);
+      apply(r.value);
+    }));
+
+    // 자동일 때 시간이 바뀌면 다시 맞춤
+    setInterval(() => { if (root.dataset.themePref === 'auto') apply('auto'); }, 60000);
+
+    // 다른 탭에서 바꾸면 함께 바뀜
+    window.addEventListener('storage', (e) => {
+      if (e.key === KEY.theme) apply(store.get(KEY.theme, 'auto'));
+    });
+
+    apply(root.dataset.themePref || 'auto');
   }
 
   /* ===== 머리글: 글자 크게 (노약자용) ===== */
@@ -938,6 +988,7 @@
   }
 
   initModeSelect();
+  initTheme();
   initFontToggle();
   initTabs();
   initTimer();

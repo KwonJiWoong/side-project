@@ -1,4 +1,4 @@
-/* 디자인 토큰 (다크 + 네온 / 색 5가지) */
+/* 디자인 토큰 (기본: 일반용 어두운 화면, 다크 + 네온 / 색 5가지) */
 :root {
   color-scheme: dark;
 
@@ -37,11 +37,30 @@
   --gnb-h: 4.25rem;
 }
 
-/* 노약자용: 밝은 화면 · 큰 글씨 (본문 18px) */
-html[data-mode="senior"] {
+/* 일반용 밝은 화면 */
+html[data-theme="light"] {
   color-scheme: light;
+
+  --color-bg: #f6f7f9;
+  --color-surface: #ffffff;
+  --color-text: #121417;     /* 배경 대비 약 17:1 */
+  --color-primary: #315a00;  /* 진한 라임: 배경 대비 약 7.5:1 */
+  --color-accent: #9c0f45;   /* 진한 핑크: 배경 대비 약 7.6:1 */
+  --color-muted: color-mix(in srgb, var(--color-text) 78%, var(--color-bg));
+  --color-line: color-mix(in srgb, var(--color-text) 18%, var(--color-bg));
+  --glow: none;
+}
+
+/* 노약자용: 큰 글씨 · 큰 버튼 (본문 18px) */
+html[data-mode="senior"] {
   font-size: 112.5%;
 
+  --glow: none;
+  --touch: 3.5rem;
+}
+
+/* 노약자용 밝은 화면 */
+html[data-mode="senior"][data-theme="light"] {
   --color-bg: #ffffff;
   --color-surface: #f2f5f9;
   --color-text: #141414;     /* 흰 배경 대비 약 18:1 */
@@ -49,8 +68,17 @@ html[data-mode="senior"] {
   --color-accent: #a3201a;   /* 흰 배경 대비 약 7.6:1 */
   --color-muted: color-mix(in srgb, var(--color-text) 80%, var(--color-bg));
   --color-line: color-mix(in srgb, var(--color-text) 28%, var(--color-bg));
-  --glow: none;
-  --touch: 3.5rem;
+}
+
+/* 노약자용 어두운 화면 (네온 대신 차분한 하늘색) */
+html[data-mode="senior"]:not([data-theme="light"]) {
+  --color-bg: #121417;
+  --color-surface: #1c2026;
+  --color-text: #f5f6f8;     /* 배경 대비 약 17:1 */
+  --color-primary: #8cc4ff;  /* 배경 대비 약 10:1 */
+  --color-accent: #ff8f85;   /* 배경 대비 약 8.4:1 */
+  --color-muted: color-mix(in srgb, var(--color-text) 82%, var(--color-bg));
+  --color-line: color-mix(in srgb, var(--color-text) 30%, var(--color-bg));
 }
 
 /* 노약자용 글자 크게 (본문 21px) */
