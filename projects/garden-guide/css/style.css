@@ -277,25 +277,44 @@
 }
 .picker__list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.75rem;
   margin-top: 0.75rem;
 }
-.picker__btn { justify-content: flex-start; width: 100%; min-height: 4rem; padding-inline: 0.75rem; text-align: left; }
-.picker__img { flex-shrink: 0; width: 2.5rem; height: 2.5rem; }
+.picker__btn {
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+  width: 100%;
+  height: 100%;
+  min-height: 9rem;
+  padding: 1rem 0.5rem;
+  text-align: center;
+}
+.picker__img { flex-shrink: 0; width: 4rem; height: 4rem; }
+.picker__name { font-size: 1.125rem; font-weight: 700; line-height: 1.35; }
+.picker__meta { font-size: 1rem; font-weight: 400; }
 .picker__btn[aria-pressed="true"]::before { content: none; }
 .picker__btn[aria-pressed="true"]::after {
   content: "✓";
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
   display: grid;
   place-items: center;
-  flex-shrink: 0;
   width: 1.75rem;
   height: 1.75rem;
-  margin-left: auto;
   font-size: 1rem;
   color: var(--color-primary);
   background: var(--color-surface);
   border-radius: 50%;
+}
+@media (min-width: 768px) {
+  .picker__list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 1024px) {
+  .picker__list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
 /* 도움말 */
@@ -573,3 +592,19 @@ html[data-contrast="high"] .tip { border: var(--border-w) solid var(--color-text
 }
 .toast:empty { display: none; }
 .toast:not(:empty)::before { content: "✓ "; }
+
+/* 보기 설정 접기 (모바일에서 버튼 하나로) */
+.view-set { display: grid; gap: 0.5rem; width: 100%; }
+@media (min-width: 48rem) { .view-set { width: auto; } }
+.view-set__toggle { display: none; }
+.view-set__mark { font-weight: 800; }
+.view-set__arrow { display: inline-block; transition: transform 0.15s; }
+.view-set.is-open .view-set__arrow { transform: rotate(180deg); }
+.font-step--down { font-size: 0.9em; }
+@media (max-width: 47.98rem) {
+  .view-set--ready .view-set__toggle { display: inline-flex; width: 100%; justify-content: center; }
+  .view-set--ready:not(.is-open) .view-set__panel { display: none; }
+}
+
+/* 예시로 채워 보기 */
+.sample-btn { margin-top: 0.75rem; }

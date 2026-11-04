@@ -354,3 +354,16 @@ html[data-skin="cute"] .footer { background: var(--color-soft); border-top-style
 html[data-skin="cute"] .header__title { font-size: clamp(1.75rem, 7vw, 2.25rem); }
 html[data-skin="cute"] .section-title { font-size: 1.5rem; }
 html[data-skin="cute"] .card__info { border-style: dashed; }
+
+/* 보기 설정 접기 (모바일에서 버튼 하나로) */
+.view-set { display: grid; gap: 0.5rem; width: 100%; }
+@media (min-width: 48rem) { .view-set { width: auto; } }
+.view-set__toggle { display: none; }
+.view-set__mark { font-weight: 800; }
+.view-set__arrow { display: inline-block; transition: transform 0.15s; }
+.view-set.is-open .view-set__arrow { transform: rotate(180deg); }
+.font-step--down { font-size: 0.9em; }
+@media (max-width: 47.98rem) {
+  .view-set--ready .view-set__toggle { display: inline-flex; width: 100%; justify-content: center; }
+  .view-set--ready:not(.is-open) .view-set__panel { display: none; }
+}

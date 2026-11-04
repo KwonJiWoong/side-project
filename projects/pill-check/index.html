@@ -50,11 +50,14 @@
       </h1>
       <a class="btn btn--home" href="#today"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg> 처음으로</a>
 
-      <div class="tools" role="group" aria-label="보기 설정">
-        <p class="tools__label">글자 크기: <strong id="sizeText">보통</strong></p>
-        <button type="button" class="btn btn--tool" id="fontDown"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-text-minus"></use></svg> 글자 작게</button>
-        <button type="button" class="btn btn--tool" id="fontUp"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-text-plus"></use></svg> 글자 크게</button>
-        <button type="button" class="btn btn--tool btn--toggle" id="contrastBtn" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-contrast"></use></svg> 고대비 보기</button>
+      <div class="view-set">
+        <button type="button" class="btn btn--tool view-set__toggle" id="viewBtn" aria-expanded="false" aria-controls="viewPanel"><span class="view-set__mark" aria-hidden="true">가</span> 글자 크기·고대비 <span class="view-set__arrow" aria-hidden="true">▾</span></button>
+        <div class="tools view-set__panel" id="viewPanel" role="group" aria-label="보기 설정">
+          <p class="tools__label">글자 크기: <strong id="sizeText">보통</strong></p>
+          <button type="button" class="btn btn--tool font-step--down" id="fontDown">가<span class="sr-only"> 글자 작게</span></button>
+          <button type="button" class="btn btn--tool" id="fontUp">가+<span class="sr-only"> 글자 크게</span></button>
+          <button type="button" class="btn btn--tool btn--toggle" id="contrastBtn" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-contrast"></use></svg> 고대비 보기</button>
+        </div>
       </div>
     </div>
 
@@ -84,6 +87,7 @@
 
         <p class="empty" id="todayEmpty" hidden>아직 등록한 약이 없어요.<br>먼저 <strong>약 등록</strong>에서 드시는 약을 적어 주세요.</p>
         <a class="btn btn--primary btn--block empty__btn" href="#meds" id="todayEmptyBtn" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 약 등록하러 가기</a>
+        <button type="button" class="btn btn--tool btn--block sample-btn" id="sampleBtn" hidden>예시 약으로 채워 보기</button>
 
         <ol class="slots" id="slotList"></ol>
 

@@ -183,6 +183,17 @@
   border: var(--border-w) solid var(--color-primary);
   border-radius: var(--radius-lg);
 }
+.work__thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top left;
+  background: var(--color-bg);
+  border: 0.0625rem solid var(--color-primary);
+  border-radius: var(--radius);
+}
 .work__meta { display: flex; align-items: center; gap: 0.75rem; }
 .work__badge {
   display: inline-flex;
@@ -348,4 +359,17 @@
   .about { flex-direction: row; align-items: flex-start; gap: 3.5rem; }
   .about__intro { flex: 1.1; }
   .about__card { flex: 0.9; }
+}
+
+/* 보기 설정 접기 (모바일에서 버튼 하나로) */
+.view-set { display: grid; gap: 0.5rem; width: 100%; }
+@media (min-width: 48rem) { .view-set { width: auto; } }
+.view-set__toggle { display: none; }
+.view-set__mark { font-weight: 800; }
+.view-set__arrow { display: inline-block; transition: transform 0.15s; }
+.view-set.is-open .view-set__arrow { transform: rotate(180deg); }
+.font-step--down { font-size: 0.9em; }
+@media (max-width: 47.98rem) {
+  .view-set--ready .view-set__toggle { display: inline-flex; width: 100%; justify-content: center; }
+  .view-set--ready:not(.is-open) .view-set__panel { display: none; }
 }
