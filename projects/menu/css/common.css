@@ -12,12 +12,37 @@
   --color-accent-soft: #e6f0e1;
   --color-border: #8a6a4f;
   --color-focus: #0b3d91;
+  --color-bubble: #fff4cc;
+
+  /* 캐릭터 색 */
+  --mascot-body: #ffffff;
+  --mascot-line: #6b2440;
+  --mascot-nori: #2b3a2e;
+  --mascot-cheek: #ff8fab;
+  --mascot-eye: #3b2330;
 
   --font-sans: 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  --font-cute: 'Jua', var(--font-sans);
   --border-w: 0.1875rem;
   --radius: 1rem;
+  --shadow: none;
   --touch: 3.5rem;
   --page-pad: clamp(1rem, 4vw, 1.5rem);
+}
+
+/* 귀여운 화면 */
+html[data-skin="cute"] {
+  --color-bg: #fff6f8;
+  --color-soft: #ffe3ea;
+  --color-text: #3b2330;
+  --color-text-sub: #5c3a4a;
+  --color-primary: #9e2a52;
+  --color-primary-hover: #7f1f41;
+  --color-accent: #2e5a3a;
+  --color-accent-soft: #e4f3e6;
+  --color-border: #b56a86;
+  --radius: 1.25rem;
+  --shadow: 0 0.3rem 0 var(--color-border);
 }
 
 /* 고대비 모드 */
@@ -33,7 +58,13 @@ html[data-contrast="high"] {
   --color-accent-soft: #ffffff;
   --color-border: #000000;
   --color-focus: #d00000;
+  --color-bubble: #ffffff;
+  --mascot-line: #000000;
+  --mascot-nori: #000000;
+  --mascot-cheek: #ffffff;
+  --mascot-eye: #000000;
   --border-w: 0.25rem;
+  --shadow: none;
 }
 
 /* 글자 크기 단계 (기본 18px) */
@@ -53,6 +84,11 @@ body {
   word-break: keep-all;
   overflow-wrap: break-word;
 }
+html[data-skin="cute"] body {
+  background-image: radial-gradient(var(--color-soft) 0.18rem, transparent 0.2rem);
+  background-size: 1.5rem 1.5rem;
+}
+html[data-contrast="high"] body { background-image: none; }
 
 /* 키보드 포커스 */
 :focus-visible {

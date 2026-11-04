@@ -33,8 +33,7 @@ side-project/                    GitHub Pages로 공개 (main 브랜치)
 ├─ index.html · css/ · js/ · images/   포트폴리오 메인
 ├─ projects/
 │  ├─ garden-guide/              우리집 텃밭 수첩 (+ privacy.html)
-│  ├─ menu/                      오늘 뭐 먹지?
-│  ├─ menu-cute/                 밥풀이의 오늘 뭐 먹지?
+│  ├─ menu/                      오늘 뭐 먹지? (귀여운 화면 전환)
 │  └─ politics-news/             오늘의 정치 소식 (+ data/, scraper/)
 ├─ docs/                         작업 규칙 문서와 가이드 뷰어
 ├─ .github/workflows/            자동 실행 (정치 뉴스 수집)

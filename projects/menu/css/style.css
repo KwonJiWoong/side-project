@@ -63,6 +63,7 @@
   width: 100%;
 }
 .tools__label { grid-column: 1 / -1; font-weight: 700; }
+.btn--skin { grid-column: 1 / -1; }
 
 /* 공통 섹션 */
 main { display: block; padding-block: 1.5rem 2rem; }
@@ -72,7 +73,7 @@ main { display: block; padding-block: 1.5rem 2rem; }
   font-weight: 800;
   line-height: 1.4;
 }
-.pick, .result, .all { margin-bottom: 2rem; }
+.hello, .pick, .result, .all { margin-bottom: 2rem; }
 
 /* 끼니 선택 */
 .meal-list {
@@ -234,8 +235,9 @@ main { display: block; padding-block: 1.5rem 2rem; }
 
 /* 태블릿 이상 */
 @media (min-width: 768px) {
-  .tools { grid-template-columns: auto 1fr 1fr 2fr; width: 100%; }
-  .tools__label { grid-column: auto; }
+  .tools { grid-template-columns: auto 1fr 1fr 2fr 2fr; width: 100%; }
+  .tools__label, .btn--skin { grid-column: auto; }
+  .mascot { gap: 1.5rem; }
   .card { padding: 2rem; }
   .kind-list { grid-template-columns: repeat(5, 1fr); }
 }
@@ -243,3 +245,112 @@ main { display: block; padding-block: 1.5rem 2rem; }
 /* 줄바꿈 방지 */
 .btn--tool, .meal-btn__label, .all__summary::after { white-space: nowrap; }
 .btn--tool { padding-inline: 0.75rem; }
+
+/* 캐릭터 */
+.mascot {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.mascot__img {
+  flex-shrink: 0;
+  width: clamp(6.5rem, 30vw, 8.5rem);
+  height: auto;
+  overflow: visible;
+}
+.mascot__body { fill: var(--mascot-body); stroke: var(--mascot-line); stroke-width: 5; stroke-linejoin: round; }
+.mascot__nori { fill: var(--mascot-nori); }
+.mascot__grain { fill: var(--color-soft); stroke: var(--mascot-line); stroke-width: 1.5; }
+.mascot__eyes { fill: var(--mascot-eye); stroke: var(--mascot-eye); }
+.mascot__eyes--open { stroke: none; }
+.mascot__eyes--happy { display: none; fill: none; stroke-width: 5; stroke-linecap: round; }
+.mascot__shine { fill: #ffffff; }
+.mascot__cheek { fill: var(--mascot-cheek); }
+.mascot__mouth { fill: none; stroke: var(--mascot-line); stroke-width: 4; stroke-linecap: round; }
+
+/* 캐릭터 신난 표정 */
+.mascot--happy .mascot__eyes--open { display: none; }
+.mascot--happy .mascot__eyes--happy { display: inline; }
+.mascot--happy .mascot__img { animation: mascot-hop 0.5s ease-out 1; }
+@keyframes mascot-hop {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-0.6rem) rotate(-4deg); }
+}
+
+/* 말풍선 */
+.mascot__bubble {
+  position: relative;
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.6;
+  background: var(--color-bubble);
+  border: var(--border-w) solid var(--color-border);
+  border-radius: var(--radius);
+}
+.mascot__bubble::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -0.75rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: var(--color-bubble);
+  border-left: var(--border-w) solid var(--color-border);
+  border-bottom: var(--border-w) solid var(--color-border);
+  transform: translateY(-50%) rotate(45deg);
+}
+.mascot__name {
+  display: block;
+  font-family: var(--font-cute);
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: var(--color-primary);
+}
+
+/* 귀여운 화면 */
+.section-title__num { display: none; }
+
+html[data-skin="cute"] .section-title { display: flex; align-items: center; gap: 0.5rem; }
+html[data-skin="cute"] .section-title__num {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.125rem;
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  border-radius: 50%;
+}
+html[data-skin="cute"] .header__title,
+html[data-skin="cute"] .section-title,
+html[data-skin="cute"] .card__name,
+html[data-skin="cute"] .btn--primary { font-family: var(--font-cute); font-weight: 400; }
+html[data-skin="cute"] .header { border-bottom-style: dashed; }
+html[data-skin="cute"] .btn { border-radius: 999px; box-shadow: var(--shadow); transition: background-color 0.15s, transform 0.1s, box-shadow 0.1s; }
+html[data-skin="cute"] .btn--primary { font-size: 1.4rem; box-shadow: 0 0.35rem 0 var(--color-primary-hover); }
+html[data-skin="cute"] .meal-btn,
+html[data-skin="cute"] .kind-btn,
+html[data-skin="cute"] .all__summary { box-shadow: var(--shadow); transition: transform 0.1s, box-shadow 0.1s; }
+html[data-skin="cute"] .btn:active,
+html[data-skin="cute"] .meal-btn:active,
+html[data-skin="cute"] .kind-btn:active { transform: translateY(0.2rem); box-shadow: none; }
+html[data-skin="cute"] .card { border-radius: 2rem; box-shadow: 0 0.4rem 0 var(--color-border); }
+html[data-skin="cute"] .card__emoji {
+  display: grid;
+  place-items: center;
+  width: 7rem;
+  height: 7rem;
+  margin: 0.75rem auto 0;
+  line-height: 1;
+  background: var(--color-soft);
+  border-radius: 50%;
+}
+html[data-skin="cute"] .card__name { font-size: clamp(2rem, 9vw, 2.5rem); }
+html[data-skin="cute"] .menu-btn { border-radius: 999px; }
+html[data-skin="cute"] .footer { background: var(--color-soft); border-top-style: dashed; }
+html[data-skin="cute"] .header__title { font-size: clamp(1.75rem, 7vw, 2.25rem); }
+html[data-skin="cute"] .section-title { font-size: 1.5rem; }
+html[data-skin="cute"] .card__info { border-style: dashed; }
