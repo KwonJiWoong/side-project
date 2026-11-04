@@ -75,6 +75,12 @@
   <main id="main" tabindex="-1">
     <div class="container">
 
+      <!-- 예시 화면 안내 -->
+      <aside class="demo-bar" id="demoBar" aria-labelledby="demoBarText" hidden>
+        <p class="demo-bar__text" id="demoBarText"><span class="demo-bar__tag">예시</span> <strong>지금은 예시 화면이에요.</strong> 진짜 기록이 아니고, 눌러도 저장되지 않아요.</p>
+        <button type="button" class="btn btn--primary" id="demoEnd"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-close"></use></svg> 예시 끝내기</button>
+      </aside>
+
       <!-- 오늘 먹을 약 -->
       <section class="panel" id="today" aria-labelledby="todayTitle">
         <h2 class="panel__title" id="todayTitle" tabindex="-1">오늘 먹을 약</h2>
@@ -87,7 +93,7 @@
 
         <p class="empty" id="todayEmpty" hidden>아직 등록한 약이 없어요.<br>먼저 <strong>약 등록</strong>에서 드시는 약을 적어 주세요.</p>
         <a class="btn btn--primary btn--block empty__btn" href="#meds" id="todayEmptyBtn" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 약 등록하러 가기</a>
-        <button type="button" class="btn btn--tool btn--block sample-btn" id="sampleBtn" hidden>예시 약으로 채워 보기</button>
+        <button type="button" class="btn btn--tool btn--block sample-btn" id="sampleBtn" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pill"></use></svg> 예시 화면 둘러보기</button>
 
         <ol class="slots" id="slotList"></ol>
 
@@ -101,6 +107,12 @@
       <section class="panel" id="meds" aria-labelledby="medsTitle" hidden>
         <h2 class="panel__title" id="medsTitle" tabindex="-1">약 등록</h2>
         <p class="panel__lead">드시는 약 이름과 먹는 때를 골라 주세요.</p>
+
+        <section class="demo-lock" id="demoLock" aria-labelledby="demoLockTitle" hidden>
+          <h3 class="demo-lock__title" id="demoLockTitle">예시 화면에서는 약을 등록할 수 없어요</h3>
+          <p>예시를 끝내면 예시 약은 사라지고, 바로 내 약을 등록할 수 있어요.</p>
+          <button type="button" class="btn btn--primary btn--block" id="demoEndForm"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 예시 끝내고 내 약 등록하기</button>
+        </section>
 
         <form class="form" id="medForm" novalidate aria-labelledby="formTitle">
           <h3 class="form__title" id="formTitle">새 약 등록하기</h3>
@@ -148,23 +160,10 @@
           <h3 class="my-meds__title" id="myMedsTitle">등록한 약 <span id="medCount">0개</span></h3>
           <div class="undo" id="undoBox" role="group" aria-labelledby="undoText" hidden>
             <p class="undo__text" id="undoText"></p>
-            <button type="button" class="btn btn--primary" id="undoBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-undo"></use></svg> 되돌리기</button>
+            <button type="button" class="btn btn--primary" id="undoBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-undo"></use></svg> <span id="undoBtnText">되돌리기</span></button>
           </div>
           <p class="empty" id="medEmpty">아직 등록한 약이 없어요. 위에서 첫 약을 등록해 보세요.</p>
           <ul class="my-meds__list" id="medList"></ul>
-
-          <section class="reset" id="clearBox" aria-labelledby="clearTitle" hidden>
-            <h4 class="reset__title" id="clearTitle">약 모두 지우기</h4>
-            <p>등록한 약을 한 번에 모두 지워요. 지난 기록은 남아 있어요.</p>
-            <button type="button" class="btn btn--danger" id="clearBtn" aria-expanded="false" aria-controls="clearConfirm"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-trash"></use></svg> 약 모두 지우기</button>
-            <div class="confirm" id="clearConfirm" role="group" aria-labelledby="clearConfirmText" hidden>
-              <p class="confirm__text" id="clearConfirmText">등록한 약을 모두 지울까요? 바로 다음에 <strong>되돌리기</strong>를 누르면 다시 살릴 수 있어요.</p>
-              <p class="confirm__btns">
-                <button type="button" class="btn btn--danger" id="clearYes"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-trash"></use></svg> 네, 모두 지울게요</button>
-                <button type="button" class="btn" id="clearNo"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-close"></use></svg> 아니요</button>
-              </p>
-            </div>
-          </section>
         </section>
       </section>
 
@@ -228,11 +227,15 @@
           <p>약 먹은 기록과 몸 상태 기록을 모두 지워요. 등록한 약은 남아 있어요.</p>
           <button type="button" class="btn btn--danger" id="resetBtn" aria-expanded="false" aria-controls="resetConfirm"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-trash"></use></svg> 기록 모두 지우기</button>
           <div class="confirm" id="resetConfirm" role="group" aria-labelledby="resetConfirmText" hidden>
-            <p class="confirm__text" id="resetConfirmText">정말 지울까요? 지운 기록은 되살릴 수 없어요.</p>
+            <p class="confirm__text" id="resetConfirmText">정말 지울까요? 지운 뒤 <strong>되돌리기</strong>를 누르면 오늘 안에는 다시 살릴 수 있어요.</p>
             <p class="confirm__btns">
               <button type="button" class="btn btn--danger" id="resetYes"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-trash"></use></svg> 네, 지울게요</button>
               <button type="button" class="btn" id="resetNo"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-close"></use></svg> 아니요</button>
             </p>
+          </div>
+          <div class="undo" id="recordUndoBox" role="group" aria-labelledby="recordUndoText" hidden>
+            <p class="undo__text" id="recordUndoText"></p>
+            <button type="button" class="btn btn--primary" id="recordUndoBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-undo"></use></svg> 기록 되돌리기</button>
           </div>
         </section>
       </section>
