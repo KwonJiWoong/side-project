@@ -98,7 +98,8 @@
     meal: $('cardMeal'), emoji: $('cardEmoji'), name: $('cardName'), desc: $('cardDesc'),
     kind: $('cardKind'), time: $('cardTime'), feel: $('cardFeel'), link: $('recipeLink'),
     next: $('nextBtn'), notice: $('notice'), details: $('allDetails'),
-    list: $('menuList'), count: $('menuCount')
+    list: $('menuList'), count: $('menuCount'),
+    skin: $('skinBtn'), hello: $('hello'), mascot: $('mascot'), mascotSay: $('mascotSay')
   };
 
   const state = { meal: 'lunch', kind: 'all', index: 0, size: 0, queues: {} };
@@ -111,6 +112,28 @@
 
   /* 안내 메시지 */
   function say(message) { el.notice.textContent = message ? '✓ ' + message : ''; }
+
+  /* 캐릭터 말풍선 */
+  const FEEL_LINES = {
+    '가볍게': '속이 편한',
+    '든든하게': '든든한',
+    '따뜻하게': '몸이 따뜻해지는',
+    '시원하게': '시원한'
+  };
+  let hopTimer = null;
+  function talk(text, happy) {
+    el.mascotSay.textContent = text;
+    if (!happy || el.hello.hidden) return;
+    el.mascot.classList.remove('mascot--happy');
+    void el.mascot.offsetWidth; // 애니메이션 다시 시작
+    el.mascot.classList.add('mascot--happy');
+    clearTimeout(hopTimer);
+    hopTimer = setTimeout(() => el.mascot.classList.remove('mascot--happy'), 1500);
+  }
+  function talkMenu() {
+    const item = currentItems()[state.index];
+    talk((FEEL_LINES[item.feel] || '맛있는') + ' ' + item.name + ' 어때요? 냠냠!', true);
+  }
 
   /* 시간대에 맞는 끼니 */
   function defaultMeal() {
@@ -192,6 +215,7 @@
     state.index = nextIndex(-1);
     showCard();
     say(message);
+    if (message) talkMenu();
   }
 
   /* 끼니 바꾸기 */
@@ -210,6 +234,7 @@
   function recommend() {
     state.index = nextIndex(state.index);
     showCard();
+    talkMenu();
     say('새 메뉴로 바꿨어요.');
   }
 
@@ -229,6 +254,17 @@
     store.set('menu-contrast', on ? '1' : '0');
   }
 
+  /* 화면 모양 (기본 / 귀여운 화면) */
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  function setSkin(cute) {
+    if (cute) root.setAttribute('data-skin', 'cute');
+    else root.removeAttribute('data-skin');
+    el.hello.hidden = !cute;
+    el.skin.setAttribute('aria-pressed', String(cute));
+    if (themeMeta) themeMeta.setAttribute('content', cute ? '#ffe3ea' : '#ffeacc');
+    store.set('menu-skin', cute ? 'cute' : 'basic');
+  }
+
   /* 이벤트 */
   el.mealBtns.forEach((btn) => btn.addEventListener('click', () => setMeal(btn.dataset.meal)));
   el.kindBtns.forEach((btn) => btn.addEventListener('click', () => setKind(btn.dataset.kind)));
@@ -239,6 +275,7 @@
     if (!btn) return;
     state.index = Number(btn.dataset.index);
     showCard();
+    talkMenu();
     say('선택하신 메뉴를 보여드려요.');
     window.scrollTo({ top: 0 });
     el.title.focus();
@@ -260,10 +297,17 @@
     say(on ? '고대비로 바꿨어요.' : '원래 색으로 돌아왔어요.');
   });
 
+  el.skin.addEventListener('click', () => {
+    const cute = el.skin.getAttribute('aria-pressed') !== 'true';
+    setSkin(cute);
+    say(cute ? '귀여운 화면으로 바꿨어요.' : '기본 화면으로 돌아왔어요.');
+  });
+
   el.home.addEventListener('click', () => {
     el.details.open = false;
     state.kind = 'all';
     setMeal(defaultMeal(), '처음 화면으로 돌아왔어요.');
+    talk('안녕하세요! 오늘 뭐 드실지 같이 골라 봐요.', false);
     window.scrollTo({ top: 0 });
     el.title.focus();
   });
@@ -272,5 +316,6 @@
   const savedSize = Number(store.get('menu-size'));
   setSize(savedSize >= 0 && savedSize < SIZE_LABELS.length ? savedSize : 0);
   setContrast(store.get('menu-contrast') === '1');
+  setSkin(store.get('menu-skin') === 'cute' || new URLSearchParams(location.search).get('skin') === 'cute');
   setMeal(defaultMeal(), '');
 })();
