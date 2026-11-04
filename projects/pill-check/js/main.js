@@ -39,7 +39,11 @@
     medCount: $('medCount'),
     undoBox: $('undoBox'),
     undoText: $('undoText'),
-    clearBox: $('clearBox'),
+    undoBtnText: $('undoBtnText'),
+    recordUndoBox: $('recordUndoBox'),
+    recordUndoText: $('recordUndoText'),
+    demoBar: $('demoBar'),
+    demoLock: $('demoLock'),
     healthForm: $('healthForm'),
     healthMemo: $('healthMemo'),
     healthSaved: $('healthSaved'),
@@ -96,16 +100,34 @@
     size: 0,
     edit: null,
     confirm: null,
-    undo: null
+    demo: false,
+    undoMeds: [],
+    undoRecord: null
   };
+  const UNDO_MAX = 5;
+  const copy = (v) => JSON.parse(JSON.stringify(v));
 
   function load() {
     const meds = store.json('pill-meds', []);
     state.meds = Array.isArray(meds) ? meds.filter((m) => m && m.id && m.name && Array.isArray(m.times)) : [];
     state.log = store.json('pill-log', {});
     state.health = store.json('pill-health', {});
+    /* 예전 방식으로 저장된 예시 약 정리 (예시뿐이면 기록도 함께) */
+    const isEx = (m) => /^ex\d$/.test(m.id) && / \(예시\)$/.test(m.name);
+    if (state.meds.some(isEx)) {
+      if (state.meds.every(isEx)) { state.log = {}; state.health = {}; }
+      state.meds = state.meds.filter((m) => !isEx(m));
+    }
+    /* 되돌리기는 지운 그날 안에만 */
+    const t = today();
+    const um = store.json('pill-undo-meds', []);
+    state.undoMeds = Array.isArray(um) ? um.filter((u) => u && u.day === t && u.med && u.med.id) : [];
+    const ur = store.json('pill-undo-records', null);
+    state.undoRecord = ur && ur.day === t ? ur : null;
   }
   function save() {
+    /* 예시 화면은 저장하지 않음 */
+    if (state.demo) return;
     /* 오래된 기록은 정리 */
     const limit = addDays(today(), -KEEP_DAYS);
     Object.keys(state.log).forEach((k) => { if (k < limit) delete state.log[k]; });
@@ -113,6 +135,8 @@
     store.set('pill-meds', JSON.stringify(state.meds));
     store.set('pill-log', JSON.stringify(state.log));
     store.set('pill-health', JSON.stringify(state.health));
+    store.set('pill-undo-meds', JSON.stringify(state.undoMeds));
+    store.set('pill-undo-records', JSON.stringify(state.undoRecord));
   }
   const findMed = (id) => state.meds.find((m) => m.id === id);
 
@@ -248,9 +272,14 @@
   function renderMeds(focusSel) {
     el.medCount.textContent = state.meds.length + '개';
     el.medEmpty.hidden = state.meds.length > 0;
-    el.clearBox.hidden = state.meds.length === 0;
-    el.undoBox.hidden = !state.undo;
-    if (state.undo) el.undoText.textContent = state.undo.label + ' 잘못 지웠다면 되돌릴 수 있어요.';
+    const last = state.undoMeds[state.undoMeds.length - 1];
+    el.undoBox.hidden = !last;
+    if (last) {
+      const more = state.undoMeds.length - 1;
+      el.undoText.textContent = '방금 ' + last.med.name + '을(를) 지웠어요. 잘못 지웠다면 되돌려 주세요.' +
+        (more ? ' 그 전에 지운 약 ' + more + '개도 하나씩 되돌릴 수 있어요.' : '');
+      el.undoBtnText.textContent = last.med.name + ' 되돌리기';
+    }
     el.medList.innerHTML = state.meds.map((m) => {
       const times = SLOTS.filter((s) => m.times.includes(s.id)).map((s) => s.label).join(' · ');
       const open = state.confirm === m.id;
@@ -298,7 +327,7 @@
         break;
       case 'remove-yes':
         state.confirm = null;
-        keepUndo(med.name + '을(를) 지웠어요.');
+        keepMedUndo(med);
         state.meds = state.meds.filter((m) => m.id !== id);
         if (state.edit === id) resetForm();
         save();
@@ -309,50 +338,28 @@
     }
   });
 
-  /* 지우기 전 상태 기억 (되돌리기용) */
-  function keepUndo(label) {
+  /* 지운 약 되돌리기 (지운 순서 반대로 하나씩) */
+  function keepMedUndo(med) {
     const t = today();
-    state.undo = {
-      label,
-      day: t,
-      meds: JSON.parse(JSON.stringify(state.meds)),
-      log: state.log[t] ? JSON.parse(JSON.stringify(state.log[t])) : null
-    };
+    const done = {};
+    const day = state.log[t];
+    if (day && day.done) Object.keys(day.done).forEach((k) => { if (k.split('@')[0] === med.id) done[k] = day.done[k]; });
+    state.undoMeds.push({ day: t, med: copy(med), index: state.meds.indexOf(med), done });
+    if (state.undoMeds.length > UNDO_MAX) state.undoMeds.shift();
   }
   $('undoBtn').addEventListener('click', () => {
-    const u = state.undo;
+    const u = state.undoMeds.pop();
     if (!u) return;
-    state.meds = u.meds;
-    if (u.log && u.day === today()) state.log[u.day] = u.log;
-    state.undo = null;
+    if (!findMed(u.med.id)) state.meds.splice(Math.min(u.index, state.meds.length), 0, u.med);
+    if (u.day === today() && Object.keys(u.done).length) {
+      const t = today();
+      state.log[t] = state.log[t] || { done: {} };
+      Object.assign(state.log[t].done, u.done);
+    }
     save();
     renderAll();
-    $('medsTitle').focus();
-    say('지운 약을 되돌렸어요. 약 ' + state.meds.length + '개가 다시 있어요.');
-  });
-
-  /* 약 모두 지우기 */
-  const clearBtn = $('clearBtn');
-  const clearConfirm = $('clearConfirm');
-  function toggleClear(open) {
-    clearConfirm.hidden = !open;
-    clearBtn.setAttribute('aria-expanded', String(open));
-    (open ? $('clearNo') : clearBtn).focus();
-  }
-  clearBtn.addEventListener('click', () => toggleClear(clearConfirm.hidden));
-  $('clearNo').addEventListener('click', () => toggleClear(false));
-  $('clearYes').addEventListener('click', () => {
-    const count = state.meds.length;
-    keepUndo('약 ' + count + '개를 모두 지웠어요.');
-    state.meds = [];
-    state.confirm = null;
-    if (state.edit) resetForm();
-    clearConfirm.hidden = true;
-    clearBtn.setAttribute('aria-expanded', 'false');
-    save();
-    renderAll();
-    $('undoBtn').focus();
-    say('약 ' + count + '개를 모두 지웠어요. 되돌리기를 누르면 다시 살아나요.');
+    $(state.undoMeds.length ? 'undoBtn' : 'medsTitle').focus();
+    say(u.med.name + '을(를) 되돌렸어요. 오늘 먹을 약에도 다시 나와요.');
   });
 
   /* 약 등록 · 고치기 폼 */
@@ -408,7 +415,6 @@
     const meal = (el.form.querySelector('input[name="meal"]:checked') || {}).value || 'after';
     const memo = el.memo.value.trim();
     const wasEdit = state.edit;
-    state.undo = null;
     if (wasEdit) {
       Object.assign(findMed(wasEdit), { name, times, meal, memo });
     } else {
@@ -488,24 +494,73 @@
   resetBtn.addEventListener('click', () => toggleReset(resetConfirm.hidden));
   $('resetNo').addEventListener('click', () => toggleReset(false));
   $('resetYes').addEventListener('click', () => {
+    const has = Object.keys(state.log).length || Object.keys(state.health).length;
+    if (has) state.undoRecord = { day: today(), log: copy(state.log), health: copy(state.health) };
     state.log = {};
     state.health = {};
     save();
     el.healthForm.reset();
     renderAll();
-    toggleReset(false);
-    say('기록을 모두 지웠어요.');
+    resetConfirm.hidden = true;
+    resetBtn.setAttribute('aria-expanded', 'false');
+    (has ? $('recordUndoBtn') : resetBtn).focus();
+    say(has ? '기록을 모두 지웠어요. 되돌리기를 누르면 다시 살아나요.' : '지울 기록이 없어요.');
+  });
+  function renderRecordUndo() {
+    el.recordUndoBox.hidden = !state.undoRecord;
+    if (state.undoRecord) el.recordUndoText.textContent = '기록을 모두 지웠어요. 잘못 지웠다면 되돌려 주세요.';
+  }
+  $('recordUndoBtn').addEventListener('click', () => {
+    const u = state.undoRecord;
+    if (!u) return;
+    /* 지운 뒤 새로 남긴 기록은 그대로 두고 합치기 */
+    Object.keys(u.log).forEach((k) => {
+      const now = state.log[k];
+      state.log[k] = now ? { total: now.total, done: Object.assign({}, u.log[k].done, now.done) } : u.log[k];
+    });
+    Object.keys(u.health).forEach((k) => { if (!state.health[k]) state.health[k] = u.health[k]; });
+    state.undoRecord = null;
+    save();
+    renderAll();
+    resetBtn.focus();
+    say('지운 기록을 되돌렸어요.');
   });
 
   function renderAll() {
+    renderDemo();
     renderToday();
     renderMeds();
     renderHealth();
     renderHistory();
+    renderRecordUndo();
   }
 
-  /* 예시로 채워 보기: 약 3가지와 최근 며칠 기록을 넣어 기능을 미리 보여 줌 */
+  /* 예시 화면: 진짜 기록과 따로, 저장하지 않고 화면에서만 보여 줌 */
+  function renderDemo() {
+    el.demoBar.hidden = !state.demo;
+    el.demoLock.hidden = !state.demo;
+    el.form.hidden = state.demo;
+    if (state.demo) root.setAttribute('data-demo', '');
+    else root.removeAttribute('data-demo');
+  }
+  function endDemo(goForm) {
+    state.demo = false;
+    state.confirm = null;
+    resetForm();
+    el.healthForm.reset();
+    load();
+    renderAll();
+    if (goForm) el.name.focus();
+    else $(panelFromHash() + 'Title').focus();
+    say('예시를 끝냈어요. 이제부터 적는 건 진짜 기록이에요.');
+  }
+  $('demoEnd').addEventListener('click', () => endDemo(false));
+  $('demoEndForm').addEventListener('click', () => endDemo(true));
+
   el.sample.addEventListener('click', () => {
+    state.demo = true;
+    state.undoMeds = [];
+    state.undoRecord = null;
     const t = today();
     const at = (key, h, m) => { const d = parse(key); d.setHours(h, m); return d.toISOString(); };
     state.meds = [
@@ -515,7 +570,6 @@
     ];
     state.log = {};
     state.health = {};
-    state.undo = null;
     [1, 2, 3].forEach((n) => {
       const key = addDays(t, -n);
       const done = { 'ex1@morning': at(key, 8, 10), 'ex3@morning': at(key, 7, 40), 'ex2@lunch': at(key, 12, 30) };
@@ -524,9 +578,9 @@
       state.health[key] = { mood: n === 2 ? 'soso' : 'good', memo: n === 2 ? '조금 피곤했어요' : '', at: at(key, 21, 0) };
     });
     state.log[t] = { total: 4, done: { 'ex3@morning': at(t, 7, 40), 'ex1@morning': at(t, 8, 10) } };
-    save();
     renderAll();
-    say('예시 약 3가지와 지난 기록을 넣었어요. 약 등록에서 지울 수 있어요.');
+    $('demoEnd').focus();
+    say('예시 화면이에요. 마음껏 눌러 보셔도 저장되지 않아요. 다 보셨으면 예시 끝내기를 눌러 주세요.');
   });
 
   /* 화면(메뉴) 전환: 한 화면에 한 가지 목적 */
