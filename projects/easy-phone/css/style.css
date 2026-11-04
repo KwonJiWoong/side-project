@@ -42,14 +42,7 @@
   font-weight: 700;
 }
 
-.font-control__btn[aria-pressed="true"] { background: var(--color-bg); color: var(--color-primary); }
-
-.font-control__btn[aria-pressed="true"]::before { content: "✓"; font-weight: 800; }
-
-/* 단계별로 아이콘 크기를 달리해 차이가 보이게 */
-.font-control__btn .ico { width: 1em; height: 1em; }
-.font-control__btn[data-size="lg"] .ico { width: 1.25em; height: 1.25em; }
-.font-control__btn[data-size="xl"] .ico { width: 1.5em; height: 1.5em; }
+.font-control__btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
 /* 메뉴 (햄버거 없이 항상 보이는 버튼) */
 .gnb { margin-bottom: var(--space-md); }
@@ -335,3 +328,19 @@
   .gnb__list { grid-template-columns: repeat(3, minmax(0, 12rem)); }
   .category__link { min-height: 7rem; }
 }
+
+/* 보기 설정 접기 (모바일에서 버튼 하나로) */
+.view-set { display: grid; gap: 0.5rem; width: 100%; }
+@media (min-width: 48rem) { .view-set { width: auto; } }
+.view-set__toggle { display: none; }
+.view-set__mark { font-weight: 800; }
+.view-set__arrow { display: inline-block; transition: transform 0.15s; }
+.view-set.is-open .view-set__arrow { transform: rotate(180deg); }
+.font-step--down { font-size: 0.9em; }
+@media (max-width: 47.98rem) {
+  .view-set--ready .view-set__toggle { display: inline-flex; width: 100%; justify-content: center; }
+  .view-set--ready:not(.is-open) .view-set__panel { display: none; }
+}
+
+/* 광고 승인 전: 빈 광고 자리와 안내 줄 숨김 (승인 후 이 줄만 지우면 다시 보임) */
+.ad, .notice { display: none; }

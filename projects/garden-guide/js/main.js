@@ -11,7 +11,7 @@
   const el = {
     today: $('todayText'),
     summary: $('waterSummary'),
-    empty: $('myEmpty'),
+    empty: $('myEmpty'), sample: $('sampleBtn'),
     myList: $('myList'),
     picker: document.querySelector('.picker'),
     notice: $('notice'),
@@ -230,7 +230,9 @@
     el.picker.querySelectorAll('.picker__list').forEach((list) => {
       list.innerHTML = Object.values(PLANTS).filter((p) => p.type === list.dataset.group).map((p) =>
         '<li><button type="button" class="btn btn--toggle picker__btn" data-pick="' + p.id + '" aria-pressed="false">' +
-        '<img class="picker__img" src="' + p.img + '" alt="" width="40" height="40"> ' + p.name + '</button></li>'
+        '<img class="picker__img" src="' + p.img + '" alt="" width="64" height="64">' +
+        '<span class="picker__name">' + p.name + '</span>' +
+        '<span class="picker__meta">' + p.interval + '일마다 물</span></button></li>'
       ).join('');
     });
   }
@@ -247,6 +249,7 @@
     el.today.textContent = fmt(today());
     el.myList.innerHTML = state.mine.map(cardHtml).join('');
     el.empty.hidden = state.mine.length > 0;
+    if (el.sample) el.sample.hidden = state.mine.length > 0;
     renderSummary();
     syncPressed();
     if (focusSel) {
@@ -290,6 +293,21 @@
     item.history.sort().reverse();
     item.history = item.history.slice(0, 60);
     save();
+  }
+
+  /* 예시로 채워 보기: 상태(오늘 물 주기·여유·물 준 날)를 골고루 보여 줌 */
+  if (el.sample) {
+    el.sample.addEventListener('click', () => {
+      const t = today();
+      state.mine = [
+        { id: 'tomato', history: [addDays(t, -3), addDays(t, -5)] },
+        { id: 'lettuce', history: [addDays(t, -1), addDays(t, -3)] },
+        { id: 'monstera', history: [addDays(t, -2)] }
+      ];
+      save();
+      render('#waterTitle');
+      say('예시 식물 3가지를 넣었어요. 필요 없으면 각 카드에서 뺄 수 있어요.');
+    });
   }
 
   /* 카드 버튼 동작 */
@@ -444,4 +462,17 @@
   const start = panelFromHash();
   showPanel(start.panel, false);
   if (start.target) $(start.target).scrollIntoView();
+})();
+
+/* 보기 설정 접기 (모바일) */
+(() => {
+  const set = document.querySelector('.view-set');
+  const btn = document.getElementById('viewBtn');
+  if (!set || !btn) return;
+  set.classList.add('view-set--ready');
+  btn.addEventListener('click', () => {
+    const open = !set.classList.contains('is-open');
+    set.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+  });
 })();

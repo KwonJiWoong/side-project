@@ -14,32 +14,36 @@ const GUIDES = [
   { title: '벨소리 크게 만들기', cat: '기본설정', url: 'guides/setting-volume.html', keys: '소리 음량 진동 무음 설정' }
 ];
 
-/* 글자 크기 조절 */
+/* 글자 크기 조절 (가 / 가+ 단계) */
 const initFontControl = () => {
   const root = document.documentElement;
-  const buttons = document.querySelectorAll('.font-control__btn');
-  if (!buttons.length) return;
+  const down = document.getElementById('fontDown');
+  const up = document.getElementById('fontUp');
+  const text = document.getElementById('sizeText');
+  if (!down || !up) return;
 
   const SIZES = ['base', 'lg', 'xl'];
+  const LABELS = { base: '보통', lg: '크게', xl: '더 크게' };
+  let current = 'base';
 
   const apply = (size) => {
     if (!SIZES.includes(size)) size = 'base';
+    current = size;
     if (size === 'base') root.removeAttribute('data-font');
     else root.setAttribute('data-font', size);
-    buttons.forEach((btn) => btn.setAttribute('aria-pressed', String(btn.dataset.size === size)));
+    if (text) text.textContent = LABELS[size];
+    down.disabled = size === SIZES[0];
+    up.disabled = size === SIZES[SIZES.length - 1];
+    try { localStorage.setItem('phone-size', size); } catch (e) { /* 저장소 사용 불가 */ }
   };
 
   let saved = 'base';
   try { saved = localStorage.getItem('phone-size') || localStorage.getItem('fontSize') || 'base'; } catch (e) { /* 저장소 사용 불가 */ }
   apply(saved);
 
-  buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      if (!SIZES.includes(btn.dataset.size)) return;
-      apply(btn.dataset.size);
-      try { localStorage.setItem('phone-size', btn.dataset.size); } catch (e) { /* 저장소 사용 불가 */ }
-    });
-  });
+  const step = (dir) => apply(SIZES[Math.min(SIZES.length - 1, Math.max(0, SIZES.indexOf(current) + dir))]);
+  down.addEventListener('click', () => step(-1));
+  up.addEventListener('click', () => step(1));
 };
 
 /* 검색 */
@@ -112,3 +116,16 @@ const initSearch = () => {
 
 initFontControl();
 initSearch();
+
+/* 보기 설정 접기 (모바일) */
+(() => {
+  const set = document.querySelector('.view-set');
+  const btn = document.getElementById('viewBtn');
+  if (!set || !btn) return;
+  set.classList.add('view-set--ready');
+  btn.addEventListener('click', () => {
+    const open = !set.classList.contains('is-open');
+    set.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+  });
+})();

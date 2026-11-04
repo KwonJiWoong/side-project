@@ -24,6 +24,7 @@
     progressBar: $('progressBar'),
     todayEmpty: $('todayEmpty'),
     todayEmptyBtn: $('todayEmptyBtn'),
+    sample: $('sampleBtn'),
     slotList: $('slotList'),
     form: $('medForm'),
     formTitle: $('formTitle'),
@@ -171,6 +172,7 @@
     const has = entries.length > 0;
     el.todayEmpty.hidden = has;
     el.todayEmptyBtn.hidden = has;
+    el.sample.hidden = has;
     el.progressBox.hidden = !has;
 
     if (has) {
@@ -447,6 +449,30 @@
     renderHistory();
   }
 
+  /* 예시로 채워 보기: 약 3가지와 최근 며칠 기록을 넣어 기능을 미리 보여 줌 */
+  el.sample.addEventListener('click', () => {
+    const t = today();
+    const at = (key, h, m) => { const d = parse(key); d.setHours(h, m); return d.toISOString(); };
+    state.meds = [
+      { id: 'ex1', name: '혈압약 (예시)', times: ['morning'], meal: 'after', memo: '' },
+      { id: 'ex2', name: '비타민 (예시)', times: ['lunch'], meal: 'after', memo: '' },
+      { id: 'ex3', name: '위장약 (예시)', times: ['morning', 'evening'], meal: 'before', memo: '30분 전' }
+    ];
+    state.log = {};
+    state.health = {};
+    [1, 2, 3].forEach((n) => {
+      const key = addDays(t, -n);
+      const done = { 'ex1@morning': at(key, 8, 10), 'ex3@morning': at(key, 7, 40), 'ex2@lunch': at(key, 12, 30) };
+      if (n !== 2) done['ex3@evening'] = at(key, 18, 20);
+      state.log[key] = { total: 4, done };
+      state.health[key] = { mood: n === 2 ? 'soso' : 'good', memo: n === 2 ? '조금 피곤했어요' : '', at: at(key, 21, 0) };
+    });
+    state.log[t] = { total: 4, done: { 'ex3@morning': at(t, 7, 40), 'ex1@morning': at(t, 8, 10) } };
+    save();
+    renderAll();
+    say('예시 약 3가지와 지난 기록을 넣었어요. 약 등록에서 지울 수 있어요.');
+  });
+
   /* 화면(메뉴) 전환: 한 화면에 한 가지 목적 */
   function panelFromHash() {
     const hash = location.hash.slice(1);
@@ -492,4 +518,17 @@
   renderAll();
   save();
   showPanel(panelFromHash(), false);
+})();
+
+/* 보기 설정 접기 (모바일) */
+(() => {
+  const set = document.querySelector('.view-set');
+  const btn = document.getElementById('viewBtn');
+  if (!set || !btn) return;
+  set.classList.add('view-set--ready');
+  btn.addEventListener('click', () => {
+    const open = !set.classList.contains('is-open');
+    set.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+  });
 })();

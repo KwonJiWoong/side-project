@@ -210,3 +210,16 @@
   renderMenu();
   renderCurrent();
 })();
+
+/* 보기 설정 접기 (모바일) */
+(() => {
+  const set = document.querySelector('.view-set');
+  const btn = document.getElementById('viewBtn');
+  if (!set || !btn) return;
+  set.classList.add('view-set--ready');
+  btn.addEventListener('click', () => {
+    const open = !set.classList.contains('is-open');
+    set.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+  });
+})();

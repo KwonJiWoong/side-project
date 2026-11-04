@@ -38,11 +38,14 @@
 
   <!-- 보기 설정 -->
   <aside class="tools" id="top" tabindex="-1" aria-label="보기 설정">
-    <div class="container tools__inner">
-      <p class="tools__label" role="status">글자 크기: <strong id="sizeText">보통</strong></p>
-      <button type="button" class="btn btn--tool" id="fontDown"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-minus"></use></svg> 글자 작게</button>
-      <button type="button" class="btn btn--tool" id="fontUp"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 글자 크게</button>
-      <button type="button" class="btn btn--tool btn--toggle" id="contrastBtn" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-contrast"></use></svg> 고대비 보기</button>
+    <div class="container view-set">
+      <button type="button" class="btn btn--tool view-set__toggle" id="viewBtn" aria-expanded="false" aria-controls="viewPanel"><span class="view-set__mark" aria-hidden="true">가</span> 글자 크기·고대비 <span class="view-set__arrow" aria-hidden="true">▾</span></button>
+      <div class="tools__inner view-set__panel" id="viewPanel">
+        <p class="tools__label" role="status">글자 크기: <strong id="sizeText">보통</strong></p>
+        <button type="button" class="btn btn--tool font-step--down" id="fontDown">가<span class="sr-only"> 글자 작게</span></button>
+        <button type="button" class="btn btn--tool" id="fontUp">가+<span class="sr-only"> 글자 크게</span></button>
+        <button type="button" class="btn btn--tool btn--toggle" id="contrastBtn" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-contrast"></use></svg> 고대비 보기</button>
+      </div>
     </div>
   </aside>
 
@@ -176,6 +179,7 @@
         <ul class="card-list">
           <li class="card-list__item">
             <article class="work" aria-labelledby="work1">
+              <img class="work__thumb" src="images/works/garden-guide.webp" alt="우리집 텃밭 수첩 화면 미리보기" width="640" height="400" loading="lazy" decoding="async">
               <p class="work__meta"><span class="work__badge">01</span> 생활 도우미 · 2026</p>
               <h3 class="work__title" id="work1">우리집 텃밭 수첩</h3>
               <p class="work__desc">상추·방울토마토·몬스테라 등 식물 21가지의 물 주기 날짜를 기록하고, 키우기 안내와 달마다 할 일을 보여주는 베란다 가드닝 도우미입니다. 큰 글씨와 쉬운 말로 어르신도 혼자 쓸 수 있게 만들었습니다.</p>
@@ -190,6 +194,7 @@
 
           <li class="card-list__item">
             <article class="work" aria-labelledby="work2">
+              <img class="work__thumb" src="images/works/menu.webp" alt="오늘 뭐 먹지? 화면 미리보기" width="640" height="400" loading="lazy" decoding="async">
               <p class="work__meta"><span class="work__badge">02</span> 메뉴 추천 · 2026</p>
               <h3 class="work__title" id="work2">오늘 뭐 먹지?</h3>
               <p class="work__desc">아침·점심·저녁 무엇을 먹을지 고민될 때 버튼 한 번으로 메뉴를 추천해 주는 사이트입니다. 큰 버튼과 높은 대비로 누구나 헤매지 않게 구성했고, ‘귀여운 화면’ 버튼을 누르면 같은 마크업에 CSS 변수만 바꿔 캐릭터 ‘밥풀이’ 테마로 전환됩니다.</p>
@@ -204,6 +209,7 @@
 
           <li class="card-list__item">
             <article class="work" aria-labelledby="work3">
+              <img class="work__thumb" src="images/works/politics-news.webp" alt="오늘의 정치 소식 화면 미리보기" width="640" height="400" loading="lazy" decoding="async">
               <p class="work__meta"><span class="work__badge">03</span> 뉴스 모음 · 2026</p>
               <h3 class="work__title" id="work3">오늘의 정치 소식</h3>
               <p class="work__desc">조선·중앙·동아일보 등 10개 언론사의 정치 기사 제목을 최근 3일치 모아 큰 글씨로 보여 주는 사이트입니다. 여러 언론사가 함께 다룬 소식을 묶어 보여 주고, 대통령·국무총리·여야 대표 소식만 따로 볼 수도 있습니다. 하루 세 번 자동으로 새 기사를 모읍니다.</p>
@@ -218,6 +224,7 @@
 
           <li class="card-list__item">
             <article class="work" aria-labelledby="work4">
+              <img class="work__thumb" src="images/works/easy-phone.webp" alt="쉬운 폰 배우기 화면 미리보기" width="640" height="400" loading="lazy" decoding="async">
               <p class="work__meta"><span class="work__badge">04</span> 정보 가이드 · 2026</p>
               <h3 class="work__title" id="work4">쉬운 폰 배우기</h3>
               <p class="work__desc">카카오톡·키오스크·은행앱 등 스마트폰 사용법을 어르신 눈높이로 알려주는 가이드 사이트입니다. 글자 크기 조절, 큰 버튼, 단계별 안내로 구성하고 광고 영역은 실수로 누르지 않도록 버튼과 떨어뜨려 배치했습니다.</p>
@@ -232,6 +239,7 @@
 
           <li class="card-list__item">
             <article class="work" aria-labelledby="work5">
+              <img class="work__thumb" src="images/works/pill-check.webp" alt="오늘 약 챙기기 화면 미리보기" width="640" height="400" loading="lazy" decoding="async">
               <p class="work__meta"><span class="work__badge">05</span> 생활 도우미 · 2026</p>
               <h3 class="work__title" id="work5">오늘 약 챙기기</h3>
               <p class="work__desc">아침·점심·저녁·자기 전에 먹을 약을 등록하고 큰 버튼으로 먹었는지 표시하는 복약 수첩입니다. 오늘 몸 상태와 최근 7일 기록을 함께 보여주고, 잘못 누른 기록은 바로 되돌릴 수 있게 만들었습니다.</p>
@@ -246,6 +254,7 @@
 
           <li class="card-list__item">
             <article class="work" aria-labelledby="work6">
+              <img class="work__thumb" src="images/works/workout-planner.webp" alt="핏루틴 화면 미리보기" width="640" height="400" loading="lazy" decoding="async">
               <p class="work__meta"><span class="work__badge">06</span> 운동 도우미 · 2026</p>
               <h3 class="work__title" id="work6">핏루틴</h3>
               <p class="work__desc">첫 화면에서 일반용과 노약자용을 고르면 기억해 두는 운동 루틴 플래너입니다. 일반용은 어두운 화면의 근력 루틴, 노약자용은 밝고 큰 화면의 의자 운동·스트레칭·균형 운동을 보여주고, 루틴을 순서대로 이어 하는 타이머와 주간 기록, 나만의 루틴 묶음을 제공합니다.</p>
@@ -274,7 +283,7 @@
           <li class="card-list__item">
             <article class="career" aria-labelledby="career1">
               <p class="career__date"><time datetime="2023-05">2023. 05</time> ~ <time datetime="2023-09">2023. 09</time> <span class="career__period">(5개월)</span></p>
-              <h3 class="career__title" id="career1">KCB(bizwire) 퍼블리싱 구축</h3>
+              <h3 class="career__title" id="career1">신용정보사 서비스 퍼블리싱 구축</h3>
               <p class="career__org">대리 · 웹퍼블리셔</p>
               <ul class="tag-list">
                 <li class="tag-list__item">금융</li>
@@ -285,7 +294,7 @@
           <li class="card-list__item">
             <article class="career" aria-labelledby="career2">
               <p class="career__date"><time datetime="2022-08">2022. 08</time> ~ <time datetime="2022-10">2022. 10</time> <span class="career__period">(3개월)</span></p>
-              <h3 class="career__title" id="career2">현대카드 M포인트몰 리뉴얼</h3>
+              <h3 class="career__title" id="career2">카드사 포인트몰 리뉴얼</h3>
               <p class="career__org">대리 · 웹퍼블리셔</p>
               <ul class="tag-list">
                 <li class="tag-list__item">금융 · 쇼핑</li>
@@ -296,7 +305,7 @@
           <li class="card-list__item">
             <article class="career" aria-labelledby="career3">
               <p class="career__date"><time datetime="2021-07">2021. 07</time> ~ <time datetime="2022-01">2022. 01</time> <span class="career__period">(7개월)</span></p>
-              <h3 class="career__title" id="career3">예스코 사업부문 홈페이지 리뉴얼</h3>
+              <h3 class="career__title" id="career3">도시가스 기업 사업부문 홈페이지 리뉴얼</h3>
               <p class="career__org">대리 · 웹퍼블리셔</p>
               <ul class="tag-list">
                 <li class="tag-list__item">기업 홈페이지</li>
@@ -307,7 +316,7 @@
           <li class="card-list__item">
             <article class="career" aria-labelledby="career4">
               <p class="career__date"><time datetime="2020-11">2020. 11</time> ~ <time datetime="2021-01">2021. 01</time> <span class="career__period">(3개월)</span></p>
-              <h3 class="career__title" id="career4">리움·호암 미술관 구축</h3>
+              <h3 class="career__title" id="career4">사립 미술관 2곳 홈페이지 구축</h3>
               <p class="career__org">대리 · 웹퍼블리셔</p>
               <ul class="tag-list">
                 <li class="tag-list__item">문화 · 미술관</li>
@@ -318,7 +327,7 @@
           <li class="card-list__item">
             <article class="career" aria-labelledby="career5">
               <p class="career__date"><time datetime="2019-01">2019. 01</time> ~ <time datetime="2020-06">2020. 06</time> <span class="career__period">(1년 6개월)</span></p>
-              <h3 class="career__title" id="career5">메리츠화재 퍼블리싱 운영</h3>
+              <h3 class="career__title" id="career5">손해보험사 퍼블리싱 운영</h3>
               <p class="career__org">대리 · 웹퍼블리셔</p>
               <ul class="tag-list">
                 <li class="tag-list__item">금융 · 보험</li>
@@ -329,7 +338,7 @@
           <li class="card-list__item">
             <article class="career" aria-labelledby="career6">
               <p class="career__date"><time datetime="2018-01">2018. 01</time> ~ <time datetime="2018-09">2018. 09</time> <span class="career__period">(9개월)</span></p>
-              <h3 class="career__title" id="career6">KEB하나은행 모바일·인터넷뱅킹 운영</h3>
+              <h3 class="career__title" id="career6">시중은행 모바일·인터넷뱅킹 운영</h3>
               <p class="career__org">사원 · 웹퍼블리셔</p>
               <ul class="tag-list">
                 <li class="tag-list__item">금융 · 은행</li>
@@ -342,11 +351,11 @@
         <section class="career-more" aria-labelledby="careerMoreTitle">
           <h3 class="career-more__title" id="careerMoreTitle">그 밖의 프로젝트</h3>
           <ul class="career-more__list">
-            <li class="career-more__item">LG CNS 내부 프로젝트 리뉴얼 <span class="career-more__date">(2023)</span></li>
-            <li class="career-more__item">신세계백화점 앱 고도화 분석·설계 컨설팅 <span class="career-more__date">(2022)</span></li>
-            <li class="career-more__item">교원 KRT 리뉴얼 사업 <span class="career-more__date">(2022)</span></li>
-            <li class="career-more__item">능률·YBM 교과서 퍼블리싱 <span class="career-more__date">(2017 ~ 2018)</span></li>
-            <li class="career-more__item">잡코리아 운영 퍼블리싱 <span class="career-more__date">(2016 ~ 2017)</span></li>
+            <li class="career-more__item">IT 서비스 기업 내부 시스템 리뉴얼 <span class="career-more__date">(2023)</span></li>
+            <li class="career-more__item">백화점 앱 고도화 분석·설계 컨설팅 <span class="career-more__date">(2022)</span></li>
+            <li class="career-more__item">교육 기업 서비스 리뉴얼 <span class="career-more__date">(2022)</span></li>
+            <li class="career-more__item">출판사 2곳 교과서 퍼블리싱 <span class="career-more__date">(2017 ~ 2018)</span></li>
+            <li class="career-more__item">채용 플랫폼 운영 퍼블리싱 <span class="career-more__date">(2016 ~ 2017)</span></li>
           </ul>
         </section>
       </div>

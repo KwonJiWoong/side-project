@@ -100,10 +100,16 @@ main { display: block; padding-block: 1.5rem 2.5rem; }
 
 /* 언론사 고르기 */
 .chips {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   gap: 0.5rem;
+  margin-inline: calc(var(--page-pad, 1rem) * -1);
+  padding: 0.25rem var(--page-pad, 1rem) 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--page-pad, 1rem);
 }
+.chips .chip { flex: 0 0 auto; padding-inline: 1rem; white-space: nowrap; scroll-snap-align: start; }
+.chips__hint { margin-bottom: 0.25rem; font-size: 1rem; color: var(--color-accent); font-weight: 700; }
 .chip {
   display: flex;
   align-items: center;
@@ -332,11 +338,26 @@ main { display: block; padding-block: 1.5rem 2.5rem; }
 @media (min-width: 768px) {
   .tools { grid-template-columns: auto 1fr 1fr 1.5fr; }
   .tools__label, .tools .btn--toggle { grid-column: auto; }
-  .chips { grid-template-columns: repeat(4, 1fr); }
+  .chips { display: grid; grid-template-columns: repeat(4, 1fr); margin-inline: 0; padding: 0; overflow: visible; }
+  .chips .chip { padding-inline: 0.5rem; }
+  .chips__hint { display: none; }
 }
 
 /* PC */
 @media (min-width: 1024px) {
   .people { grid-template-columns: repeat(4, 1fr); }
   .chips { grid-template-columns: repeat(6, 1fr); }
+}
+
+/* 보기 설정 접기 (모바일에서 버튼 하나로) */
+.view-set { display: grid; gap: 0.5rem; width: 100%; }
+@media (min-width: 48rem) { .view-set { width: auto; } }
+.view-set__toggle { display: none; }
+.view-set__mark { font-weight: 800; }
+.view-set__arrow { display: inline-block; transition: transform 0.15s; }
+.view-set.is-open .view-set__arrow { transform: rotate(180deg); }
+.font-step--down { font-size: 0.9em; }
+@media (max-width: 47.98rem) {
+  .view-set--ready .view-set__toggle { display: inline-flex; width: 100%; justify-content: center; }
+  .view-set--ready:not(.is-open) .view-set__panel { display: none; }
 }

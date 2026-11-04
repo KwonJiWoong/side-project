@@ -48,11 +48,14 @@
       </h1>
       <a class="btn btn--home" href="#water" id="homeBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg> 처음으로</a>
 
-      <div class="tools" role="group" aria-label="보기 설정">
-        <p class="tools__label">글자 크기: <strong id="sizeText">보통</strong></p>
-        <button type="button" class="btn btn--tool" id="fontDown"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-text-minus"></use></svg> 글자 작게</button>
-        <button type="button" class="btn btn--tool" id="fontUp"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-text-plus"></use></svg> 글자 크게</button>
-        <button type="button" class="btn btn--tool btn--toggle" id="contrastBtn" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-contrast"></use></svg> 고대비 보기</button>
+      <div class="view-set">
+        <button type="button" class="btn btn--tool view-set__toggle" id="viewBtn" aria-expanded="false" aria-controls="viewPanel"><span class="view-set__mark" aria-hidden="true">가</span> 글자 크기·고대비 <span class="view-set__arrow" aria-hidden="true">▾</span></button>
+        <div class="tools view-set__panel" id="viewPanel" role="group" aria-label="보기 설정">
+          <p class="tools__label">글자 크기: <strong id="sizeText">보통</strong></p>
+          <button type="button" class="btn btn--tool font-step--down" id="fontDown">가<span class="sr-only"> 글자 작게</span></button>
+          <button type="button" class="btn btn--tool" id="fontUp">가+<span class="sr-only"> 글자 크게</span></button>
+          <button type="button" class="btn btn--tool btn--toggle" id="contrastBtn" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-contrast"></use></svg> 고대비 보기</button>
+        </div>
       </div>
     </div>
 
@@ -76,6 +79,7 @@
 
         <p class="summary" id="waterSummary"></p>
         <p class="empty" id="myEmpty">아직 등록한 식물이 없어요.<br>아래 <strong>키우는 식물 고르기</strong>에서 식물을 눌러 주세요.</p>
+        <button type="button" class="btn btn--tool btn--block sample-btn" id="sampleBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 예시 식물 3가지로 채워 보기</button>
         <ul class="my-list" id="myList"></ul>
 
         <section class="picker" aria-labelledby="pickerTitle">
