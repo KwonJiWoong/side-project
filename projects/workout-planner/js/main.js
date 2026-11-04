@@ -117,23 +117,17 @@
     }));
   }
 
-  /* ===== 화면 밝기: 자동(시간) / 밝게 / 어둡게 ===== */
+  /* ===== 화면 밝기: 자동(기기 설정) / 밝게 / 어둡게 ===== */
   function initTheme() {
     const meta = document.querySelector('meta[name="theme-color"]');
     const toggle = $('theme-toggle');
     const radios = [...document.querySelectorAll('input[name="theme"]')];
     const darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
-    const lightQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
-    // 기기 다크 모드 설정 우선, 알 수 없을 때만 시간 기준
-    const byTime = () => {
-      if (darkQuery && darkQuery.matches) return 'dark';
-      if (lightQuery && lightQuery.matches) return 'light';
-      const hour = new Date().getHours();
-      return hour >= 7 && hour < 19 ? 'light' : 'dark';
-    };
+    // 기기 다크 모드 설정 (알 수 없으면 밝게)
+    const bySystem = () => (darkQuery && darkQuery.matches ? 'dark' : 'light');
 
     function apply(pref) {
-      const theme = pref === 'auto' ? byTime() : pref;
+      const theme = pref === 'auto' ? bySystem() : pref;
       root.dataset.themePref = pref;
       root.dataset.theme = theme;
       if (meta) meta.content = getComputedStyle(root).getPropertyValue('--color-bg').trim() || meta.content;
@@ -165,9 +159,6 @@
     if (darkQuery && darkQuery.addEventListener) {
       darkQuery.addEventListener('change', () => { if (root.dataset.themePref === 'auto') apply('auto'); });
     }
-
-    // 자동일 때 시간이 바뀌면 다시 맞춤 (기기 설정을 알 수 없는 경우)
-    setInterval(() => { if (root.dataset.themePref === 'auto') apply('auto'); }, 60000);
 
     // 다른 탭에서 바꾸면 함께 바뀜
     window.addEventListener('storage', (e) => {
