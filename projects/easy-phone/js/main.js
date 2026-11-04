@@ -30,14 +30,14 @@ const initFontControl = () => {
   };
 
   let saved = 'base';
-  try { saved = localStorage.getItem('fontSize') || 'base'; } catch (e) { /* 저장소 사용 불가 */ }
+  try { saved = localStorage.getItem('phone-size') || localStorage.getItem('fontSize') || 'base'; } catch (e) { /* 저장소 사용 불가 */ }
   apply(saved);
 
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
       if (!SIZES.includes(btn.dataset.size)) return;
       apply(btn.dataset.size);
-      try { localStorage.setItem('fontSize', btn.dataset.size); } catch (e) { /* 저장소 사용 불가 */ }
+      try { localStorage.setItem('phone-size', btn.dataset.size); } catch (e) { /* 저장소 사용 불가 */ }
     });
   });
 };

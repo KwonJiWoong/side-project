@@ -13,7 +13,7 @@
 
 .header__title { font-size: var(--fs-xxl); font-weight: 800; line-height: 1.3; }
 
-.header__logo { display: inline-flex; align-items: center; gap: var(--space-xs); text-decoration: none; }
+.header__logo { display: inline-flex; align-items: center; gap: var(--space-xs); min-height: var(--touch); text-decoration: none; }
 
 .header__desc { font-size: var(--fs-md); margin: var(--space-xs) 0 var(--space-md); }
 
@@ -231,7 +231,7 @@
 
 .breadcrumb__item + .breadcrumb__item::before { content: "›"; margin-right: var(--space-xs); }
 
-.breadcrumb__link { font-weight: 700; }
+.breadcrumb__link { display: inline-flex; align-items: center; min-width: var(--touch); min-height: var(--touch); padding-inline: var(--space-xs); font-weight: 700; }
 
 /* 하위 페이지 제목 */
 .page-head { padding: var(--space-md) 0 var(--space-xs); }
