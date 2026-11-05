@@ -1,0 +1,16 @@
+{
+  "name": "오늘 약 챙기기",
+  "short_name": "약 챙기기",
+  "description": "아침·점심·저녁·자기 전에 먹을 약을 큰 버튼으로 챙기는 약 먹는 시간표",
+  "lang": "ko",
+  "start_url": "./#today",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f2f6fb",
+  "theme_color": "#1a4b80",
+  "icons": [
+    { "src": "images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "images/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "images/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

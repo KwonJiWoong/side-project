@@ -45,8 +45,10 @@
   gap: 0.5rem;
   padding-block: 0.75rem;
 }
+.gnb__list > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
 @media (min-width: 768px) {
-  .gnb__list { grid-template-columns: repeat(4, 1fr); }
+  .gnb__list { grid-template-columns: repeat(5, 1fr); }
+  .gnb__list > li:last-child:nth-child(odd) { grid-column: auto; }
 }
 .gnb__link {
   display: flex;
@@ -181,6 +183,17 @@
 .med-card--done { border-width: var(--border-w); border-color: var(--color-primary); }
 .med-card__name { font-size: 1.375rem; font-weight: 700; line-height: 1.4; }
 .med-card__info { font-size: 1.0625rem; }
+.med-card__repeat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  border: var(--border-w) solid var(--color-accent);
+  border-radius: 0.75rem;
+}
+.slot__time { font-size: 1.125rem; font-weight: 700; color: var(--color-text); }
 .med-card__state {
   display: flex;
   align-items: center;
@@ -238,6 +251,22 @@
   gap: 0.75rem;
 }
 
+/* 고른 값에 따라 펼쳐지는 칸 */
+.form__sub {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: var(--color-bg);
+  border: 0;
+  border-radius: var(--radius);
+}
+.form__sub--row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: 1rem; }
+.form__sub legend { float: left; width: 100%; margin-bottom: 0.5rem; }
+select.form__input { cursor: pointer; }
+
 /* 고르기 버튼 (체크박스·라디오) */
 .choice-list {
   display: grid;
@@ -248,6 +277,10 @@
   .choice-list { grid-template-columns: repeat(4, 1fr); }
 }
 .choice-list--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr)); }
+.choice-list--week { grid-template-columns: repeat(4, 1fr); clear: both; }
+@media (min-width: 768px) {
+  .choice-list--week { grid-template-columns: repeat(7, 1fr); }
+}
 @media (min-width: 768px) {
   .choice-list--3 { grid-template-columns: repeat(3, 1fr); }
 }
@@ -356,6 +389,43 @@
   border-radius: var(--radius);
 }
 .demo-lock__title { font-size: 1.25rem; font-weight: 700; color: var(--color-accent); }
+
+/* 오늘 안 먹는 약 */
+.rest {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: var(--gap);
+  padding: 1.25rem 1.5rem;
+  background: var(--color-surface);
+  border: var(--border-w) dashed var(--color-text);
+  border-radius: var(--radius);
+}
+.rest__title { font-size: 1.25rem; font-weight: 700; }
+.rest__list { display: flex; flex-direction: column; gap: 0.5rem; }
+.rest__list strong { font-size: 1.125rem; }
+
+/* 먹는 시각 */
+.time-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: 1rem;
+}
+.time-list .form__label { display: flex; align-items: center; gap: 0.5rem; }
+.time-list .ico { width: 1.75rem; height: 1.75rem; color: var(--color-primary); }
+.push {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: var(--gap);
+  padding: 1.5rem;
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-primary);
+  border-radius: var(--radius);
+}
+.push__title { font-size: 1.25rem; font-weight: 700; }
+.push__state { font-weight: 700; color: var(--color-primary); }
+.push__state:empty { display: none; }
 
 /* 받은 약 목록 */
 .import {
@@ -523,6 +593,16 @@
   background: var(--color-primary);
 }
 .footer__note { margin-top: 0.5rem; font-size: 1rem; }
+.footer__contact { margin-top: 1rem; font-size: 1.125rem; }
+.footer__mail {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch);
+  padding-inline: 0.25rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
 
 /* 고대비 모드 보정 */
 html[data-contrast="high"] .tip { border: var(--border-w) solid var(--color-text); }

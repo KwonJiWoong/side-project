@@ -4,7 +4,7 @@
   /* 기본 요소 */
   const root = document.documentElement;
   const $ = (id) => document.getElementById(id);
-  const PANELS = ['today', 'meds', 'health', 'history'];
+  const PANELS = ['today', 'meds', 'health', 'history', 'times'];
   const SIZE_LABELS = ['보통', '크게', '아주 크게'];
   const DAY_NAMES = ['일', '월', '화', '수', '목', '금', '토'];
   const SLOTS = [
@@ -19,6 +19,10 @@
   const TAG_GROUPS = [['with', 'b30', 'a30'], ['half', 'one', 'two']];
   const MOODS = { good: '좋아요', soso: '보통이에요', bad: '안 좋아요' };
   const KEEP_DAYS = 60;
+  /* 하루가 바뀌는 시각: 새벽 4시 전은 전날로 침 (밤늦게 먹는 '자기 전' 약 때문) */
+  const DAY_START_HOUR = 4;
+  const DEFAULT_TIMES = { morning: '08:00', lunch: '12:30', evening: '18:30', bed: '22:00' };
+  const KO_NUM = { 2: '이틀', 3: '사흘', 4: '나흘' };
 
   const el = {
     today: $('todayText'),
@@ -52,6 +56,14 @@
     importLead: $('importLead'),
     importList: $('importList'),
     importNote: $('importNote'),
+    restBox: $('restBox'),
+    restList: $('restList'),
+    repeatError: $('repeatError'),
+    everyN: $('everyN'),
+    everyStart: $('everyStart'),
+    untilN: $('untilN'),
+    pasteBox: $('pasteBox'),
+    pushBox: $('pushBox'),
     healthForm: $('healthForm'),
     healthMemo: $('healthMemo'),
     healthSaved: $('healthSaved'),
@@ -89,15 +101,29 @@
     const h = d.getHours();
     return (h < 12 ? '오전 ' : '오후 ') + (h % 12 || 12) + '시 ' + d.getMinutes() + '분';
   };
-  const today = () => toKey(new Date());
+  const today = () => toKey(new Date(Date.now() - DAY_START_HOUR * 3600000));
+  const dayDiff = (a, b) => Math.round((parse(b) - parse(a)) / 86400000);
 
-  /* 지금 시간대 (참고용) */
+  /* 먹는 시각: 'HH:MM' → 그날 기준 분 (새벽 4시 전은 다음 날로 이어서 셈) */
+  const toMin = (hhmm) => {
+    const [h, m] = String(hhmm).split(':').map(Number);
+    const v = h * 60 + m;
+    return v < DAY_START_HOUR * 60 ? v + 1440 : v;
+  };
+  const fmtClock = (hhmm) => {
+    const [h, m] = String(hhmm).split(':').map(Number);
+    const part = h === 0 ? '밤 ' : h < DAY_START_HOUR + 2 ? '새벽 ' : h < 12 ? '오전 ' : h === 12 ? '낮 ' : '오후 ';
+    return part + (h % 12 || 12) + '시' + (m ? ' ' + m + '분' : '');
+  };
+
+  /* 지금 드실 때: 정한 시각 1시간 전부터 그 시간대로 봄 */
   function nowSlot() {
-    const h = new Date().getHours();
-    if (h < 11) return 'morning';
-    if (h < 16) return 'lunch';
-    if (h < 21) return 'evening';
-    return 'bed';
+    const d = new Date();
+    let now = d.getHours() * 60 + d.getMinutes();
+    if (now < DAY_START_HOUR * 60) now += 1440;
+    let cur = SLOTS[0].id;
+    SLOTS.forEach((s) => { if (now >= toMin(state.slotTimes[s.id]) - 60) cur = s.id; });
+    return cur;
   }
 
   /* 상태 */
@@ -110,15 +136,65 @@
     confirm: null,
     demo: false,
     undoMeds: [],
-    undoRecord: null
+    undoRecord: null,
+    slotTimes: Object.assign({}, DEFAULT_TIMES)
   };
   const UNDO_MAX = 5;
+
+  /* 먹는 날 · 기간
+     repeat: { type: 'daily' } | { type: 'week', days: [0~6] } | { type: 'every', n: 2~14, from: 'YYYY-MM-DD' }
+     until: 'YYYY-MM-DD' (이날까지 먹음) 또는 '' (계속) */
+  const isKey = (k) => typeof k === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(k);
+  function normalizeMed(m) {
+    m.tags = Array.isArray(m.tags) ? m.tags.filter((t) => TAGS[t]) : [];
+    const r = m.repeat || {};
+    if (r.type === 'week' && Array.isArray(r.days) && r.days.length) {
+      m.repeat = { type: 'week', days: r.days.map(Number).filter((d) => d >= 0 && d <= 6).sort() };
+      if (!m.repeat.days.length) m.repeat = { type: 'daily' };
+    } else if (r.type === 'every' && r.n >= 2 && isKey(r.from)) {
+      m.repeat = { type: 'every', n: Math.min(30, Math.floor(r.n)), from: r.from };
+    } else {
+      m.repeat = { type: 'daily' };
+    }
+    m.until = isKey(m.until) ? m.until : '';
+    return m;
+  }
+  function isDue(m, key) {
+    if (m.until && key > m.until) return false;
+    const r = m.repeat;
+    if (r.type === 'week') return r.days.includes(parse(key).getDay());
+    if (r.type === 'every') { const d = dayDiff(r.from, key); return d >= 0 && d % r.n === 0; }
+    return true;
+  }
+  const isEnded = (m, key) => Boolean(m.until && key > m.until);
+  function nextDue(m, key) {
+    for (let i = 1; i <= 60; i += 1) {
+      const k = addDays(key, i);
+      if (isEnded(m, k)) return '';
+      if (isDue(m, k)) return k;
+    }
+    return '';
+  }
+  const WEEK_ORDER = [1, 2, 3, 4, 5, 6, 0];
+  function repeatText(m) {
+    const r = m.repeat;
+    if (r.type === 'week') {
+      if (r.days.length === 7) return '매일';
+      return '매주 ' + WEEK_ORDER.filter((d) => r.days.includes(d)).map((d) => DAY_NAMES[d]).join('·') + '요일';
+    }
+    if (r.type === 'every') return (r.n === 7 ? '일주일' : (KO_NUM[r.n] || r.n + '일')) + '에 한 번';
+    return '매일';
+  }
+  const untilText = (m) => (m.until ? fmtShort(m.until) + '까지' : '');
   const copy = (v) => JSON.parse(JSON.stringify(v));
 
   function load() {
     const meds = store.json('pill-meds', []);
     state.meds = Array.isArray(meds) ? meds.filter((m) => m && m.id && m.name && Array.isArray(m.times)) : [];
-    state.meds.forEach((m) => { m.tags = Array.isArray(m.tags) ? m.tags.filter((t) => TAGS[t]) : []; });
+    state.meds.forEach(normalizeMed);
+    const st = store.json('pill-slot-times', null);
+    state.slotTimes = Object.assign({}, DEFAULT_TIMES);
+    if (st) SLOTS.forEach((s) => { if (/^\d{2}:\d{2}$/.test(st[s.id])) state.slotTimes[s.id] = st[s.id]; });
     state.log = store.json('pill-log', {});
     state.health = store.json('pill-health', {});
     /* 예전 방식으로 저장된 예시 약 정리 (예시뿐이면 기록도 함께) */
@@ -146,6 +222,8 @@
     store.set('pill-health', JSON.stringify(state.health));
     store.set('pill-undo-meds', JSON.stringify(state.undoMeds));
     store.set('pill-undo-records', JSON.stringify(state.undoRecord));
+    store.set('pill-slot-times', JSON.stringify(state.slotTimes));
+    pushSync();
   }
   const findMed = (id) => state.meds.find((m) => m.id === id);
 
@@ -186,7 +264,8 @@
   function todayEntries() {
     const list = [];
     SLOTS.forEach((slot) => {
-      state.meds.forEach((m) => { if (m.times.includes(slot.id)) list.push({ med: m, slot: slot.id, key: m.id + '@' + slot.id }); });
+      const t = today();
+      state.meds.forEach((m) => { if (m.times.includes(slot.id) && isDue(m, t)) list.push({ med: m, slot: slot.id, key: m.id + '@' + slot.id }); });
     });
     return list;
   }
@@ -207,10 +286,16 @@
     el.today.textContent = fmt(today());
     const { day, entries } = todayLog();
     const has = entries.length > 0;
-    el.todayEmpty.hidden = has;
-    el.todayEmptyBtn.hidden = has;
-    el.sample.hidden = has;
-    el.progressBox.hidden = !has;
+    const none = !state.meds.length;
+    el.todayEmpty.hidden = !none;
+    el.todayEmptyBtn.hidden = !none;
+    el.sample.hidden = !none;
+    el.progressBox.hidden = none;
+    el.progressBar.hidden = !has;
+    if (!none && !has) {
+      el.progressText.textContent = '오늘은 먹을 약이 없어요. 정해진 날에만 먹는 약은 아래에서 확인해 주세요.';
+      el.progressBox.classList.add('progress--done');
+    }
 
     if (has) {
       const done = Object.keys(day.done).length;
@@ -232,8 +317,10 @@
         const takenAt = day.done[e.key];
         const id = 'med-' + e.key.replace('@', '-');
         const info = medNote(e.med).map(esc).join(' · ');
+        const special = e.med.repeat.type !== 'daily' || e.med.until;
         return '<li><article class="med-card' + (takenAt ? ' med-card--done' : '') + '" aria-labelledby="' + id + '">' +
           '<h4 class="med-card__name" id="' + id + '">' + esc(e.med.name) + '</h4>' +
+          (special ? '<p class="med-card__repeat">' + ico('calendar') + ' ' + [e.med.repeat.type !== 'daily' ? repeatText(e.med) + ' 먹는 약' : '', untilText(e.med)].filter(Boolean).join(' · ') + '</p>' : '') +
           '<p class="med-card__info">' + info + '</p>' +
           (takenAt
             ? '<p class="med-card__state">' + ico('check') + ' ' + fmtTime(takenAt) + '에 먹었어요</p>' +
@@ -244,13 +331,22 @@
       }).join('');
       return '<li><section class="slot" aria-labelledby="slot-' + slot.id + '">' +
         '<header class="slot__head">' +
-          '<h3 class="slot__title" id="slot-' + slot.id + '">' + ico(slot.icon) + ' ' + slot.label + '</h3>' +
+          '<h3 class="slot__title" id="slot-' + slot.id + '">' + ico(slot.icon) + ' ' + slot.label + ' <span class="slot__time">' + fmtClock(state.slotTimes[slot.id]) + '</span></h3>' +
           (slot.id === now ? '<p class="slot__now">' + ico('clock') + ' 지금 드실 때</p>' : '') +
           '<p class="slot__count">' + items.length + '개 중 ' + doneCount + '개 먹음</p>' +
         '</header>' +
         '<ul class="med-list">' + cards + '</ul>' +
       '</section></li>';
     }).join('');
+
+    /* 오늘은 안 먹는 약 (정해진 날에만 먹는 약) */
+    const t = today();
+    const rest = state.meds.filter((m) => !isDue(m, t) && !isEnded(m, t));
+    el.restList.innerHTML = rest.map((m) => {
+      const next = nextDue(m, t);
+      return '<li><strong>' + esc(m.name) + '</strong> · ' + repeatText(m) + (next ? ' · 다음: ' + fmtShort(next) : '') + '</li>';
+    }).join('');
+    el.restBox.hidden = !rest.length;
 
     if (focusSel) {
       const target = el.slotList.querySelector(focusSel);
@@ -282,6 +378,7 @@
     el.medCount.textContent = state.meds.length + '개';
     el.medEmpty.hidden = state.meds.length > 0;
     el.shareBox.hidden = !state.meds.length || state.demo;
+    el.pasteBox.hidden = !(isIOS && standalone) || state.demo;
     const last = state.undoMeds[state.undoMeds.length - 1];
     el.undoBox.hidden = !last;
     if (last) {
@@ -296,6 +393,8 @@
       return '<li><article class="my-med" aria-labelledby="my-' + m.id + '">' +
         '<h4 class="my-med__name" id="my-' + m.id + '">' + esc(m.name) + '</h4>' +
         '<p><strong>먹는 때</strong> ' + times + ' (' + (MEALS[m.meal] || MEALS.after) + ')</p>' +
+        '<p><strong>먹는 날</strong> ' + repeatText(m) + (m.until ? ' · ' + untilText(m) : '') +
+          (isEnded(m, today()) ? ' <strong class="my-med__ended">(다 먹었어요)</strong>' : '') + '</p>' +
         (m.tags.length ? '<p><strong>간단 메모</strong> ' + m.tags.map((t) => TAGS[t]).join(' · ') + '</p>' : '') +
         (m.memo ? '<p><strong>비고</strong> ' + esc(m.memo) + '</p>' : '') +
         '<p class="my-med__btns">' +
@@ -394,6 +493,41 @@
     }
   });
 
+  /* 먹는 날 · 기간 고르기 칸 */
+  const radioVal = (name) => (el.form.querySelector('input[name="' + name + '"]:checked') || {}).value;
+  function fillSelects(med) {
+    const t = today();
+    let opts = '';
+    for (let n = 2; n <= 14; n += 1) opts += '<option value="' + n + '">' + (n === 7 ? '일주일' : (KO_NUM[n] || n + '일')) + '에 한 번</option>';
+    el.everyN.innerHTML = opts;
+    el.everyN.value = med && med.repeat.type === 'every' ? String(med.repeat.n) : '2';
+    let starts = '';
+    if (med && med.repeat.type === 'every') {
+      const next = isDue(med, t) ? t : nextDue(med, t);
+      starts += '<option value="keep">지금처럼' + (next ? ' (다음: ' + fmtShort(next) + ')' : '') + '</option>';
+    }
+    starts += '<option value="0">오늘 (' + fmtShort(t) + ')</option><option value="1">내일 (' + fmtShort(addDays(t, 1)) + ')</option>';
+    el.everyStart.innerHTML = starts;
+    let days = '';
+    if (med && med.until) {
+      const left = dayDiff(t, med.until) + 1;
+      days += '<option value="keep">지금처럼 (' + fmtShort(med.until) + '까지' + (left < 1 ? ', 이미 끝났어요' : '') + ')</option>';
+    }
+    [1, 2, 3, 4, 5, 6, 7, 10, 14, 21, 28, 30, 60, 90].forEach((n) => {
+      days += '<option value="' + n + '">' + n + '일 치 (' + fmtShort(addDays(t, n - 1)) + '까지)</option>';
+    });
+    el.untilN.innerHTML = days;
+    el.untilN.value = med && med.until ? 'keep' : '7';
+  }
+  function syncSchedule() {
+    $('weekBox').hidden = radioVal('repeat') !== 'week';
+    $('everyBox').hidden = radioVal('repeat') !== 'every';
+    $('untilBox').hidden = radioVal('until') !== 'days';
+  }
+  el.form.addEventListener('change', (e) => {
+    if (e.target.name === 'repeat' || e.target.name === 'until') syncSchedule();
+  });
+
   /* 약 등록 · 고치기 폼 */
   function showError(input, box, message) {
     box.textContent = message;
@@ -411,6 +545,11 @@
     el.form.querySelectorAll('input[name="tags"]').forEach((i) => { i.checked = med.tags.includes(i.value); });
     el.form.querySelectorAll('input[name="times"]').forEach((i) => { i.checked = med.times.includes(i.value); });
     el.form.querySelectorAll('input[name="meal"]').forEach((i) => { i.checked = i.value === (med.meal || 'after'); });
+    $('rp-' + med.repeat.type).checked = true;
+    el.form.querySelectorAll('input[name="wdays"]').forEach((i) => { i.checked = med.repeat.type === 'week' && med.repeat.days.includes(Number(i.value)); });
+    $(med.until ? 'until-days' : 'until-none').checked = true;
+    fillSelects(med);
+    syncSchedule();
     el.formTitle.textContent = med.name + ' 고치기';
     el.submitText.textContent = '고친 내용 저장';
     el.cancelEdit.hidden = false;
@@ -424,6 +563,7 @@
   function clearErrors() {
     showError(el.name, el.nameError, '');
     showError(el.form.querySelector('.form__group'), el.timesError, '');
+    showError($('repeatGroup'), el.repeatError, '');
   }
   function resetForm() {
     state.edit = null;
@@ -432,6 +572,8 @@
     el.submitText.textContent = '약 등록하기';
     el.cancelEdit.hidden = true;
     el.form.classList.remove('form--edit');
+    fillSelects(null);
+    syncSchedule();
     clearErrors();
   }
 
@@ -442,22 +584,39 @@
     const timesGroup = el.form.querySelector('.form__group');
     showError(el.name, el.nameError, name ? '' : '약 이름을 적어 주세요. 예: 혈압약');
     showError(timesGroup, el.timesError, times.length ? '' : '먹는 때를 하나 이상 눌러 주세요. 예: 아침');
+    const rtype = radioVal('repeat') || 'daily';
+    const wdays = Array.from(el.form.querySelectorAll('input[name="wdays"]:checked')).map((i) => Number(i.value));
+    showError($('repeatGroup'), el.repeatError, rtype === 'week' && !wdays.length ? '먹는 요일을 하나 이상 눌러 주세요. 예: 월' : '');
     if (!name) { el.name.focus(); return; }
     if (!times.length) { $('t-morning').focus(); return; }
+    if (rtype === 'week' && !wdays.length) { $('wd-1').focus(); return; }
+
+    const old = state.edit ? findMed(state.edit) : null;
+    const t = today();
+    let repeat = { type: 'daily' };
+    if (rtype === 'week') repeat = { type: 'week', days: wdays.sort() };
+    if (rtype === 'every') {
+      const n = Number(el.everyN.value) || 2;
+      const keep = el.everyStart.value === 'keep' && old && old.repeat.type === 'every';
+      repeat = { type: 'every', n, from: keep ? old.repeat.from : addDays(t, Number(el.everyStart.value) || 0) };
+    }
+    let until = '';
+    if (radioVal('until') === 'days') until = el.untilN.value === 'keep' && old ? old.until : addDays(t, (Number(el.untilN.value) || 1) - 1);
 
     const meal = (el.form.querySelector('input[name="meal"]:checked') || {}).value || 'after';
     const memo = el.memo.value.trim();
     const tags = Array.from(el.form.querySelectorAll('input[name="tags"]:checked')).map((i) => i.value);
     const wasEdit = state.edit;
     if (wasEdit) {
-      Object.assign(findMed(wasEdit), { name, times, meal, tags, memo });
+      Object.assign(findMed(wasEdit), { name, times, meal, tags, memo, repeat, until });
     } else {
-      state.meds.push({ id: 'm' + Date.now().toString(36), name, times, meal, tags, memo });
+      state.meds.push({ id: 'm' + Date.now().toString(36), name, times, meal, tags, memo, repeat, until });
     }
+    const due = isDue({ repeat, until }, t);
     save();
     resetForm();
     renderAll();
-    say(wasEdit ? name + ' 정보를 고쳤어요.' : name + '을(를) 등록했어요. 오늘 먹을 약에 나와요.');
+    say(wasEdit ? name + ' 정보를 고쳤어요.' : name + '을(를) 등록했어요. ' + (due ? '오늘 먹을 약에 나와요.' : '오늘은 먹는 날이 아니라서 먹는 날에 나와요.'));
     el.name.focus();
   });
   el.cancelEdit.addEventListener('click', () => {
@@ -600,8 +759,9 @@
     state.meds = [
       { id: 'ex1', name: '혈압약 (예시)', times: ['morning'], meal: 'after', tags: ['a30', 'one'], memo: '' },
       { id: 'ex2', name: '비타민 (예시)', times: ['lunch'], meal: 'after', tags: ['water'], memo: '' },
-      { id: 'ex3', name: '위장약 (예시)', times: ['morning', 'evening'], meal: 'before', tags: ['b30'], memo: '속이 쓰릴 때 꼭 챙기기' }
-    ];
+      { id: 'ex3', name: '위장약 (예시)', times: ['morning', 'evening'], meal: 'before', tags: ['b30'], memo: '속이 쓰릴 때 꼭 챙기기' },
+      { id: 'ex4', name: '골다공증약 (예시)', times: ['morning'], meal: 'before', tags: ['water'], memo: '', repeat: { type: 'week', days: [(parse(t).getDay() + 2) % 7] } }
+    ].map(normalizeMed);
     state.log = {};
     state.health = {};
     [1, 2, 3].forEach((n) => {
@@ -632,21 +792,45 @@
     const bin = atob(code.replace(/-/g, '+').replace(/_/g, '/'));
     return new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)));
   };
-  function packMeds(meds) {
+  const compactDay = (k) => (k ? k.replace(/-/g, '') : '');
+  const fullDay = (c) => (/^\d{8}$/.test(c) ? c.slice(0, 4) + '-' + c.slice(4, 6) + '-' + c.slice(6) : '');
+  const packRepeat = (r) => (r.type === 'week' ? 'w' + r.days.reduce((n, d) => n | (1 << d), 0).toString(16)
+    : r.type === 'every' ? 'e' + r.n + '.' + compactDay(r.from) : '');
+  function unpackRepeat(c) {
+    if (/^w[0-9a-f]+$/.test(c || '')) {
+      const b = parseInt(c.slice(1), 16);
+      return { type: 'week', days: [0, 1, 2, 3, 4, 5, 6].filter((d) => b & (1 << d)) };
+    }
+    const m = /^e(\d+)\.(\d{8})$/.exec(c || '');
+    return m ? { type: 'every', n: Number(m[1]), from: fullDay(m[2]) } : { type: 'daily' };
+  }
+  const timesCode = (st) => (SLOTS.every((s) => st[s.id] === DEFAULT_TIMES[s.id]) ? '' : SLOTS.map((s) => st[s.id].replace(':', '')).join(''));
+  function packMeds(meds, slotTimes) {
     const body = meds.map((m) => [
       m.name.replace(/[~|]/g, ' ').trim(),
       m.times.reduce((n, t) => n | (TIME_BITS[t] || 0), 0).toString(16),
       MEAL_CODE[m.meal] || 'a',
-      m.tags.reduce((n, t) => { const i = TAG_KEYS.indexOf(t); return i < 0 ? n : n | (1 << i); }, 0).toString(16)
+      m.tags.reduce((n, t) => { const i = TAG_KEYS.indexOf(t); return i < 0 ? n : n | (1 << i); }, 0).toString(16),
+      packRepeat(m.repeat),
+      compactDay(m.until)
     ].join('~')).join('|');
-    return b64encode('1|' + body);
+    return b64encode('2|' + timesCode(slotTimes || state.slotTimes) + '|' + body);
   }
   function unpackMeds(code) {
     try {
       const parts = b64decode(code).split('|');
-      if (parts.shift() !== '1' || !parts.length || parts.length > 30) return null;
+      const ver = parts.shift();
+      let slotTimes = null;
+      if (ver === '2') {
+        const tc = parts.shift() || '';
+        if (/^\d{16}$/.test(tc)) {
+          slotTimes = {};
+          SLOTS.forEach((s, i) => { slotTimes[s.id] = tc.slice(i * 4, i * 4 + 2) + ':' + tc.slice(i * 4 + 2, i * 4 + 4); });
+        }
+      } else if (ver !== '1') return null;
+      if (!parts.length || parts.length > 30) return null;
       const meds = parts.map((p) => {
-        const [name, t, meal, g] = p.split('~');
+        const [name, t, meal, g, rp, un] = p.split('~');
         const tb = parseInt(t, 16);
         const gb = parseInt(g, 16) || 0;
         const times = SLOTS.map((s) => s.id).filter((k) => tb & TIME_BITS[k]);
@@ -657,13 +841,32 @@
           times,
           meal: Object.keys(MEAL_CODE).find((k) => MEAL_CODE[k] === meal) || 'after',
           tags: TAG_KEYS.filter((k, i) => gb & (1 << i)),
-          memo: ''
+          memo: '',
+          repeat: unpackRepeat(rp),
+          until: fullDay(un || '')
         };
       });
-      return meds.every(Boolean) ? meds : null;
+      if (!meds.every(Boolean)) return null;
+      meds.forEach(normalizeMed);
+      return { meds, slotTimes };
     } catch (e) { return null; }
   }
   const shareUrl = () => location.href.split('#')[0] + '#share=' + packMeds(state.meds);
+  const sameTimes = (a) => !a || SLOTS.every((s) => a[s.id] === state.slotTimes[s.id]);
+
+  /* 아이폰 홈 화면 앱: 링크가 사파리로 열려서, 받은 링크를 붙여 넣어 받기 */
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const standalone = navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
+  $('pasteForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = $('pasteInput');
+    const m = /#share=([A-Za-z0-9_-]+)/.exec(input.value.trim());
+    const ok = m && unpackMeds(m[1]);
+    showError(input, $('pasteError'), ok ? '' : '약 목록 링크가 아니에요. 카톡에서 받은 링크 전체를 길게 눌러 복사한 뒤 붙여 넣어 주세요.');
+    if (!ok) { input.focus(); return; }
+    input.value = '';
+    location.hash = 'share=' + m[1];
+  });
 
   /* 보내기 */
   const shareBtn = $('shareBtn');
@@ -698,7 +901,7 @@
     if (state.demo) { state.demo = false; load(); renderAll(); }
     incoming = unpackMeds(m[1]);
     const inApp = /KAKAOTALK/i.test(navigator.userAgent);
-    if (incoming && packMeds(incoming) === packMeds(state.meds)) {
+    if (incoming && packMeds(incoming.meds) === packMeds(state.meds) && sameTimes(incoming.slotTimes)) {
       incoming = null;
       history.replaceState(null, '', '#today');
       say('이미 같은 약 목록이 들어 있어요.');
@@ -708,15 +911,20 @@
     if (incoming && inApp) location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(location.href);
 
     const has = state.meds.length > 0;
-    el.importList.innerHTML = incoming ? incoming.map((med) => {
+    el.importList.innerHTML = incoming ? incoming.meds.map((med) => {
       const times = SLOTS.filter((s) => med.times.includes(s.id)).map((s) => s.label).join(' · ');
-      return '<li class="import__item"><p class="import__name">' + esc(med.name) + '</p><p>' + times + ' · ' + medNote(med).map(esc).join(' · ') + '</p></li>';
-    }).join('') : '';
+      return '<li class="import__item"><p class="import__name">' + esc(med.name) + '</p><p>' + times + ' · ' + medNote(med).map(esc).join(' · ') + '</p>' +
+        '<p><strong>' + repeatText(med) + '</strong>' + (med.until ? ' · ' + untilText(med) : '') + '</p></li>';
+    }).join('') + (incoming.slotTimes && !sameTimes(incoming.slotTimes)
+      ? '<li class="import__item"><p class="import__name">먹는 시각도 바뀌어요</p><p>' + SLOTS.map((s) => s.label + ' ' + fmtClock(incoming.slotTimes[s.id])).join(' · ') + '</p></li>' : '') : '';
     el.importLead.textContent = !incoming
       ? '링크가 잘못됐거나 중간에 잘렸어요. 보내 주신 분께 다시 보내 달라고 해 주세요.'
       : (inApp ? '카카오톡 안에서 열렸어요. 인터넷 앱이 새로 열리면 거기서 눌러 주세요. ' : '') +
-        '약 ' + incoming.length + '개가 들어 있어요. ' + (has ? '지금 등록한 약 ' + state.meds.length + '개 대신 이 목록으로 바꿀까요?' : '이 약들을 등록할까요?');
+        '약 ' + incoming.meds.length + '개가 들어 있어요. ' + (has ? '지금 등록한 약 ' + state.meds.length + '개 대신 이 목록으로 바꿀까요?' : '이 약들을 등록할까요?');
     el.importNote.hidden = !incoming || !has;
+    if (incoming && isIOS && !standalone) {
+      el.importLead.textContent += ' 홈 화면에 추가한 앱을 쓰신다면, 이 화면이 아니라 앱의 [약 등록 → 받은 링크로 약 넣기]에 링크를 붙여 넣어 주세요.';
+    }
     $('importYes').hidden = !incoming;
     $('importYesText').textContent = has ? '받은 목록으로 바꾸기' : '이 약 등록하기';
     $('importNoText').textContent = incoming ? '안 받을래요' : '닫기';
@@ -735,7 +943,8 @@
     const old = state.meds;
     const stamp = Date.now().toString(36);
     /* 이름이 같은 약은 그대로 이어 받기 (오늘 먹은 기록 · 비고 유지) */
-    const next = incoming.map((m, i) => {
+    if (incoming.slotTimes) state.slotTimes = Object.assign({}, incoming.slotTimes);
+    const next = incoming.meds.map((m, i) => {
       const same = old.find((o) => o.name.replace(/[~|]/g, ' ').trim() === m.name);
       return Object.assign({}, m, { id: same ? same.id : 'm' + stamp + i, memo: same ? same.memo : '' });
     });
@@ -755,6 +964,104 @@
     if (had) say('받은 약 목록을 넣지 않았어요.');
   });
 
+  /* 먹는 시각 정하기 */
+  const timeForm = $('timeForm');
+  function renderTimes() {
+    SLOTS.forEach((s) => { $('time-' + s.id).value = state.slotTimes[s.id]; });
+  }
+  timeForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const next = {};
+    SLOTS.forEach((s) => { next[s.id] = $('time-' + s.id).value; });
+    const empty = SLOTS.find((s) => !/^\d{2}:\d{2}$/.test(next[s.id]));
+    const wrong = !empty && SLOTS.find((s, i) => i > 0 && toMin(next[s.id]) <= toMin(next[SLOTS[i - 1].id]));
+    const err = $('timeError');
+    err.textContent = empty ? empty.label + ' 시각을 정해 주세요.'
+      : wrong ? '아침 → 점심 → 저녁 → 자기 전 순서로 시각을 정해 주세요. ' + wrong.label + ' 시각이 앞 시각보다 빨라요.' : '';
+    err.hidden = !err.textContent;
+    if (empty || wrong) { $('time-' + (empty || wrong).id).focus(); return; }
+    state.slotTimes = next;
+    save();
+    renderAll();
+    say('먹는 시각을 저장했어요. ' + SLOTS.map((s) => s.label + ' ' + fmtClock(next[s.id])).join(', '));
+  });
+  $('timeDefault').addEventListener('click', () => {
+    SLOTS.forEach((s) => { $('time-' + s.id).value = DEFAULT_TIMES[s.id]; });
+    say('처음 시각으로 바꿨어요. 시각 저장을 눌러야 적용돼요.');
+  });
+
+  /* 웹 푸시 알림 (서버 붙이면 사용)
+     - PUSH.publicKey(VAPID 공개 키)와 PUSH.endpoint(구독 저장 주소)를 넣으면 '알림 받기'가 나타남
+     - 서버로 보내는 것: 구독 정보 + 시간대별 시각과 '언제 먹는지' 규칙만 (약 이름 · 비고 · 기록은 보내지 않음)
+       POST endpoint  { action: 'subscribe' | 'update', subscription, schedule }
+       POST endpoint  { action: 'unsubscribe', endpoint }
+     - 서버는 schedule을 보고 정한 시각에 sw.js로 { title, body, slot }을 보냄
+     - 아이폰은 iOS 16.4 이상 + 홈 화면에 추가한 앱에서만 알림을 받을 수 있음 */
+  const PUSH = { publicKey: '', endpoint: '' };
+  const pushReady = () => Boolean(PUSH.publicKey && PUSH.endpoint) && 'serviceWorker' in navigator && 'PushManager' in window;
+  const keyToBytes = (b64) => {
+    const raw = atob((b64 + '='.repeat((4 - b64.length % 4) % 4)).replace(/-/g, '+').replace(/_/g, '/'));
+    return Uint8Array.from(raw, (c) => c.charCodeAt(0));
+  };
+  function pushSchedule() {
+    return {
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      dayStartHour: DAY_START_HOUR,
+      slots: SLOTS.map((s) => ({
+        slot: s.id,
+        label: s.label,
+        time: state.slotTimes[s.id],
+        rules: state.meds.filter((m) => m.times.includes(s.id)).map((m) => ({ repeat: m.repeat, until: m.until }))
+      })).filter((s) => s.rules.length)
+    };
+  }
+  const postPush = (body) => fetch(PUSH.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  let pushTimer = null;
+  function pushSync() {
+    if (!pushReady() || store.get('pill-push') !== '1') return;
+    clearTimeout(pushTimer);
+    pushTimer = setTimeout(() => {
+      navigator.serviceWorker.ready
+        .then((reg) => reg.pushManager.getSubscription())
+        .then((sub) => sub && postPush({ action: 'update', subscription: sub, schedule: pushSchedule() }))
+        .catch(() => { /* 다음 저장 때 다시 보냄 */ });
+    }, 1500);
+  }
+  function renderPush(message) {
+    el.pushBox.hidden = !pushReady();
+    if (el.pushBox.hidden) return;
+    const on = store.get('pill-push') === '1';
+    const blocked = 'Notification' in window && Notification.permission === 'denied';
+    const needHome = isIOS && !standalone;
+    $('pushBtnText').textContent = on ? '알림 끄기' : '알림 받기';
+    $('pushBtn').disabled = blocked || needHome;
+    $('pushState').textContent = message || (needHome ? '아이폰은 홈 화면에 추가한 앱에서만 알림을 받을 수 있어요. 공유 버튼 → [홈 화면에 추가]를 눌러 주세요.'
+      : blocked ? '알림이 꺼져 있어요. 휴대폰 [설정 → 알림]에서 이 앱의 알림을 켜 주세요.'
+      : on ? '알림을 받고 있어요.' : '');
+  }
+  $('pushBtn').addEventListener('click', () => {
+    const on = store.get('pill-push') === '1';
+    navigator.serviceWorker.ready.then((reg) => {
+      if (on) {
+        return reg.pushManager.getSubscription().then((sub) => {
+          if (!sub) return null;
+          return postPush({ action: 'unsubscribe', endpoint: sub.endpoint }).then(() => sub.unsubscribe());
+        }).then(() => { store.set('pill-push', '0'); renderPush('알림을 껐어요.'); say('알림을 껐어요.'); });
+      }
+      return Notification.requestPermission().then((perm) => {
+        if (perm !== 'granted') { renderPush(); return null; }
+        return reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: keyToBytes(PUSH.publicKey) })
+          .then((sub) => postPush({ action: 'subscribe', subscription: sub, schedule: pushSchedule() }))
+          .then((res) => {
+            if (res && !res.ok) throw new Error('server');
+            store.set('pill-push', '1');
+            renderPush('알림을 켰어요. 정한 시각에 알려 드려요.');
+            say('알림을 켰어요.');
+          });
+      });
+    }).catch(() => { renderPush('지금은 알림을 켤 수 없어요. 잠시 뒤 다시 눌러 주세요.'); });
+  });
+
   /* 화면(메뉴) 전환: 한 화면에 한 가지 목적 */
   function panelFromHash() {
     const hash = location.hash.slice(1);
@@ -768,6 +1075,7 @@
     });
     if (id === 'today') renderToday();
     if (id === 'history') renderHistory();
+    if (id === 'times') { renderTimes(); renderPush(); $('timeError').hidden = true; }
     if (focus) {
       window.scrollTo(0, 0);
       $(id + 'Title').focus({ preventScroll: true });
@@ -799,8 +1107,14 @@
   load();
   renderAll();
   save();
+  fillSelects(null);
+  syncSchedule();
   showPanel(panelFromHash(), false);
   openImport();
+  /* 홈 화면 앱 · 알림용 서비스 워커 (https에서만) */
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    navigator.serviceWorker.register('sw.js').catch(() => { /* 무시 */ });
+  }
   window.addEventListener('hashchange', openImport);
 })();
 
