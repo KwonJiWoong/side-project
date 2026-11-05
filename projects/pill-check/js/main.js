@@ -47,6 +47,11 @@
     recordUndoText: $('recordUndoText'),
     demoBar: $('demoBar'),
     demoLock: $('demoLock'),
+    shareBox: $('shareBox'),
+    importBox: $('importBox'),
+    importLead: $('importLead'),
+    importList: $('importList'),
+    importNote: $('importNote'),
     healthForm: $('healthForm'),
     healthMemo: $('healthMemo'),
     healthSaved: $('healthSaved'),
@@ -276,6 +281,7 @@
   function renderMeds(focusSel) {
     el.medCount.textContent = state.meds.length + '개';
     el.medEmpty.hidden = state.meds.length > 0;
+    el.shareBox.hidden = !state.meds.length || state.demo;
     const last = state.undoMeds[state.undoMeds.length - 1];
     el.undoBox.hidden = !last;
     if (last) {
@@ -611,6 +617,144 @@
     say('예시 화면이에요. 마음껏 눌러 보셔도 저장되지 않아요. 다 보셨으면 예시 끝내기를 눌러 주세요.');
   });
 
+  /* 약 목록 링크 공유
+     링크에는 약 이름 · 먹는 때 · 식사 전후 · 간단 메모만 담음 (비고 · 기록은 빼고)
+     주소 # 뒤에 넣어 서버로 전송되지 않음. TAGS 순서는 바꾸지 말 것 (예전 링크가 깨짐) */
+  const TIME_BITS = { morning: 1, lunch: 2, evening: 4, bed: 8 };
+  const MEAL_CODE = { before: 'b', after: 'a', any: 'n' };
+  const TAG_KEYS = Object.keys(TAGS);
+  const b64encode = (str) => {
+    let bin = '';
+    new TextEncoder().encode(str).forEach((b) => { bin += String.fromCharCode(b); });
+    return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  };
+  const b64decode = (code) => {
+    const bin = atob(code.replace(/-/g, '+').replace(/_/g, '/'));
+    return new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)));
+  };
+  function packMeds(meds) {
+    const body = meds.map((m) => [
+      m.name.replace(/[~|]/g, ' ').trim(),
+      m.times.reduce((n, t) => n | (TIME_BITS[t] || 0), 0).toString(16),
+      MEAL_CODE[m.meal] || 'a',
+      m.tags.reduce((n, t) => { const i = TAG_KEYS.indexOf(t); return i < 0 ? n : n | (1 << i); }, 0).toString(16)
+    ].join('~')).join('|');
+    return b64encode('1|' + body);
+  }
+  function unpackMeds(code) {
+    try {
+      const parts = b64decode(code).split('|');
+      if (parts.shift() !== '1' || !parts.length || parts.length > 30) return null;
+      const meds = parts.map((p) => {
+        const [name, t, meal, g] = p.split('~');
+        const tb = parseInt(t, 16);
+        const gb = parseInt(g, 16) || 0;
+        const times = SLOTS.map((s) => s.id).filter((k) => tb & TIME_BITS[k]);
+        const n = String(name || '').trim().slice(0, 30);
+        if (!n || !times.length) return null;
+        return {
+          name: n,
+          times,
+          meal: Object.keys(MEAL_CODE).find((k) => MEAL_CODE[k] === meal) || 'after',
+          tags: TAG_KEYS.filter((k, i) => gb & (1 << i)),
+          memo: ''
+        };
+      });
+      return meds.every(Boolean) ? meds : null;
+    } catch (e) { return null; }
+  }
+  const shareUrl = () => location.href.split('#')[0] + '#share=' + packMeds(state.meds);
+
+  /* 보내기 */
+  const shareBtn = $('shareBtn');
+  shareBtn.hidden = typeof navigator.share !== 'function';
+  function showLink(url) {
+    $('shareLink').value = url;
+    $('shareLinkBox').hidden = false;
+  }
+  shareBtn.addEventListener('click', () => {
+    navigator.share({ title: '오늘 약 챙기기 - 약 목록', text: '약 목록을 보내요. 링크를 누르면 약이 들어가요.', url: shareUrl() })
+      .then(() => say('약 목록 링크를 보냈어요.'))
+      .catch((e) => { if (e && e.name !== 'AbortError') { showLink(shareUrl()); say('보내기가 안 돼서 링크를 아래에 보여 드려요.'); } });
+  });
+  $('copyBtn').addEventListener('click', () => {
+    const url = shareUrl();
+    const done = () => say('링크를 복사했어요. 카톡 대화창에 붙여 넣어 보내세요.');
+    const fail = () => {
+      showLink(url);
+      $('shareLink').focus();
+      $('shareLink').select();
+      say('자동 복사가 안 돼요. 아래 링크를 길게 눌러 복사해 주세요.');
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done, fail);
+    else fail();
+  });
+
+  /* 받기 (링크로 열었을 때) */
+  let incoming = null;
+  function openImport() {
+    const m = location.hash.match(/^#share=(.*)$/);
+    if (!m) return;
+    if (state.demo) { state.demo = false; load(); renderAll(); }
+    incoming = unpackMeds(m[1]);
+    const inApp = /KAKAOTALK/i.test(navigator.userAgent);
+    if (incoming && packMeds(incoming) === packMeds(state.meds)) {
+      incoming = null;
+      history.replaceState(null, '', '#today');
+      say('이미 같은 약 목록이 들어 있어요.');
+      return;
+    }
+    /* 카톡 안 브라우저에 저장하면 나중에 못 찾으니 기본 인터넷 앱으로 열기 */
+    if (incoming && inApp) location.href = 'kakaotalk://web/openExternal?url=' + encodeURIComponent(location.href);
+
+    const has = state.meds.length > 0;
+    el.importList.innerHTML = incoming ? incoming.map((med) => {
+      const times = SLOTS.filter((s) => med.times.includes(s.id)).map((s) => s.label).join(' · ');
+      return '<li class="import__item"><p class="import__name">' + esc(med.name) + '</p><p>' + times + ' · ' + medNote(med).map(esc).join(' · ') + '</p></li>';
+    }).join('') : '';
+    el.importLead.textContent = !incoming
+      ? '링크가 잘못됐거나 중간에 잘렸어요. 보내 주신 분께 다시 보내 달라고 해 주세요.'
+      : (inApp ? '카카오톡 안에서 열렸어요. 인터넷 앱이 새로 열리면 거기서 눌러 주세요. ' : '') +
+        '약 ' + incoming.length + '개가 들어 있어요. ' + (has ? '지금 등록한 약 ' + state.meds.length + '개 대신 이 목록으로 바꿀까요?' : '이 약들을 등록할까요?');
+    el.importNote.hidden = !incoming || !has;
+    $('importYes').hidden = !incoming;
+    $('importYesText').textContent = has ? '받은 목록으로 바꾸기' : '이 약 등록하기';
+    $('importNoText').textContent = incoming ? '안 받을래요' : '닫기';
+    el.importBox.hidden = false;
+    window.scrollTo(0, 0);
+    $('importTitle').focus({ preventScroll: true });
+  }
+  function closeImport() {
+    incoming = null;
+    el.importBox.hidden = true;
+    if (location.hash.indexOf('#share=') === 0) history.replaceState(null, '', '#today');
+    showPanel(panelFromHash(), true);
+  }
+  $('importYes').addEventListener('click', () => {
+    if (!incoming) return;
+    const old = state.meds;
+    const stamp = Date.now().toString(36);
+    /* 이름이 같은 약은 그대로 이어 받기 (오늘 먹은 기록 · 비고 유지) */
+    const next = incoming.map((m, i) => {
+      const same = old.find((o) => o.name.replace(/[~|]/g, ' ').trim() === m.name);
+      return Object.assign({}, m, { id: same ? same.id : 'm' + stamp + i, memo: same ? same.memo : '' });
+    });
+    old.filter((o) => !next.some((n) => n.id === o.id)).forEach((o) => keepMedUndo(o));
+    state.meds = next;
+    state.confirm = null;
+    if (state.edit) resetForm();
+    const count = next.length;
+    save();
+    renderAll();
+    closeImport();
+    say('받은 약 ' + count + '개를 넣었어요. 오늘 먹을 약에 나와요.');
+  });
+  $('importNo').addEventListener('click', () => {
+    const had = Boolean(incoming);
+    closeImport();
+    if (had) say('받은 약 목록을 넣지 않았어요.');
+  });
+
   /* 화면(메뉴) 전환: 한 화면에 한 가지 목적 */
   function panelFromHash() {
     const hash = location.hash.slice(1);
@@ -656,6 +800,8 @@
   renderAll();
   save();
   showPanel(panelFromHash(), false);
+  openImport();
+  window.addEventListener('hashchange', openImport);
 })();
 
 /* 보기 설정 접기 (모바일) */
