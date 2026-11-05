@@ -14,6 +14,9 @@
     { id: 'bed', label: '자기 전', icon: 'moon' }
   ];
   const MEALS = { before: '식사 전', after: '식사 후', any: '식사와 상관없이' };
+  /* 간단 메모 (주소로 보낼 때 짧게 쓰려고 코드로 저장) */
+  const TAGS = { water: '물과 함께', with: '식사와 함께', b30: '식전 30분', a30: '식후 30분', half: '반 알', one: '한 알', two: '두 알', nochew: '씹지 말기' };
+  const TAG_GROUPS = [['with', 'b30', 'a30'], ['half', 'one', 'two']];
   const MOODS = { good: '좋아요', soso: '보통이에요', bad: '안 좋아요' };
   const KEEP_DAYS = 60;
 
@@ -110,6 +113,7 @@
   function load() {
     const meds = store.json('pill-meds', []);
     state.meds = Array.isArray(meds) ? meds.filter((m) => m && m.id && m.name && Array.isArray(m.times)) : [];
+    state.meds.forEach((m) => { m.tags = Array.isArray(m.tags) ? m.tags.filter((t) => TAGS[t]) : []; });
     state.log = store.json('pill-log', {});
     state.health = store.json('pill-health', {});
     /* 예전 방식으로 저장된 예시 약 정리 (예시뿐이면 기록도 함께) */
@@ -222,7 +226,7 @@
       const cards = items.map((e) => {
         const takenAt = day.done[e.key];
         const id = 'med-' + e.key.replace('@', '-');
-        const info = [MEALS[e.med.meal] || MEALS.after, e.med.memo].filter(Boolean).map(esc).join(' · ');
+        const info = medNote(e.med).map(esc).join(' · ');
         return '<li><article class="med-card' + (takenAt ? ' med-card--done' : '') + '" aria-labelledby="' + id + '">' +
           '<h4 class="med-card__name" id="' + id + '">' + esc(e.med.name) + '</h4>' +
           '<p class="med-card__info">' + info + '</p>' +
@@ -286,7 +290,8 @@
       return '<li><article class="my-med" aria-labelledby="my-' + m.id + '">' +
         '<h4 class="my-med__name" id="my-' + m.id + '">' + esc(m.name) + '</h4>' +
         '<p><strong>먹는 때</strong> ' + times + ' (' + (MEALS[m.meal] || MEALS.after) + ')</p>' +
-        (m.memo ? '<p><strong>메모</strong> ' + esc(m.memo) + '</p>' : '') +
+        (m.tags.length ? '<p><strong>간단 메모</strong> ' + m.tags.map((t) => TAGS[t]).join(' · ') + '</p>' : '') +
+        (m.memo ? '<p><strong>비고</strong> ' + esc(m.memo) + '</p>' : '') +
         '<p class="my-med__btns">' +
           '<button type="button" class="btn" data-act="edit" data-id="' + m.id + '">' + ico('edit') + ' 고치기<span class="sr-only"> - ' + esc(m.name) + '</span></button>' +
           '<button type="button" class="btn btn--danger" data-act="remove" data-id="' + m.id + '" aria-expanded="' + open + '" aria-controls="confirm-' + m.id + '">' + ico('trash') + ' 지우기<span class="sr-only"> - ' + esc(m.name) + '</span></button>' +
@@ -362,6 +367,27 @@
     say(u.med.name + '을(를) 되돌렸어요. 오늘 먹을 약에도 다시 나와요.');
   });
 
+  /* 약 카드에 보일 안내 (먹는 때 + 간단 메모 + 비고) */
+  function medNote(m) {
+    const timed = m.tags.includes('b30') || m.tags.includes('a30') || m.tags.includes('with');
+    return [timed ? '' : (MEALS[m.meal] || MEALS.after)].concat(m.tags.map((t) => TAGS[t]), m.memo).filter(Boolean);
+  }
+
+  /* 간단 메모: 같은 묶음(식사 때, 알 수)은 하나만, 식전·식후는 '식사와 함께' 선택과 맞춤 */
+  el.form.addEventListener('change', (e) => {
+    const t = e.target;
+    if (t.name === 'tags' && t.checked) {
+      const group = TAG_GROUPS.find((g) => g.includes(t.value));
+      if (group) group.forEach((v) => { if (v !== t.value) $('tag-' + v).checked = false; });
+      if (t.value === 'b30') $('meal-before').checked = true;
+      if (t.value === 'a30') $('meal-after').checked = true;
+    }
+    if (t.name === 'meal') {
+      if (t.value !== 'before') $('tag-b30').checked = false;
+      if (t.value !== 'after') $('tag-a30').checked = false;
+    }
+  });
+
   /* 약 등록 · 고치기 폼 */
   function showError(input, box, message) {
     box.textContent = message;
@@ -376,6 +402,7 @@
     state.confirm = null;
     el.name.value = med.name;
     el.memo.value = med.memo || '';
+    el.form.querySelectorAll('input[name="tags"]').forEach((i) => { i.checked = med.tags.includes(i.value); });
     el.form.querySelectorAll('input[name="times"]').forEach((i) => { i.checked = med.times.includes(i.value); });
     el.form.querySelectorAll('input[name="meal"]').forEach((i) => { i.checked = i.value === (med.meal || 'after'); });
     el.formTitle.textContent = med.name + ' 고치기';
@@ -414,11 +441,12 @@
 
     const meal = (el.form.querySelector('input[name="meal"]:checked') || {}).value || 'after';
     const memo = el.memo.value.trim();
+    const tags = Array.from(el.form.querySelectorAll('input[name="tags"]:checked')).map((i) => i.value);
     const wasEdit = state.edit;
     if (wasEdit) {
-      Object.assign(findMed(wasEdit), { name, times, meal, memo });
+      Object.assign(findMed(wasEdit), { name, times, meal, tags, memo });
     } else {
-      state.meds.push({ id: 'm' + Date.now().toString(36), name, times, meal, memo });
+      state.meds.push({ id: 'm' + Date.now().toString(36), name, times, meal, tags, memo });
     }
     save();
     resetForm();
@@ -564,9 +592,9 @@
     const t = today();
     const at = (key, h, m) => { const d = parse(key); d.setHours(h, m); return d.toISOString(); };
     state.meds = [
-      { id: 'ex1', name: '혈압약 (예시)', times: ['morning'], meal: 'after', memo: '' },
-      { id: 'ex2', name: '비타민 (예시)', times: ['lunch'], meal: 'after', memo: '' },
-      { id: 'ex3', name: '위장약 (예시)', times: ['morning', 'evening'], meal: 'before', memo: '30분 전' }
+      { id: 'ex1', name: '혈압약 (예시)', times: ['morning'], meal: 'after', tags: ['a30', 'one'], memo: '' },
+      { id: 'ex2', name: '비타민 (예시)', times: ['lunch'], meal: 'after', tags: ['water'], memo: '' },
+      { id: 'ex3', name: '위장약 (예시)', times: ['morning', 'evening'], meal: 'before', tags: ['b30'], memo: '속이 쓰릴 때 꼭 챙기기' }
     ];
     state.log = {};
     state.health = {};
