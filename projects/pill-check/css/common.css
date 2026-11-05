@@ -13,6 +13,16 @@
   --touch: 3.5rem;
   --page-pad: clamp(1.25rem, 5vw, 2.5rem);
   --gap: clamp(1.5rem, 4vw, 2.5rem);
+
+  /* 시간대 색: 글자는 진한 색 그대로, 배경 · 테두리로만 구분 */
+  --morning-bg: #fff4d1;
+  --morning-line: #b86e00;
+  --lunch-bg: #ffe9c7;
+  --lunch-line: #b25a00;
+  --evening-bg: #ffe3e3;
+  --evening-line: #b4234a;
+  --bed-bg: #ebe7ff;
+  --bed-line: #4b3ba6;
 }
 
 /* 고대비 모드 */
@@ -23,6 +33,8 @@ html[data-contrast="high"] {
   --color-primary: #000000;
   --color-accent: #000000;
   --border-w: 0.25rem;
+  --morning-bg: #ffffff; --lunch-bg: #ffffff; --evening-bg: #ffffff; --bed-bg: #ffffff;
+  --morning-line: #000000; --lunch-line: #000000; --evening-line: #000000; --bed-line: #000000;
 }
 
 /* 글자 크기 단계 (기본 18px) */
@@ -96,6 +108,15 @@ main:focus, [tabindex="-1"]:focus { outline: none; }
   flex-shrink: 0;
   width: 1.5rem;
   height: 1.5rem;
+  vertical-align: middle;
+}
+
+/* 캐릭터 (색이 정해진 그림) */
+.chr {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
   vertical-align: middle;
 }
 

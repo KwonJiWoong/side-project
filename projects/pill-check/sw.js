@@ -3,13 +3,13 @@
    잠금 화면에 보이므로 약 이름은 넣지 않는 것을 원칙으로 함 */
 /* 인터넷이 끊겨도 열리게: 화면 파일을 휴대폰에 보관
    VERSION은 index.html의 ?v= 값과 같이 바꾸기 (바꾸면 새 파일로 다시 보관) */
-const VERSION = '2026110504';
+const VERSION = '2026110505';
 const CACHE = 'pill-' + VERSION;
 const SHELL = [
   './', 'index.html', 'privacy.html', 'manifest.webmanifest',
   'css/reset.css?v=' + VERSION, 'css/common.css?v=' + VERSION, 'css/style.css?v=' + VERSION,
   'js/main.js?v=' + VERSION, 'js/page.js?v=' + VERSION, 'fonts/pretendard.css?v=' + VERSION,
-  'images/logo.svg', 'images/icon-192.png', 'images/apple-touch-icon.png'
+  'images/logo.svg', 'images/mascot.svg', 'images/icon-192.png', 'images/apple-touch-icon.png'
 ];
 
 self.addEventListener('install', (e) => {
