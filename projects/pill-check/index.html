@@ -136,7 +136,7 @@
           </fieldset>
 
           <fieldset class="form__group">
-            <legend class="form__label">식사와 함께</legend>
+            <legend class="form__label">식사 전후</legend>
             <ul class="choice-list choice-list--3">
               <li><input class="choice__input" type="radio" id="meal-before" name="meal" value="before"><label class="choice" for="meal-before">식사 전</label></li>
               <li><input class="choice__input" type="radio" id="meal-after" name="meal" value="after" checked><label class="choice" for="meal-after">식사 후</label></li>
@@ -144,10 +144,26 @@
             </ul>
           </fieldset>
 
+          <fieldset class="form__group" aria-describedby="tagsHint">
+            <legend class="form__label">간단 메모 <span class="form__legend-hint">(안 골라도 돼요)</span></legend>
+            <span class="form__hint" id="tagsHint">맞는 것을 눌러 주세요. 여러 개 고를 수 있어요.</span>
+            <ul class="choice-list">
+              <li><input class="choice__input" type="checkbox" id="tag-water" name="tags" value="water"><label class="choice" for="tag-water">물과 함께</label></li>
+              <li><input class="choice__input" type="checkbox" id="tag-with" name="tags" value="with"><label class="choice" for="tag-with">식사와 함께</label></li>
+              <li><input class="choice__input" type="checkbox" id="tag-b30" name="tags" value="b30"><label class="choice" for="tag-b30">식전 30분</label></li>
+              <li><input class="choice__input" type="checkbox" id="tag-a30" name="tags" value="a30"><label class="choice" for="tag-a30">식후 30분</label></li>
+              <li><input class="choice__input" type="checkbox" id="tag-half" name="tags" value="half"><label class="choice" for="tag-half">반 알</label></li>
+              <li><input class="choice__input" type="checkbox" id="tag-one" name="tags" value="one"><label class="choice" for="tag-one">한 알</label></li>
+              <li><input class="choice__input" type="checkbox" id="tag-two" name="tags" value="two"><label class="choice" for="tag-two">두 알</label></li>
+              <li><input class="choice__input" type="checkbox" id="tag-nochew" name="tags" value="nochew"><label class="choice" for="tag-nochew">씹지 말기</label></li>
+            </ul>
+          </fieldset>
+
           <p class="form__field">
-            <label class="form__label" for="medMemo">메모 <span class="form__legend-hint">(안 써도 돼요)</span></label>
-            <span class="form__hint" id="medMemoHint">예: 한 알씩, 물 한 컵과 함께</span>
-            <input class="form__input" type="text" id="medMemo" name="memo" maxlength="40" autocomplete="off" aria-describedby="medMemoHint">
+            <label class="form__label" for="medMemo">비고 <span class="form__legend-hint">(안 써도 돼요)</span></label>
+            <span class="form__hint" id="medMemoHint">예: 아침에만 반 알씩, 냉장 보관</span>
+            <input class="form__input" type="text" id="medMemo" name="memo" maxlength="40" autocomplete="off" aria-describedby="medMemoHint medMemoNote">
+            <span class="form__note" id="medMemoNote">약 목록을 링크(주소)로 보낼 때 <strong>비고는 빠져요.</strong> 간단 메모는 함께 보내져요.</span>
           </p>
 
           <p class="form__btns">
