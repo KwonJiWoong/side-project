@@ -17,10 +17,10 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-title" content="아 맞다 약!">
-  <link rel="stylesheet" href="fonts/pretendard.css?v=2026110504">
-  <link rel="stylesheet" href="css/reset.css?v=2026110504">
-  <link rel="stylesheet" href="css/common.css?v=2026110504">
-  <link rel="stylesheet" href="css/style.css?v=2026110504">
+  <link rel="stylesheet" href="fonts/pretendard.css?v=2026110505">
+  <link rel="stylesheet" href="css/reset.css?v=2026110505">
+  <link rel="stylesheet" href="css/common.css?v=2026110505">
+  <link rel="stylesheet" href="css/style.css?v=2026110505">
 </head>
 <body>
   <a class="skip-link" href="#main">본문 바로가기</a>
@@ -41,13 +41,26 @@
     <symbol id="i-edit" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/></symbol>
     <symbol id="i-trash" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13M10 11v5.5M14 11v5.5"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
-    <symbol id="i-sunrise" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M7 17a5 5 0 0 1 10 0M3 20h18M12 4v3M5 9l1.5 1.5M19 9l-1.5 1.5"/></symbol>
-    <symbol id="i-sun" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="4"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></symbol>
-    <symbol id="i-sunset" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M7 16a5 5 0 0 1 10 0M3 19.5h18M12 9V3.5M9.5 6 12 3.5 14.5 6"/></symbol>
-    <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></symbol>
-    <symbol id="i-good" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="9"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M8 14.5a5 5 0 0 0 8 0M9 9.5v.5M15 9.5v.5"/></symbol>
-    <symbol id="i-soso" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="9"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M8.5 15h7M9 9.5v.5M15 9.5v.5"/></symbol>
-    <symbol id="i-bad" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="9"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M8 16.5a5 5 0 0 1 8 0M9 9.5v.5M15 9.5v.5"/></symbol>
+    <!-- 캐릭터 (약콩이 · 시간대 · 몸 상태) -->
+    <symbol id="ch-mascot" viewBox="0 0 64 64"><g><rect x="5" y="16" width="54" height="32" rx="16" fill="#fff" stroke="#16202e" stroke-width="2.6"/>
+<path d="M32 16h11a16 16 0 0 1 0 32H32z" fill="#f6c453" stroke="#16202e" stroke-width="2.6" stroke-linejoin="round"/>
+<path d="M14 23q4-4 9-4" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".9"/>
+<circle cx="15.5" cy="31" r="1.7999999999999998" fill="#16202e"/><circle cx="24.5" cy="31" r="1.7999999999999998" fill="#16202e"/><path d="M16.25 34.75 q3.75 3.75 7.5 0" fill="none" stroke="#16202e" stroke-width="2.4" stroke-linecap="round"/><ellipse cx="11.75" cy="34.375" rx="2.4000000000000004" ry="1.5" fill="#ff8fa3" opacity=".75"/><ellipse cx="28.25" cy="34.375" rx="2.4000000000000004" ry="1.5" fill="#ff8fa3" opacity=".75"/></g></symbol>
+    <symbol id="ch-morning" viewBox="0 0 64 64"><g><path d="M55.2 33.8 L61.0 32.2" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M50.4 24.6 L55.0 20.7" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M42.1 18.2 L44.7 12.8" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M32.0 16.0 L32.0 10.0" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M21.9 18.2 L19.3 12.8" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M13.6 24.6 L9.0 20.7" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M8.8 33.8 L3.0 32.2" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M8 40a24 24 0 0 1 48 0z" fill="#ffd34d" stroke="#16202e" stroke-width="2.6" stroke-linejoin="round"/>
+<path d="M4 41h56" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M10 48h18M36 48h18" stroke="#8fb8e8" stroke-width="2.6" stroke-linecap="round"/><path d="M23.9 30 q3 2.25 6 0 M34.7 30 q3 2.25 6 0" fill="none" stroke="#16202e" stroke-width="2.2" stroke-linecap="round"/><ellipse cx="32" cy="35.85" rx="1.9800000000000002" ry="2.52" fill="#16202e"/><ellipse cx="22.1" cy="34.05" rx="2.8800000000000003" ry="1.8" fill="#ff8fa3" opacity=".75"/><ellipse cx="41.9" cy="34.05" rx="2.8800000000000003" ry="1.8" fill="#ff8fa3" opacity=".75"/></g></symbol>
+    <symbol id="ch-lunch" viewBox="0 0 64 64"><g><path d="M51.0 32.0 L58.0 32.0" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M47.4 20.8 L53.0 16.7" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M37.9 13.9 L40.0 7.3" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M26.1 13.9 L24.0 7.3" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M16.6 20.8 L11.0 16.7" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M13.0 32.0 L6.0 32.0" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M16.6 43.2 L11.0 47.3" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M26.1 50.1 L24.0 56.7" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M37.9 50.1 L40.0 56.7" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><path d="M47.4 43.2 L53.0 47.3" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/><circle cx="32" cy="32" r="16" fill="#ffb627" stroke="#16202e" stroke-width="2.6"/><circle cx="26.9" cy="30" r="2.04" fill="#16202e"/><circle cx="37.1" cy="30" r="2.04" fill="#16202e"/><path d="M27.325 33.825 h9.35 a4.675 4.675 0 0 1 -9.35 0z" fill="#d9534f" stroke="#16202e" stroke-width="2" stroke-linejoin="round"/><ellipse cx="22.65" cy="33.825" rx="2.72" ry="1.7" fill="#ff8fa3" opacity=".75"/><ellipse cx="41.35" cy="33.825" rx="2.72" ry="1.7" fill="#ff8fa3" opacity=".75"/></g></symbol>
+    <symbol id="ch-evening" viewBox="0 0 64 64"><g><path d="M10 38a22 22 0 0 1 44 0z" fill="#ff8a5b" stroke="#16202e" stroke-width="2.6" stroke-linejoin="round"/>
+<path d="M6 38h52" stroke="#16202e" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M16 50h12a4 4 0 0 0 0-8 6 6 0 0 0-11-1 4.5 4.5 0 0 0-1 9z" fill="#ffd1e0" stroke="#16202e" stroke-width="2.2" stroke-linejoin="round"/>
+<path d="M38 52h12a3.5 3.5 0 0 0 0-7 5 5 0 0 0-9-1 4 4 0 0 0-3 8z" fill="#ffd1e0" stroke="#16202e" stroke-width="2.2" stroke-linejoin="round"/><circle cx="26.9" cy="27" r="2.04" fill="#16202e"/><circle cx="37.1" cy="27" r="2.04" fill="#16202e"/><path d="M28.6 31.25 q3.4 2.975 6.8 0" fill="none" stroke="#16202e" stroke-width="2.2" stroke-linecap="round"/><ellipse cx="22.65" cy="30.825" rx="2.72" ry="1.7" fill="#ff8fa3" opacity=".75"/><ellipse cx="41.35" cy="30.825" rx="2.72" ry="1.7" fill="#ff8fa3" opacity=".75"/></g></symbol>
+    <symbol id="ch-bed" viewBox="0 0 64 64"><g><path d="M40 10a24 24 0 1 0 14 38A20 20 0 0 1 40 10z" fill="#ffe27a" stroke="#16202e" stroke-width="2.6" stroke-linejoin="round"/>
+<path d="M20 16 34 8l4 12z" fill="#8a7cf0" stroke="#16202e" stroke-width="2.2" stroke-linejoin="round"/><circle cx="34" cy="7" r="3.2" fill="#fff" stroke="#16202e" stroke-width="2"/>
+<path d="M46 20h6l-6 6h6M53 10h4l-4 4h4" fill="none" stroke="#6c5ce7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.8 34 q3 -2.0 6 0 M27.4 34 q3 -2.0 6 0" fill="none" stroke="#16202e" stroke-width="2.2" stroke-linecap="round"/><path d="M21.8 38.0 q3.2 2.8000000000000003 6.4 0" fill="none" stroke="#16202e" stroke-width="2.2" stroke-linecap="round"/><ellipse cx="16.2" cy="37.6" rx="2.5600000000000005" ry="1.6" fill="#ff8fa3" opacity=".75"/><ellipse cx="33.8" cy="37.6" rx="2.5600000000000005" ry="1.6" fill="#ff8fa3" opacity=".75"/></g></symbol>
+    <symbol id="ch-good" viewBox="0 0 64 64"><g><path d="M32 8c13 0 23 9 23 23 0 15-10 25-23 25S9 46 9 31C9 17 19 8 32 8z" fill="#8fdc9b" stroke="#16202e" stroke-width="2.6"/><circle cx="26" cy="30" r="2.4" fill="#16202e"/><circle cx="38" cy="30" r="2.4" fill="#16202e"/><path d="M26.5 34.5 h11 a5.5 5.5 0 0 1 -11 0z" fill="#d9534f" stroke="#16202e" stroke-width="2" stroke-linejoin="round"/><ellipse cx="21" cy="34.5" rx="3.2" ry="2" fill="#ff8fa3" opacity=".75"/><ellipse cx="43" cy="34.5" rx="3.2" ry="2" fill="#ff8fa3" opacity=".75"/><path d="M50 12l2 4 4 2-4 2-2 4-2-4-4-2 4-2z" fill="#ffd34d" stroke="#16202e" stroke-width="1.6" stroke-linejoin="round"/></g></symbol>
+    <symbol id="ch-soso" viewBox="0 0 64 64"><g><path d="M32 8c13 0 23 9 23 23 0 15-10 25-23 25S9 46 9 31C9 17 19 8 32 8z" fill="#ffe07a" stroke="#16202e" stroke-width="2.6"/><circle cx="26" cy="30" r="2.4" fill="#16202e"/><circle cx="38" cy="30" r="2.4" fill="#16202e"/><path d="M27.5 36.5 h9" stroke="#16202e" stroke-width="2.4" stroke-linecap="round"/><ellipse cx="21" cy="34.5" rx="3.2" ry="2" fill="#ff8fa3" opacity=".75"/><ellipse cx="43" cy="34.5" rx="3.2" ry="2" fill="#ff8fa3" opacity=".75"/></g></symbol>
+    <symbol id="ch-bad" viewBox="0 0 64 64"><g><path d="M32 8c13 0 23 9 23 23 0 15-10 25-23 25S9 46 9 31C9 17 19 8 32 8z" fill="#a9c4f7" stroke="#16202e" stroke-width="2.6"/><circle cx="26" cy="30" r="2.4" fill="#16202e"/><circle cx="38" cy="30" r="2.4" fill="#16202e"/><path d="M27 39 q5 -5 10 0" fill="none" stroke="#16202e" stroke-width="2.4" stroke-linecap="round"/><ellipse cx="21" cy="34.5" rx="3.2" ry="2" fill="#ff8fa3" opacity=".75"/><ellipse cx="43" cy="34.5" rx="3.2" ry="2" fill="#ff8fa3" opacity=".75"/><path d="M49 18c3 4 4 6 4 8a4 4 0 0 1-8 0c0-2 1-4 4-8z" fill="#5aa9e6" stroke="#16202e" stroke-width="1.6"/></g></symbol>
+    <symbol id="ch-pill-on" viewBox="0 0 40 20"><rect x="1.5" y="1.5" width="37" height="17" rx="8.5" fill="#fff" stroke="#16202e" stroke-width="2"/><path d="M20 1.5h10a8.5 8.5 0 0 1 0 17H20z" fill="#f6c453" stroke="#16202e" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="ch-pill-off" viewBox="0 0 40 20"><rect x="1.5" y="1.5" width="37" height="17" rx="8.5" fill="none" stroke="#6b7685" stroke-width="2" stroke-dasharray="4 3"/></symbol>
     <symbol id="i-share" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 15V3.5M7.5 8 12 3.5 16.5 8M5 12v7.5h14V12"/></symbol>
     <symbol id="i-copy" viewBox="0 0 24 24"><rect fill="none" stroke="currentColor" stroke-width="2.2" x="8" y="8" width="12" height="12" rx="2"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M16 5V4H4v12h1"/></symbol>
     <symbol id="i-alert" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M12 3 2 20h20z"/><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M12 10v4.5M12 17.5v.5"/></symbol>
@@ -57,7 +70,7 @@
   <header class="header">
     <div class="container header__inner">
       <h1 class="header__title">
-        <img class="header__logo" src="images/logo.svg" alt="" width="48" height="48">
+        <img class="header__logo" src="images/mascot.svg" alt="" width="48" height="48">
         아 맞다 약!
       </h1>
       <a class="btn btn--home" href="#today"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg> 처음으로</a>
@@ -112,8 +125,8 @@
         <p class="panel__lead">오늘은 <strong id="todayText">오늘</strong>이에요.</p>
 
         <section class="progress" id="progressBox" aria-labelledby="progressText" hidden>
-          <p class="progress__text" id="progressText"></p>
-          <progress class="progress__bar" id="progressBar" max="1" value="0" aria-labelledby="progressText"></progress>
+          <p class="progress__text"><svg class="chr progress__mascot" aria-hidden="true" focusable="false"><use href="#ch-mascot"></use></svg> <span id="progressText"></span></p>
+          <ol class="pillbox" id="pillBox" aria-label="시간대별 약통"></ol>
         </section>
 
         <p class="empty" id="todayEmpty" hidden>아직 등록한 약이 없어요.<br>먼저 <strong>약 등록</strong>에서 드시는 약을 적어 주세요.</p>
@@ -187,10 +200,10 @@
           <fieldset class="form__group" id="timesGroup" aria-describedby="timesError">
             <legend class="form__label">먹는 때 <span class="form__legend-hint">(여러 개 고를 수 있어요)</span></legend>
             <ul class="choice-list">
-              <li><input class="choice__input" type="checkbox" id="t-morning" name="times" value="morning"><label class="choice" for="t-morning"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sunrise"></use></svg> 아침</label></li>
-              <li><input class="choice__input" type="checkbox" id="t-lunch" name="times" value="lunch"><label class="choice" for="t-lunch"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sun"></use></svg> 점심</label></li>
-              <li><input class="choice__input" type="checkbox" id="t-evening" name="times" value="evening"><label class="choice" for="t-evening"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sunset"></use></svg> 저녁</label></li>
-              <li><input class="choice__input" type="checkbox" id="t-bed" name="times" value="bed"><label class="choice" for="t-bed"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-moon"></use></svg> 자기 전</label></li>
+              <li><input class="choice__input" type="checkbox" id="t-morning" name="times" value="morning"><label class="choice" for="t-morning"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-morning"></use></svg> 아침</label></li>
+              <li><input class="choice__input" type="checkbox" id="t-lunch" name="times" value="lunch"><label class="choice" for="t-lunch"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-lunch"></use></svg> 점심</label></li>
+              <li><input class="choice__input" type="checkbox" id="t-evening" name="times" value="evening"><label class="choice" for="t-evening"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-evening"></use></svg> 저녁</label></li>
+              <li><input class="choice__input" type="checkbox" id="t-bed" name="times" value="bed"><label class="choice" for="t-bed"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-bed"></use></svg> 자기 전</label></li>
             </ul>
             <span class="form__error" id="timesError" hidden></span>
           </fieldset>
@@ -343,9 +356,9 @@
           <fieldset class="form__group" data-pick aria-describedby="moodError">
             <legend class="form__label">오늘 몸 상태는 어떠세요?</legend>
             <ul class="choice-list choice-list--3">
-              <li><input class="choice__input" type="radio" id="mood-good" name="mood" value="good"><label class="choice choice--big" for="mood-good"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-good"></use></svg> 좋아요</label></li>
-              <li><input class="choice__input" type="radio" id="mood-soso" name="mood" value="soso"><label class="choice choice--big" for="mood-soso"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-soso"></use></svg> 보통이에요</label></li>
-              <li><input class="choice__input" type="radio" id="mood-bad" name="mood" value="bad"><label class="choice choice--big" for="mood-bad"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-bad"></use></svg> 안 좋아요</label></li>
+              <li><input class="choice__input" type="radio" id="mood-good" name="mood" value="good"><label class="choice choice--big" for="mood-good"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-good"></use></svg> 좋아요</label></li>
+              <li><input class="choice__input" type="radio" id="mood-soso" name="mood" value="soso"><label class="choice choice--big" for="mood-soso"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-soso"></use></svg> 보통이에요</label></li>
+              <li><input class="choice__input" type="radio" id="mood-bad" name="mood" value="bad"><label class="choice choice--big" for="mood-bad"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-bad"></use></svg> 안 좋아요</label></li>
             </ul>
             <span class="form__error" id="moodError" hidden></span>
           </fieldset>
@@ -411,10 +424,10 @@
         <form class="form" id="timeForm" novalidate aria-labelledby="timeFormTitle">
           <h3 class="form__title" id="timeFormTitle">먹는 시각 정하기</h3>
           <ul class="time-list">
-            <li class="form__field"><label class="form__label" for="time-morning"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sunrise"></use></svg> 아침</label><input class="form__input" type="time" id="time-morning" step="300" required></li>
-            <li class="form__field"><label class="form__label" for="time-lunch"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sun"></use></svg> 점심</label><input class="form__input" type="time" id="time-lunch" step="300" required></li>
-            <li class="form__field"><label class="form__label" for="time-evening"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sunset"></use></svg> 저녁</label><input class="form__input" type="time" id="time-evening" step="300" required></li>
-            <li class="form__field"><label class="form__label" for="time-bed"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-moon"></use></svg> 자기 전</label><input class="form__input" type="time" id="time-bed" step="300" required></li>
+            <li class="form__field"><label class="form__label" for="time-morning"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-morning"></use></svg> 아침</label><input class="form__input" type="time" id="time-morning" step="300" required></li>
+            <li class="form__field"><label class="form__label" for="time-lunch"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-lunch"></use></svg> 점심</label><input class="form__input" type="time" id="time-lunch" step="300" required></li>
+            <li class="form__field"><label class="form__label" for="time-evening"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-evening"></use></svg> 저녁</label><input class="form__input" type="time" id="time-evening" step="300" required></li>
+            <li class="form__field"><label class="form__label" for="time-bed"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-bed"></use></svg> 자기 전</label><input class="form__input" type="time" id="time-bed" step="300" required></li>
           </ul>
           <span class="form__error" id="timeError" role="alert" hidden></span>
           <p class="form__btns">
@@ -451,6 +464,6 @@
 
   <p class="toast" id="notice" role="status" aria-live="polite"></p>
 
-  <script src="js/main.js?v=2026110504"></script>
+  <script src="js/main.js?v=2026110505"></script>
 </body>
 </html>

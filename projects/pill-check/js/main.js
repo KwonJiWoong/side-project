@@ -8,10 +8,10 @@
   const SIZE_LABELS = ['보통', '크게', '아주 크게'];
   const DAY_NAMES = ['일', '월', '화', '수', '목', '금', '토'];
   const SLOTS = [
-    { id: 'morning', label: '아침', icon: 'sunrise' },
-    { id: 'lunch', label: '점심', icon: 'sun' },
-    { id: 'evening', label: '저녁', icon: 'sunset' },
-    { id: 'bed', label: '자기 전', icon: 'moon' }
+    { id: 'morning', label: '아침' },
+    { id: 'lunch', label: '점심' },
+    { id: 'evening', label: '저녁' },
+    { id: 'bed', label: '자기 전' }
   ];
   const MEALS = { before: '식사 전', after: '식사 후', any: '식사와 상관없이' };
   /* 간단 메모 (주소로 보낼 때 짧게 쓰려고 코드로 저장) */
@@ -28,7 +28,7 @@
     today: $('todayText'),
     progressBox: $('progressBox'),
     progressText: $('progressText'),
-    progressBar: $('progressBar'),
+    pillBox: $('pillBox'),
     todayEmpty: $('todayEmpty'),
     todayEmptyBtn: $('todayEmptyBtn'),
     sample: $('sampleBtn'),
@@ -76,6 +76,7 @@
 
   /* 아이콘 (HTML 상단 아이콘 모음 사용) */
   const ico = (name) => '<svg class="ico" aria-hidden="true" focusable="false"><use href="#i-' + name + '"></use></svg>';
+  const chr = (name, cls) => '<svg class="chr' + (cls ? ' ' + cls : '') + '" aria-hidden="true" focusable="false"><use href="#ch-' + name + '"></use></svg>';
 
   /* 입력한 글자 그대로 보이게 (태그 막기) */
   const esc = (str) => String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -292,7 +293,7 @@
     el.todayEmptyBtn.hidden = !none;
     el.sample.hidden = !none;
     el.progressBox.hidden = none;
-    el.progressBar.hidden = !has;
+    el.pillBox.hidden = !has;
     if (!none && !has) {
       el.progressText.textContent = '오늘은 먹을 약이 없어요. 정해진 날에만 먹는 약은 아래에서 확인해 주세요.';
       el.progressBox.classList.add('progress--done');
@@ -304,10 +305,21 @@
       el.progressText.textContent = all
         ? '오늘 약을 모두 드셨어요. 잘하셨어요!'
         : '오늘 ' + entries.length + '번 중 ' + done + '번 먹었어요. ' + (entries.length - done) + '번 남았어요.';
-      el.progressBar.max = entries.length;
-      el.progressBar.value = done;
       el.progressBox.classList.toggle('progress--done', all);
     }
+
+    el.pillBox.innerHTML = SLOTS.map((slot) => {
+      const items = entries.filter((e) => e.slot === slot.id);
+      if (!items.length) return '';
+      const took = items.filter((e) => day.done[e.key]).length;
+      const left = items.length - took;
+      const pills = items.map((e) => '<svg class="pillbox__pill"><use href="#ch-pill-' + (day.done[e.key] ? 'on' : 'off') + '"></use></svg>').join('');
+      return '<li><button type="button" class="pillbox__cell pillbox__cell--' + slot.id + (left ? '' : ' is-done') + '" data-goto="' + slot.id + '">' +
+        chr(slot.id) + '<span class="pillbox__label">' + slot.label + '</span>' +
+        '<span class="pillbox__pills" aria-hidden="true">' + pills + '</span>' +
+        '<span class="pillbox__state">' + (left ? left + '개 남음' : '✓ 다 먹음') + '</span>' +
+        '<span class="sr-only"> - 눌러서 ' + slot.label + ' 약 보기</span></button></li>';
+    }).join('');
 
     const now = nowSlot();
     el.slotList.innerHTML = SLOTS.map((slot) => {
@@ -330,9 +342,9 @@
               '<button type="button" class="btn btn--primary btn--block" data-act="take" data-key="' + e.key + '">' + ico('check') + ' 먹었어요<span class="sr-only"> - ' + slot.label + ' ' + esc(e.med.name) + '</span></button>') +
           '</article></li>';
       }).join('');
-      return '<li><section class="slot" aria-labelledby="slot-' + slot.id + '">' +
+      return '<li><section class="slot slot--' + slot.id + '" aria-labelledby="slot-' + slot.id + '">' +
         '<header class="slot__head">' +
-          '<h3 class="slot__title" id="slot-' + slot.id + '">' + ico(slot.icon) + ' ' + slot.label + ' <span class="slot__time">' + fmtClock(state.slotTimes[slot.id]) + '</span></h3>' +
+          '<h3 class="slot__title" id="slot-' + slot.id + '" tabindex="-1">' + chr(slot.id) + ' ' + slot.label + ' <span class="slot__time">' + fmtClock(state.slotTimes[slot.id]) + '</span></h3>' +
           (slot.id === now ? '<p class="slot__now">' + ico('clock') + ' 지금 드실 때</p>' : '') +
           '<p class="slot__count">' + items.length + '개 중 ' + doneCount + '개 먹음</p>' +
         '</header>' +
@@ -354,6 +366,16 @@
       if (target) target.focus();
     }
   }
+
+  /* 약통 칸을 누르면 그 시간대 약으로 */
+  el.pillBox.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-goto]');
+    if (!btn) return;
+    const title = $('slot-' + btn.dataset.goto);
+    if (!title) return;
+    title.scrollIntoView({ block: 'start', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    title.focus({ preventScroll: true });
+  });
 
   el.slotList.addEventListener('click', (e) => {
     const btn = e.target.closest('button[data-act]');
@@ -762,7 +784,7 @@
     const rec = state.health[today()];
     el.healthSaved.hidden = !rec;
     if (rec) {
-      el.healthSaved.innerHTML = ico('check') + ' 오늘 기록: ' + MOODS[rec.mood] + ' (' + fmtTime(rec.at) + ' 저장)';
+      el.healthSaved.innerHTML = chr(rec.mood) + ' 오늘 기록: ' + MOODS[rec.mood] + ' (' + fmtTime(rec.at) + ' 저장)';
       const input = el.healthForm.querySelector('input[name="mood"][value="' + rec.mood + '"]');
       if (input) input.checked = true;
       resetPicks(el.healthForm);
@@ -798,7 +820,7 @@
         else status = '<span class="history__status history__status--miss">✕ 먹은 기록이 없어요</span> (' + day.total + '번)';
       }
       const mood = rec
-        ? '<span class="history__status">' + MOODS[rec.mood] + '</span>' + (rec.memo ? '<span class="history__memo">' + esc(rec.memo) + '</span>' : '')
+        ? '<span class="history__status history__mood">' + chr(rec.mood) + MOODS[rec.mood] + '</span>' + (rec.memo ? '<span class="history__memo">' + esc(rec.memo) + '</span>' : '')
         : '기록 없음';
       rows += '<tr role="row">' +
         '<th scope="row" role="rowheader">' + fmtShort(key) + (i === 0 ? ' <span class="history__today">오늘</span>' : '') + '</th>' +
