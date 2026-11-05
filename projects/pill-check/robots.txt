@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+# 도메인 정해지면 아래 줄 주석 풀고 주소 바꾸기
+# Sitemap: https://도메인/sitemap.xml
