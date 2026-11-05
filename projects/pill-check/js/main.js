@@ -486,11 +486,94 @@
       if (group) group.forEach((v) => { if (v !== t.value) $('tag-' + v).checked = false; });
       if (t.value === 'b30') $('meal-before').checked = true;
       if (t.value === 'a30') $('meal-after').checked = true;
+      refreshPick(pickOf('mealGroup'));
     }
     if (t.name === 'meal') {
       if (t.value !== 'before') $('tag-b30').checked = false;
       if (t.value !== 'after') $('tag-a30').checked = false;
     }
+  });
+
+  /* 하나만 고르는 칸 (data-pick): 고르면 고른 것만 보이고 옆에 [다시 고르기]
+     화살표 키로 고를 때는 바로 접지 않고 칸을 벗어날 때 접음 (키보드 사용자 배려) */
+  const picks = Array.from(document.querySelectorAll('[data-pick]')).map((fs) => {
+    const list = fs.querySelector(':scope > .choice-list');
+    const row = document.createElement('div');
+    row.className = 'pick__row';
+    list.parentNode.insertBefore(row, list);
+    row.appendChild(list);
+    const again = document.createElement('button');
+    again.type = 'button';
+    again.className = 'btn pick__again';
+    again.innerHTML = ico('undo') + ' 다시 고르기<span class="sr-only"> - ' + fs.querySelector('legend').firstChild.textContent.trim() + '</span>';
+    row.appendChild(again);
+    const radios = Array.from(list.querySelectorAll('input[type="radio"]'));
+    const pick = { fs, list, radios, open: false };
+    let byArrow = false;
+    fs.addEventListener('keydown', (e) => { if (/^Arrow/.test(e.key) && radios.includes(e.target)) byArrow = true; });
+    list.addEventListener('change', () => {
+      if (byArrow) { byArrow = false; return; }
+      pick.open = false;
+      refreshPick(pick);
+    });
+    /* 손가락 · 마우스로 누르는 중에는 포커스가 잠깐 빠져도 접지 않음 */
+    let pressing = false;
+    fs.addEventListener('pointerdown', () => { pressing = true; });
+    document.addEventListener('pointerup', () => { setTimeout(() => { pressing = false; }, 0); });
+    /* 이미 고른 것을 다시 눌러도 접기 */
+    list.addEventListener('click', (e) => {
+      if (pressing && pick.open && e.target.type === 'radio' && e.target.checked) { pick.open = false; refreshPick(pick); }
+    });
+    fs.addEventListener('focusout', (e) => {
+      if (pressing || !pick.open || fs.contains(e.relatedTarget) || !radios.some((r) => r.checked)) return;
+      pick.open = false;
+      refreshPick(pick);
+    });
+    again.addEventListener('click', () => {
+      pick.open = true;
+      refreshPick(pick);
+      (radios.find((r) => r.checked) || radios[0]).focus();
+    });
+    return pick;
+  });
+  function refreshPick(pick) {
+    const checked = pick.radios.find((r) => r.checked);
+    const closed = Boolean(checked) && !pick.open;
+    pick.fs.classList.toggle('is-picked', closed);
+    pick.radios.forEach((r) => { r.closest('li').hidden = closed && r !== checked; });
+  }
+  /* 처음 상태로: 고른 게 있으면 접고, 없으면 펼침 */
+  const resetPicks = (root) => picks.forEach((p) => { if (!root || root.contains(p.fs)) { p.open = false; refreshPick(p); } });
+  const pickOf = (id) => picks.find((p) => p.fs.id === id);
+
+  /* 약 이름: 자주 먹는 약 고르기 · 직접 쓰기 */
+  function syncName() {
+    const v = radioVal('preset');
+    const custom = v === 'custom';
+    $('nameBox').hidden = !custom;
+    if (v && !custom) el.name.value = v;
+  }
+  function setName(name) {
+    const preset = Array.from(el.form.querySelectorAll('input[name="preset"]')).find((r) => r.value === name);
+    (preset || $('pre-custom')).checked = true;
+    el.name.value = name;
+    syncName();
+  }
+  function focusName() {
+    if (!$('nameBox').hidden) { el.name.focus(); return; }
+    const r = el.form.querySelector('input[name="preset"]:checked') || $('pre-0');
+    r.focus();
+  }
+  el.form.addEventListener('change', (e) => {
+    if (e.target.name !== 'preset') return;
+    if (e.target.value === 'custom') {
+      if (Array.from(el.form.querySelectorAll('input[name="preset"]')).some((r) => r.value === el.name.value)) el.name.value = '';
+      syncName();
+      if (!$('nameGroup').contains(document.activeElement) || document.activeElement === e.target) el.name.focus();
+    } else {
+      syncName();
+    }
+    showError($('nameGroup'), el.nameError, '');
   });
 
   /* 먹는 날 · 기간 고르기 칸 */
@@ -540,7 +623,7 @@
   function startEdit(med) {
     state.edit = med.id;
     state.confirm = null;
-    el.name.value = med.name;
+    setName(med.name);
     el.memo.value = med.memo || '';
     el.form.querySelectorAll('input[name="tags"]').forEach((i) => { i.checked = med.tags.includes(i.value); });
     el.form.querySelectorAll('input[name="times"]').forEach((i) => { i.checked = med.times.includes(i.value); });
@@ -550,6 +633,7 @@
     $(med.until ? 'until-days' : 'until-none').checked = true;
     fillSelects(med);
     syncSchedule();
+    resetPicks(el.form);
     el.formTitle.textContent = med.name + ' 고치기';
     el.submitText.textContent = '고친 내용 저장';
     el.cancelEdit.hidden = false;
@@ -557,12 +641,12 @@
     clearErrors();
     renderMeds();
     el.form.scrollIntoView({ block: 'start' });
-    el.name.focus({ preventScroll: true });
+    focusName();
     say(med.name + ' 정보를 고칠 수 있어요.');
   }
   function clearErrors() {
-    showError(el.name, el.nameError, '');
-    showError(el.form.querySelector('.form__group'), el.timesError, '');
+    showError($('nameGroup'), el.nameError, '');
+    showError($('timesGroup'), el.timesError, '');
     showError($('repeatGroup'), el.repeatError, '');
   }
   function resetForm() {
@@ -574,6 +658,8 @@
     el.form.classList.remove('form--edit');
     fillSelects(null);
     syncSchedule();
+    syncName();
+    resetPicks(el.form);
     clearErrors();
   }
 
@@ -581,13 +667,13 @@
     e.preventDefault();
     const name = el.name.value.trim();
     const times = checkedTimes();
-    const timesGroup = el.form.querySelector('.form__group');
-    showError(el.name, el.nameError, name ? '' : '약 이름을 적어 주세요. 예: 혈압약');
+    const timesGroup = $('timesGroup');
+    showError($('nameGroup'), el.nameError, name ? '' : (radioVal('preset') === 'custom' ? '약 이름을 적어 주세요. 예: 아스피린' : '약 이름을 골라 주세요. 없으면 [직접 쓰기]를 눌러 적어 주세요.'));
     showError(timesGroup, el.timesError, times.length ? '' : '먹는 때를 하나 이상 눌러 주세요. 예: 아침');
     const rtype = radioVal('repeat') || 'daily';
     const wdays = Array.from(el.form.querySelectorAll('input[name="wdays"]:checked')).map((i) => Number(i.value));
     showError($('repeatGroup'), el.repeatError, rtype === 'week' && !wdays.length ? '먹는 요일을 하나 이상 눌러 주세요. 예: 월' : '');
-    if (!name) { el.name.focus(); return; }
+    if (!name) { pickOf('nameGroup').open = true; refreshPick(pickOf('nameGroup')); focusName(); return; }
     if (!times.length) { $('t-morning').focus(); return; }
     if (rtype === 'week' && !wdays.length) { $('wd-1').focus(); return; }
 
@@ -617,7 +703,7 @@
     resetForm();
     renderAll();
     say(wasEdit ? name + ' 정보를 고쳤어요.' : name + '을(를) 등록했어요. ' + (due ? '오늘 먹을 약에 나와요.' : '오늘은 먹는 날이 아니라서 먹는 날에 나와요.'));
-    el.name.focus();
+    focusName();
   });
   el.cancelEdit.addEventListener('click', () => {
     const id = state.edit;
@@ -634,6 +720,7 @@
       el.healthSaved.innerHTML = ico('check') + ' 오늘 기록: ' + MOODS[rec.mood] + ' (' + fmtTime(rec.at) + ' 저장)';
       const input = el.healthForm.querySelector('input[name="mood"][value="' + rec.mood + '"]');
       if (input) input.checked = true;
+      resetPicks(el.healthForm);
       el.healthMemo.value = rec.memo || '';
     }
   }
@@ -693,6 +780,7 @@
     state.health = {};
     save();
     el.healthForm.reset();
+    resetPicks(el.healthForm);
     renderAll();
     resetConfirm.hidden = true;
     resetBtn.setAttribute('aria-expanded', 'false');
@@ -742,9 +830,10 @@
     state.confirm = null;
     resetForm();
     el.healthForm.reset();
+    resetPicks(el.healthForm);
     load();
     renderAll();
-    if (goForm) el.name.focus();
+    if (goForm) focusName();
     else $(panelFromHash() + 'Title').focus();
     say('예시를 끝냈어요. 이제부터 적는 건 진짜 기록이에요.');
   }
@@ -1156,6 +1245,8 @@
   save();
   fillSelects(null);
   syncSchedule();
+  syncName();
+  resetPicks();
   showPanel(panelFromHash(), false);
   openImport();
   /* 홈 화면 앱 · 알림용 서비스 워커 (https에서만) */
