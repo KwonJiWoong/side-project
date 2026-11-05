@@ -721,6 +721,7 @@
 
   function renderAll() {
     renderDemo();
+    renderInstall();
     renderToday();
     renderMeds();
     renderHealth();
@@ -1062,6 +1063,52 @@
     }).catch(() => { renderPush('지금은 알림을 켤 수 없어요. 잠시 뒤 다시 눌러 주세요.'); });
   });
 
+  /* 홈 화면에 추가 안내
+     - 안드로이드(크롬 · 삼성 인터넷): 브라우저가 주는 설치 창을 버튼으로 띄움
+     - 아이폰 · 그 밖: 직접 하는 순서를 보여 줌
+     - '나중에 할게요'는 14일 동안 숨김, 카톡 안 브라우저 · 예시 화면에서는 숨김 */
+  let installEvent = null;
+  const INSTALL_HIDE_DAYS = 14;
+  function renderInstall() {
+    const box = $('installBox');
+    const later = Number(store.get('pill-install-later')) || 0;
+    const inApp = /KAKAOTALK|NAVER|Instagram|FBAN|FBAV/i.test(navigator.userAgent);
+    box.hidden = standalone || inApp || state.demo || Date.now() - later < INSTALL_HIDE_DAYS * 86400000;
+    if (box.hidden) return;
+    const steps = isIOS
+      ? ['화면 아래(아이패드는 위)의 <strong>공유 버튼</strong>(네모에서 화살표가 위로 나온 모양)을 눌러요.', '목록을 내려서 <strong>[홈 화면에 추가]</strong>를 눌러요.', '오른쪽 위 <strong>[추가]</strong>를 누르면 끝이에요.']
+      : ['화면 위나 아래의 <strong>메뉴 버튼</strong>(점 세 개 또는 줄 세 개)을 눌러요.', '<strong>[홈 화면에 추가]</strong> 또는 <strong>[앱 설치]</strong>를 눌러요.', '<strong>[추가]</strong> 또는 <strong>[설치]</strong>를 누르면 끝이에요.'];
+    $('installBtn').hidden = !installEvent;
+    $('installSteps').hidden = Boolean(installEvent);
+    $('installSteps').innerHTML = steps.map((t) => '<li>' + t + '</li>').join('');
+    $('installNote').hidden = !(isIOS && state.meds.length);
+  }
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    installEvent = e;
+    renderInstall();
+  });
+  $('installBtn').addEventListener('click', () => {
+    if (!installEvent) return;
+    installEvent.prompt();
+    installEvent.userChoice.then((r) => {
+      installEvent = null;
+      renderInstall();
+      if (r.outcome !== 'accepted') say('홈 화면 추가를 그만뒀어요. 언제든 다시 누르실 수 있어요.');
+    });
+  });
+  window.addEventListener('appinstalled', () => {
+    installEvent = null;
+    $('installBox').hidden = true;
+    say('홈 화면에 추가했어요. 이제 첫 화면의 아이콘을 눌러 여세요.');
+  });
+  $('installLater').addEventListener('click', () => {
+    store.set('pill-install-later', String(Date.now()));
+    $('installBox').hidden = true;
+    $('todayTitle').focus();
+    say('안내를 닫았어요. 2주 뒤에 다시 알려 드릴게요.');
+  });
+
   /* 화면(메뉴) 전환: 한 화면에 한 가지 목적 */
   function panelFromHash() {
     const hash = location.hash.slice(1);
@@ -1073,7 +1120,7 @@
       if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'page');
       else a.removeAttribute('aria-current');
     });
-    if (id === 'today') renderToday();
+    if (id === 'today') { renderToday(); renderInstall(); }
     if (id === 'history') renderHistory();
     if (id === 'times') { renderTimes(); renderPush(); $('timeError').hidden = true; }
     if (focus) {
@@ -1115,6 +1162,8 @@
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
     navigator.serviceWorker.register('sw.js').catch(() => { /* 무시 */ });
   }
+  /* 저장 공간이 부족해도 기록을 지우지 말아 달라고 요청 (홈 화면 앱은 대부분 허락됨) */
+  if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => { /* 무시 */ });
   window.addEventListener('hashchange', openImport);
 })();
 

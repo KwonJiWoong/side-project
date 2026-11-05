@@ -6,14 +6,21 @@
   <meta name="description" content="아침·점심·저녁·자기 전에 먹을 약을 등록하고, 먹었는지 큰 버튼으로 표시하세요. 오늘 몸 상태와 최근 7일 기록도 한눈에 볼 수 있어요.">
   <meta name="theme-color" content="#1a4b80">
   <title>오늘 약 챙기기 | 약 먹는 시간표와 몸 상태 기록</title>
+  <!-- 공유 미리보기 (도메인 정해지면 canonical · og:url · og:image 추가) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="오늘 약 챙기기">
+  <meta property="og:title" content="오늘 약 챙기기 - 약 먹을 때를 큰 버튼으로">
+  <meta property="og:description" content="아침·점심·저녁·자기 전 약을 등록하고, 먹었는지 큰 버튼으로 표시해요. 기록은 내 휴대폰에만 저장돼요.">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="images/logo.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-title" content="약 챙기기">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" integrity="sha384-ei/b2Mz3F5J8nqTvpKS89CkzDCuD7Cc+/F+OsaPUKItzHgLNKnGq3rjtYq/B7RnO" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="fonts/pretendard.css?v=20261105">
+  <link rel="stylesheet" href="css/reset.css?v=20261105">
+  <link rel="stylesheet" href="css/common.css?v=20261105">
+  <link rel="stylesheet" href="css/style.css?v=20261105">
 </head>
 <body>
   <a class="skip-link" href="#main">본문 바로가기</a>
@@ -119,6 +126,17 @@
           <h3 class="rest__title" id="restTitle">오늘은 안 먹는 약</h3>
           <p>정해진 날에만 먹는 약이에요. 오늘은 드시지 마세요.</p>
           <ul class="rest__list" id="restList"></ul>
+        </section>
+
+        <section class="install" id="installBox" aria-labelledby="installTitle" hidden>
+          <h3 class="install__title" id="installTitle"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg> 홈 화면에 추가해 두세요</h3>
+          <p>휴대폰 첫 화면에 아이콘이 생겨서 앱처럼 바로 열 수 있어요. 기록도 더 오래 안전하게 남아요.</p>
+          <ol class="install__steps" id="installSteps" hidden></ol>
+          <p class="install__note" id="installNote" hidden>홈 화면 앱을 열었는데 약이 안 보이면, 여기 사파리에서 [약 등록 → 약 목록 보내기 → 링크 복사하기]를 누른 뒤 앱의 '받은 링크로 약 넣기'에 붙여 넣어 주세요.</p>
+          <p class="install__btns">
+            <button type="button" class="btn btn--primary" id="installBtn" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 홈 화면에 추가하기</button>
+            <button type="button" class="btn" id="installLater"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-close"></use></svg> 나중에 할게요</button>
+          </p>
         </section>
 
         <aside class="tip" aria-labelledby="tipTitle">
@@ -396,12 +414,13 @@
     <div class="container">
       <p>오늘도 약 잘 챙기시고 건강한 하루 보내세요.</p>
       <p class="footer__note">기록은 이 기기에만 저장되고 서버로 보내지 않아요. 약에 대한 궁금한 점은 의사나 약사에게 물어보세요.</p>
+      <p class="footer__links"><a class="footer__link" href="privacy.html">개인정보처리방침</a></p>
       <p class="footer__contact">문의 · 오류 알리기: <a class="footer__mail" href="mailto:kjobaba@naver.com?subject=%5B%EC%98%A4%EB%8A%98%20%EC%95%BD%20%EC%B1%99%EA%B8%B0%EA%B8%B0%5D%20%EB%AC%B8%EC%9D%98">kjobaba@naver.com</a></p>
     </div>
   </footer>
 
   <p class="toast" id="notice" role="status" aria-live="polite"></p>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20261105"></script>
 </body>
 </html>
