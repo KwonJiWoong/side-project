@@ -4,7 +4,8 @@
   --color-surface: #ffffff;  /* 카드 */
   --color-text: #16202e;     /* 글자 */
   --color-primary: #1a4b80;  /* 파랑 (주요 색) */
-  --color-accent: #9a2f12;   /* 붉은 갈색 (아직 안 먹은 약 강조) */
+  --color-warn: #a4161a;     /* 빨강: 경고에만 씀 (오류 · 지우기 · 먹지 말 것 · 빠뜨린 약) */
+  --color-focus: #16202e;    /* 키보드 포커스 테두리 */
 
   --font-sans: 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
   --border-w: 0.125rem;
@@ -17,10 +18,10 @@
   /* 시간대 색: 글자는 진한 색 그대로, 배경 · 테두리로만 구분 */
   --morning-bg: #fff4d1;
   --morning-line: #b86e00;
-  --lunch-bg: #ffe9c7;
-  --lunch-line: #b25a00;
-  --evening-bg: #ffe3e3;
-  --evening-line: #b4234a;
+  --lunch-bg: #e3f1ff;
+  --lunch-line: #0b5fae;
+  --evening-bg: #ffead6;
+  --evening-line: #b04a00;
   --bed-bg: #ebe7ff;
   --bed-line: #4b3ba6;
 }
@@ -31,7 +32,8 @@ html[data-contrast="high"] {
   --color-surface: #ffffff;
   --color-text: #000000;
   --color-primary: #000000;
-  --color-accent: #000000;
+  --color-warn: #000000;
+  --color-focus: #000000;
   --border-w: 0.25rem;
   --morning-bg: #ffffff; --lunch-bg: #ffffff; --evening-bg: #ffffff; --bed-bg: #ffffff;
   --morning-line: #000000; --lunch-line: #000000; --evening-line: #000000; --bed-line: #000000;
@@ -58,7 +60,7 @@ strong { font-weight: 700; }
 
 /* 키보드 포커스 */
 :focus-visible {
-  outline: 0.25rem solid var(--color-accent);
+  outline: 0.25rem solid var(--color-focus);
   outline-offset: 0.2rem;
 }
 main:focus, [tabindex="-1"]:focus { outline: none; }
@@ -156,7 +158,7 @@ main:focus, [tabindex="-1"]:focus { outline: none; }
   border-color: var(--color-primary);
 }
 .btn--toggle[aria-pressed="true"]::before { content: "✓"; }
-.btn--danger { color: var(--color-accent); border-color: var(--color-accent); }
+.btn--danger { color: var(--color-warn); border-color: var(--color-warn); }
 .btn[disabled] { opacity: 0.6; cursor: not-allowed; }
 
 /* 모션 최소화 */

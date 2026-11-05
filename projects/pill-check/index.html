@@ -17,10 +17,10 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-title" content="아 맞다 약!">
-  <link rel="stylesheet" href="fonts/pretendard.css?v=2026110506">
-  <link rel="stylesheet" href="css/reset.css?v=2026110506">
-  <link rel="stylesheet" href="css/common.css?v=2026110506">
-  <link rel="stylesheet" href="css/style.css?v=2026110506">
+  <link rel="stylesheet" href="fonts/pretendard.css?v=2026110507">
+  <link rel="stylesheet" href="css/reset.css?v=2026110507">
+  <link rel="stylesheet" href="css/common.css?v=2026110507">
+  <link rel="stylesheet" href="css/style.css?v=2026110507">
 </head>
 <body>
   <a class="skip-link" href="#main">본문 바로가기</a>
@@ -136,7 +136,7 @@
         <ol class="slots" id="slotList"></ol>
 
         <section class="rest" id="restBox" aria-labelledby="restTitle" hidden>
-          <h3 class="rest__title" id="restTitle">오늘은 안 먹는 약</h3>
+          <h3 class="rest__title" id="restTitle"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg> 오늘은 안 먹는 약</h3>
           <p>정해진 날에만 먹는 약이에요. 오늘은 드시지 마세요.</p>
           <ul class="rest__list" id="restList"></ul>
         </section>
@@ -152,8 +152,8 @@
           </p>
         </section>
 
-        <aside class="tip" aria-labelledby="tipTitle">
-          <h3 class="tip__title" id="tipTitle">꼭 지켜 주세요</h3>
+        <aside class="tip tip--warn" aria-labelledby="tipTitle">
+          <h3 class="tip__title" id="tipTitle"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg> 꼭 지켜 주세요</h3>
           <p>이 수첩은 <strong>먹었는지 기억을 돕는 도구</strong>예요. 약의 양과 시간은 의사·약사가 알려 준 대로 드시고, 먹은 걸 잊었을 때 한 번 더 먹지 마세요.</p>
         </aside>
       </section>
@@ -443,7 +443,7 @@
           <button type="button" class="btn btn--primary btn--block" id="pushBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clock"></use></svg> <span id="pushBtnText">알림 받기</span></button>
         </section>
 
-        <aside class="tip" aria-labelledby="dayTipTitle">
+        <aside class="tip tip--info" aria-labelledby="dayTipTitle">
           <h3 class="tip__title" id="dayTipTitle">밤 12시가 지나도 괜찮아요</h3>
           <p>새벽 4시 전에 누른 기록은 <strong>전날 약</strong>으로 적혀요. 자기 전 약을 밤늦게 드셔도 다음 날 약으로 잘못 넘어가지 않아요.</p>
         </aside>
@@ -464,6 +464,6 @@
 
   <p class="toast" id="notice" role="status" aria-live="polite"></p>
 
-  <script src="js/main.js?v=2026110506"></script>
+  <script src="js/main.js?v=2026110507"></script>
 </body>
 </html>
