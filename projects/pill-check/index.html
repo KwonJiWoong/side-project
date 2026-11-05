@@ -17,10 +17,10 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-title" content="아 맞다 약!">
-  <link rel="stylesheet" href="fonts/pretendard.css?v=2026110502">
-  <link rel="stylesheet" href="css/reset.css?v=2026110502">
-  <link rel="stylesheet" href="css/common.css?v=2026110502">
-  <link rel="stylesheet" href="css/style.css?v=2026110502">
+  <link rel="stylesheet" href="fonts/pretendard.css?v=2026110503">
+  <link rel="stylesheet" href="css/reset.css?v=2026110503">
+  <link rel="stylesheet" href="css/common.css?v=2026110503">
+  <link rel="stylesheet" href="css/style.css?v=2026110503">
 </head>
 <body>
   <a class="skip-link" href="#main">본문 바로가기</a>
@@ -159,14 +159,32 @@
         <form class="form" id="medForm" novalidate aria-labelledby="formTitle">
           <h3 class="form__title" id="formTitle">새 약 등록하기</h3>
 
-          <p class="form__field">
-            <label class="form__label" for="medName">약 이름</label>
-            <span class="form__hint" id="medNameHint">예: 혈압약, 당뇨약, 비타민</span>
-            <input class="form__input" type="text" id="medName" name="name" maxlength="30" autocomplete="off" aria-describedby="medNameHint medNameError" required>
+          <fieldset class="form__group" id="nameGroup" data-pick aria-describedby="presetHint medNameError">
+            <legend class="form__label">약 이름</legend>
+            <span class="form__hint" id="presetHint">자주 먹는 약은 눌러서 고르고, 없으면 [직접 쓰기]를 눌러 주세요.</span>
+            <ul class="choice-list">
+              <li><input class="choice__input" type="radio" id="pre-0" name="preset" value="혈압약"><label class="choice" for="pre-0">혈압약</label></li>
+              <li><input class="choice__input" type="radio" id="pre-1" name="preset" value="당뇨약"><label class="choice" for="pre-1">당뇨약</label></li>
+              <li><input class="choice__input" type="radio" id="pre-2" name="preset" value="콜레스테롤약"><label class="choice" for="pre-2">콜레스테롤약</label></li>
+              <li><input class="choice__input" type="radio" id="pre-3" name="preset" value="위장약"><label class="choice" for="pre-3">위장약</label></li>
+              <li><input class="choice__input" type="radio" id="pre-4" name="preset" value="소화제"><label class="choice" for="pre-4">소화제</label></li>
+              <li><input class="choice__input" type="radio" id="pre-5" name="preset" value="진통제"><label class="choice" for="pre-5">진통제</label></li>
+              <li><input class="choice__input" type="radio" id="pre-6" name="preset" value="관절약"><label class="choice" for="pre-6">관절약</label></li>
+              <li><input class="choice__input" type="radio" id="pre-7" name="preset" value="갑상선약"><label class="choice" for="pre-7">갑상선약</label></li>
+              <li><input class="choice__input" type="radio" id="pre-8" name="preset" value="골다공증약"><label class="choice" for="pre-8">골다공증약</label></li>
+              <li><input class="choice__input" type="radio" id="pre-9" name="preset" value="비타민"><label class="choice" for="pre-9">비타민</label></li>
+              <li><input class="choice__input" type="radio" id="pre-10" name="preset" value="영양제"><label class="choice" for="pre-10">영양제</label></li>
+              <li><input class="choice__input" type="radio" id="pre-custom" name="preset" value="custom"><label class="choice" for="pre-custom"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-edit"></use></svg> 직접 쓰기</label></li>
+            </ul>
+            <p class="form__sub" id="nameBox" hidden>
+              <label class="form__label" for="medName">약 이름 직접 쓰기</label>
+              <span class="form__hint" id="medNameHint">예: 아스피린, 혈압약(아침용)</span>
+              <input class="form__input" type="text" id="medName" name="name" maxlength="30" autocomplete="off" aria-describedby="medNameHint medNameError">
+            </p>
             <span class="form__error" id="medNameError" hidden></span>
-          </p>
+          </fieldset>
 
-          <fieldset class="form__group" aria-describedby="timesError">
+          <fieldset class="form__group" id="timesGroup" aria-describedby="timesError">
             <legend class="form__label">먹는 때 <span class="form__legend-hint">(여러 개 고를 수 있어요)</span></legend>
             <ul class="choice-list">
               <li><input class="choice__input" type="checkbox" id="t-morning" name="times" value="morning"><label class="choice" for="t-morning"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sunrise"></use></svg> 아침</label></li>
@@ -177,7 +195,7 @@
             <span class="form__error" id="timesError" hidden></span>
           </fieldset>
 
-          <fieldset class="form__group" id="repeatGroup" aria-describedby="repeatHint repeatError">
+          <fieldset class="form__group" id="repeatGroup" data-pick aria-describedby="repeatHint repeatError">
             <legend class="form__label">먹는 날</legend>
             <span class="form__hint" id="repeatHint">일주일에 한 번 먹는 약은 꼭 '요일 정해서'를 골라 주세요.</span>
             <ul class="choice-list choice-list--3">
@@ -210,7 +228,7 @@
             <span class="form__error" id="repeatError" hidden></span>
           </fieldset>
 
-          <fieldset class="form__group">
+          <fieldset class="form__group" data-pick>
             <legend class="form__label">언제까지 먹나요</legend>
             <ul class="choice-list choice-list--3">
               <li><input class="choice__input" type="radio" id="until-none" name="until" value="none" checked><label class="choice" for="until-none">계속 먹어요</label></li>
@@ -223,7 +241,7 @@
             </p>
           </fieldset>
 
-          <fieldset class="form__group">
+          <fieldset class="form__group" id="mealGroup" data-pick>
             <legend class="form__label">식사 전후</legend>
             <ul class="choice-list choice-list--3">
               <li><input class="choice__input" type="radio" id="meal-before" name="meal" value="before"><label class="choice" for="meal-before">식사 전</label></li>
@@ -310,7 +328,7 @@
         <form class="form" id="healthForm" novalidate aria-labelledby="healthFormTitle">
           <h3 class="form__title" id="healthFormTitle">오늘 몸 상태 적기</h3>
 
-          <fieldset class="form__group" aria-describedby="moodError">
+          <fieldset class="form__group" data-pick aria-describedby="moodError">
             <legend class="form__label">오늘 몸 상태는 어떠세요?</legend>
             <ul class="choice-list choice-list--3">
               <li><input class="choice__input" type="radio" id="mood-good" name="mood" value="good"><label class="choice choice--big" for="mood-good"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-good"></use></svg> 좋아요</label></li>
@@ -421,6 +439,6 @@
 
   <p class="toast" id="notice" role="status" aria-live="polite"></p>
 
-  <script src="js/main.js?v=2026110502"></script>
+  <script src="js/main.js?v=2026110503"></script>
 </body>
 </html>
