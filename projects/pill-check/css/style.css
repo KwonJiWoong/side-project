@@ -400,6 +400,37 @@ select.form__input { cursor: pointer; }
 }
 .demo-lock__title { font-size: 1.25rem; font-weight: 700; color: var(--color-accent); }
 
+/* 약 등록 완료 */
+.done {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: var(--gap);
+  padding: clamp(1.25rem, 4vw, 2rem);
+  background: var(--color-surface);
+  border: 0.25rem solid var(--color-primary);
+  border-radius: 1.5rem;
+}
+.done__title { display: flex; align-items: center; gap: 0.5rem; font-size: 1.5rem; font-weight: 700; color: var(--color-primary); }
+.done__title .ico { width: 2rem; height: 2rem; flex: none; }
+.done__lead { font-size: 1.125rem; }
+.done__info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--color-bg);
+  border-radius: var(--radius);
+}
+.done__info dt { font-weight: 700; }
+.done__alert { grid-column: 1 / -1; font-weight: 700; color: var(--color-accent); }
+.done__btns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 0.75rem;
+}
+.done__btns .btn:last-child { grid-column: 1 / -1; }
+
 /* 홈 화면에 추가 안내 */
 .install {
   display: flex;

@@ -137,6 +137,7 @@
     demo: false,
     undoMeds: [],
     undoRecord: null,
+    done: null,
     slotTimes: Object.assign({}, DEFAULT_TIMES)
   };
   const UNDO_MAX = 5;
@@ -437,6 +438,7 @@
         break;
       case 'remove-yes':
         state.confirm = null;
+        if (state.done === id) state.done = null;
         keepMedUndo(med);
         state.meds = state.meds.filter((m) => m.id !== id);
         if (state.edit === id) resetForm();
@@ -621,6 +623,7 @@
     return Array.from(el.form.querySelectorAll('input[name="times"]:checked')).map((i) => i.value);
   }
   function startEdit(med) {
+    if (state.done) { state.done = null; renderDemo(); }
     state.edit = med.id;
     state.confirm = null;
     setName(med.name);
@@ -698,12 +701,54 @@
     } else {
       state.meds.push({ id: 'm' + Date.now().toString(36), name, times, meal, tags, memo, repeat, until });
     }
-    const due = isDue({ repeat, until }, t);
     save();
     resetForm();
+    showDone(wasEdit || state.meds[state.meds.length - 1].id, Boolean(wasEdit));
+  });
+
+  /* 등록 완료 카드: 방금 적은 내용 확인 + 다음에 할 일 버튼 */
+  function showDone(id, edited) {
+    const m = findMed(id);
+    if (!m) return;
+    const t = today();
+    const due = isDue(m, t);
+    const next = due ? '' : nextDue(m, t);
+    const times = SLOTS.filter((s) => m.times.includes(s.id)).map((s) => s.label + ' ' + fmtClock(state.slotTimes[s.id])).join(' · ');
+    const rows = [
+      ['먹는 때', times + ' (' + (MEALS[m.meal] || MEALS.after) + ')'],
+      ['먹는 날', repeatText(m) + (m.until ? ' · ' + untilText(m) : '')],
+      m.tags.length ? ['간단 메모', m.tags.map((x) => TAGS[x]).join(' · ')] : null,
+      m.memo ? ['비고', m.memo] : null
+    ].filter(Boolean);
+    const last = m.name.charCodeAt(m.name.length - 1);
+    const josa = last >= 0xAC00 && last <= 0xD7A3 ? ((last - 0xAC00) % 28 ? '을' : '를') : '을(를)';
+    $('doneText').textContent = m.name + (edited ? ' 정보를 고쳤어요' : josa + ' 등록했어요');
+    $('doneInfo').innerHTML = rows.map((r) => '<dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd>').join('') +
+      (due ? '' : '<dd class="done__alert">오늘은 먹는 날이 아니에요.' + (next ? ' 다음 먹는 날: ' + fmtShort(next) : '') + '</dd>');
+    state.done = id;
     renderAll();
-    say(wasEdit ? name + ' 정보를 고쳤어요.' : name + '을(를) 등록했어요. ' + (due ? '오늘 먹을 약에 나와요.' : '오늘은 먹는 날이 아니라서 먹는 날에 나와요.'));
+    $('doneBox').scrollIntoView({ block: 'start' });
+    $('doneTitle').focus({ preventScroll: true });
+    say($('doneText').textContent + '.');
+  }
+  function closeDone() {
+    state.done = null;
+    renderDemo();
+  }
+  $('doneNew').addEventListener('click', () => {
+    closeDone();
+    el.form.scrollIntoView({ block: 'start' });
     focusName();
+  });
+  $('doneToday').addEventListener('click', () => {
+    closeDone();
+    history.pushState(null, '', '#today');
+    showPanel('today', true);
+  });
+  $('doneEdit').addEventListener('click', () => {
+    const med = findMed(state.done);
+    closeDone();
+    if (med) startEdit(med);
   });
   el.cancelEdit.addEventListener('click', () => {
     const id = state.edit;
@@ -821,7 +866,8 @@
   function renderDemo() {
     el.demoBar.hidden = !state.demo;
     el.demoLock.hidden = !state.demo;
-    el.form.hidden = state.demo;
+    el.form.hidden = state.demo || Boolean(state.done);
+    $('doneBox').hidden = state.demo || !state.done;
     if (state.demo) root.setAttribute('data-demo', '');
     else root.removeAttribute('data-demo');
   }
@@ -1205,6 +1251,8 @@
   }
   function showPanel(id, focus) {
     PANELS.forEach((p) => { $(p).hidden = p !== id; });
+    /* 다른 화면에 갔다 오면 완료 카드 대신 새 약 적는 칸 */
+    if (id !== 'meds' && state.done) { state.done = null; renderDemo(); }
     document.querySelectorAll('.gnb__link').forEach((a) => {
       if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'page');
       else a.removeAttribute('aria-current');

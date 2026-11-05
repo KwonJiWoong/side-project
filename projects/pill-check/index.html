@@ -17,10 +17,10 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-title" content="아 맞다 약!">
-  <link rel="stylesheet" href="fonts/pretendard.css?v=2026110503">
-  <link rel="stylesheet" href="css/reset.css?v=2026110503">
-  <link rel="stylesheet" href="css/common.css?v=2026110503">
-  <link rel="stylesheet" href="css/style.css?v=2026110503">
+  <link rel="stylesheet" href="fonts/pretendard.css?v=2026110504">
+  <link rel="stylesheet" href="css/reset.css?v=2026110504">
+  <link rel="stylesheet" href="css/common.css?v=2026110504">
+  <link rel="stylesheet" href="css/style.css?v=2026110504">
 </head>
 <body>
   <a class="skip-link" href="#main">본문 바로가기</a>
@@ -278,6 +278,18 @@
           </p>
         </form>
 
+        <!-- 등록 완료: 방금 적은 내용 한 번 더 확인 -->
+        <section class="done" id="doneBox" aria-labelledby="doneTitle" hidden>
+          <h3 class="done__title" id="doneTitle" tabindex="-1"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> <span id="doneText"></span></h3>
+          <p class="done__lead">적은 내용이 맞는지 한 번 더 확인해 주세요.</p>
+          <dl class="done__info" id="doneInfo"></dl>
+          <p class="done__btns">
+            <button type="button" class="btn btn--primary" id="doneToday"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-pill"></use></svg> 오늘 약 보러 가기</button>
+            <button type="button" class="btn btn--primary" id="doneNew"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plus"></use></svg> 새 약 등록하기</button>
+            <button type="button" class="btn" id="doneEdit"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-edit"></use></svg> 잘못 적었어요 (고치기)</button>
+          </p>
+        </section>
+
         <section class="my-meds" aria-labelledby="myMedsTitle">
           <h3 class="my-meds__title" id="myMedsTitle">등록한 약 <span id="medCount">0개</span></h3>
           <div class="undo" id="undoBox" role="group" aria-labelledby="undoText" hidden>
@@ -439,6 +451,6 @@
 
   <p class="toast" id="notice" role="status" aria-live="polite"></p>
 
-  <script src="js/main.js?v=2026110503"></script>
+  <script src="js/main.js?v=2026110504"></script>
 </body>
 </html>
