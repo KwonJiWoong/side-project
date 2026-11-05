@@ -38,6 +38,8 @@
     <symbol id="i-good" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="9"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M8 14.5a5 5 0 0 0 8 0M9 9.5v.5M15 9.5v.5"/></symbol>
     <symbol id="i-soso" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="9"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M8.5 15h7M9 9.5v.5M15 9.5v.5"/></symbol>
     <symbol id="i-bad" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="9"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M8 16.5a5 5 0 0 1 8 0M9 9.5v.5M15 9.5v.5"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 15V3.5M7.5 8 12 3.5 16.5 8M5 12v7.5h14V12"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect fill="none" stroke="currentColor" stroke-width="2.2" x="8" y="8" width="12" height="12" rx="2"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M16 5V4H4v12h1"/></symbol>
     <symbol id="i-alert" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M12 3 2 20h20z"/><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M12 10v4.5M12 17.5v.5"/></symbol>
   </svg>
 
@@ -80,6 +82,18 @@
         <p class="demo-bar__text" id="demoBarText"><span class="demo-bar__tag">예시</span> <strong>지금은 예시 화면이에요.</strong> 진짜 기록이 아니고, 눌러도 저장되지 않아요.</p>
         <button type="button" class="btn btn--primary" id="demoEnd"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-close"></use></svg> 예시 끝내기</button>
       </aside>
+
+      <!-- 받은 약 목록 (링크로 열었을 때) -->
+      <section class="import" id="importBox" aria-labelledby="importTitle" hidden>
+        <h2 class="import__title" id="importTitle" tabindex="-1">받은 약 목록이에요</h2>
+        <p class="import__lead" id="importLead"></p>
+        <ul class="import__list" id="importList"></ul>
+        <p class="form__note" id="importNote" hidden>지금 있는 약 목록이 받은 목록으로 바뀌어요. 빠지는 약은 약 등록 화면의 '되돌리기'로 살릴 수 있어요.</p>
+        <p class="confirm__btns">
+          <button type="button" class="btn btn--primary" id="importYes"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> <span id="importYesText">이 약 등록하기</span></button>
+          <button type="button" class="btn" id="importNo"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-close"></use></svg> <span id="importNoText">안 받을래요</span></button>
+        </p>
+      </section>
 
       <!-- 오늘 먹을 약 -->
       <section class="panel" id="today" aria-labelledby="todayTitle">
@@ -180,6 +194,20 @@
           </div>
           <p class="empty" id="medEmpty">아직 등록한 약이 없어요. 위에서 첫 약을 등록해 보세요.</p>
           <ul class="my-meds__list" id="medList"></ul>
+
+          <section class="share" id="shareBox" aria-labelledby="shareTitle" hidden>
+            <h4 class="share__title" id="shareTitle">약 목록 보내기</h4>
+            <p>가족 폰이나 새 폰에 이 약 목록을 그대로 넣을 수 있는 링크를 보내요. 받은 사람은 링크를 누르기만 하면 돼요.</p>
+            <p class="form__note">링크를 받은 사람은 약 이름을 볼 수 있어요. 믿을 수 있는 가족에게만 보내 주세요. <strong>먹은 기록 · 몸 상태 · 비고는 들어가지 않아요.</strong></p>
+            <p class="share__btns">
+              <button type="button" class="btn btn--primary" id="shareBtn" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-share"></use></svg> 카톡 등으로 보내기</button>
+              <button type="button" class="btn" id="copyBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-copy"></use></svg> 링크 복사하기</button>
+            </p>
+            <p class="form__field" id="shareLinkBox" hidden>
+              <label class="form__label" for="shareLink">만든 링크 <span class="form__legend-hint">(길게 눌러 복사하세요)</span></label>
+              <input class="form__input" type="text" id="shareLink" readonly>
+            </p>
+          </section>
         </section>
       </section>
 
