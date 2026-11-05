@@ -877,7 +877,7 @@
     $('shareLinkBox').hidden = false;
   }
   shareBtn.addEventListener('click', () => {
-    navigator.share({ title: '오늘 약 챙기기 - 약 목록', text: '약 목록을 보내요. 링크를 누르면 약이 들어가요.', url: shareUrl() })
+    navigator.share({ title: '아 맞다 약! - 약 목록', text: '약 목록을 보내요. 링크를 누르면 약이 들어가요.', url: shareUrl() })
       .then(() => say('약 목록 링크를 보냈어요.'))
       .catch((e) => { if (e && e.name !== 'AbortError') { showLink(shareUrl()); say('보내기가 안 돼서 링크를 아래에 보여 드려요.'); } });
   });
