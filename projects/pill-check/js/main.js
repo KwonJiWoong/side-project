@@ -1332,6 +1332,117 @@
     say('안내를 닫았어요. 2주 뒤에 다시 알려 드릴게요.');
   });
 
+  /* 기록 파일 저장 · 불러오기 (서버 없이 휴대폰 안에서만) */
+  const BACKUP_APP = 'a-matda-yak';
+  function renderBackupLast() {
+    const at = store.get('pill-backup-at');
+    $('backupLast').hidden = !at;
+    if (at) $('backupLast').textContent = '마지막으로 저장한 날: ' + fmtShort(toKey(new Date(at)));
+  }
+  $('backupBtn').addEventListener('click', () => {
+    if (state.demo) { say('예시 화면에서는 저장할 수 없어요. 예시를 끝낸 뒤 눌러 주세요.'); return; }
+    const t = today();
+    const data = { app: BACKUP_APP, version: 1, savedAt: new Date().toISOString(),
+      meds: state.meds, log: state.log, health: state.health, slotTimes: state.slotTimes };
+    const name = '아맞다약-기록-' + t.replace(/-/g, '') + '.json';
+    const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+    const done = () => { store.set('pill-backup-at', new Date().toISOString()); renderBackupLast(); };
+    let file = null;
+    try { file = new File([blob], name, { type: 'application/json' }); } catch (e) { file = null; }
+    if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+      navigator.share({ files: [file], title: '아 맞다 약! 기록' })
+        .then(() => { done(); say('기록 파일을 보냈어요. 받은 곳에 잘 보관해 주세요.'); })
+        .catch((e) => { if (e && e.name !== 'AbortError') say('보내기가 안 됐어요. 다시 눌러 주세요.'); });
+      return;
+    }
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    done();
+    say('기록 파일을 내려받았어요. 파일 이름: ' + name);
+  });
+
+  let restoreData = null;
+  const restoreFile = $('restoreFile');
+  function readBackup(data) {
+    if (!data || data.app !== BACKUP_APP || !Array.isArray(data.meds)) return null;
+    const meds = data.meds.filter((m) => m && m.id && m.name && Array.isArray(m.times)).map((m) => normalizeMed(Object.assign({}, m)));
+    const log = {};
+    Object.keys(data.log || {}).forEach((k) => { const r = data.log[k]; if (isKey(k) && r && typeof r.done === 'object') log[k] = { total: Number(r.total) || 0, done: r.done }; });
+    const health = {};
+    Object.keys(data.health || {}).forEach((k) => { const r = data.health[k]; if (isKey(k) && r && MOODS[r.mood]) health[k] = r; });
+    return { meds, log, health, savedAt: data.savedAt };
+  }
+  restoreFile.addEventListener('change', () => {
+    const f = restoreFile.files && restoreFile.files[0];
+    const err = $('restoreError');
+    restoreData = null;
+    $('restoreConfirm').hidden = true;
+    if (!f) return;
+    const fail = (msg) => { showError(restoreFile, err, msg); restoreFile.value = ''; restoreFile.focus(); };
+    if (f.size > 2 * 1024 * 1024) { fail('파일이 너무 커요. \'아맞다약-기록\'으로 시작하는 파일을 골라 주세요.'); return; }
+    f.text().then((text) => {
+      let data = null;
+      try { data = readBackup(JSON.parse(text)); } catch (e) { data = null; }
+      if (!data) { fail('이 앱에서 저장한 기록 파일이 아니에요. \'아맞다약-기록\'으로 시작하는 파일을 골라 주세요.'); return; }
+      showError(restoreFile, err, '');
+      restoreData = data;
+      const days = new Set(Object.keys(data.log).concat(Object.keys(data.health))).size;
+      $('restoreText').textContent = (data.savedAt ? fmtShort(toKey(new Date(data.savedAt))) + '에 저장한 파일이에요. ' : '') +
+        '약 ' + data.meds.length + '개, ' + days + '일치 기록이 들어 있어요. 지금 기록에 합칠까요?';
+      $('restoreConfirm').hidden = false;
+      $('restoreText').focus();
+    }, () => fail('파일을 읽지 못했어요. 다시 골라 주세요.'));
+  });
+  $('restoreNo').addEventListener('click', () => {
+    restoreData = null;
+    restoreFile.value = '';
+    $('restoreConfirm').hidden = true;
+    restoreFile.focus();
+    say('불러오기를 그만뒀어요.');
+  });
+  $('restoreYes').addEventListener('click', () => {
+    const d = restoreData;
+    if (!d) return;
+    if (state.demo) endDemo(false);
+    /* 약: 이름이 같으면 지금 약으로 이어 붙이고, 없으면 새로 넣음 */
+    const idMap = {};
+    const used = new Set();
+    let added = 0;
+    d.meds.forEach((m, i) => {
+      const same = state.meds.find((o) => !used.has(o.id) && normName(o.name) === normName(m.name));
+      if (same) { used.add(same.id); idMap[m.id] = same.id; return; }
+      const id = state.meds.some((o) => o.id === m.id) ? 'm' + Date.now().toString(36) + i : m.id;
+      idMap[m.id] = id;
+      used.add(id);
+      state.meds.push(Object.assign(m, { id }));
+      added += 1;
+    });
+    /* 먹은 기록: 날마다 합침 (지금 기록이 우선) */
+    Object.keys(d.log).forEach((k) => {
+      const done = {};
+      Object.keys(d.log[k].done).forEach((key) => {
+        const [mid, slot] = key.split('@');
+        if (idMap[mid] && SLOTS.some((x) => x.id === slot)) done[idMap[mid] + '@' + slot] = d.log[k].done[key];
+      });
+      const cur = state.log[k];
+      state.log[k] = cur ? { total: Math.max(cur.total || 0, d.log[k].total), done: Object.assign(done, cur.done) } : { total: d.log[k].total, done };
+    });
+    /* 몸 상태: 지금 없는 날만 채움 */
+    Object.keys(d.health).forEach((k) => { if (!state.health[k]) state.health[k] = d.health[k]; });
+    restoreData = null;
+    restoreFile.value = '';
+    $('restoreConfirm').hidden = true;
+    save();
+    renderAll();
+    $('historyTitle').focus();
+    say('기록을 합쳤어요. 새로 들어온 약 ' + added + '개.');
+  });
+
   /* 화면(메뉴) 전환: 한 화면에 한 가지 목적 */
   function panelFromHash() {
     const hash = location.hash.slice(1);
@@ -1346,7 +1457,7 @@
       else a.removeAttribute('aria-current');
     });
     if (id === 'today') { renderToday(); renderInstall(); }
-    if (id === 'history') renderHistory();
+    if (id === 'history') { renderHistory(); renderBackupLast(); }
     if (id === 'times') { renderTimes(); renderPush(); $('timeError').hidden = true; }
     if (focus) {
       window.scrollTo(0, 0);

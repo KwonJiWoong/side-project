@@ -785,3 +785,23 @@ html[data-contrast="high"] .tip { border: var(--border-w) solid var(--color-text
 .agree__label { font-size: 1.125rem; cursor: pointer; }
 .agree__more { font-size: 1rem; }
 .push__warn { margin-top: 0; }
+
+/* 기록 파일 저장 · 불러오기 */
+.backup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: var(--gap);
+  padding: 1.5rem;
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-primary);
+  border-radius: var(--radius);
+}
+.backup__title { display: flex; align-items: center; gap: 0.5rem; font-size: 1.25rem; font-weight: 700; }
+.backup__sub { margin-top: 1rem; padding-top: 1rem; font-size: 1.125rem; font-weight: 700; border-top: 0.0625rem solid var(--color-primary); }
+.backup__btns { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 0.75rem; }
+.backup__last { font-size: 1rem; font-weight: 700; color: var(--color-primary); }
+.file__input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.file__input:focus-visible + .btn { outline: 0.25rem solid var(--color-focus); outline-offset: 0.2rem; }
+.confirm--info { border-color: var(--color-primary); }
+.confirm--info .confirm__text { color: var(--color-text); }
