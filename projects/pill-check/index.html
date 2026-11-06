@@ -17,10 +17,10 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-title" content="아 맞다 약!">
-  <link rel="stylesheet" href="fonts/pretendard.css?v=2026110507">
-  <link rel="stylesheet" href="css/reset.css?v=2026110507">
-  <link rel="stylesheet" href="css/common.css?v=2026110507">
-  <link rel="stylesheet" href="css/style.css?v=2026110507">
+  <link rel="stylesheet" href="fonts/pretendard.css?v=2026110601">
+  <link rel="stylesheet" href="css/reset.css?v=2026110601">
+  <link rel="stylesheet" href="css/common.css?v=2026110601">
+  <link rel="stylesheet" href="css/style.css?v=2026110601">
 </head>
 <body>
   <a class="skip-link" href="#main">본문 바로가기</a>
@@ -439,6 +439,7 @@
         <section class="push" id="pushBox" aria-labelledby="pushTitle" hidden>
           <h3 class="push__title" id="pushTitle">약 먹을 시각 알림</h3>
           <p>정한 시각에 휴대폰으로 알려 드려요. 잠금 화면에 보일 수 있어서 <strong>약 이름은 알림에 나오지 않아요.</strong></p>
+          <p class="form__note">알림을 켜면 알림을 보내기 위해 <strong>먹는 시각과 먹는 날(요일 · 간격 · 끝나는 날)만</strong> 서버에 저장돼요. 약 이름 · 비고 · 먹은 기록은 보내지 않아요. 알림을 끄면 바로 지워져요.</p>
           <p class="push__state" id="pushState" role="status"></p>
           <button type="button" class="btn btn--primary btn--block" id="pushBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clock"></use></svg> <span id="pushBtnText">알림 받기</span></button>
         </section>
@@ -464,6 +465,6 @@
 
   <p class="toast" id="notice" role="status" aria-live="polite"></p>
 
-  <script src="js/main.js?v=2026110507"></script>
+  <script src="js/main.js?v=2026110601"></script>
 </body>
 </html>

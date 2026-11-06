@@ -64,6 +64,8 @@
 │  ├─ menu/             오늘 뭐 먹지? (‘귀여운 화면’ 버튼으로 밥풀이 테마 전환)
 │  ├─ politics-news/    오늘의 정치 소식 (scraper/를 GitHub Actions가 하루 3번(07·12·18시) 실행해 data/news.json 갱신)
 │  └─ workout-planner/  핏루틴 (운동 루틴 플래너. 첫 화면에서 일반용/노약자용과 화면 밝기(자동=기기 다크 모드 설정 따름 / 밝게·어둡게 직접 고정) 선택. 루틴·자세 팁은 각 HTML에서 직접 고침)
+├─ services/
+│  └─ pill-push/       아 맞다 약! 웹 푸시 알림 서버 (AWS SAM · Lambda, 올리는 법은 README.md)
 ├─ docs/                작업 규칙 문서 (포트폴리오에는 노출하지 않음)
 │  ├─ CODING_GUIDE.md
 │  ├─ CSS_GUIDE.md

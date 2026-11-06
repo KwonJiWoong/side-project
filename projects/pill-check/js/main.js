@@ -1180,11 +1180,20 @@
     clearTimeout(pushTimer);
     pushTimer = setTimeout(() => {
       navigator.serviceWorker.ready
-        .then((reg) => reg.pushManager.getSubscription())
-        .then((sub) => sub && postPush({ action: 'update', subscription: sub, schedule: pushSchedule() }))
-        .catch(() => { /* 다음 저장 때 다시 보냄 */ });
+        .then((reg) => reg.pushManager.getSubscription().then((sub) => {
+          if (sub) return { sub, action: 'update' };
+          /* 브라우저가 알림 주소를 바꿨으면 다시 받기 */
+          if (!('Notification' in window) || Notification.permission !== 'granted') return null;
+          return reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: keyToBytes(PUSH.publicKey) })
+            .then((s) => ({ sub: s, action: 'subscribe' }));
+        }))
+        .then((r) => r && postPush({ action: r.action, subscription: r.sub, schedule: pushSchedule() }))
+        .then((res) => { if (res && res.ok) store.set('pill-push-sync', String(Date.now())); })
+        .catch(() => { /* 다음 저장 · 다음 실행 때 다시 보냄 */ });
     }, 1500);
   }
+  /* 서버는 90일 동안 소식이 없으면 구독을 지우므로, 7일마다 한 번 다시 알려 줌 */
+  const pushStale = () => Date.now() - (Number(store.get('pill-push-sync')) || 0) > 7 * 86400000;
   function renderPush(message) {
     el.pushBox.hidden = !pushReady();
     if (el.pushBox.hidden) return;
@@ -1213,6 +1222,7 @@
           .then((res) => {
             if (res && !res.ok) throw new Error('server');
             store.set('pill-push', '1');
+            store.set('pill-push-sync', String(Date.now()));
             renderPush('알림을 켰어요. 정한 시각에 알려 드려요.');
             say('알림을 켰어요.');
           });
@@ -1319,6 +1329,7 @@
   resetPicks();
   showPanel(panelFromHash(), false);
   openImport();
+  if (pushStale()) pushSync();
   /* 홈 화면 앱 · 알림용 서비스 워커 (https에서만) */
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
     navigator.serviceWorker.register('sw.js').catch(() => { /* 무시 */ });

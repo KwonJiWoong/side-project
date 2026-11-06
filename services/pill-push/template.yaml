@@ -1,0 +1,126 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >-
+  아 맞다 약! 웹 푸시 알림 - 구독 저장 API와 5분마다 알림 보내기 (서울 리전 권장)
+
+Parameters:
+  SiteOrigin:
+    Type: String
+    Description: 사이트 주소 (끝에 / 없이). 예) https://example.com
+    AllowedPattern: '^https://[A-Za-z0-9.-]+(:[0-9]+)?$'
+  VapidPublicKey:
+    Type: String
+    Description: VAPID 공개 키 (npx web-push generate-vapid-keys 로 만든 Public Key)
+  VapidPrivateKey:
+    Type: String
+    NoEcho: true
+    Description: VAPID 비밀 키 (Private Key, 다른 곳에 올리지 말 것)
+  VapidSubject:
+    Type: String
+    Default: mailto:kjobaba@naver.com
+    Description: 푸시 서비스가 문제 있을 때 연락할 주소
+
+Globals:
+  Function:
+    Runtime: nodejs22.x
+    Architectures: [arm64]
+    MemorySize: 256
+    Timeout: 30
+    CodeUri: src/
+    Environment:
+      Variables:
+        TABLE_NAME: !Ref SubsTable
+
+Resources:
+  # 구독 · 먹는 시각 (약 이름 · 기록 없음, 90일 갱신 없으면 자동 삭제)
+  SubsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - { AttributeName: pk, AttributeType: S }
+        - { AttributeName: sk, AttributeType: S }
+        - { AttributeName: bucket, AttributeType: S }
+      KeySchema:
+        - { AttributeName: pk, KeyType: HASH }
+        - { AttributeName: sk, KeyType: RANGE }
+      GlobalSecondaryIndexes:
+        - IndexName: byBucket
+          KeySchema:
+            - { AttributeName: bucket, KeyType: HASH }
+            - { AttributeName: pk, KeyType: RANGE }
+          Projection: { ProjectionType: ALL }
+      TimeToLiveSpecification:
+        AttributeName: expireAt
+        Enabled: true
+      SSESpecification:
+        SSEEnabled: true
+
+  # 사이트에서 부르는 주소 (사이트 주소에서만, 초당 요청 제한)
+  PushApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins: [!Ref SiteOrigin]
+        AllowMethods: [POST]
+        AllowHeaders: [content-type]
+        MaxAge: 600
+      DefaultRouteSettings:
+        ThrottlingBurstLimit: 20
+        ThrottlingRateLimit: 10
+
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: api.handler
+      Policies:
+        - DynamoDBCrudPolicy: { TableName: !Ref SubsTable }
+      Events:
+        Push:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref PushApi
+            Path: /push
+            Method: POST
+
+  # 5분마다 알림 보내기
+  SenderFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: sender.handler
+      Timeout: 240
+      Environment:
+        Variables:
+          VAPID_PUBLIC_KEY: !Ref VapidPublicKey
+          VAPID_PRIVATE_KEY: !Ref VapidPrivateKey
+          VAPID_SUBJECT: !Ref VapidSubject
+      Policies:
+        - DynamoDBCrudPolicy: { TableName: !Ref SubsTable }
+      Events:
+        Every5Minutes:
+          Type: ScheduleV2
+          Properties:
+            ScheduleExpression: cron(0/5 * * * ? *)
+            ScheduleExpressionTimezone: UTC
+            RetryPolicy:
+              MaximumRetryAttempts: 0
+
+  # 실행 기록은 14일만 보관
+  ApiLogs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${ApiFunction}
+      RetentionInDays: 14
+  SenderLogs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${SenderFunction}
+      RetentionInDays: 14
+
+Outputs:
+  PushEndpoint:
+    Description: 사이트 js/main.js 의 PUSH.endpoint 에 넣을 주소
+    Value: !Sub https://${PushApi}.execute-api.${AWS::Region}.amazonaws.com/push
+  VapidPublicKey:
+    Description: 사이트 js/main.js 의 PUSH.publicKey 에 넣을 값
+    Value: !Ref VapidPublicKey

@@ -8,11 +8,11 @@
   <title>개인정보처리방침 | 아 맞다 약!</title>
   <link rel="icon" href="images/logo.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-  <link rel="stylesheet" href="fonts/pretendard.css?v=2026110507">
-  <link rel="stylesheet" href="css/reset.css?v=2026110507">
-  <link rel="stylesheet" href="css/common.css?v=2026110507">
-  <link rel="stylesheet" href="css/style.css?v=2026110507">
-  <script src="js/page.js?v=2026110507"></script>
+  <link rel="stylesheet" href="fonts/pretendard.css?v=2026110601">
+  <link rel="stylesheet" href="css/reset.css?v=2026110601">
+  <link rel="stylesheet" href="css/common.css?v=2026110601">
+  <link rel="stylesheet" href="css/style.css?v=2026110601">
+  <script src="js/page.js?v=2026110601"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">본문 바로가기</a>
@@ -35,7 +35,7 @@
 
         <section class="doc__section" aria-labelledby="p1">
           <h2 id="p1">1. 운영자가 받는 개인정보</h2>
-          <p>서비스 운영자는 이용자의 개인정보를 받거나 서버에 저장하지 않아요. 적으신 약 · 먹은 기록 · 몸 상태는 운영자에게 보내지지 않아요.</p>
+          <p>서비스 운영자는 이용자의 이름 · 연락처 같은 개인정보를 받지 않아요. 적으신 약 이름 · 먹은 기록 · 몸 상태는 운영자에게 보내지지 않아요. 다만 <strong>약 먹을 시각 알림을 켠 경우에만</strong> 알림을 보내는 데 필요한 정보를 서버에 저장해요. (아래 4번)</p>
         </section>
 
         <section class="doc__section" aria-labelledby="p2">
@@ -61,8 +61,27 @@
           <p>서비스 화면을 휴대폰에 보내 드리는 과정에서 접속 주소(IP), 브라우저 종류, 접속 시각 같은 정보가 서비스를 맡아 전달하는 업체(Amazon Web Services)의 시스템에서 처리될 수 있어요. 이 정보는 화면 전달과 지나치게 많은 접속을 막는 보안 목적으로만 쓰이고, 운영자는 이것으로 이용자가 누구인지 알아보지 않아요.</p>
         </section>
 
+        <section class="doc__section" aria-labelledby="pPush">
+          <h2 id="pPush">4. 약 먹을 시각 알림을 켠 경우</h2>
+          <p>알림은 이용자가 [먹는 시각] 화면에서 직접 켰을 때만 동작해요.</p>
+          <table class="doc__table">
+            <caption class="sr-only">알림을 켰을 때 서버에 저장되는 정보</caption>
+            <thead>
+              <tr><th scope="col">구분</th><th scope="col">내용</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>저장하는 것</td><td>알림 주소(휴대폰 브라우저가 만든 임의의 주소와 암호 키), 시간대별 먹는 시각, 먹는 날 규칙(요일 · 며칠마다 · 끝나는 날), 사용하는 시간대(예: 한국 시간)</td></tr>
+              <tr><td>저장하지 않는 것</td><td>약 이름, 간단 메모, 비고, 먹은 기록, 몸 상태</td></tr>
+              <tr><td>쓰는 곳</td><td>정한 시각에 "아침 약 드실 시간이에요" 같은 알림을 보내는 데만 써요. 알림에는 약 이름이 나오지 않아요.</td></tr>
+              <tr><td>보관 장소</td><td>Amazon Web Services 서울 리전 서버</td></tr>
+              <tr><td>보관 기간</td><td>알림을 끄면 바로 지워요. 앱을 90일 동안 열지 않으면 자동으로 지워져요.</td></tr>
+            </tbody>
+          </table>
+          <p>알림은 휴대폰 회사의 알림 전달 서비스(구글, 애플 등)를 거쳐 전달돼요. 알림 내용은 암호화되어 전달 서비스가 읽을 수 없어요.</p>
+        </section>
+
         <section class="doc__section" aria-labelledby="p4">
-          <h2 id="p4">4. 약 목록 링크로 보낼 때</h2>
+          <h2 id="p4">5. 약 목록 링크로 보낼 때</h2>
           <p>'약 목록 보내기'로 만든 링크에는 다음 내용이 담겨요.</p>
           <ul>
             <li><strong>담기는 것:</strong> 약 이름, 먹는 때, 먹는 날 · 기간, 식사 전후, 간단 메모, 먹는 시각</li>
@@ -72,22 +91,23 @@
         </section>
 
         <section class="doc__section" aria-labelledby="p5">
-          <h2 id="p5">5. 쿠키 · 분석 도구 · 광고</h2>
+          <h2 id="p5">6. 쿠키 · 분석 도구 · 광고</h2>
           <p>서비스는 쿠키, 방문 분석 도구, 광고를 쓰지 않아요.</p>
         </section>
 
         <section class="doc__section" aria-labelledby="p6">
-          <h2 id="p6">6. 정보를 지우는 방법</h2>
+          <h2 id="p6">7. 정보를 지우는 방법</h2>
           <ul>
             <li>약 하나씩 지우기: [약 등록] 화면에서 약마다 [지우기]</li>
             <li>먹은 기록 · 몸 상태 모두 지우기: [지난 기록] 화면의 [기록 모두 지우기]</li>
-            <li>전부 지우기: 홈 화면 앱을 삭제하거나, 브라우저 설정에서 이 사이트의 데이터를 삭제</li>
+            <li>알림 정보 지우기: [먹는 시각] 화면의 [알림 끄기] (서버에서 바로 지워져요)</li>
+            <li>전부 지우기: 알림을 끈 뒤, 홈 화면 앱을 삭제하거나 브라우저 설정에서 이 사이트의 데이터를 삭제</li>
           </ul>
           <p>휴대폰에서 지운 정보는 운영자도 되살릴 수 없어요.</p>
         </section>
 
         <section class="doc__section" aria-labelledby="p7">
-          <h2 id="p7">7. 개인정보 보호책임자 · 문의</h2>
+          <h2 id="p7">8. 개인정보 보호책임자 · 문의</h2>
           <p>개인정보에 관한 문의, 불편한 점은 아래 이메일로 알려 주세요. 빠르게 답해 드릴게요.</p>
           <ul>
             <li>개인정보 보호책임자: 서비스 운영자</li>
@@ -101,7 +121,7 @@
         </section>
 
         <section class="doc__section" aria-labelledby="p8">
-          <h2 id="p8">8. 방침이 바뀔 때</h2>
+          <h2 id="p8">9. 방침이 바뀔 때</h2>
           <p>이 방침이 바뀌면 바뀌는 날 7일 전부터 이 페이지에 알려 드려요. 알림 기능처럼 정보를 보내야 하는 기능을 새로 넣을 때도 미리 이 페이지에 적어 둘게요.</p>
         </section>
 
