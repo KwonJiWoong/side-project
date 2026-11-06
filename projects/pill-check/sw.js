@@ -6,7 +6,7 @@
 const VERSION = '2026110601';
 const CACHE = 'pill-' + VERSION;
 const SHELL = [
-  './', 'index.html', 'privacy.html', 'manifest.webmanifest',
+  './', 'index.html', 'privacy.html', 'terms.html', 'manifest.webmanifest',
   'css/reset.css?v=' + VERSION, 'css/common.css?v=' + VERSION, 'css/style.css?v=' + VERSION,
   'js/main.js?v=' + VERSION, 'js/page.js?v=' + VERSION, 'fonts/pretendard.css?v=' + VERSION,
   'images/logo.svg', 'images/mascot.svg', 'images/icon-192.png', 'images/apple-touch-icon.png'

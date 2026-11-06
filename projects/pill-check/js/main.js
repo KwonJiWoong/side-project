@@ -1247,7 +1247,9 @@
     const on = store.get('pill-push') === '1';
     const blocked = 'Notification' in window && Notification.permission === 'denied';
     const needHome = isIOS && !standalone;
-    $('pushBtnText').textContent = on ? '알림 끄기' : '알림 받기';
+    $('pushBtnText').textContent = on ? '알림 끄기' : '동의하고 알림 받기';
+    $('pushAgreeBox').hidden = on;
+    $('pushAgreeMore').hidden = on;
     $('pushBtn').disabled = blocked || needHome;
     $('pushState').textContent = message || (needHome ? '아이폰은 홈 화면에 추가한 앱에서만 알림을 받을 수 있어요. 공유 버튼 → [홈 화면에 추가]를 눌러 주세요.'
       : blocked ? '알림이 꺼져 있어요. 휴대폰 [설정 → 알림]에서 이 앱의 알림을 켜 주세요.'
@@ -1255,6 +1257,13 @@
   }
   $('pushBtn').addEventListener('click', () => {
     const on = store.get('pill-push') === '1';
+    /* 켜기 전에 저장 항목 동의 받기 */
+    if (!on) {
+      const agree = $('pushAgree');
+      showError(agree, $('pushAgreeError'), agree.checked ? '' : '알림을 받으려면 위 동의 칸에 체크해 주세요.');
+      if (!agree.checked) { agree.focus(); return; }
+      store.set('pill-push-consent', new Date().toISOString());
+    }
     navigator.serviceWorker.ready.then((reg) => {
       if (on) {
         return reg.pushManager.getSubscription().then((sub) => {

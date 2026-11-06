@@ -441,6 +441,16 @@
           <h3 class="push__title" id="pushTitle">약 먹을 시각 알림</h3>
           <p>정한 시각에 휴대폰으로 알려 드려요. 잠금 화면에 보일 수 있어서 <strong>약 이름은 알림에 나오지 않아요.</strong></p>
           <p class="form__note">알림을 켜면 알림을 보내기 위해 <strong>약 먹을 시각과 먹는 날(요일 · 간격 · 끝나는 날)만</strong> 서버에 저장돼요. 약 이름 · 비고 · 먹은 기록은 보내지 않아요. 알림을 끄면 바로 지워져요.</p>
+          <aside class="tip tip--warn push__warn" aria-labelledby="pushWarnTitle">
+            <h4 class="tip__title" id="pushWarnTitle"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg> 알림만 믿지 마세요</h4>
+            <p>휴대폰 절전 모드 · 방해 금지 모드이거나 인터넷이 끊기면 알림이 늦거나 오지 않을 수 있어요. 약 드실 때는 <strong>[오늘 약] 화면도 꼭 확인</strong>해 주세요.</p>
+          </aside>
+          <p class="agree" id="pushAgreeBox">
+            <input class="agree__input" type="checkbox" id="pushAgree" aria-describedby="pushAgreeError">
+            <label class="agree__label" for="pushAgree">위 내용을 읽었어요. 알림을 받기 위해 <strong>약 먹을 시각과 먹는 날</strong>을 서버에 저장하는 데 동의해요.</label>
+          </p>
+          <p class="agree__more" id="pushAgreeMore"><a class="doc__link" href="privacy.html#pPush">저장하는 내용 자세히 보기 (개인정보처리방침)</a></p>
+          <span class="form__error" id="pushAgreeError" hidden></span>
           <p class="push__state" id="pushState" role="status"></p>
           <button type="button" class="btn btn--primary btn--block" id="pushBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clock"></use></svg> <span id="pushBtnText">알림 받기</span></button>
         </section>
@@ -459,7 +469,7 @@
     <div class="container">
       <p>오늘도 약 잘 챙기시고 건강한 하루 보내세요.</p>
       <p class="footer__note">기록은 이 기기에만 저장되고 서버로 보내지 않아요. 약에 대한 궁금한 점은 의사나 약사에게 물어보세요.</p>
-      <p class="footer__links"><a class="footer__link" href="privacy.html">개인정보처리방침</a></p>
+      <p class="footer__links"><a class="footer__link" href="terms.html">이용약관</a> <a class="footer__link" href="privacy.html">개인정보처리방침</a></p>
       <p class="footer__contact">문의 · 오류 알리기: <a class="footer__mail" href="mailto:kjobaba@naver.com?subject=%5B%EC%95%84%20%EB%A7%9E%EB%8B%A4%20%EC%95%BD%21%5D%20%EB%AC%B8%EC%9D%98">kjobaba@naver.com</a></p>
     </div>
   </footer>

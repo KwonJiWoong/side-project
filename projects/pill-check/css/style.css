@@ -778,3 +778,10 @@ html[data-contrast="high"] .tip { border: var(--border-w) solid var(--color-text
 
 /* 파란 푸터 위 포커스는 흰 테두리 */
 .footer :focus-visible { outline-color: var(--color-surface); }
+
+/* 동의 체크 */
+.agree { display: flex; align-items: flex-start; gap: 0.75rem; }
+.agree__input { flex: none; width: 2rem; height: 2rem; margin-top: 0.125rem; accent-color: var(--color-primary); cursor: pointer; }
+.agree__label { font-size: 1.125rem; cursor: pointer; }
+.agree__more { font-size: 1rem; }
+.push__warn { margin-top: 0; }
