@@ -807,3 +807,18 @@ html[data-contrast="high"] .tip { border: var(--border-w) solid var(--color-text
 .file__input:focus-visible + .btn { outline: 0.25rem solid var(--color-focus); outline-offset: 0.2rem; }
 .confirm--info { border-color: var(--color-primary); }
 .confirm--info .confirm__text { color: var(--color-text); }
+
+/* 도움말 · 안내 글 */
+.doc__crumb { margin-bottom: 0.75rem; font-size: 1.125rem; }
+.doc__crumb a::before { content: "‹ "; }
+.doc__steps { padding-left: 1.75rem; list-style: decimal; }
+.doc__steps li + li { margin-top: 0.5rem; }
+.doc__steps li::marker { font-weight: 700; color: var(--color-primary); }
+.faq__q { margin-top: 1.5rem; font-size: 1.1875rem; font-weight: 700; color: var(--color-text); }
+.faq__q::before { content: "Q. "; color: var(--color-primary); }
+.faq__a { margin-top: 0.5rem; }
+.doc__more { list-style: none; padding-left: 0; }
+.doc__more li + li { margin-top: 0.25rem; }
+.doc__more a, .doc__sources a { display: inline-flex; align-items: center; min-height: var(--touch); }
+.doc .tip { margin-top: clamp(2rem, 5vw, 2.5rem); }
+.empty__help { margin-top: 0.75rem; }

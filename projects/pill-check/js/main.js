@@ -295,6 +295,7 @@
     el.todayEmpty.hidden = !none;
     el.todayEmptyBtn.hidden = !none;
     el.sample.hidden = !none;
+    $('todayHelp').hidden = !none;
     el.progressBox.hidden = none;
     el.pillBox.hidden = !has;
     if (!none && !has) {
