@@ -47,6 +47,16 @@ test('구독 → 갱신 → 발송 → 해지', async () => {
   let out = await sender({ time: '2026-11-05T22:30:00Z' });       // 11/6 07:30 KST
   assert.equal(out.sent, 1);
   assert.equal(sent[0].title, '아침 약 드실 시간이에요');
+
+  /* 아침에 식사 전 · 식사 뒤 약이 있으면 두 번 */
+  await call({ action: 'update', subscription: sub, schedule: schedule([
+    { slot: 'morning', time: '07:30', kind: 'before', rules: daily }, { slot: 'morning', time: '08:30', kind: 'after', rules: daily }]) });
+  assert.equal(store.size, 2);
+  sent.length = 0;
+  await sender({ time: '2026-11-05T22:30:00Z' });
+  await sender({ time: '2026-11-05T23:30:00Z' });
+  assert.deepEqual(sent.map((m) => m.body.split(' · ')[0]), ['오전 7시 30분', '오전 8시 30분']);
+  await call({ action: 'update', subscription: sub, schedule: schedule([{ slot: 'morning', time: '07:30', rules: daily }]) });
   out = await sender({ time: '2026-11-05T22:35:00Z' });
   assert.equal(out.sent, 1 - 1);                                 // 다른 칸은 안 보냄
 

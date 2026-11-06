@@ -41,13 +41,13 @@
 .gnb { border-top: 0.0625rem solid var(--color-bg); }
 .gnb__list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem;
   padding-block: 0.75rem;
 }
 .gnb__list > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
 @media (min-width: 768px) {
-  .gnb__list { grid-template-columns: repeat(5, 1fr); }
+  .gnb__list { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .gnb__list > li:last-child:nth-child(odd) { grid-column: auto; }
 }
 .gnb__link {
@@ -61,6 +61,7 @@
   font-weight: 700;
   line-height: 1.35;
   text-align: center;
+  overflow-wrap: anywhere;
   border: var(--border-w) solid var(--color-primary);
   border-radius: var(--radius);
   transition: background-color 0.15s;
@@ -217,6 +218,7 @@
 .med-card--done { border-width: var(--border-w); border-style: dashed; }
 .med-card__name { font-size: 1.375rem; font-weight: 700; line-height: 1.4; }
 .med-card__info { font-size: 1.0625rem; }
+.med-card__time { display: flex; align-items: center; gap: 0.5rem; font-size: 1.25rem; font-weight: 700; color: var(--color-primary); }
 .med-card__repeat {
   display: flex;
   align-items: center;
@@ -721,6 +723,7 @@ select.form__input { cursor: pointer; }
   text-underline-offset: 0.2em;
 }
 .footer__mail {
+  overflow-wrap: anywhere;
   display: inline-flex;
   align-items: center;
   min-height: var(--touch);
@@ -760,8 +763,8 @@ html[data-contrast="high"] .tip { border: var(--border-w) solid var(--color-text
 .view-set.is-open .view-set__arrow { transform: rotate(180deg); }
 .font-step--down { font-size: 0.9em; }
 @media (max-width: 47.98rem) {
-  .view-set--ready .view-set__toggle { display: inline-flex; width: 100%; justify-content: center; }
-  .view-set--ready:not(.is-open) .view-set__panel { display: none; }
+  .js .view-set__toggle, .view-set--ready .view-set__toggle { display: inline-flex; width: 100%; justify-content: center; }
+  .js .view-set:not(.is-open) .view-set__panel, .view-set--ready:not(.is-open) .view-set__panel { display: none; }
 }
 
 /* 예시로 채워 보기 */
@@ -777,3 +780,30 @@ html[data-contrast="high"] .tip { border: var(--border-w) solid var(--color-text
 
 /* 파란 푸터 위 포커스는 흰 테두리 */
 .footer :focus-visible { outline-color: var(--color-surface); }
+
+/* 동의 체크 */
+.agree { display: flex; align-items: flex-start; gap: 0.75rem; }
+.agree__input { flex: none; width: 2rem; height: 2rem; margin-top: 0.125rem; accent-color: var(--color-primary); cursor: pointer; }
+.agree__label { font-size: 1.125rem; cursor: pointer; }
+.agree__more { font-size: 1rem; }
+.push__warn { margin-top: 0; }
+
+/* 기록 파일 저장 · 불러오기 */
+.backup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: var(--gap);
+  padding: 1.5rem;
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-primary);
+  border-radius: var(--radius);
+}
+.backup__title { display: flex; align-items: center; gap: 0.5rem; font-size: 1.25rem; font-weight: 700; }
+.backup__sub { margin-top: 1rem; padding-top: 1rem; font-size: 1.125rem; font-weight: 700; border-top: 0.0625rem solid var(--color-primary); }
+.backup__btns { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 0.75rem; }
+.backup__last { font-size: 1rem; font-weight: 700; color: var(--color-primary); }
+.file__input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.file__input:focus-visible + .btn { outline: 0.25rem solid var(--color-focus); outline-offset: 0.2rem; }
+.confirm--info { border-color: var(--color-primary); }
+.confirm--info .confirm__text { color: var(--color-text); }

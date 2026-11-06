@@ -36,10 +36,11 @@ export function rowsFor(subscription, schedule, now = new Date()) {
     pk,
     rows: schedule.slots.map((s) => ({
       pk,
-      sk: 'slot#' + s.slot,
+      sk: 'slot#' + s.slot + '#' + s.time.replace(':', ''),
       bucket: toBucket(s.time, schedule.timeZone, now),
       slot: s.slot,
       time: s.time,
+      kind: s.kind,
       rules: s.rules,
       tz: schedule.timeZone,
       dayStartHour: schedule.dayStartHour,
