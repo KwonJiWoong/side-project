@@ -41,13 +41,13 @@
 .gnb { border-top: 0.0625rem solid var(--color-bg); }
 .gnb__list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem;
   padding-block: 0.75rem;
 }
 .gnb__list > li:last-child:nth-child(odd) { grid-column: 1 / -1; }
 @media (min-width: 768px) {
-  .gnb__list { grid-template-columns: repeat(5, 1fr); }
+  .gnb__list { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .gnb__list > li:last-child:nth-child(odd) { grid-column: auto; }
 }
 .gnb__link {
@@ -61,6 +61,7 @@
   font-weight: 700;
   line-height: 1.35;
   text-align: center;
+  overflow-wrap: anywhere;
   border: var(--border-w) solid var(--color-primary);
   border-radius: var(--radius);
   transition: background-color 0.15s;
@@ -722,6 +723,7 @@ select.form__input { cursor: pointer; }
   text-underline-offset: 0.2em;
 }
 .footer__mail {
+  overflow-wrap: anywhere;
   display: inline-flex;
   align-items: center;
   min-height: var(--touch);
@@ -761,8 +763,8 @@ html[data-contrast="high"] .tip { border: var(--border-w) solid var(--color-text
 .view-set.is-open .view-set__arrow { transform: rotate(180deg); }
 .font-step--down { font-size: 0.9em; }
 @media (max-width: 47.98rem) {
-  .view-set--ready .view-set__toggle { display: inline-flex; width: 100%; justify-content: center; }
-  .view-set--ready:not(.is-open) .view-set__panel { display: none; }
+  .js .view-set__toggle, .view-set--ready .view-set__toggle { display: inline-flex; width: 100%; justify-content: center; }
+  .js .view-set:not(.is-open) .view-set__panel, .view-set--ready:not(.is-open) .view-set__panel { display: none; }
 }
 
 /* 예시로 채워 보기 */
