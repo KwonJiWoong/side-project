@@ -142,6 +142,7 @@
     slotTimes: Object.assign({}, DEFAULT_TIMES)
   };
   const UNDO_MAX = 5;
+  const normName = (n) => String(n).replace(/[~|]/g, ' ').replace(/\s+/g, ' ').trim();
 
   /* 먹는 날 · 기간
      repeat: { type: 'daily' } | { type: 'week', days: [0~6] } | { type: 'every', n: 2~14, from: 'YYYY-MM-DD' }
@@ -693,7 +694,20 @@
     const name = el.name.value.trim();
     const times = checkedTimes();
     const timesGroup = $('timesGroup');
-    showError($('nameGroup'), el.nameError, name ? '' : (radioVal('preset') === 'custom' ? '약 이름을 적어 주세요. 예: 아스피린' : '약 이름을 골라 주세요. 없으면 [직접 쓰기]를 눌러 적어 주세요.'));
+    /* 이름이 같은 약은 따로 등록하지 않음 (링크로 옮길 때 기록이 섞이지 않게) */
+    const dup = name && state.meds.find((m) => m.id !== state.edit && normName(m.name) === normName(name));
+    showError($('nameGroup'), el.nameError, !name
+      ? (radioVal('preset') === 'custom' ? '약 이름을 적어 주세요. 예: 아스피린' : '약 이름을 골라 주세요. 없으면 [직접 쓰기]를 눌러 적어 주세요.')
+      : dup ? '이미 \'' + name + '\' 약이 있어요. 다른 약이면 \'' + name + ' 저녁용\'처럼 이름을 다르게 적어 주세요. 같은 약이면 아래 등록한 약에서 [고치기]로 먹는 때를 더해 주세요.' : '');
+    if (dup) {
+      $('pre-custom').checked = true;
+      $('nameBox').hidden = false;
+      el.name.value = name + ' ';
+      pickOf('nameGroup').open = false;
+      refreshPick(pickOf('nameGroup'));
+      el.name.focus();
+      return;
+    }
     showError(timesGroup, el.timesError, times.length ? '' : '먹는 때를 하나 이상 눌러 주세요. 예: 아침');
     const rtype = radioVal('repeat') || 'daily';
     const wdays = Array.from(el.form.querySelectorAll('input[name="wdays"]:checked')).map((i) => Number(i.value));
@@ -1100,10 +1114,13 @@
     if (!incoming) return;
     const old = state.meds;
     const stamp = Date.now().toString(36);
+    const used = new Set();
     /* 이름이 같은 약은 그대로 이어 받기 (오늘 먹은 기록 · 비고 유지) */
     if (incoming.slotTimes) state.slotTimes = Object.assign({}, incoming.slotTimes);
     const next = incoming.meds.map((m, i) => {
-      const same = old.find((o) => o.name.replace(/[~|]/g, ' ').trim() === m.name);
+      /* 이름이 같은 약끼리 하나씩만 짝지음 (같은 약이 두 번 묶이지 않게) */
+      const same = old.find((o) => !used.has(o.id) && normName(o.name) === normName(m.name));
+      if (same) used.add(same.id);
       return Object.assign({}, m, { id: same ? same.id : 'm' + stamp + i, memo: same ? same.memo : '' });
     });
     old.filter((o) => !next.some((n) => n.id === o.id)).forEach((o) => keepMedUndo(o));
