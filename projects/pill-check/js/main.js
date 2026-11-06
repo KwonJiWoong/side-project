@@ -268,7 +268,9 @@
     const list = [];
     SLOTS.forEach((slot) => {
       const t = today();
-      state.meds.forEach((m) => { if (m.times.includes(slot.id) && isDue(m, t)) list.push({ med: m, slot: slot.id, key: m.id + '@' + slot.id }); });
+      state.meds.filter((m) => m.times.includes(slot.id) && isDue(m, t))
+        .sort((a, b) => doseOffset(a, slot.id) - doseOffset(b, slot.id))
+        .forEach((m) => list.push({ med: m, slot: slot.id, key: m.id + '@' + slot.id }));
     });
     return list;
   }
@@ -330,12 +332,14 @@
       const cards = items.map((e) => {
         const takenAt = day.done[e.key];
         const id = 'med-' + e.key.replace('@', '-');
-        const info = medNote(e.med).map(esc).join(' · ');
+        /* 먹는 시각 줄에 식사 전후가 나오므로 나머지 메모만 */
+        const info = e.med.tags.filter((t) => !['b30', 'a30', 'with'].includes(t)).map((t) => TAGS[t]).concat(e.med.memo).filter(Boolean).map(esc).join(' · ');
         const special = e.med.repeat.type !== 'daily' || e.med.until;
         return '<li><article class="med-card' + (takenAt ? ' med-card--done' : '') + '" aria-labelledby="' + id + '">' +
           '<h4 class="med-card__name" id="' + id + '">' + esc(e.med.name) + '</h4>' +
+          '<p class="med-card__time">' + ico('clock') + ' ' + doseText(e.med, slot.id) + '</p>' +
           (special ? '<p class="med-card__repeat">' + ico('calendar') + ' ' + [e.med.repeat.type !== 'daily' ? repeatText(e.med) + ' 먹는 약' : '', untilText(e.med)].filter(Boolean).join(' · ') + '</p>' : '') +
-          '<p class="med-card__info">' + info + '</p>' +
+          (info ? '<p class="med-card__info">' + info + '</p>' : '') +
           (takenAt
             ? '<p class="med-card__state">' + ico('check') + ' ' + fmtTime(takenAt) + '에 먹었어요</p>' +
               '<button type="button" class="btn btn--block" data-act="undo" data-key="' + e.key + '">' + ico('undo') + ' 잘못 눌렀어요 (되돌리기)<span class="sr-only"> - ' + esc(e.med.name) + '</span></button>'
@@ -345,7 +349,7 @@
       }).join('');
       return '<li><section class="slot slot--' + slot.id + '" aria-labelledby="slot-' + slot.id + '">' +
         '<header class="slot__head">' +
-          '<h3 class="slot__title" id="slot-' + slot.id + '" tabindex="-1">' + chr(slot.id) + ' ' + slot.label + ' <span class="slot__time">' + fmtClock(state.slotTimes[slot.id]) + '</span></h3>' +
+          '<h3 class="slot__title" id="slot-' + slot.id + '" tabindex="-1">' + chr(slot.id) + ' ' + slot.label + ' <span class="slot__time">' + (slot.id === 'bed' ? '' : '식사 ') + fmtClock(state.slotTimes[slot.id]) + '</span></h3>' +
           (slot.id === now ? '<p class="slot__now">' + ico('clock') + ' 지금 드실 때</p>' : '') +
           '<p class="slot__count">' + items.length + '개 중 ' + doneCount + '개 먹음</p>' +
         '</header>' +
@@ -498,6 +502,25 @@
   });
 
   /* 약 카드에 보일 안내 (먹는 때 + 간단 메모 + 비고) */
+  /* 약마다 먹는 시각 = 식사 시각 ± 30분 (자기 전 약은 정한 시각 그대로) */
+  function doseOffset(m, slotId) {
+    if (slotId === 'bed') return 0;
+    if (m.tags.includes('b30')) return -30;
+    if (m.tags.includes('a30')) return 30;
+    if (m.tags.includes('with')) return 0;
+    if (m.meal === 'before') return -30;
+    if (m.meal === 'after') return 30;
+    return 0;
+  }
+  const addMin = (hhmm, d) => {
+    const [h, mm] = String(hhmm).split(':').map(Number);
+    const v = (((h * 60 + mm + d) % 1440) + 1440) % 1440;
+    return String(Math.floor(v / 60)).padStart(2, '0') + ':' + String(v % 60).padStart(2, '0');
+  };
+  const doseTime = (m, slotId) => addMin(state.slotTimes[slotId], doseOffset(m, slotId));
+  const offsetText = (off, slotId) => (slotId === 'bed' ? '자기 전' : off < 0 ? '식사 30분 전' : off > 0 ? '식사 30분 뒤' : '식사 때');
+  const doseText = (m, slotId) => fmtClock(doseTime(m, slotId)) + ' (' + offsetText(doseOffset(m, slotId), slotId) + ')';
+
   function medNote(m) {
     const timed = m.tags.includes('b30') || m.tags.includes('a30') || m.tags.includes('with');
     return [timed ? '' : (MEALS[m.meal] || MEALS.after)].concat(m.tags.map((t) => TAGS[t]), m.memo).filter(Boolean);
@@ -749,9 +772,9 @@
     const t = today();
     const due = isDue(m, t);
     const next = due ? '' : nextDue(m, t);
-    const times = SLOTS.filter((s) => m.times.includes(s.id)).map((s) => s.label + ' ' + fmtClock(state.slotTimes[s.id])).join(' · ');
+    const times = SLOTS.filter((s) => m.times.includes(s.id)).map((s) => s.label + ' ' + doseText(m, s.id)).join(' · ');
     const rows = [
-      ['먹는 때', times + ' (' + (MEALS[m.meal] || MEALS.after) + ')'],
+      ['먹는 때', times],
       ['먹는 날', repeatText(m) + (m.until ? ' · ' + untilText(m) : '')],
       m.tags.length ? ['간단 메모', m.tags.map((x) => TAGS[x]).join(' · ')] : null,
       m.memo ? ['비고', m.memo] : null
@@ -1182,12 +1205,19 @@
     return {
       timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       dayStartHour: DAY_START_HOUR,
-      slots: SLOTS.map((s) => ({
-        slot: s.id,
-        label: s.label,
-        time: state.slotTimes[s.id],
-        rules: state.meds.filter((m) => m.times.includes(s.id)).map((m) => ({ repeat: m.repeat, until: m.until }))
-      })).filter((s) => s.rules.length)
+      slots: SLOTS.flatMap((s) => {
+        const groups = {};
+        state.meds.filter((m) => m.times.includes(s.id)).forEach((m) => {
+          const off = doseOffset(m, s.id);
+          (groups[off] = groups[off] || []).push({ repeat: m.repeat, until: m.until });
+        });
+        return Object.keys(groups).map(Number).sort((a, b) => a - b).map((off) => ({
+          slot: s.id,
+          time: addMin(state.slotTimes[s.id], off),
+          kind: s.id === 'bed' ? 'bed' : off < 0 ? 'before' : off > 0 ? 'after' : 'with',
+          rules: groups[off]
+        }));
+      })
     };
   }
   const postPush = (body) => fetch(PUSH.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });

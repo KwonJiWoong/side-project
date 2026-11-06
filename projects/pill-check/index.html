@@ -254,8 +254,9 @@
             </p>
           </fieldset>
 
-          <fieldset class="form__group" id="mealGroup" data-pick>
+          <fieldset class="form__group" id="mealGroup" data-pick aria-describedby="mealHint">
             <legend class="form__label">식사 전후</legend>
+            <span class="form__hint" id="mealHint">식사 전 약은 식사 30분 전, 식사 후 약은 식사 30분 뒤가 먹을 시각이에요.</span>
             <ul class="choice-list choice-list--3">
               <li><input class="choice__input" type="radio" id="meal-before" name="meal" value="before"><label class="choice" for="meal-before">식사 전</label></li>
               <li><input class="choice__input" type="radio" id="meal-after" name="meal" value="after" checked><label class="choice" for="meal-after">식사 후</label></li>
@@ -419,15 +420,15 @@
       <!-- 먹는 시각 -->
       <section class="panel" id="times" aria-labelledby="timesTitle" hidden>
         <h2 class="panel__title" id="timesTitle" tabindex="-1">먹는 시각</h2>
-        <p class="panel__lead">아침·점심·저녁·자기 전 약을 몇 시에 드시는지 정해 주세요. '지금 드실 때' 표시에 쓰여요.</p>
+        <p class="panel__lead">식사하는 시각과 잠자리에 드는 시각을 정해 주세요. 식사 전 약은 <strong>식사 30분 전</strong>, 식사 후 약은 <strong>식사 30분 뒤</strong>가 먹을 시각이 돼요.</p>
 
         <form class="form" id="timeForm" novalidate aria-labelledby="timeFormTitle">
-          <h3 class="form__title" id="timeFormTitle">먹는 시각 정하기</h3>
+          <h3 class="form__title" id="timeFormTitle">식사 · 잠자는 시각 정하기</h3>
           <ul class="time-list">
-            <li class="form__field"><label class="form__label" for="time-morning"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-morning"></use></svg> 아침</label><input class="form__input" type="time" id="time-morning" step="300" required></li>
-            <li class="form__field"><label class="form__label" for="time-lunch"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-lunch"></use></svg> 점심</label><input class="form__input" type="time" id="time-lunch" step="300" required></li>
-            <li class="form__field"><label class="form__label" for="time-evening"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-evening"></use></svg> 저녁</label><input class="form__input" type="time" id="time-evening" step="300" required></li>
-            <li class="form__field"><label class="form__label" for="time-bed"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-bed"></use></svg> 자기 전</label><input class="form__input" type="time" id="time-bed" step="300" required></li>
+            <li class="form__field"><label class="form__label" for="time-morning"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-morning"></use></svg> 아침 식사</label><input class="form__input" type="time" id="time-morning" step="300" required></li>
+            <li class="form__field"><label class="form__label" for="time-lunch"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-lunch"></use></svg> 점심 식사</label><input class="form__input" type="time" id="time-lunch" step="300" required></li>
+            <li class="form__field"><label class="form__label" for="time-evening"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-evening"></use></svg> 저녁 식사</label><input class="form__input" type="time" id="time-evening" step="300" required></li>
+            <li class="form__field"><label class="form__label" for="time-bed"><svg class="chr" aria-hidden="true" focusable="false"><use href="#ch-bed"></use></svg> 잠자는 시각</label><input class="form__input" type="time" id="time-bed" step="300" required></li>
           </ul>
           <span class="form__error" id="timeError" role="alert" hidden></span>
           <p class="form__btns">
@@ -439,7 +440,7 @@
         <section class="push" id="pushBox" aria-labelledby="pushTitle" hidden>
           <h3 class="push__title" id="pushTitle">약 먹을 시각 알림</h3>
           <p>정한 시각에 휴대폰으로 알려 드려요. 잠금 화면에 보일 수 있어서 <strong>약 이름은 알림에 나오지 않아요.</strong></p>
-          <p class="form__note">알림을 켜면 알림을 보내기 위해 <strong>먹는 시각과 먹는 날(요일 · 간격 · 끝나는 날)만</strong> 서버에 저장돼요. 약 이름 · 비고 · 먹은 기록은 보내지 않아요. 알림을 끄면 바로 지워져요.</p>
+          <p class="form__note">알림을 켜면 알림을 보내기 위해 <strong>약 먹을 시각과 먹는 날(요일 · 간격 · 끝나는 날)만</strong> 서버에 저장돼요. 약 이름 · 비고 · 먹은 기록은 보내지 않아요. 알림을 끄면 바로 지워져요.</p>
           <p class="push__state" id="pushState" role="status"></p>
           <button type="button" class="btn btn--primary btn--block" id="pushBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clock"></use></svg> <span id="pushBtnText">알림 받기</span></button>
         </section>

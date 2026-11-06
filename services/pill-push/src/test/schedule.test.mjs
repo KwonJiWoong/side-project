@@ -33,10 +33,12 @@ test('새벽 4시 전은 전날', () => {
 });
 
 test('알림 문구: 오늘 먹는 약만 세고 이름은 안 넣음', () => {
-  const item = { slot: 'morning', time: '08:00', tz: KST, dayStartHour: 4,
+  const item = { slot: 'morning', time: '08:00', kind: 'with', tz: KST, dayStartHour: 4,
     rules: [{ repeat: { type: 'daily' }, until: '' }, { repeat: { type: 'week', days: [1] }, until: '' }] };
   const fri = messageFor(item, at('2026-11-05T23:00:00Z'));  // 11/6 금 08:00
-  assert.deepEqual(fri, { title: '아침 약 드실 시간이에요', body: '오전 8시 · 약 1개. 이미 드셨으면 넘어가세요.', slot: 'morning' });
+  assert.deepEqual(fri, { title: '아침 약 드실 시간이에요', body: '오전 8시 · 식사 때 약 1개. 이미 드셨으면 넘어가세요.', slot: 'morning' });
+  const before = messageFor({ ...item, kind: 'before', time: '07:30' }, at('2026-11-05T22:30:00Z'));
+  assert.equal(before.body, '오전 7시 30분 · 식사 30분 전 약 1개. 이미 드셨으면 넘어가세요.');
   const mon = messageFor(item, at('2026-11-08T23:00:00Z'));  // 11/9 월
   assert.match(mon.body, /약 2개/);
   const onlyWeekly = { ...item, rules: [item.rules[1]] };
@@ -58,6 +60,16 @@ test('일정 검사', () => {
   assert.equal(validSchedule({ slots: [{ slot: 'morning', time: '08:00', rules: [{ repeat: { type: 'every', n: 1, from: '2026-11-06' } }] }] }), null);
 });
 
+test('같은 시간대에 시각이 다른 약 (식사 전 · 뒤)', () => {
+  const v = validSchedule({ timeZone: KST, dayStartHour: 4, slots: [
+    { slot: 'morning', time: '07:30', kind: 'before', rules: [{ repeat: { type: 'daily' }, until: '' }] },
+    { slot: 'morning', time: '08:30', kind: 'after', rules: [{ repeat: { type: 'daily' }, until: '' }] }] });
+  assert.equal(v.slots.length, 2);
+  assert.equal(validSchedule({ slots: [
+    { slot: 'morning', time: '07:30', rules: [{}] }, { slot: 'morning', time: '07:30', rules: [{}] }] }), null);   // 같은 시각 두 번
+  assert.equal(validSchedule({ slots: [{ slot: 'morning', time: '07:30', kind: 'x', rules: [{}] }] }), null);
+});
+
 test('푸시 주소는 알려진 서비스만', () => {
   const keys = { p256dh: 'BAAA', auth: 'abc' };
   assert.ok(validSubscription({ endpoint: 'https://fcm.googleapis.com/fcm/send/abc', keys }));
@@ -77,7 +89,7 @@ test('요청 읽기 · 저장할 줄 만들기', () => {
   assert.equal(req.action, 'subscribe');
   const { pk, rows } = rowsFor(req.subscription, req.schedule, at('2026-11-06T00:00:00Z'));
   assert.match(pk, /^S#/);
-  assert.deepEqual(rows.map((r) => [r.sk, r.bucket]), [['slot#morning', '23:00'], ['slot#bed', '13:00']]);
+  assert.deepEqual(rows.map((r) => [r.sk, r.bucket]), [['slot#morning#0800', '23:00'], ['slot#bed#2200', '13:00']]);
   assert.ok(!JSON.stringify(rows).includes('아침'));  // 이름 · 라벨은 저장 안 함
   assert.equal(parseRequest({ body: '{"action":"hack"}' }).error, '할 일을 알 수 없어요.');
   assert.ok(parseRequest({ body: 'x'.repeat(20000) }).error);

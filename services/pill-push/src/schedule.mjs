@@ -4,6 +4,9 @@
 export const SLOT_IDS = ['morning', 'lunch', 'evening', 'bed'];
 export const SLOT_LABELS = { morning: '아침', lunch: '점심', evening: '저녁', bed: '자기 전' };
 export const BUCKET_MIN = 5;
+/* 같은 시간대 안에서도 식사 전 · 식사 때 · 식사 뒤 약은 시각이 달라서 따로 보냄 */
+export const KINDS = { before: '식사 30분 전', with: '식사 때', after: '식사 30분 뒤', bed: '' };
+const MAX_ENTRIES = 12;
 
 const isKey = (k) => typeof k === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(k);
 const keyToUtc = (k) => Date.UTC(Number(k.slice(0, 4)), Number(k.slice(5, 7)) - 1, Number(k.slice(8, 10)));
@@ -69,9 +72,10 @@ export function messageFor(item, date = new Date()) {
   const count = (item.rules || []).filter((r) => isDue(r, key)).length;
   if (!count) return null;
   const label = SLOT_LABELS[item.slot] || '';
+  const kind = KINDS[item.kind] ? KINDS[item.kind] + ' ' : '';
   return {
     title: label + ' 약 드실 시간이에요',
-    body: fmtClock(item.time) + ' · 약 ' + count + '개. 이미 드셨으면 넘어가세요.',
+    body: fmtClock(item.time) + ' · ' + kind + '약 ' + count + '개. 이미 드셨으면 넘어가세요.',
     slot: item.slot
   };
 }
@@ -92,11 +96,13 @@ export function validSchedule(s) {
     try { new Intl.DateTimeFormat('en', { timeZone: s.timeZone }); tz = s.timeZone; } catch (e) { return null; }
   }
   const dayStartHour = Number.isInteger(s.dayStartHour) && s.dayStartHour >= 0 && s.dayStartHour <= 6 ? s.dayStartHour : 4;
-  if (!Array.isArray(s.slots) || s.slots.length > SLOT_IDS.length) return null;
+  if (!Array.isArray(s.slots) || s.slots.length > MAX_ENTRIES) return null;
   const seen = new Set();
   const slots = [];
   for (const x of s.slots) {
-    if (!x || !SLOT_IDS.includes(x.slot) || seen.has(x.slot) || !TIME_RE.test(x.time || '')) return null;
+    if (!x || !SLOT_IDS.includes(x.slot) || !TIME_RE.test(x.time || '') || seen.has(x.slot + x.time)) return null;
+    const kind = x.kind === undefined ? (x.slot === 'bed' ? 'bed' : 'with') : x.kind;
+    if (!(kind in KINDS)) return null;
     if (!Array.isArray(x.rules) || !x.rules.length || x.rules.length > 30) return null;
     const rules = [];
     for (const r of x.rules) {
@@ -106,8 +112,8 @@ export function validSchedule(s) {
       if (until === null) return null;
       rules.push({ repeat, until });
     }
-    seen.add(x.slot);
-    slots.push({ slot: x.slot, time: x.time, rules });
+    seen.add(x.slot + x.time);
+    slots.push({ slot: x.slot, time: x.time, kind, rules });
   }
   return { timeZone: tz, dayStartHour, slots };
 }

@@ -217,6 +217,7 @@
 .med-card--done { border-width: var(--border-w); border-style: dashed; }
 .med-card__name { font-size: 1.375rem; font-weight: 700; line-height: 1.4; }
 .med-card__info { font-size: 1.0625rem; }
+.med-card__time { display: flex; align-items: center; gap: 0.5rem; font-size: 1.25rem; font-weight: 700; color: var(--color-primary); }
 .med-card__repeat {
   display: flex;
   align-items: center;
