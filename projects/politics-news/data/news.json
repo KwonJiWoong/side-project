@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T19:46:49+09:00",
+ "updated": "2026-11-17T04:07:27+09:00",
  "keepDays": 3,
  "sources": [
   {
@@ -78,12 +78,23 @@
  "topicHours": 24,
  "topics": [
   {
-   "title": "李 대통령, 아세안·APEC 순방 출국 … \"높아진 위상 걸맞게 국익 지킬 것\"",
-   "sourceCount": 8,
-   "latest": "2026-11-16T18:07:00+09:00",
+   "title": "李대통령, 필리핀 마닐라 도착…오늘 한-아세안 정상회의 참석",
+   "sourceCount": 9,
+   "latest": "2026-11-17T00:32:41+09:00",
    "items": [
+    "bcca4d0fab7b",
+    "fd3bb74b4ab5",
+    "5aa9ec6f6ccb",
+    "69a686f56fa1",
+    "368afb2b1593",
+    "4e1c8579c807",
+    "a720403f5109",
     "0c51b6e4d383",
+    "7d07857b49bf",
+    "e0fdb88225d9",
     "989e6d5e2f23",
+    "7a23c84b6473",
+    "b0ce2f180e41",
     "d10f912f13a8",
     "9738fba5b46f",
     "39f3c864863b",
@@ -94,32 +105,16 @@
     "800b710e8260",
     "a931f83b4f04",
     "f3797df8fc87",
-    "0844432d2ad0",
-    "dcd4625fc9fa"
+    "0844432d2ad0"
    ]
   },
   {
-   "title": "90도 고개 숙인 최민희 \"李 대통령에 누 끼쳐 죄송\" [영상]",
-   "sourceCount": 7,
-   "latest": "2026-11-16T18:30:00+09:00",
+   "title": "조정식 국회의장, 개헌 자문위원장 김형오·정세균 위촉",
+   "sourceCount": 8,
+   "latest": "2026-11-17T19:10:43+09:00",
    "items": [
-    "229a783bee0f",
-    "53569a136e04",
-    "899219361654",
-    "8cc17fabe914",
-    "1e18f56d29d8",
-    "958b1eb0485a",
-    "4483f7c90561",
-    "1b9771a617e7",
-    "08af0576f5df",
-    "5823718b44e5"
-   ]
-  },
-  {
-   "title": "“초당적 개헌” 외친 조정식…자문위원장에 김형오·정세균 위촉",
-   "sourceCount": 6,
-   "latest": "2026-11-16T16:47:00+09:00",
-   "items": [
+    "3f4146d4ef0f",
+    "b655c93ec794",
     "6eb38dacfd20",
     "f3568928d35c",
     "e27e0cafd654",
@@ -132,16 +127,35 @@
   },
   {
    "title": "李대통령, 이용철 법무장관·안덕수 국세청장 후보자 인사청문요청안 재가",
-   "sourceCount": 6,
-   "latest": "2026-11-16T17:11:59+09:00",
+   "sourceCount": 7,
+   "latest": "2026-11-16T23:20:58+09:00",
    "items": [
+    "05918145a621",
+    "03b5d354402f",
+    "c5a89c7299e3",
+    "6cee9454bebe",
+    "52756198058b",
+    "4949c6755921",
     "a3cb8878f221",
     "79683e1ec75d",
     "087c3b1e9136",
     "623596305c80",
     "7ff52d0c4cca",
     "0d4f41fa3fbc",
-    "f2a5eae37a4d"
+    "b016f125fa68"
+   ]
+  },
+  {
+   "title": "최민희, 90도 허리 숙여 사과했지만 … 친청계 '김민석, 신천지 책임론' 공세 계속",
+   "sourceCount": 6,
+   "latest": "2026-11-17T00:48:00+09:00",
+   "items": [
+    "522121bf2bd0",
+    "5a817a803845",
+    "ff16db0e9269",
+    "113ba5d70a4a",
+    "c1e394b094c4",
+    "3badae663706"
    ]
   },
   {
@@ -160,8 +174,9 @@
   {
    "title": "韓총리 \"수능 부정행위 철저 대비…범정부 대응팀 구성\"",
    "sourceCount": 5,
-   "latest": "2026-11-16T11:40:34+09:00",
+   "latest": "2026-11-17T22:53:09+09:00",
    "items": [
+    "623d002a4dd6",
     "65f2eb0a2825",
     "681c59bba0b5",
     "6f0f65ea640a",
@@ -171,6 +186,20 @@
     "24fe9de3829c",
     "2d8baf34b2d8",
     "d4afac78e8b2"
+   ]
+  },
+  {
+   "title": "90도 고개 숙인 최민희 \"李 대통령에 누 끼쳐 죄송\" [영상]",
+   "sourceCount": 5,
+   "latest": "2026-11-17T00:23:57+09:00",
+   "items": [
+    "12890f0171c2",
+    "229a783bee0f",
+    "53569a136e04",
+    "899219361654",
+    "8cc17fabe914",
+    "1e18f56d29d8",
+    "1b9771a617e7"
    ]
   },
   {
@@ -187,30 +216,6 @@
    ]
   },
   {
-   "title": "대통령 “등 뒤서 화살, 개혁 방해 용납 어렵다”…강경파 직격",
-   "sourceCount": 5,
-   "latest": "2026-11-16T18:40:35+09:00",
-   "items": [
-    "7b08a11162b9",
-    "334c9af10759",
-    "65f0390b9969",
-    "4bbfede52c45",
-    "9f48c9d6da71"
-   ]
-  },
-  {
-   "title": "장동혁 \"李, 총리에 책임 넘기려 꼼수\"ㅣ'조작기소 특검법' 규탄 국민의힘 현장 최고위원회의 [문화일보]",
-   "sourceCount": 5,
-   "latest": "2026-11-16T16:13:39+09:00",
-   "items": [
-    "982a0b4a1b80",
-    "76d661ffa476",
-    "2154e6290bd5",
-    "c6188444e45f",
-    "9b070750af4d"
-   ]
-  },
-  {
    "title": "장동혁 \"부정행위 대책 없으면 수능 연기 검토해야\" … AI시험 논란 직격",
    "sourceCount": 4,
    "latest": "2026-11-16T18:40:00+09:00",
@@ -220,9 +225,36 @@
     "e1604ab8a65a",
     "e32aa0be704b"
    ]
+  },
+  {
+   "title": "교육부 \"수능 연기 없다 … 전파 차단 가능성, 과기부 등과 검토\"",
+   "sourceCount": 3,
+   "latest": "2026-11-16T14:48:55+09:00",
+   "items": [
+    "d16c09ed109a",
+    "a664e98794f0",
+    "05a350ca56ae",
+    "ebecc337d923"
+   ]
   }
  ],
  "items": [
+  {
+   "id": "623d002a4dd6",
+   "source": "kmib",
+   "title": "야권 “대책 마련할 때까지 수능 연기해야”⋯ 정부 “일정 변경 없다 대응팀 구성 완료”",
+   "link": "https://www.kmib.co.kr/article/20261116502044",
+   "published": "2026-11-17T22:53:09+09:00",
+   "people": []
+  },
+  {
+   "id": "3f4146d4ef0f",
+   "source": "kmib",
+   "title": "국회 헌법개정자문위원장에 김형오·정세균",
+   "link": "https://www.kmib.co.kr/article/20261116501795",
+   "published": "2026-11-17T19:10:43+09:00",
+   "people": []
+  },
   {
    "id": "0c371bb38a72",
    "source": "kmib",
@@ -272,11 +304,409 @@
    "people": []
   },
   {
+   "id": "73fee703cdec",
+   "source": "chosun",
+   "title": "“현철이가 사면 안 됐다, DJ가 또 거짓말했다”",
+   "link": "https://www.chosun.com/politics/politics_general/2026/11/17/PHKSFYIDYJGKZMVNWHMTOBMOGA/",
+   "published": "2026-11-17T03:00:00+09:00",
+   "people": []
+  },
+  {
+   "id": "dba092bedf09",
+   "source": "chosun",
+   "title": "트럼프 “중국서 김정은 만날 수도 있다”",
+   "link": "https://www.chosun.com/politics/politics_general/2026/11/17/2OQRYZ3A5NGT7GHBULTSVZPQR4/",
+   "published": "2026-11-17T00:53:00+09:00",
+   "people": []
+  },
+  {
+   "id": "206545930a54",
+   "source": "chosun",
+   "title": "루비오 “北 김정은 정권 생존에만 관심… 팽창주의자 아니다”",
+   "link": "https://www.chosun.com/politics/diplomacy-defense/2026/11/17/NZDFHL5KXJFWLPUVWXP4EHTKIM/",
+   "published": "2026-11-17T00:48:00+09:00",
+   "people": []
+  },
+  {
+   "id": "522121bf2bd0",
+   "source": "chosun",
+   "title": "최민희, 90도 사과했지만… 김민석 “당헌 따라 처리”",
+   "link": "https://www.chosun.com/politics/assembly/2026/11/17/KODF6IQ5QRA33JFYDAIPNRWRV4/",
+   "published": "2026-11-17T00:48:00+09:00",
+   "people": [
+    "democratic"
+   ]
+  },
+  {
+   "id": "bcca4d0fab7b",
+   "source": "joongang",
+   "title": "이 대통령 “한·아세안 AI 동행” 새 협력 구상 띄웠다",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1URmtjcUI2eEJwNFNiVFFWaF9JWGs4ZDZGZV82aVcxR21xWTl6Q0d4eTVWRjJMc0x6RmYzTHRZeVN0Q1hWaXVNTm5hS2F4YlJFSXNGakRR?oc=5",
+   "published": "2026-11-17T00:32:41+09:00",
+   "people": [
+    "president"
+   ]
+  },
+  {
+   "id": "12890f0171c2",
+   "source": "joongang",
+   "title": "[사진] 고개 숙인 교육장관",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBuRjREOHdmOXpEVmt6MExncHlkU3pGZDE0Z2pFWHMtWmJGTGUxRXlUNm5hMVVOLTE4cmgyMUphNmhldnpmSWl3QktRVjRMR1MtMU1aMWFB?oc=5",
+   "published": "2026-11-17T00:23:57+09:00",
+   "people": []
+  },
+  {
+   "id": "d109f46177ef",
+   "source": "joongang",
+   "title": "‘고잉 내로우’로 나가는 이 대통령의 소통",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1fdzNJanY4eEhWaGJyVnZOSkdheW95dXJCT2lEWFhWd0N4MVhCZlZtNS1Wb291Q3hDN2tMdUZnRlhEN29DVGlPS2hka3R0akRnSE9jd3JR?oc=5",
+   "published": "2026-11-17T00:20:00+09:00",
+   "people": [
+    "president"
+   ]
+  },
+  {
+   "id": "17bfc8cdaeb6",
+   "source": "joongang",
+   "title": "[이현상의 시시각각] “괴물과 싸우다 괴물이 된다”",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE91QXpUVjFNcVdDbExkNmVkSmwyb0xkR3dZVkhSNzFUektoa3lsZU1xUXBuY1NFNVdjLXJ3YlhkRHNYX25NU0Z4Rk04N0sxQlhiQ1F1VVln?oc=5",
+   "published": "2026-11-17T00:18:00+09:00",
+   "people": []
+  },
+  {
+   "id": "80a4985d47e3",
+   "source": "dailian",
+   "title": "'조희대 딜레마' 빠진 민주당…탄핵·국조도, 여론 반전도 '글쎄'",
+   "link": "https://www.dailian.co.kr/news/view/1715694/?sc=rss",
+   "published": "2026-11-17T00:10:00+09:00",
+   "people": []
+  },
+  {
+   "id": "5a817a803845",
+   "source": "joongang",
+   "title": "최민희, 또 90도 숙여 사과…김민석 “당규 따라 엄정 조치”",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE0zZ1M3SWlkaXNYYVhGMFB1Ykh5OTFtck5tb0NPLXdldG5yXzZyVHBFWkRZa3pEV1BjeFZweUxnUXpGX0p4bElkWVppbEZsUE9WcnpvUFBn?oc=5",
+   "published": "2026-11-17T00:08:50+09:00",
+   "people": [
+    "democratic"
+   ]
+  },
+  {
+   "id": "0c722ddf92d1",
+   "source": "dailian",
+   "title": "전작권 전환 뒤 주한미군 철수?…전문가들 우려",
+   "link": "https://www.dailian.co.kr/news/view/1715677/?sc=rss",
+   "published": "2026-11-17T00:05:00+09:00",
+   "people": []
+  },
+  {
+   "id": "fd3bb74b4ab5",
+   "source": "dailian",
+   "title": "李대통령, 아세안에 'AI 동행' 이니셔티브 제안…태국과 CEPA 속도(종합)",
+   "link": "https://www.dailian.co.kr/news/view/1715781/?sc=rss",
+   "published": "2026-11-17T00:00:00+09:00",
+   "people": [
+    "president"
+   ]
+  },
+  {
+   "id": "dd24e1596282",
+   "source": "joongang",
+   "title": "트럼프 “중국서 김정은 만날 수도”…중간선거 참패 뒤 아시아 순방",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE8zLWFBMlBKeS01b1I2QVNwd29laElXMk5NWFI0aTFZZ0VfdGt4TzJ1WHpSNFBzSjFlaTNSeG5INk1vUE01NVdzODY2WFhoby1yVjJ6Zmln?oc=5",
+   "published": "2026-11-16T23:59:35+09:00",
+   "people": []
+  },
+  {
+   "id": "04e74c306848",
+   "source": "joongang",
+   "title": "[속보] 트럼프 “중국에서 김정은 만날 수도 있어”",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBjbnM2NlNaRFZrdFdYbTJQaTk0UG0wbW5HZ2R2NFZmNlZPX1J1T0NpLVVOUWVPNGpWMjdabWlucWNKdjdRaUZFQTVDejQ3cHQ1c2RZaTRB?oc=5",
+   "published": "2026-11-16T23:33:00+09:00",
+   "people": []
+  },
+  {
+   "id": "05918145a621",
+   "source": "joongang",
+   "title": "배우자 역삼동 분양권만 21억대…이용철 법무장관 후보, 가족 재산 39억 신고",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1KcFNZSEhJX2UwTG1Nek1aZm5BNm1EX0k3YzZEME4xaWpKX2tYcmYtU3pIOHYxdzZnMHROSzFuM0g0MjhFNkJmZ0tiMWF1Wlk4VDVaVHZn?oc=5",
+   "published": "2026-11-16T23:20:58+09:00",
+   "people": []
+  },
+  {
+   "id": "4ae4b19aec2d",
+   "source": "munhwa",
+   "title": "50년 대한민국 영공 지켜온 F-5 기체 창정비 임무 종료식",
+   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5Ga25TdjF5a2hYWWFTbndaOENBc0lRQW1KbjI3UHpVWlBNT1JLZzhvRzUxcThjaWdaalhfd2tsTWNuM0owVFR6TDBqb2hXRmVj?oc=5",
+   "published": "2026-11-16T22:55:17+09:00",
+   "people": []
+  },
+  {
+   "id": "5aa9ec6f6ccb",
+   "source": "chosun",
+   "title": "李대통령 부부, 필리핀 전통 의상 입고 아세안 정상회의 만찬",
+   "link": "https://www.chosun.com/politics/politics_general/2026/11/16/DDPOVLYKHRGIHKQ4CHSJHBJNYY/",
+   "published": "2026-11-16T22:53:42+09:00",
+   "people": []
+  },
+  {
+   "id": "ac597d14e8fb",
+   "source": "donga",
+   "title": "李, 마닐라 도착하자마자 강행군…첫날 4개 일정 소화 [청계천 옆 사진관]",
+   "link": "https://www.donga.com/news/Politics/article/all/20261116/135035169/1",
+   "published": "2026-11-16T22:38:00+09:00",
+   "people": []
+  },
+  {
+   "id": "f05f6077c707",
+   "source": "hankyung",
+   "title": "\"北 해킹조직, AI 활용해 한국 국민 맞춤형 파일 제작\"",
+   "link": "https://www.hankyung.com/article/2026111604867",
+   "published": "2026-11-16T22:22:10+09:00",
+   "people": []
+  },
+  {
+   "id": "1511054f5b30",
+   "source": "munhwa",
+   "title": "공군미사일방어사 등 격오지 부대 장병들 ‘건강미’ 뿜뿜…최수혁 상병 등 3명 체급별 최강상",
+   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE43cE5oa0dmMkhaamF5cHFMNnhCczJxampLLWhZWEVJTnRuYjk2VEs0SFFkdHd0YmN3b1pEMzIzd0dlZ3JvdV9tbWc1emxSTUFF?oc=5",
+   "published": "2026-11-16T22:21:52+09:00",
+   "people": []
+  },
+  {
+   "id": "03b5d354402f",
+   "source": "segye",
+   "title": "이용철 법무장관 후보자 인사청문회 24일 개최",
+   "link": "https://www.segye.com/newsView/20261116518968",
+   "published": "2026-11-16T22:09:45+09:00",
+   "people": []
+  },
+  {
+   "id": "c5a89c7299e3",
+   "source": "chosun",
+   "title": "이용철, 재산 39억 신고... 법사위 “24일 인사청문회”",
+   "link": "https://www.chosun.com/politics/politics_general/2026/11/16/4OZHA6KT5NGYFJBPPAVAWBP7D4/",
+   "published": "2026-11-16T22:06:47+09:00",
+   "people": []
+  },
+  {
+   "id": "69a686f56fa1",
+   "source": "munhwa",
+   "title": "‘특별제작’ 필리핀 전통의상 입고 갈라만찬 참석한 이 대통령 부부",
+   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE8zaDMwazR5MXhiOFdCT1BFOUJjNUZUMEVWbEoxWEotR3FNNmdhWVFybUNrSWx5MnVGSFFrTEIwOURSbU1vRzJjU2Utb24xVjhs?oc=5",
+   "published": "2026-11-16T22:02:26+09:00",
+   "people": [
+    "president"
+   ]
+  },
+  {
+   "id": "874e3a0812e5",
+   "source": "newdaily",
+   "title": "[포토] 인사말하는 허은아 국민통합비서관",
+   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNUXVuNXotRlo4M0htVmlUWEFDM3A2ZXJ4LWp3T2xiY0NOUHE2SzRBemtHN2hKZkd6MUtwNG4wVVpiMHRZLVJXd3BwX2dOazNIOGkwVVIydk5pUzlQeV9meG55dWxWZklEd04tSGd5QURVdmFKLU1kbUktLWRKYVFuQ9IBgAFBVV95cUxNUXVuNXotRlo4M0htVmlUWEFDM3A2ZXJ4LWp3T2xiY0NOUHE2SzRBemtHN2hKZkd6MUtwNG4wVVpiMHRZLVJXd3BwX2dOazNIOGkwVVIydk5pUzlQeV9meG55dWxWZklEd04tSGd5QURVdmFKLU1kbUktLWRKYVFuQw?oc=5",
+   "published": "2026-11-16T22:00:00+09:00",
+   "people": []
+  },
+  {
+   "id": "6cee9454bebe",
+   "source": "segye",
+   "title": "안덕수 국세청장 후보자 재산 19억…강남 아파트 전세권·상가 2건 보유",
+   "link": "https://www.segye.com/newsView/20261116518898",
+   "published": "2026-11-16T21:47:34+09:00",
+   "people": []
+  },
+  {
+   "id": "9729386d6aa7",
+   "source": "segye",
+   "title": "“北 해킹조직, AI 활용 정착 단계…사이버공격 역량 확대”",
+   "link": "https://www.segye.com/newsView/20261116518821",
+   "published": "2026-11-16T21:47:29+09:00",
+   "people": []
+  },
+  {
+   "id": "9acc82d13ff4",
+   "source": "segye",
+   "title": "李대통령 “메콩 자원·한국 기술 결합하자”…핵심광물 공급망·치안 공조 제안",
+   "link": "https://www.segye.com/newsView/20261116518773",
+   "published": "2026-11-16T21:47:04+09:00",
+   "people": []
+  },
+  {
+   "id": "52756198058b",
+   "source": "joongang",
+   "title": "강남 아파트 전세권에 배우자 상가 2곳…안덕수, 재산 19억대 신고",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFA3N0Z6Nm85RElkWlBGSGxhM1g0WGMyWFpEQzg1NVJyTDY1SHBJd3BmaGJiN0hLb0JRMmVTeUJkVEN5Znd2TEtXdl9jenhWYnVSd1lNTTJR?oc=5",
+   "published": "2026-11-16T21:42:25+09:00",
+   "people": []
+  },
+  {
+   "id": "80a4e831eafc",
+   "source": "segye",
+   "title": "보훈부, 17일 순국선열의 날 행사… 정부기념식 첫 뮤지컬 방식 진행",
+   "link": "https://www.segye.com/newsView/20261116515338",
+   "published": "2026-11-16T21:30:00+09:00",
+   "people": []
+  },
+  {
+   "id": "0915592d9729",
+   "source": "dailian",
+   "title": "공소청, '명태균 여론조사 의혹' 조은희 의원 무혐의 처분",
+   "link": "https://www.dailian.co.kr/news/view/1715768/?sc=rss",
+   "published": "2026-11-16T21:17:00+09:00",
+   "people": []
+  },
+  {
+   "id": "a5d489a69c6d",
+   "source": "kmib",
+   "title": "정명근 화성특례시장 “화성 미래는 화성이 결정해야”",
+   "link": "https://www.kmib.co.kr/article/20261116501980",
+   "published": "2026-11-16T21:06:19+09:00",
+   "people": []
+  },
+  {
+   "id": "292294256d6e",
+   "source": "donga",
+   "title": "李, 다카이치와 17일 정상회담…‘미중러 회담’ 전 북핵 대응 협력 다질듯",
+   "link": "https://www.donga.com/news/Politics/article/all/20261116/135035370/1",
+   "published": "2026-11-16T21:05:00+09:00",
+   "people": []
+  },
+  {
+   "id": "61180e18dd6d",
+   "source": "dailian",
+   "title": "[데일리안 오늘뉴스 종합] \"신천지\" \"최민희\" 최고위 면전서 상호 맹공...與, 한상혁 1심 무죄 들어 '檢조작기소' 공세...교육부, 안경 전수 점검",
+   "link": "https://www.dailian.co.kr/news/view/1715798/?sc=rss",
+   "published": "2026-11-16T21:05:00+09:00",
+   "people": []
+  },
+  {
+   "id": "76d8116eb08c",
+   "source": "newdaily",
+   "title": "[포토] 불 켜진 성탄트리",
+   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOUExrS29TekdVTVZ5ZlZlX3ZaQkFmZkhxbVk2MGw4OGl4MFpaR2FEcWdJS29FV1VSVmxxaF85eUFTQTB5aW5vMl9UaUZrZWVCWm1YX2VSRWlPVS1mTzRVQTRSRkFMNjlpcnhvX0I5QWFSODRIS3BoTnJfOTVsMDF1T9IBgAFBVV95cUxOUExrS29TekdVTVZ5ZlZlX3ZaQkFmZkhxbVk2MGw4OGl4MFpaR2FEcWdJS29FV1VSVmxxaF85eUFTQTB5aW5vMl9UaUZrZWVCWm1YX2VSRWlPVS1mTzRVQTRSRkFMNjlpcnhvX0I5QWFSODRIS3BoTnJfOTVsMDF1Tw?oc=5",
+   "published": "2026-11-16T21:04:00+09:00",
+   "people": []
+  },
+  {
+   "id": "ec2341463012",
+   "source": "donga",
+   "title": "“당내 쿠데타 벌인 최민희, 당원권 정지 이상 징계 나올 것”[정치를 부탁해]",
+   "link": "https://www.donga.com/news/Politics/article/all/20261116/135034214/1",
+   "published": "2026-11-16T20:52:00+09:00",
+   "people": []
+  },
+  {
+   "id": "6e784729d077",
+   "source": "joongang",
+   "title": "“계약에도 없던 돈”…장항준, ‘왕사남’ 배우·스태프에 26억 쐈다",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5mbURLUHRRNUtxTUUwbElWajExODBHSmZrOWh0WG5reWpaYUN0RDhZTkNSWWVmQkNYX1FMTUxGZTNTZ0Z1TTIyVnB3eUdrVm0yMG5lUGdn?oc=5",
+   "published": "2026-11-16T20:48:43+09:00",
+   "people": []
+  },
+  {
+   "id": "693c911093eb",
+   "source": "joongang",
+   "title": "李 “비 온 뒤에 땅 굳는다”…한·메콩 정상회의 6년 만에 재개",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFAzYmp0QkZ3UW13TE1YS0lRNGNZN1F6UUpMeVEyQmpvMFYzRzNfYXRoaGl1eDNGc29MYTBMWmxkX0lVZWh0LUhmSUNRbGxwMEdMa0tHdzJn?oc=5",
+   "published": "2026-11-16T20:40:43+09:00",
+   "people": []
+  },
+  {
+   "id": "4949c6755921",
+   "source": "segye",
+   "title": "안덕수 국세청장 후보자 재산 19억 4338만 원 신고…강남 아파트 전세권·상가 보유",
+   "link": "https://www.segye.com/newsView/20261116518410",
+   "published": "2026-11-16T20:34:40+09:00",
+   "people": []
+  },
+  {
+   "id": "81831a4fcb5f",
+   "source": "newdaily",
+   "title": "李 대통령, 필리핀과 정상회담 … 조선·방산·인프라 협력 심화",
+   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOckVkTXZTYUJwWW02aDd2Z1c0Mk9JdGs2S1o3ZFpqUGowMUthY2s5Qko1ZnVsLWhPeXlnaGR6blg3NEFPOXZkWGVvangxNlBENXRUNExXejczdUVyUWZUZ1Npb05QTURCRVRfV3dmY3Zhbm5ZOWxHV2VxRUlScWZoMNIBgAFBVV95cUxOckVkTXZTYUJwWW02aDd2Z1c0Mk9JdGs2S1o3ZFpqUGowMUthY2s5Qko1ZnVsLWhPeXlnaGR6blg3NEFPOXZkWGVvangxNlBENXRUNExXejczdUVyUWZUZ1Npb05QTURCRVRfV3dmY3Zhbm5ZOWxHV2VxRUlScWZoMA?oc=5",
+   "published": "2026-11-16T20:31:00+09:00",
+   "people": []
+  },
+  {
+   "id": "368afb2b1593",
+   "source": "kmib",
+   "title": "필리핀 전통의상 입고 만찬 참석한 李대통령과 김혜경 여사",
+   "link": "https://www.kmib.co.kr/article/20261116501872",
+   "published": "2026-11-16T20:30:32+09:00",
+   "people": []
+  },
+  {
+   "id": "ed6a73b33ff0",
+   "source": "segye",
+   "title": "李대통령, 한국 \"메콩 국가 발전 함께할 최적의 파트너\" [한강로 사진관]",
+   "link": "https://www.segye.com/newsView/20261116518357",
+   "published": "2026-11-16T20:29:05+09:00",
+   "people": []
+  },
+  {
    "id": "d2901875f043",
    "source": "kmib",
    "title": "‘깃발’ 놓고 고민하는 정청래⋯ 신천지로 반전 노리지만 역부족",
    "link": "https://www.kmib.co.kr/article/20261115501398",
    "published": "2026-11-16T20:16:49+09:00",
+   "people": []
+  },
+  {
+   "id": "e45c9e5dee1d",
+   "source": "donga",
+   "title": "임광현 “조작기소 특검법 李 거부권 동의 못해”…국힘 요구 일축",
+   "link": "https://www.donga.com/news/Politics/article/all/20261116/135035237/1",
+   "published": "2026-11-16T20:07:00+09:00",
+   "people": []
+  },
+  {
+   "id": "f21f0a870dc7",
+   "source": "donga",
+   "title": "與, 한덕수 선고 앞두고 “결과 실망땐 조희대 탄핵” 대법 압박",
+   "link": "https://www.donga.com/news/Politics/article/all/20261116/135032415/1",
+   "published": "2026-11-16T20:01:00+09:00",
+   "people": []
+  },
+  {
+   "id": "44d5001af32b",
+   "source": "hankyung",
+   "title": "친한계 총출동…한동훈 빙부상 빈소 찾은 여야 거물들",
+   "link": "https://www.hankyung.com/article/2026111603887",
+   "published": "2026-11-16T19:57:35+09:00",
+   "people": []
+  },
+  {
+   "id": "00d5733b99eb",
+   "source": "hankyung",
+   "title": "한·태국 CEPA 협상 가속화…李 대통령 \"적극 협력해 나가자\"",
+   "link": "https://www.hankyung.com/article/2026111603857",
+   "published": "2026-11-16T19:54:26+09:00",
+   "people": []
+  },
+  {
+   "id": "4e1c8579c807",
+   "source": "hankyung",
+   "title": "이 대통령 \"韓·아세안 AI 동행…핵심광물 공급망 협력 강화\"",
+   "link": "https://www.hankyung.com/article/2026111603801",
+   "published": "2026-11-16T19:37:17+09:00",
+   "people": [
+    "president"
+   ]
+  },
+  {
+   "id": "8fc194abc7c0",
+   "source": "hankyung",
+   "title": "[포토] 韓·아세안 '맞손'",
+   "link": "https://www.hankyung.com/article/2026111602131",
+   "published": "2026-11-16T19:30:01+09:00",
+   "people": []
+  },
+  {
+   "id": "ef94d2e348e1",
+   "source": "munhwa",
+   "title": "“번개장터도 털렸나”…전화번호에 계좌번호까지 유출 가능성",
+   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE4yWmhad3pQZ2JwTGFsd3RvbEdXRHhNajd2QlBrT1UwYjY2UXFkUHMwZC14eFZoTE5FWUVvZkRycS0wdVp4TXM3MWVaU3ppR2pW?oc=5",
+   "published": "2026-11-16T19:29:36+09:00",
    "people": []
   },
   {
@@ -288,6 +718,30 @@
    "people": [
     "president"
    ]
+  },
+  {
+   "id": "2d4de82c1e75",
+   "source": "newdaily",
+   "title": "[포토] 성탄트리 점등식 참석한 허은아 국민통합비서관",
+   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOd1VFUlVGaHZaUjBLX3lESjRsNW04WUc2QUIyUWgyX0NXa2lZblRQWlZ4Y21lTDVlU3VjMGJLUHNncm80ZWt2eFVOZ0hBM0R5d1g3WUw4YnNaYWo0WDlrQjRPUFpseFAtVUNHU053b2pRc004aWJtTVk3a2k5NXFSbNIBgAFBVV95cUxOd1VFUlVGaHZaUjBLX3lESjRsNW04WUc2QUIyUWgyX0NXa2lZblRQWlZ4Y21lTDVlU3VjMGJLUHNncm80ZWt2eFVOZ0hBM0R5d1g3WUw4YnNaYWo0WDlrQjRPUFpseFAtVUNHU053b2pRc004aWJtTVk3a2k5NXFSbA?oc=5",
+   "published": "2026-11-16T19:08:00+09:00",
+   "people": []
+  },
+  {
+   "id": "b655c93ec794",
+   "source": "segye",
+   "title": "조정식 국회의장, 개헌 자문위원장 김형오·정세균 위촉",
+   "link": "https://www.segye.com/newsView/20261116515208",
+   "published": "2026-11-16T19:07:00+09:00",
+   "people": []
+  },
+  {
+   "id": "c9ce6824baf0",
+   "source": "dailian",
+   "title": "6년째 멈춘 TK신공항 보상…국회서 \"방식 논쟁보다 주민 먼저\"",
+   "link": "https://www.dailian.co.kr/news/view/1715771/?sc=rss",
+   "published": "2026-11-16T19:01:00+09:00",
+   "people": []
   },
   {
    "id": "c56640ad3943",
@@ -386,6 +840,22 @@
    "people": []
   },
   {
+   "id": "a47590a5655c",
+   "source": "newdaily",
+   "title": "트럼프의 '코리아 패싱', 또 드리워지는 '불길한 그림자'",
+   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOQ0g4MnE0WDBCV0piQzFYRG5UOC1iTzN0MUJENTd5TlVoRmdMbmJUMkpSYkJzSm5QejhsVGlSZVFTS1hYR1BkMWlhWVFmUUVpZjVhLWFCajZwVG5Td1lKVVBZUDlpWi1hamFkSlB3d2sxblRXM00zUmZfbUtTX2JvM9IBgAFBVV95cUxOQ0g4MnE0WDBCV0piQzFYRG5UOC1iTzN0MUJENTd5TlVoRmdMbmJUMkpSYkJzSm5QejhsVGlSZVFTS1hYR1BkMWlhWVFmUUVpZjVhLWFCajZwVG5Td1lKVVBZUDlpWi1hamFkSlB3d2sxblRXM00zUmZfbUtTX2JvMw?oc=5",
+   "published": "2026-11-16T18:36:00+09:00",
+   "people": []
+  },
+  {
+   "id": "0bd25c06dd3a",
+   "source": "newdaily",
+   "title": "李 대통령 \"빠른 시간 내 태국 방문\" … 태국 총리 \"CEPA 조속 타결\"",
+   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOT056am5fQ2NzTDVnZ3FGY2pEc3Zvc21HbVVEci16enlmekdUWTY0eUNkQ3E4R2hDQ1BrTVFqdTQzVkFfa3FQcVFST0hkYTZEclpKRVVXRE9vMmRiQ2ZRM0JiNmNyZ2pzQzlydllnNnFHUi05Mm9zWkp5U1N1QU9XbdIBgAFBVV95cUxOT056am5fQ2NzTDVnZ3FGY2pEc3Zvc21HbVVEci16enlmekdUWTY0eUNkQ3E4R2hDQ1BrTVFqdTQzVkFfa3FQcVFST0hkYTZEclpKRVVXRE9vMmRiQ2ZRM0JiNmNyZ2pzQzlydllnNnFHUi05Mm9zWkp5U1N1QU9XbQ?oc=5",
+   "published": "2026-11-16T18:35:00+09:00",
+   "people": []
+  },
+  {
    "id": "229a783bee0f",
    "source": "segye",
    "title": "90도 허리 숙인 최민희, 金엔 결자해지 촉구… 끝까지 가나?",
@@ -428,7 +898,7 @@
   {
    "id": "921cb0545b5e",
    "source": "hankyung",
-   "title": "'시민단체 세금 지원법' 만든다는 민주…野 \"정부에 기생하는 관변단체만 양성\"",
+   "title": "'시민단체 세금 지원법' 만드는 민주당…野 \"정부에 기생하는 관변단체만 양성\"",
    "link": "https://www.hankyung.com/article/2026111602181",
    "published": "2026-11-16T18:14:01+09:00",
    "people": []
@@ -472,11 +942,27 @@
    ]
   },
   {
+   "id": "3f2839a711db",
+   "source": "newdaily",
+   "title": "빗썸, 코인 투자심리 위축에 3분기 매출 70% 감소 … 누적 순손실 1102억원 - 뉴데일리 경제",
+   "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBENUI2c1Y5RDk5R0lhTHlyRWZzNUdiUU42QVFmZ3BFWlNwc1FMVFN5RzVJX2tLN3V2WDExMHJVNm44bWZieThmMTl3YzNlaEI0N0NFNnJ1LVVkRkp2bl9ySXNuZ2NTVHo3aFZ4dV8zNnZ5aFZSajNaLUdKMNIBgAFBVV95cUxPSjB3azJYeHFWSFl5VzdpX280ci1aTGlCSnJQbjFzYWppWFpta29XaVF4c2Zsb0lGY0w2Wi1DTnBGUWllclhnU3poZldmQmRqSjFESkNfcHRYNXhfMndTTzJSWFV6UEctSUlmSVBLTmNGUEdXOUY2Qk01WWJoQnYxUQ?oc=5",
+   "published": "2026-11-16T17:58:00+09:00",
+   "people": []
+  },
+  {
    "id": "7d07857b49bf",
    "source": "dailian",
    "title": "李 \"아세안의 든든한 '행동 파트너' 되겠다\"…AI·문화산업 협력 제안",
    "link": "https://www.dailian.co.kr/news/view/1715704/?sc=rss",
    "published": "2026-11-16T17:48:00+09:00",
+   "people": []
+  },
+  {
+   "id": "e0fdb88225d9",
+   "source": "joongang",
+   "title": "李, 한·아세안 수사공조 강화 이어 AI·문화산업 협력 구상 제안",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB0RUlZaXNZTURGSDQzVXJ1cS0zZkE3b3cyUUdSNjl4MG8zVU0wUTkwMXE5ajRleEszT3RzYkNQT2R5cWtsQ3dpdHlTOXRscGhLS3MzQ3Jn?oc=5",
+   "published": "2026-11-16T17:47:07+09:00",
    "people": []
   },
   {
@@ -501,6 +987,14 @@
    "title": "“제명” 꺼낸 친명, 수위 고심 초선…최민희 중징계 요구 속 與 온도차",
    "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBSSlRqajBUNzAxZUhsWUw4SWh6bE42ejFxZzBVQkFHOEtKSmhkRTNGTWZwcHpCRk82WGIwVnZ4OWxQVVNyTW1tSDRuU0k5anhPTGVBcVpB?oc=5",
    "published": "2026-11-16T17:33:37+09:00",
+   "people": []
+  },
+  {
+   "id": "e8c0762ec3c2",
+   "source": "newdaily",
+   "title": "서울시의회 국힘 \"민주당, 행감서 '오세훈 흔들기' 급급 … 민생 성과로 답해야\"",
+   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPTVEwMnA3TmhGX2lRRy1HdmE1WU1LZllZUXB5R3IzTEZRTmd1VDdubjNEdVBIajJJRzUyRkRIdHlfOXUyVlA4ZmdJVWotX2lKRVFUNFJpMXZjcWdWbGstR0ppQm4zQlZ4RkptZXVLdVR4UUZ4SU4yS0g0X2s2QlFybNIBgAFBVV95cUxPTVEwMnA3TmhGX2lRRy1HdmE1WU1LZllZUXB5R3IzTEZRTmd1VDdubjNEdVBIajJJRzUyRkRIdHlfOXUyVlA4ZmdJVWotX2lKRVFUNFJpMXZjcWdWbGstR0ppQm4zQlZ4RkptZXVLdVR4UUZ4SU4yS0g0X2s2QlFybA?oc=5",
+   "published": "2026-11-16T17:32:00+09:00",
    "people": []
   },
   {
@@ -548,6 +1042,14 @@
    "source": "donga",
    "title": "“안경 오해받아 시험 망치면?” “보청기는?”…AI 커닝 대책 미흡에 여야 우려",
    "link": "https://www.donga.com/news/Politics/article/all/20261116/135032934/1",
+   "published": "2026-11-16T17:10:00+09:00",
+   "people": []
+  },
+  {
+   "id": "ff024de0bc5e",
+   "source": "newdaily",
+   "title": "보령, 셀트리온제약과 당뇨약 6종 공동판매 … 자회사 출범 앞두고 '실탄 확보' - 뉴데일리 경제",
+   "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBvZFZiX0hYT3JGTDRTVW1sQWpFMVAxNkxnQldWX05Ldlc1aUM1ZG1zeVNPbU9HSHhKMUxzU2hZZmZRM3Y1TXJZaTViOEsxaVMtMGhTVDNONDlsUzRnR0w3NlNSVmhqZl9Ta0FOM1gtaG1ZdkRncEVRQlBWUdIBgAFBVV95cUxNMzUxR1BfYnhUZGNIZ2R4czlaNkltd0dRNURtb0hDbnp5WURGMjQyUmxZVVFCcFhqcFR2UlI5WnlTM3ZDb3lyVGR6b0hHV2pOcENabFZqRVNvbXhmWGQxWWZmR19yUHJ3NnFTazA2NTN0Nmk1cFRmTUFiaWIwSTB0Yw?oc=5",
    "published": "2026-11-16T17:10:00+09:00",
    "people": []
   },
@@ -716,7 +1218,7 @@
   {
    "id": "d5f785f55669",
    "source": "joongang",
-   "title": "박정훈 “AI 커닝 100% 잡을 수 있나” 교육장관 “못할 것 같다”",
+   "title": "“AI커닝 100% 잡겠나” 묻자, 교육장관 “제 나이가 있어서…”",
    "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1BU1pQd3hCSkFYeUJiVFpLaFhleEJ6TDBwNFZYeXN0SFNqR0VfZkV2UjNBV01kQjhsN2tFYXA0dUpGT2tSdDhIMmZjeWQzNkVfNF9NVFRB?oc=5",
    "published": "2026-11-16T16:37:25+09:00",
    "people": []
@@ -743,6 +1245,14 @@
    "title": "법사위, ‘대법관 격려금’ 3억2400만원 삭감…與 주도 의결",
    "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5ja3BNMEdqMDVKazdaWm9SMUktX2VaOVN0OU1ISWdFazY0R2liYUNPRHk3QjRFbEhMQlRiTzJRcjR5RWhlc0JjaDdDNC1OX3NnOURERmlR?oc=5",
    "published": "2026-11-16T16:29:21+09:00",
+   "people": []
+  },
+  {
+   "id": "b016f125fa68",
+   "source": "newdaily",
+   "title": "李 대통령, 법무장관·국세청장 후보자 인사청문요청안 재가",
+   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNV1RjczR5N0xqX1RMckEyMnVHV3BuMXJKd3pscWNCbWppZHQ4U1pqWmdtbUtBOXNjT3AzNUFFLTFYTlFxb092TmtOUkdLUmkxSlFyYWxrdElQMEpIbS1wWHlLanJtUkJFNE01VFNuRGItYXBXeklTOVRYLVRtTFB2TdIBgAFBVV95cUxNV1RjczR5N0xqX1RMckEyMnVHV3BuMXJKd3pscWNCbWppZHQ4U1pqWmdtbUtBOXNjT3AzNUFFLTFYTlFxb092TmtOUkdLUmkxSlFyYWxrdElQMEpIbS1wWHlLanJtUkJFNE01VFNuRGItYXBXeklTOVRYLVRtTFB2TQ?oc=5",
+   "published": "2026-11-16T16:27:00+09:00",
    "people": []
   },
   {
@@ -808,6 +1318,14 @@
    "source": "newdaily",
    "title": "[포토] 9988 서울 활력충전소 방학점 개소식",
    "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPZmdHbVZmX29GbTFaM1ZYN0xGLWJHZm9ua1BvTmt2YndHa0c0TGpNeFNHbXNvNmJMVm9JeTJ6NDg5NUs5djZnYklJMXoxX0dIeFZQenBYdloxaGc4ZEZ4bHc3QUdEZm1vVlBsbzlkTXdmd3pSemh2aW1tTGdnUENLUdIBgAFBVV95cUxPZmdHbVZmX29GbTFaM1ZYN0xGLWJHZm9ua1BvTmt2YndHa0c0TGpNeFNHbXNvNmJMVm9JeTJ6NDg5NUs5djZnYklJMXoxX0dIeFZQenBYdloxaGc4ZEZ4bHc3QUdEZm1vVlBsbzlkTXdmd3pSemh2aW1tTGdnUENLUQ?oc=5",
+   "published": "2026-11-16T16:13:00+09:00",
+   "people": []
+  },
+  {
+   "id": "1daee0742a54",
+   "source": "newdaily",
+   "title": "[포토] 9988 서울 활력충전소 방학점 개소식",
+   "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBHUDdTdFV0ZUIwNVV5emY4MnhZaG8yUEV3MW5GR2EwSWJoVnFVTk5LRklESThKUGllTXNOZWxMUkduRDNvRXZuNkxWMUU1U0lOSHRONVFDUGhLcFlON2VfZkpETXRjQmxUU1FsUjVCVU5GQy1Zd1dScVhMb9IBgAFBVV95cUxPZmdHbVZmX29GbTFaM1ZYN0xGLWJHZm9ua1BvTmt2YndHa0c0TGpNeFNHbXNvNmJMVm9JeTJ6NDg5NUs5djZnYklJMXoxX0dIeFZQenBYdloxaGc4ZEZ4bHc3QUdEZm1vVlBsbzlkTXdmd3pSemh2aW1tTGdnUENLUQ?oc=5",
    "published": "2026-11-16T16:13:00+09:00",
    "people": []
   },
@@ -902,11 +1420,27 @@
    ]
   },
   {
+   "id": "1878b0671564",
+   "source": "newdaily",
+   "title": "카카오뱅크, 애플페이 도입 … 체크·미니카드 온·오프라인 결제 지원 - 뉴데일리 경제",
+   "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1iV2RnQXpKZmRMOFJzMnVvUlBPVThMMm41RXlaVDk0Vm5PSkxkTG5tcmx5RWFzbkdnc05RUmZiQkMxdXJjUVU0Wm5WNDVUSERKWEZNRlRtWlpCODhzWGI2UVh6NEZZY0RacW9QVVdsbnZLbVpMcDlXaWRqd9IBgAFBVV95cUxNWVlaOExZR3FiQ0VHSTRBZ05kTTFmMTZ3eVFhdlZqWkFhQVVLN0RRbFZ3Mm9VZ2xqQ2hQVzJUTEhSdXJyR05TLUpGVzJjX3VSUXhjdFNIZFRNcEVyS0NRMHdDSUp1Y0I1QXI2aWh3YzNGMWpyQVV0akpzYW5pOEQ0NQ?oc=5",
+   "published": "2026-11-16T15:33:00+09:00",
+   "people": []
+  },
+  {
    "id": "d532d836d037",
    "source": "newdaily",
    "title": "금감원, 금융사고 3배 폭증에 은행 영업점 '기습' … 불시검사 11년 만에 부활 - 뉴데일리 경제",
    "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE43aWk1bWRIaHlpaVBBMVd4WHJfZHVEaG0yLWZDVFBDSzJiQkhaRFpvSmdfYl9sY3lYZG1GTGxTNDQwT3d0YzUxQ1JuYVkxd0FFS2NWNG53ZVFlYzBEYklKYXN6V25mVHU5NHk1clphZU1IWUY2TVRDYUcyb9IBgAFBVV95cUxPb3U0YmxKdHlGSVRpeTdrS2hxZGJaX3BwRkhHSlZhZkJRNk51dFFpZ3RBamZRVjNMamJVbDV4am5wOG1aZmVzUl9RZkZ0N0tFUGxMbVB6WjBJc3M0eWloSVVYLUM2Rkdnb0lnT0trV1ZmSFZaT01BQ2UzOEY1WWdEWQ?oc=5",
    "published": "2026-11-16T15:32:00+09:00",
+   "people": []
+  },
+  {
+   "id": "efeb1899e76f",
+   "source": "munhwa",
+   "title": "광명시, 공인중개사 손잡고 전세사기 예방…경기도서 ‘최우수’",
+   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1ablRmTksweW9EQnlsdjFpX0xWd1o2Nlo0cDJpUXFqZjlBaTVpZWM3SXU1OGNiWWZXT2RROWViSV8yMVdZeU1wN09fQmNINjYt?oc=5",
+   "published": "2026-11-16T15:31:58+09:00",
    "people": []
   },
   {
@@ -986,6 +1520,24 @@
    "people": []
   },
   {
+   "id": "fb265567ee3c",
+   "source": "joongang",
+   "title": "애플페이 현대카드 독점 깨졌다…카카오뱅크 서비스 시작",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9VRXlodzF2TjVsWHJldXVhRzVQN0Nqa3FKRUtCR2lmMVdfY1NoSjVaeDl1VVJ6bVA5U21tRTc2TW1oRnZ5aTc5N3UtSk1zVDhsTTc1UWZB?oc=5",
+   "published": "2026-11-16T15:07:02+09:00",
+   "people": []
+  },
+  {
+   "id": "b0ce2f180e41",
+   "source": "newdaily",
+   "title": "[포토] 이재명 대통령 재판취소 저지특위 전체회의",
+   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNMzFBTVBaM2ZSVVFOaGJLWmhFQWY2bzBXcHQ1aW0yeWlQb3RweWJrNHFxeVpVTmxxYWRjT1hBNVkzYU1GNk5qMmVJNVpoc0RwZWd3YV9qaURFSE5XV2ljZ1NudmhFcVc0RWpQMWlaZTdnazAyTVJCa2piOUo5NFF0a9IBgAFBVV95cUxNMzFBTVBaM2ZSVVFOaGJLWmhFQWY2bzBXcHQ1aW0yeWlQb3RweWJrNHFxeVpVTmxxYWRjT1hBNVkzYU1GNk5qMmVJNVpoc0RwZWd3YV9qaURFSE5XV2ljZ1NudmhFcVc0RWpQMWlaZTdnazAyTVJCa2piOUo5NFF0aw?oc=5",
+   "published": "2026-11-16T15:07:00+09:00",
+   "people": [
+    "president"
+   ]
+  },
+  {
    "id": "a76b997338f6",
    "source": "newdaily",
    "title": "외면받는 '5세대 실손', 전환 비중 고작 13% … 보험료 50% 할인 카드 통할까 - 뉴데일리 경제",
@@ -1051,6 +1603,14 @@
    "title": "ASEAN·APEC 다자외교 무대 오른 李… 필리핀 마닐라 도착",
    "link": "https://www.segye.com/newsView/20261116510823",
    "published": "2026-11-16T14:33:49+09:00",
+   "people": []
+  },
+  {
+   "id": "333eda7609b6",
+   "source": "joongang",
+   "title": "엔비디아 33% 급락에 ‘역발상 베팅’…서학개미 4500억 폭풍매수",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5tXzd3M1hkM2FuVFhTYmdjeFhtb3RnNVdTRjRNdUllMDdaN2NIOFVoSTVVRGVJbHBPbmJwV01aVTFsTWFJRVBRLUxueDlDbXEtSlE1VGt3?oc=5",
+   "published": "2026-11-16T14:26:39+09:00",
    "people": []
   },
   {
@@ -1310,6 +1870,16 @@
    "people": []
   },
   {
+   "id": "3badae663706",
+   "source": "munhwa",
+   "title": "최민희, 李경고에 90도 사과…‘김민석, 신천지 책임’ 계속 제기",
+   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFA5aHBTUmdPQlR0cDhJRWZTckt4anVGUUJaQzMwekNUUldjWFhNUEtUMHNiWFZVZUpLTWlJMU5zb0RuZl9pTzNxNzNMaWEwLXZZ?oc=5",
+   "published": "2026-11-16T12:15:14+09:00",
+   "people": [
+    "democratic"
+   ]
+  },
+  {
    "id": "84c83358521e",
    "source": "munhwa",
    "title": "수능 3일 앞두고 ‘부랴부랴 회의’… 탐지기 등 올해는 적용불가",
@@ -1394,6 +1964,14 @@
    "people": []
   },
   {
+   "id": "0daf75a07ab5",
+   "source": "munhwa",
+   "title": "법원 “회사 임의로 근무표 바꿔도 근로시간 같으면 정당”",
+   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBhMzIyVkEtODJ6empzbFZMcmY4V25VY2wzWlE5THg1VWJqQmNEc1prdm1HU1NaSUVzN1FDdWhaWHowcjJObW5ka3N2czZpUjdS?oc=5",
+   "published": "2026-11-16T11:55:39+09:00",
+   "people": []
+  },
+  {
    "id": "8e51e7adc83f",
    "source": "joongang",
    "title": "국힘 윤리위원 ‘조작 징계’ 내일 추가폭로…당권파·친한계 갈등 계속",
@@ -1407,6 +1985,14 @@
    "title": "금융위, 금융보안원 해킹에 유감 표명 … 조직·보안체계 전면 쇄신 주문 - 뉴데일리 경제",
    "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBEMktSUjhsdnVCcDNIMVNNcFo1YTlCcnl2UlJyYXhqRE5YZHgyM3BmQjNaazhYVk5CUENLQ05EMWx3M0E5YUpfdmVUU1R6TF91VnJZREFIVFlOYXZZRWEwZGpJa2o5aWRLUGNCYkVMLVUtS3BycllQLVZERdIBgAFBVV95cUxNR19RcWNtb0lTanZub1ZUOUFPa1JMRk5QRFplMy1RX3pTcVV0UzdmOU1zZUQwQThtb0RUMWN2SFM5UjZ4ZXdIUkNHQ2lfelVoREVqSTdneVBKOV9Tcm1jZUhQdGtid0dyZHZFS2pNV0tZblhZN1owbEJVN0gtcW5Zdw?oc=5",
    "published": "2026-11-16T11:51:00+09:00",
+   "people": []
+  },
+  {
+   "id": "a0f17b9ba2a3",
+   "source": "munhwa",
+   "title": "美 항공대란 사흘째 1만6900편 결항… 인력확보 비상",
+   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5XQUljOU9CMjBid0NYV2ZOVWpFd081Q1NxdGFUeFhNN01VVzBFcGg1YjNqcGlyZW9pN3RrdHM1Mm1UR2hOb2czT3daamJoNnBC?oc=5",
+   "published": "2026-11-16T11:47:03+09:00",
    "people": []
   },
   {
@@ -1529,6 +2115,14 @@
    "title": "최민희 “제 기억 착오로 대통령께 누 끼쳐”…‘李 탄핵반대’ 발언 사과",
    "link": "https://www.donga.com/news/Politics/article/all/20261116/135030772/2",
    "published": "2026-11-16T11:21:00+09:00",
+   "people": []
+  },
+  {
+   "id": "6c624c75e261",
+   "source": "munhwa",
+   "title": "‘낙마 중상’ 이겨내고… 임기원, 문화일보배 우승",
+   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1TN01uUk1hdVdfamt6N1R4b0RhRndhMFhvRnR1R1E2NEhzVDZzaHFIT3cwX2tLQXBhTWdpWl9scnFaRjd6X1hvQkpHS1gtNDdq?oc=5",
+   "published": "2026-11-16T11:19:25+09:00",
    "people": []
   },
   {
@@ -1702,11 +2296,27 @@
    "people": []
   },
   {
+   "id": "ebac34a3ebce",
+   "source": "newdaily",
+   "title": "여당 우선순위는 한덕수-조희대 압박 … 820조 예산은 뒤로 밀린다",
+   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNQk5PY2VxelBKTlRiZ0JpekFYRWJQZzVjSFVUTVhYcnhKLUFjd1VXQ1JfMHdYYlVKREtLaWx5NEo3eFNaQjU3T0o3bW5qd3IwSkx1ckRFTzZNcTVDb2N1eHpRaW5kRU9IV01fajZRNkJrZlZDWmRGR1lSUWhtRmFvTNIBgAFBVV95cUxNQk5PY2VxelBKTlRiZ0JpekFYRWJQZzVjSFVUTVhYcnhKLUFjd1VXQ1JfMHdYYlVKREtLaWx5NEo3eFNaQjU3T0o3bW5qd3IwSkx1ckRFTzZNcTVDb2N1eHpRaW5kRU9IV01fajZRNkJrZlZDWmRGR1lSUWhtRmFvTA?oc=5",
+   "published": "2026-11-16T10:49:00+09:00",
+   "people": []
+  },
+  {
    "id": "af22f100337f",
    "source": "joongang",
    "title": "이란, 두 달만에 바레인 미군 시설 공격…후티, 사우디·예멘 공세",
    "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE4wSjRLV2xMMkhrMVJKMVlFQi1yZmZxVnpfVVltQVNxay0tM0l0Y0E5ckI5cmJmVVhFU3lUd0xHaW14UWE0QThUZHpaQmwzVWoySWV4Uk5R?oc=5",
    "published": "2026-11-16T10:48:51+09:00",
+   "people": []
+  },
+  {
+   "id": "a262a9196d18",
+   "source": "joongang",
+   "title": "사진기자들에 “하이에나 떼들”…최민희, ‘모욕 혐의’ 고소 당했다",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE03Ykh3MDhxaVY3TnR2dWU3OEJ5VzNwZzBzRXNRajNNRU1pZC13YlA2LWxWWTl4LWVsNlF0bEJPZHVtUGVTY0JjcS1jWmpmZkY0MWZ1STJ3?oc=5",
+   "published": "2026-11-16T10:47:54+09:00",
    "people": []
   },
   {
@@ -1952,6 +2562,14 @@
    "title": "李대통령, 필리핀으로 출발…오후 한-아세안 정상회의",
    "link": "https://www.segye.com/newsView/20261116503491",
    "published": "2026-11-16T09:48:13+09:00",
+   "people": []
+  },
+  {
+   "id": "0445665ba389",
+   "source": "munhwa",
+   "title": "韓, ICMRA 참여 14년만에 개최국 맡아… 주변국서 중심국으로[안전한 食·醫·藥, 국민건강 일군다]",
+   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9NMEZYLTNpOUU2UUhhTl9jZEVuU0taWmFrVVdUWlRMaWd6ejVhaWFhWGpvVXNka3BZYmhSRlVINnV0WUFpbDhEMkxEMGRDWTFm?oc=5",
+   "published": "2026-11-16T09:43:52+09:00",
    "people": []
   },
   {
@@ -2379,14 +2997,6 @@
    "people": []
   },
   {
-   "id": "cdd96b0313a7",
-   "source": "newdaily",
-   "title": "\"젠슨 황, 엔비디아 CEO 복귀 논의 중\" … 실리콘밸리, 백악관까지 설득 나섰다",
-   "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE93UVF0Uk1lbmhITEVlWjA1NEp1QkMxNk1YZ29OWF8zeWJvVnM3TzVUZDQxek9FdDlCeW5RN3J0T0tsZ3YwYTYwQnFxNEZMTzcxZWhRX1ozWGhtdXQ1Yk1hOFNHcHBDWl8tZk5NdDdHa2E0U0kwUmVsY2l6QdIBgAFBVV95cUxQTjN6WDJWZVdlbjR1aDJPV19jcVRJRkphYm9jZTE4T1UzRHVGYkE1Y3VTNHRHWWhfT2t5MWplOG9GeVFURXVjZ3NaMVlJdnc2WW1SN21WZ2dPZHpSYktKUkpUeFR2M2NocWRpMnVlYXVrTy16YlYwMUNoVFdGR1cwRg?oc=5",
-   "published": "2026-11-16T06:16:00+09:00",
-   "people": []
-  },
-  {
    "id": "8ef122c51ef1",
    "source": "munhwa",
    "title": "“비밀번호에 주민번호까지?”…코인원 고객정보 털렸다",
@@ -2490,6 +3100,14 @@
    "title": "AI 커닝에 기업채용도 비상…삼성·SK “응시자 안경 대면 검사”",
    "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5MNEFqX0VxZnZKVXhDNDFrQ2VsX25udjNGUklnaVVaaVpHLS1rajJZdGlCck5xSXFhSkdoaFVjdWdXZ1NrdFk3QTZidjZyLVZMSkVMTHZB?oc=5",
    "published": "2026-11-16T05:00:00+09:00",
+   "people": []
+  },
+  {
+   "id": "bced73b901c7",
+   "source": "munhwa",
+   "title": "‘여성·지역·성소수자順’…직장인 10명中 6명 “혐오 표현 접해”",
+   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1aci1naFV4N3FRWHp0RXN2Q1VVaVJTdHlzeERNay1WRkp1OXR6LVh0cGhqMklyZE14X2tkNlVUZUdnS2p4b29UeXJKYk1GM0Z5?oc=5",
+   "published": "2026-11-16T04:50:11+09:00",
    "people": []
   },
   {
@@ -2703,6 +3321,14 @@
    "people": []
   },
   {
+   "id": "bb4aa17529c9",
+   "source": "joongang",
+   "title": "[이하경 칼럼] 한·미 동맹은 저주가 아니다",
+   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9BQk5zWFRhR1FzWVZfcHBDN0piSUphODBrVDRtZllFYk9ZZDA3V0VJSWRXbTktamF6ZUZ4ZjlXb01DU2gyY1BEekRFMlAtN2p0c0xqdmpR?oc=5",
+   "published": "2026-11-16T00:23:00+09:00",
+   "people": []
+  },
+  {
    "id": "94d4f98a49d1",
    "source": "munhwa",
    "title": "“마트만으론 안 된다”…정용진, AI·할리우드·초호화 호텔에 2조원 베팅",
@@ -2860,14 +3486,6 @@
    "title": "“영끌족, 고금리 이어지면 집 팔고 싶어도 못 팔아”",
    "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5nNWhoUGt0VkNZN3hBb1pYWTRyZl9PTnk1RHljQTRNeHNENjJfaWZjODFibGQwOHUzRHJ3UWc4UGlKbFBsRndjMHM4Zm5MUFhY?oc=5",
    "published": "2026-11-15T20:43:10+09:00",
-   "people": []
-  },
-  {
-   "id": "c0dc20f84c86",
-   "source": "newdaily",
-   "title": "울릉군, 지역 부동산과 ‘청년 무료 중개’ 협약… 정주 여건 개선 박차 - 뉴데일리 대구경북",
-   "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBWMnJiaFdHSUJvcjBXVnNQZWlTUmtEWU9CVFI1ekp4YTBLOGxGZFFBaEFjdEZMdjdoWGNLemIwNkp6OTBqU003YlhLenlVRHFDYmYyUGUtdDYzTWc2WjB1ODZtQm9uYTBoaW0zQTctTmNsNG1SWFNMaHFn0gF_QVVfeXFMUFJsQ3YxUzhMSnVUYzJvamFIajJ4ejdDWFNzR3FFWEFyU0NfU3hTT242clhrdTJNRGI3WlNxTnRET3F3eHdWa25LQU13aWhmbUhkckZzMHdtZjlZVl9UV2RwWXZaQkNFM3hMOFNFZXZGRlVSNWJfYlpQUXFvcWFZSQ?oc=5",
-   "published": "2026-11-15T20:39:00+09:00",
    "people": []
   },
   {
@@ -3155,16 +3773,6 @@
    "people": []
   },
   {
-   "id": "9dcf4f495281",
-   "source": "newdaily",
-   "title": "방송 출연 우파 몫 패널, 왜 장동혁 욕만 주야장천? … 국힘, 패널 교체 강력히 요구하라!",
-   "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBfMzE5M3ZFRC0zbU9CNGpNZGg5X0NVZ2FKUWxOWEdNbUtDQXZFeGpNZWlRRlpCbDgza0t3YURhMTNSaF9hY2dMTnUxRXFhTHZHSkNUWUNYc211cVl6YUt6TWI0cEwtcXJLcnZJelYxQU5iYWdzYWg4ZHE0UdIBgAFBVV95cUxPQTJ4MkxJYXJ3TTU2S1YtQk9ZZTlGQzlWOWhXel9UMS05UnFNVGRvM1FxamRxeV9yREtOVmRBbTBTZ1lmRXFaTHhjZUpSZGtRTTNHUmhOSW9iWnJQYnNIQUtkYi1nNzNIMEtXMjVpdkpmUGs0bkJYcVFseDVsUnpSRQ?oc=5",
-   "published": "2026-11-15T17:40:00+09:00",
-   "people": [
-    "ppp"
-   ]
-  },
-  {
    "id": "375439f44c25",
    "source": "segye",
    "title": "“등 뒤 화살” 이어 “개혁 방해” 경고…최민희 감찰 갈등 속 李대통령 잇단 작심 발언",
@@ -3371,24 +3979,6 @@
    "people": []
   },
   {
-   "id": "dad4470be023",
-   "source": "newdaily",
-   "title": "靑, AI 활용 부정시험 전수조사 착수 … 수능 앞두고 긴급대책회의",
-   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPSVJTbFA2YV9pQm5SOUZxUUJkbC1wTWxIdHFxUlR5a0dOY1E4NllFTTlaRjFhQW03RnNjX1lBRVROWkRSOGc1VGQybi1XMXdxTWl2RjZLY2xtUVZFUWVIWnFkcjlrNXRsMS1XWUx3cjA2TndtbHp3cmhsa05oYXpKa9IBgAFBVV95cUxPSVJTbFA2YV9pQm5SOUZxUUJkbC1wTWxIdHFxUlR5a0dOY1E4NllFTTlaRjFhQW03RnNjX1lBRVROWkRSOGc1VGQybi1XMXdxTWl2RjZLY2xtUVZFUWVIWnFkcjlrNXRsMS1XWUx3cjA2TndtbHp3cmhsa05oYXpKaw?oc=5",
-   "published": "2026-11-15T16:40:00+09:00",
-   "people": [
-    "president"
-   ]
-  },
-  {
-   "id": "ced87f1c9bef",
-   "source": "newdaily",
-   "title": "與 초선들, 긴급 회의 … \"최민희 자진 탈당해야\" 중징계 요구 분출",
-   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQeTlYMFBEZm1DWDNsd3FxTU5RWVhjcWZnbkx0OHFpYTNlRDRyYXNERVBoVjlWeUlHSDl6TDEwdkV2eWJ6cmozbEU1aXdwNUhGZHBLbWdrRlFiR1V5MUdqak1wOTg4SThCa1RYU0E5SXZuTDlJTUduSVBQWkt5MGpCZtIBgAFBVV95cUxQeTlYMFBEZm1DWDNsd3FxTU5RWVhjcWZnbkx0OHFpYTNlRDRyYXNERVBoVjlWeUlHSDl6TDEwdkV2eWJ6cmozbEU1aXdwNUhGZHBLbWdrRlFiR1V5MUdqak1wOTg4SThCa1RYU0E5SXZuTDlJTUduSVBQWkt5MGpCZg?oc=5",
-   "published": "2026-11-15T16:38:00+09:00",
-   "people": []
-  },
-  {
    "id": "5909fa90f21a",
    "source": "donga",
    "title": "中 선전서 APEC 최종고위관리회의 개최…정상회의 앞두고 성과 점검",
@@ -3405,22 +3995,6 @@
    "people": []
   },
   {
-   "id": "b1d9c606d7b1",
-   "source": "joongang",
-   "title": "자백 없었으면 영영 묻힐뻔…감독관 코앞 부정행위 몰랐다",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFA0QUVFWE9mNXFtQXdoaWVwcnZMT3hNNTVxNFg4UUU1cktQeXJnRjFXSEptZWlEZ1VNNkowMWpjMTEwM1RabjhBRVRBSlFWZ1lBMGhRd1NR?oc=5",
-   "published": "2026-11-15T16:24:37+09:00",
-   "people": []
-  },
-  {
-   "id": "398e57a327b6",
-   "source": "newdaily",
-   "title": "[부고] 권형택(기술보증기금 이사장)씨 장인상 - 뉴데일리 경제",
-   "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBTSXpxMlduTndVUGdWenpWSVpOSmFwR002UF82OXRyMTIzU1BEME5rT1BUNl9CNTdWVlI4V3M5dG1hVk9sWGpZbkQ3Z0FyM3Q4T0JNelR4aXJPSDZxQ0lSSnBKUEltQWp3OWh5RHdRUUQ1cHZCZmhxcm5Gb9IBgAFBVV95cUxOWHhJRXJoVmpnN1doNHA1bS1mZTZjdlYtSlQtWEk4RXgtM1g1cWJWTFJJdm5wVHN5dGNZZXBjM3pRY1VpdUNhcGF6cWVQcF9ldDBFUXFST3ZqVU1FSnZOWkc1R1JEb3RYUEtsc3U1TFNfWGZOOXB4WGJKUUxpZkNuTw?oc=5",
-   "published": "2026-11-15T16:20:00+09:00",
-   "people": []
-  },
-  {
    "id": "ccf03787b7e9",
    "source": "dailian",
    "title": "민주당 또 때린 조국 \"조희대는 행동 하는데 與는 말만 하고 있어\"",
@@ -3429,27 +4003,11 @@
    "people": []
   },
   {
-   "id": "09e2ff324fa4",
-   "source": "joongang",
-   "title": "AI 안경만이 아니다… ‘6만원 커닝 세트’의 시험장 습격",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB3bUNUdUVmU0RZTGtWYVpZeEFGaUdaNGNNb3U5NXBUX0djc3pPZnpXeVdfTUU0RV8zOTZUZG9pWUp5WEZKZmpqZEd4QjYwY3MxMzliX2ZR?oc=5",
-   "published": "2026-11-15T16:13:50+09:00",
-   "people": []
-  },
-  {
    "id": "1649518ff4c0",
    "source": "hankyung",
    "title": "한동훈 의원 장인 진형구 전 대전고검장 별세…향년 81세",
    "link": "https://www.hankyung.com/article/2026111573517",
    "published": "2026-11-15T16:12:36+09:00",
-   "people": []
-  },
-  {
-   "id": "2650cb0435b9",
-   "source": "newdaily",
-   "title": "수능 코앞 'AI 커닝' 비상 … 교육위, 16일 장관 불러 대책 점검",
-   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQUW51SDBEZ25VQ0xRMXZTX0ZNbUxXVHhYaXpWZVhYc0FJVWN4OFlLMGpSZmZkdUJ0RWF0Zmh2TjVhd0pvU0ZjVkZBWUMwQ3BtbDhlTzFsZEFxWDVTRGJVS1NpMzRjTzRqa2N4VTRqMlVjem93ZUN0eG1PWlk1dmFUSdIBgAFBVV95cUxQUW51SDBEZ25VQ0xRMXZTX0ZNbUxXVHhYaXpWZVhYc0FJVWN4OFlLMGpSZmZkdUJ0RWF0Zmh2TjVhd0pvU0ZjVkZBWUMwQ3BtbDhlTzFsZEFxWDVTRGJVS1NpMzRjTzRqa2N4VTRqMlVjem93ZUN0eG1PWlk1dmFUSQ?oc=5",
-   "published": "2026-11-15T15:59:00+09:00",
    "people": []
   },
   {
@@ -3479,14 +4037,6 @@
    "people": []
   },
   {
-   "id": "fbec5e132c0b",
-   "source": "joongang",
-   "title": "“등 뒤 화살” “개혁 방해”…李, 최민희 등 강경파에 ‘엄중 경고’",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE0zYTU4dDdGb0JST2NGYm1PZ094WjR5bDU5ZXMyWjdqcDFPZkJrRk1BR05nVEU0WmFMSEJDT1hHWWd0ckIzRmI4Y1d0aXdLVFhLVENqbVNn?oc=5",
-   "published": "2026-11-15T15:37:44+09:00",
-   "people": []
-  },
-  {
    "id": "8c198beb9e7c",
    "source": "dailian",
    "title": "국민의힘 중진들, '보수통합' 촉구…윤상현 \"張, 통합 결단\" 김태호 \"張·韓·吳, 마주 앉아라\"",
@@ -3508,14 +4058,6 @@
    "title": "‘韓 조작징계 논란’ 이번주 분수령⋯“복당해야” 중진 목소리",
    "link": "https://www.kmib.co.kr/article/20261115500734",
    "published": "2026-11-15T15:31:12+09:00",
-   "people": []
-  },
-  {
-   "id": "dc45e8f04c76",
-   "source": "joongang",
-   "title": "[단독] 지난해 문 닫은 영화 상영관 105개…역대 최대",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5xdGNzYjMxRUVhTnFGY3NRTnllc0ZsRDdMYXhNU0FmVXhJcXZ6dDBTaGQ1QzgzM2hPMXE2VmxIY3Nab3lkODhJT0ZSUThvUC1uVnp6Qm9R?oc=5",
-   "published": "2026-11-15T15:25:46+09:00",
    "people": []
   },
   {
@@ -3565,14 +4107,6 @@
    "people": []
   },
   {
-   "id": "d67c8794db20",
-   "source": "joongang",
-   "title": "“‘음란물 낙인’ 여배우는 나락”…17분 잘린 이 영화, 27년만에 복원",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5tbVgwbjAwLXlhRnJMRlpUX21XOVQxalVSY1dta0ZOSnoxaEVkYmlOckJlb3ZXZVFrNU92UmNPX0RkNHdWcW5DOVRYM3dpOHQ3MjV2emdB?oc=5",
-   "published": "2026-11-15T15:00:59+09:00",
-   "people": []
-  },
-  {
    "id": "d6d6eda9dbfe",
    "source": "kmib",
    "title": "‘한동훈 의원 장인’ 진형구 전 고검장 별세…향년 81세",
@@ -3581,11 +4115,11 @@
    "people": []
   },
   {
-   "id": "9500b4f14eb1",
-   "source": "joongang",
-   "title": "세무사·LEET·관세사…‘AI 부정행위’ 의혹에 시험 공신력 흔들린다",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBHYWdZUlpTYUdOTXRsRWZUN2ZlaTdVQlBpNUZMdl9qZldJSHJlY3N3LW8xWjZBeFdQb3BzSS0zNzZOdVFBVmd2QzJVMk1wY1J1akgtVVhR?oc=5",
-   "published": "2026-11-15T14:57:46+09:00",
+   "id": "46e077f9d26e",
+   "source": "munhwa",
+   "title": "[부고] 권형택 기술보증기금 이사장 장인상",
+   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFAtRHJuOHRQNGpsa0dPakxmTlpXUUJUSnlFVG9TMVpYNUhTamFjN0YxdGpEeDRxNEhJTndvcWJZVThjQXI5NzdmbmlwbFlBTjBt?oc=5",
+   "published": "2026-11-15T14:57:17+09:00",
    "people": []
   },
   {
@@ -3599,38 +4133,12 @@
    ]
   },
   {
-   "id": "dea957eea26e",
-   "source": "newdaily",
-   "title": "'세무사 수석 AI 부정행위' 서울청 광수단이 수사 … 이례적 배당",
-   "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE43eDgwem1yRmdsOVZ3TUNFemtCWGNfZElMSzRZcnYyN2JNaFZXZ2dVZ0U2VkExcFBfU0xjN1Rzb002LXd4R1BwQ2laMXhjb0QxQlNJUGtCQnVkOTNORGxKMGJQT1Jjc1JJMkltZFRXRVVGdVlTcjU5NTVZd9IBgAFBVV95cUxNYUM4ZEN0SVpRdmpuUWFDTE9DV1pFZ29OcTR4bXg0Z0dKNzdpWEZsMncydmRGTmZCOVE3UkhrcFpoSUFRLUx5b0JNcFVKU1d5QmZyd0ZDTXFFaGw1YmNqU1NTVU9VN2ZCOFR0enRrSjhCOF81UUZqRkt1c0QyYlpaWg?oc=5",
-   "published": "2026-11-15T14:53:00+09:00",
-   "people": []
-  },
-  {
    "id": "c13064d22621",
    "source": "dailian",
    "title": "[부고] 이개호(더불어민주당 국회의원)씨 모친상",
    "link": "https://www.dailian.co.kr/news/view/1715178/?sc=rss",
    "published": "2026-11-15T14:52:00+09:00",
    "people": []
-  },
-  {
-   "id": "ad38af99bd45",
-   "source": "joongang",
-   "title": "장관 넘볼 때부터 별렀다…베센트, ‘젠슨 황 파문’ 러트닉 저격",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE12TnJrcERyNEQwTWdRb0ZxalRpeEhoSVpxUGhSd3drbENXYzJMOVRlNWV4NWd5dHlFRzFRTmp5UEdQWjY0TzBidUFJQzBPVFMxc0hSMnJB?oc=5",
-   "published": "2026-11-15T14:49:11+09:00",
-   "people": []
-  },
-  {
-   "id": "ab3ccde98d38",
-   "source": "newdaily",
-   "title": "李 대통령 \"등 뒤 화살\" 이어 \"부화뇌동\" … 친청계에 강력 경고",
-   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPUUZPQXZ5NVE2OU1EdDJYTUtYamNfd0RGTXFkZkR2M2JYVUhrOUxzSnB6WXZWRDkxdTNQakpaUVozRHNPS2xIeExDZEpwbDdJYUFBT0dxNUdIMnZYbGFZY3JMZ290WmRteENiT1o2SXlaY0VjNGkyRUNhSTRZc2RDMtIBgAFBVV95cUxPUUZPQXZ5NVE2OU1EdDJYTUtYamNfd0RGTXFkZkR2M2JYVUhrOUxzSnB6WXZWRDkxdTNQakpaUVozRHNPS2xIeExDZEpwbDdJYUFBT0dxNUdIMnZYbGFZY3JMZ290WmRteENiT1o2SXlaY0VjNGkyRUNhSTRZc2RDMg?oc=5",
-   "published": "2026-11-15T14:49:00+09:00",
-   "people": [
-    "president"
-   ]
   },
   {
    "id": "252cd2ef8ca1",
@@ -3695,14 +4203,6 @@
    "people": []
   },
   {
-   "id": "c9ec0294eccb",
-   "source": "newdaily",
-   "title": "AI 사이버 공격 비상 … 국가안보실, 민·관·군 IT 자산 전수 점검",
-   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQbUYwTzlENkxxZ192Rk1WV2tPZlNLel9ZcDF0eXFPTWk0bnBUUDRLSHNjT3V5NnZvMDVCR2Z0M0MyY3VvSk5QellBMlFvVWFEd2E0cE9FSFdBOGRsU29XRmpRNzVRZHdVa0dLX191RVJTN3pLZ1ZzblNSX09jcEs3c9IBgAFBVV95cUxQbUYwTzlENkxxZ192Rk1WV2tPZlNLel9ZcDF0eXFPTWk0bnBUUDRLSHNjT3V5NnZvMDVCR2Z0M0MyY3VvSk5QellBMlFvVWFEd2E0cE9FSFdBOGRsU29XRmpRNzVRZHdVa0dLX191RVJTN3pLZ1ZzblNSX09jcEs3cw?oc=5",
-   "published": "2026-11-15T14:26:00+09:00",
-   "people": []
-  },
-  {
    "id": "2dd56a64a060",
    "source": "dailian",
    "title": "[속보] 靑 \"AI 부정행위 엄중히 보고 있어…오늘 정책실장 주재 대책회의\"",
@@ -3723,31 +4223,11 @@
    ]
   },
   {
-   "id": "49451ec0f9d6",
-   "source": "newdaily",
-   "title": "靑 \"AI 부정행위 사안 엄중 … 정책실장 주재 대책회의 개최\"",
-   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPMHRYMVNpaktzUHV3UmE1Y0hKQ0dhUTJBYmI2em5UaFJYcGh3QmFkR0Y0YkZ2V1NyaTBqUWpXWm1DUUl0S1BqZGl4YXpYZGRZMFp4Z1Y0U1dNSkp6ZVhLZVdacFo1X2tkbzdzbDJaRVBfenFFSnFsMFhtSTBNLWZ5RtIBgAFBVV95cUxPMHRYMVNpaktzUHV3UmE1Y0hKQ0dhUTJBYmI2em5UaFJYcGh3QmFkR0Y0YkZ2V1NyaTBqUWpXWm1DUUl0S1BqZGl4YXpYZGRZMFp4Z1Y0U1dNSkp6ZVhLZVdacFo1X2tkbzdzbDJaRVBfenFFSnFsMFhtSTBNLWZ5Rg?oc=5",
-   "published": "2026-11-15T14:20:00+09:00",
-   "people": [
-    "president"
-   ]
-  },
-  {
    "id": "080867216eae",
    "source": "hankyung",
    "title": "[속보] 靑 \"AI 부정행위 사안 엄중…오늘 정책실장 주재 대책회의\"",
    "link": "https://www.hankyung.com/article/2026111572437",
    "published": "2026-11-15T14:18:55+09:00",
-   "people": [
-    "president"
-   ]
-  },
-  {
-   "id": "6b0f7c7c4a4a",
-   "source": "joongang",
-   "title": "[속보] 靑, AI 부정행위에 “사안 엄중…정책실장 주재 대책회의 예정”",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9QODRmQlItc3JGRzFnX0g4OElUSkZ2azMybldUM1JhV0s5NFg1bElOdHBhZlIyWDFiMnVzdFZzTGxpNVNaaTJqZFlfZ1JsYzEzbkVfT3Bn?oc=5",
-   "published": "2026-11-15T14:16:53+09:00",
    "people": [
     "president"
    ]
@@ -3781,37 +4261,11 @@
    ]
   },
   {
-   "id": "cb7a89851437",
-   "source": "joongang",
-   "title": "[속보] 靑 “범정부 역량 총동원해 국민안전 위협 범죄 강력대응”",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1iVFdIZ2VTRHR2NnZ4Q1ZIYWtVX2lPTTZwREhwdGk5T3VlSUN4WnhKdUxIeE5MTzRMS2FMUElHZ0x5RW5ycVBLLUpMcDJYMjQ3UXFQN29R?oc=5",
-   "published": "2026-11-15T14:10:34+09:00",
-   "people": [
-    "president"
-   ]
-  },
-  {
    "id": "053fe97088de",
    "source": "hankyung",
    "title": "[속보] 임광현 \"국민안전 플러스 프로젝트 추진…연말까지 대응상황·성과 점검\"",
    "link": "https://www.hankyung.com/article/2026111572347",
    "published": "2026-11-15T14:09:48+09:00",
-   "people": []
-  },
-  {
-   "id": "abd8394a53ea",
-   "source": "newdaily",
-   "title": "설거지하던 젠슨 황의 두 얼굴 … \"회의실선 폭언하고 물병 던져\"",
-   "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB2MUE4UTdyZWRPa0FSMEVhOXAwZHJzTjZtdXdOU1ZZNm01YzJfdGxLNVA3T2IxVFlmRmxLU1BkR0dyMWVRZmxlZUFmaEphcy1VeUtfblh6NV8xQjFxTXlfUFBmcmVvMlpJdmhlaktHSFlySWlRWEpHT01RSdIBgAFBVV95cUxOVlZjZVpCSmxKQUt0ZTFEYnlpbkVzWC1iMy1BVHdyU0VlendTaFJ1T3Y0UGE1b29pdG9TYmtZNDdoNFdiLVVjdHFXRkJlQ1c3TGNhS28yTklWSWpoWnFSTEtyVF9RYXpOenJ6LW5LX0lhYzcwNlRKanJVN19tRmxjeg?oc=5",
-   "published": "2026-11-15T14:09:00+09:00",
-   "people": []
-  },
-  {
-   "id": "4e52a02db66d",
-   "source": "joongang",
-   "title": "“이제 이 분이 찐 수석”…AI 부정행위 수석 자수 뒤 차석 재조명",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5lUXNkd25VbjQ5MEdSZ0pyTFZieTBXb3JPOFlseTdhNEcxbE5NN3BPUXIyQXdLUEY4M3c3Q3hZcHBGMkRLdHdRMDhQRzdEUm9DY1pTNW53?oc=5",
-   "published": "2026-11-15T14:07:24+09:00",
    "people": []
   },
   {
@@ -3823,14 +4277,6 @@
    "people": [
     "president"
    ]
-  },
-  {
-   "id": "a0815b538631",
-   "source": "newdaily",
-   "title": "최민희 \"대통령께 누 끼쳐 사죄 … 신천지는 진상규명 해야\" 또 공세",
-   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQd003bm91Zm5zTm92Y24wWm9ocG9UZWY5TkJmUFNOUkhPdEp6MXVaTUJuSHpxdnBHc19kaVlMOVFwLWFHeGFmeGQwa21sMmpDTTR5SFY2dGhsTDNqT2hORkNTRFc2bE5aS1hQRjJoeFdIWm5tTnZzRXhHdGJEYm1kRtIBgAFBVV95cUxQd003bm91Zm5zTm92Y24wWm9ocG9UZWY5TkJmUFNOUkhPdEp6MXVaTUJuSHpxdnBHc19kaVlMOVFwLWFHeGFmeGQwa21sMmpDTTR5SFY2dGhsTDNqT2hORkNTRFc2bE5aS1hQRjJoeFdIWm5tTnZzRXhHdGJEYm1kRg?oc=5",
-   "published": "2026-11-15T14:06:00+09:00",
-   "people": []
   },
   {
    "id": "707d63333a2b",
@@ -3849,22 +4295,6 @@
    "people": [
     "democratic"
    ]
-  },
-  {
-   "id": "04caf82c9b80",
-   "source": "newdaily",
-   "title": "11만원 장비에 뚫린 세무사 시험 … 野 \"AI 3대 강국이라더니 맞나?\"",
-   "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPTVV4VDU4NTU2LTZMMml1cVRnQ0xZRVFXM3UydmhGelBlY1pNMDJlWXZkY3NTczBjSG9Ob01SQ0lSS0FmbGpaM1d1dXU0azNoMGxzRGFiN3pWZ3AzY2xOeDhKMHdoTTRQQkt2dndwVmF6bzMzVy14Y0NVZUR0S3ZjdtIBgAFBVV95cUxPTVV4VDU4NTU2LTZMMml1cVRnQ0xZRVFXM3UydmhGelBlY1pNMDJlWXZkY3NTczBjSG9Ob01SQ0lSS0FmbGpaM1d1dXU0azNoMGxzRGFiN3pWZ3AzY2xOeDhKMHdoTTRQQkt2dndwVmF6bzMzVy14Y0NVZUR0S3Zjdg?oc=5",
-   "published": "2026-11-15T13:44:00+09:00",
-   "people": []
-  },
-  {
-   "id": "442e2353937c",
-   "source": "joongang",
-   "title": "테러 아니었네…역대급 美 항공대란, 이것 교체하다 터졌다",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBUMUpQLW1MMV9VRG5ZeVRESEZpMzh2TXowd3ZIRFRtR1VJV3BsQkRjRm1sTGlSYUc5aGtvclVoNDFLaS1oYzNUaHZaSDA4VUlES2RRem93?oc=5",
-   "published": "2026-11-15T13:37:24+09:00",
-   "people": []
   },
   {
    "id": "9c9d8c4fdb86",
@@ -3923,29 +4353,11 @@
    "people": []
   },
   {
-   "id": "6aa4187718d9",
-   "source": "joongang",
-   "title": "李 대통령 “개혁 이름 빌려 개혁 방해, 용납 안 돼” 경고",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5rcGhDczk5dWtsbFB2TDFJZHBLREcwSHB2ZnpLZFBVLVg2MDVGTS13ZkJVQUVNQ0R6NldnMVNEYjFPT1V6Tm1zT2lDZG91OXlycF9SWGJB?oc=5",
-   "published": "2026-11-15T12:55:38+09:00",
-   "people": [
-    "president"
-   ]
-  },
-  {
    "id": "99db0645011b",
    "source": "munhwa",
    "title": "“월급까지 합쳐야 해?”…요즘 청년부부 25%는 이렇게 산다",
    "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9LeW1EQWNGcmNIN0k1a0ZqRUxMZ1lKZ2FvXzBXY2k2MlZySV9tcjQyWkdfWlVFQkw5ZEpNd3dYM2tENUdWaFlZMXNRdjNvQWpx?oc=5",
    "published": "2026-11-15T12:54:10+09:00",
-   "people": []
-  },
-  {
-   "id": "d98837c7e223",
-   "source": "joongang",
-   "title": "“테슬라 골치 아프다”…불륜 쫓는 탐정이 싫어하는 차 1위",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBNZ0ptX2JrS2syV3EtNFp6ek4wYlJKSkZNOWxfeDRsRUJwSm15dHRQY3BHckdBRzhmVUpLQVZqaHA3cGZQLVJzdmgxYjRJVGhMTUZwMXpn?oc=5",
-   "published": "2026-11-15T12:54:01+09:00",
    "people": []
   },
   {
@@ -3973,16 +4385,6 @@
    "people": []
   },
   {
-   "id": "fe67853be661",
-   "source": "joongang",
-   "title": "與野, 세무사 수석 AI 자백에 “대책 마련해야”…장동혁 “적당히 맞췄으면”",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9MM09qdWh3YXpISk1hOWJMMlhFdWZSMFFsREgwT3g2S0F0X0hJWTU3U2U1MHdjaUV3QmlMckE4MXVLZHB4R1V0SGNaU0EtdWVkbWV4b3Jn?oc=5",
-   "published": "2026-11-15T12:39:37+09:00",
-   "people": [
-    "ppp"
-   ]
-  },
-  {
    "id": "c0eb2743a27e",
    "source": "donga",
    "title": "윤상현 “갈라진 보수로는 이길 수 없어…장동혁 결단해 달라”",
@@ -3993,30 +4395,12 @@
    ]
   },
   {
-   "id": "f34474fdb9b1",
-   "source": "joongang",
-   "title": "세무사 수석 합격자 “AI로 풀었다”…경찰에 자수서 제출했다",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9SNHBrQ3dFQUc1Q1hVV2JhVjBIR1ZzaEN0eXFleFNWZktOZ2QtaGxHTnVtOVF0WFBxS2NCN2t6U2tDc1VxZlRiT2F1VXV5QTZkNDRHeHhn?oc=5",
-   "published": "2026-11-15T12:14:34+09:00",
-   "people": []
-  },
-  {
    "id": "2e8b1f0eb470",
    "source": "chosun",
    "title": "조국 “曺, 한덕수 조건부 석방할 것…민주당은 아무 일 안 해”",
    "link": "https://www.chosun.com/politics/assembly/2026/11/15/6DWIUG4JEFE5ZKIK5YUJG6DZGA/",
    "published": "2026-11-15T12:11:01+09:00",
    "people": []
-  },
-  {
-   "id": "3381ea2cc3b1",
-   "source": "joongang",
-   "title": "최민희 “李대통령께 누 끼쳤다…제 잘못과 신천지는 별개”",
-   "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE5BS055Rmtqem9fVEVOdUJiT2g1dU81bFdrTlJ2NFZkZVFKNlhKXzY1V2NPOWMtcUdxcF9sRGJQc2ZuWkg4aElCaFBZeEs2eV9SMHRKLVV3?oc=5",
-   "published": "2026-11-15T12:09:51+09:00",
-   "people": [
-    "president"
-   ]
   },
   {
    "id": "2208a62fe357",
@@ -4059,14 +4443,6 @@
    "people": []
   },
   {
-   "id": "9f12df0f4783",
-   "source": "munhwa",
-   "title": "300억 대작 ‘문무’, 5.1%로 출정",
-   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBUbjViWndTZHNEcFV3YUxRTkpFc2F2UTBWNkxCVUp6X0VyVEpRcVNqcmx3N0wzaWdvdGFTQWdkNjhXU1Q1WHB0WnNlUm5ac2Y2?oc=5",
-   "published": "2026-11-15T11:21:16+09:00",
-   "people": []
-  },
-  {
    "id": "c0506b9a8173",
    "source": "hankyung",
    "title": "[속보] 재경부 \"AI 부정행위자 합격증 효력 중단 논의 중\"",
@@ -4080,14 +4456,6 @@
    "title": "민주당 “내란범 한덕수 구속 공백 없어야”",
    "link": "https://www.segye.com/newsView/20261115504257",
    "published": "2026-11-15T11:15:01+09:00",
-   "people": []
-  },
-  {
-   "id": "f4688c08a6ef",
-   "source": "munhwa",
-   "title": "제주 무비자 불법체류자 1만2000명 육박하자…등장한 ‘이것’",
-   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE56VnRfUmp4T21DVXVyX2VxSTdiWnZZV3dGUVVLblB3aGZHM3Y1cW52X3lvbTAzLVdvWjk2SEc5clU3TDFYRXluWlpUb3VrNGln?oc=5",
-   "published": "2026-11-15T11:10:58+09:00",
    "people": []
   },
   {
@@ -4107,27 +4475,11 @@
    "people": []
   },
   {
-   "id": "e80da160b38c",
-   "source": "munhwa",
-   "title": "뉴스레터상세 | 아카이브상세 | 뉴스레터",
-   "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5oZVVrMFA4WERmLV9jYjAyZGJRZV8wTXctRjNtcHJaU1c4bDJjVzFEUnZQU1FrOVNFd19NaHowX0U4Tml6RjZJNjVyNDZvNjFMbFZhZ2Y0ZTdvZw?oc=5",
-   "published": "2026-11-15T10:58:55+09:00",
-   "people": []
-  },
-  {
    "id": "eb9d00864ad4",
    "source": "dailian",
    "title": "李대통령 \"언제나 그렇듯 가장 힘든 일은 등 뒤에서 날아오는 화살\"",
    "link": "https://www.dailian.co.kr/news/view/1715105/?sc=rss",
    "published": "2026-11-15T10:40:00+09:00",
-   "people": []
-  },
-  {
-   "id": "75fbaf4866c0",
-   "source": "munhwa",
-   "title": "밀린 軍 배상금 1500억원인데 지급 예산은 고작 200억원…검증 안된 사관학교 통합 예산 수조원대와 대조",
-   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5iS3BENU5TUU5MdlJyc0J6VVllSi1fUTVVMlUwMGJlY0JlY0tjZWpWNVRJd3FUc0Y2czY2OFF6VDFqRUxkQXZkMUkxbHY4MEVa?oc=5",
-   "published": "2026-11-15T10:29:58+09:00",
    "people": []
   },
   {
@@ -4144,22 +4496,6 @@
    "title": "민주 “반도체 호황 성과 민생으로”…내일부터 820조 예산안 증액 심사",
    "link": "https://www.donga.com/news/Politics/article/all/20261115/135025110/1",
    "published": "2026-11-15T09:59:25+09:00",
-   "people": []
-  },
-  {
-   "id": "ad396f42c1d6",
-   "source": "munhwa",
-   "title": "“조회수 10만인데 손님은 없다”…SNS 맛집 광고의 기막힌 실체",
-   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5lMXFfV3ZSeG8wTXBEYkRibUphbVRaY1lKUms3WFZlV0F1MjlfZlEweXNyTGhfR1JWS0ExN3MxQ0xZQ1JrZGRQaGJka0FaMm0t?oc=5",
-   "published": "2026-11-15T09:57:00+09:00",
-   "people": []
-  },
-  {
-   "id": "57757e33a531",
-   "source": "munhwa",
-   "title": "[속보]“세무사 시험서 AI부정행위했다, 자수”…수석합격자, 변호사 유튜브 등판 ‘자백’",
-   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE15TXAzU3dRN1dSTlBELVlENER2blZSZVBJclN5cnV6SVpqQndIc1NkTzlGLWRNREcydDJjekJiU1MzRGtNT0l4QjBBOU9OMW1W?oc=5",
-   "published": "2026-11-15T09:51:08+09:00",
    "people": []
   },
   {
@@ -4197,27 +4533,11 @@
    "people": []
   },
   {
-   "id": "89e214ea71ca",
-   "source": "munhwa",
-   "title": "서울 청년 70% “남녀 모두 차별 존재”…여성 4명 중 1명 “결혼 생각 없어”",
-   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1icmFDRVJlSDVvZlFXQzdtMzZiTW9iRGx4VGtwU2hWamtBZjRBT3RvQ1F5RXU5Rm9HN0hmdXFmQ0FtLWN3NDFFQlRJcW00dXg2?oc=5",
-   "published": "2026-11-15T08:57:08+09:00",
-   "people": []
-  },
-  {
    "id": "c80e6626fd40",
    "source": "mk",
    "title": "정부·은행·통신까지 겨눴다…북한 해킹조직, 한국 서버 30곳 공격",
    "link": "https://www.mk.co.kr/news/politics/12209071",
    "published": "2026-11-15T08:34:24+09:00",
-   "people": []
-  },
-  {
-   "id": "1bbe51e517dd",
-   "source": "munhwa",
-   "title": "‘닥터X’, 15.2%로 마침표…시즌2 가나",
-   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBJQ0pCQk5ZZWZNS1RqVHRyS2hPckR1YnVaYWZDZC1OWGhJNlM0S1JqODN2Q2RidGQzNHAtVXhuTmZ2Y2RvTlRHYzdPWmVlSDFt?oc=5",
-   "published": "2026-11-15T08:33:17+09:00",
    "people": []
   },
   {
@@ -4237,27 +4557,11 @@
    "people": []
   },
   {
-   "id": "ab4b6e42af21",
-   "source": "munhwa",
-   "title": "中 만난 외교부 고위 당국자 “북·미 정상회담, 가능성 크지 않아”",
-   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1HMExhM1JEcDhKUnZqS2hwX3ZMWVNlMjl4Rk0xU2wxUG5ST0dQSW1TVV9VWHRITzBSeVQzc3poVENJUHEzSDRPZXhCOV9Oc045?oc=5",
-   "published": "2026-11-15T07:29:58+09:00",
-   "people": []
-  },
-  {
    "id": "1561eda25376",
    "source": "donga",
    "title": "北 김정은 최측근 조용원, APEC 앞두고 러시아 방문",
    "link": "https://www.donga.com/news/Politics/article/all/20261115/135024667/1",
    "published": "2026-11-15T07:27:49+09:00",
-   "people": []
-  },
-  {
-   "id": "417dee700914",
-   "source": "munhwa",
-   "title": "윤상현 “복당의 강보다 두려운 건 분열의 늪”…‘오동석장’ 거듭 제안",
-   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1nQVA1S1FzbE9vYXl1RFZkUlRJOFE0SzAtaENLalZhX2VfSmg5cmZnajRXYW9rNnFNenpJRmYteDkweHNDbUlyMlR6dDlySWMt?oc=5",
-   "published": "2026-11-15T07:02:29+09:00",
    "people": []
   },
   {
@@ -4292,22 +4596,6 @@
    "title": "빈총 경계·北지뢰 무대응 논란 속... 후반기 장성 인사도 ‘육사’ 배제?",
    "link": "https://www.chosun.com/politics/2026/11/15/H4UB4LI7IFHKPGIUQILRP3QA5A/",
    "published": "2026-11-15T05:00:00+09:00",
-   "people": []
-  },
-  {
-   "id": "7795800f8129",
-   "source": "munhwa",
-   "title": "“조작 징계”vs“추악한 권력 쟁탈”…여야, 서로 ‘박살난 집안’ 손가락질",
-   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE4xT3pUd2hsQ21aMmdUdUg0eWprbU1GcGFLUklvT1FodlB1c1ZLVmdwYVB6S0hRdC1Fam9IMFBELXJVc0kybGh5Nm9RcFRiMjZR?oc=5",
-   "published": "2026-11-15T04:47:35+09:00",
-   "people": []
-  },
-  {
-   "id": "78dc8022ade6",
-   "source": "munhwa",
-   "title": "與, ‘한덕수 석방’ 가능성도 조희대 책임…즉각 사퇴 거듭 요구",
-   "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE9nT1dDZlUwOEppQURUclk4MkVKVFM0aFllMXNuUWFETUFla3ZkTUZmVUtnRDhfSjNYbld0U2pNWnhrV2E1a3NlcVpCbGxHcC1I?oc=5",
-   "published": "2026-11-15T04:45:47+09:00",
    "people": []
   },
   {
@@ -4727,298 +5015,6 @@
    "title": "여야 내홍 공개 분출…민주당 신천지·국힘 조작 징계 논란 [투데이 여의도 스케치]",
    "link": "https://www.segye.com/newsView/20261113514575",
    "published": "2026-11-14T06:10:27+09:00",
-   "people": []
-  },
-  {
-   "id": "2440637e9ac2",
-   "source": "donga",
-   "title": "‘쌈짓돈’ 논란 미래기금… 국회 “25조 늘려 달라”",
-   "link": "https://www.donga.com/news/Politics/article/all/20261113/135023338/2",
-   "published": "2026-11-14T01:40:00+09:00",
-   "people": []
-  },
-  {
-   "id": "0b98a6f59792",
-   "source": "donga",
-   "title": "APEC 닷새 앞 방중 조현 “북미회담 가능성 있다”",
-   "link": "https://www.donga.com/news/Politics/article/all/20261113/135023336/2",
-   "published": "2026-11-14T01:40:00+09:00",
-   "people": []
-  },
-  {
-   "id": "0ff7c1048c39",
-   "source": "donga",
-   "title": "이란, 청해부대 겨냥 “뱁새가 황새 따라가면…” 한국어 경고",
-   "link": "https://www.donga.com/news/Politics/article/all/20261113/135023321/2",
-   "published": "2026-11-14T01:40:00+09:00",
-   "people": []
-  },
-  {
-   "id": "cf88b3768e5a",
-   "source": "donga",
-   "title": "조희대 탄핵 다시 꺼내드는 민주당",
-   "link": "https://www.donga.com/news/Politics/article/all/20261113/135023166/2",
-   "published": "2026-11-14T01:40:00+09:00",
-   "people": []
-  },
-  {
-   "id": "a22d4f6023bc",
-   "source": "donga",
-   "title": "“최민희 제명” vs “김민석 감찰”… 與 계파싸움 전면전 양상",
-   "link": "https://www.donga.com/news/Politics/article/all/20261113/135023171/2",
-   "published": "2026-11-14T01:40:00+09:00",
-   "people": [
-    "democratic"
-   ]
-  },
-  {
-   "id": "7e70aa6ad30d",
-   "source": "donga",
-   "title": "李대통령 국정지지율 긍정 39%, 부정 50%",
-   "link": "https://www.donga.com/news/Politics/article/all/20261113/135023161/2",
-   "published": "2026-11-14T01:40:00+09:00",
-   "people": []
-  },
-  {
-   "id": "c8b9817bf39a",
-   "source": "donga",
-   "title": "친한계 “조작 징계는 무효, 진상조사해야”… 국힘 지도부 “정말 나쁜 저급한 정치공작”",
-   "link": "https://www.donga.com/news/Politics/article/all/20261113/135023164/2",
-   "published": "2026-11-14T01:40:00+09:00",
-   "people": []
-  },
-  {
-   "id": "f7d6ec0950c8",
-   "source": "chosun",
-   "title": "李 “적대적 M&A 막는 장치들 전수조사하라”",
-   "link": "https://www.chosun.com/politics/politics_general/2026/11/14/DGZGXQHCCBDXTPM75PKXOL2QJE/",
-   "published": "2026-11-14T00:39:00+09:00",
-   "people": []
-  },
-  {
-   "id": "b7898d30b707",
-   "source": "chosun",
-   "title": "김민석 100일도 안돼 ‘명·청 정면충돌’",
-   "link": "https://www.chosun.com/politics/assembly/2026/11/14/OYQ2IXNK7RB4ZP2WCWQKNQILA4/",
-   "published": "2026-11-14T00:39:00+09:00",
-   "people": [
-    "democratic"
-   ]
-  },
-  {
-   "id": "55501bfd0b36",
-   "source": "chosun",
-   "title": "與 내부서도 ‘미래기금 13조 증액 가능’ 정부안에 쓴소리",
-   "link": "https://www.chosun.com/politics/politics_general/2026/11/14/KN5FPFERDJB6PM2BHVC3B5JLV4/",
-   "published": "2026-11-14T00:37:00+09:00",
-   "people": []
-  },
-  {
-   "id": "39fead91a04e",
-   "source": "chosun",
-   "title": "붉은 넥타이 맨 李 “자본시장 개혁TF 신설… 욕 먹어도 파이 키워야”",
-   "link": "https://www.chosun.com/politics/politics_general/2026/11/14/QFKBUVMCRVGLNOGF4HNM3RDNK4/",
-   "published": "2026-11-14T00:37:00+09:00",
-   "people": []
-  },
-  {
-   "id": "06dc5d03090b",
-   "source": "chosun",
-   "title": "오세훈 “李, 특검법에 거부권 안쓰면 국민 심판 시작될 것”",
-   "link": "https://www.chosun.com/politics/assembly/2026/11/14/76Z3CRFRLNDSLE7L7HFHLVK7EI/",
-   "published": "2026-11-14T00:37:00+09:00",
-   "people": []
-  },
-  {
-   "id": "f2c40e1853e6",
-   "source": "chosun",
-   "title": "민주당·혁신당 ‘통합 동상이몽’",
-   "link": "https://www.chosun.com/politics/politics_general/2026/11/14/IOIUOT4OLRADNGN7UMTHLD44FI/",
-   "published": "2026-11-14T00:36:00+09:00",
-   "people": []
-  },
-  {
-   "id": "2fcb52382b37",
-   "source": "chosun",
-   "title": "‘한동훈 징계 조작’ 논란에… 국힘 내부 “독립적 진상조사위 꾸려야”",
-   "link": "https://www.chosun.com/politics/assembly/2026/11/14/NU6SRXQUFRFJ3EQBZCMCZVHSJI/",
-   "published": "2026-11-14T00:36:00+09:00",
-   "people": []
-  },
-  {
-   "id": "8d08ca0ea811",
-   "source": "chosun",
-   "title": "오현주 한국국제협력단 이사장",
-   "link": "https://www.chosun.com/politics/politics_general/2026/11/14/AHIIIC5BFZASJAC7QJXWXFGPCA/",
-   "published": "2026-11-14T00:33:00+09:00",
-   "people": []
-  },
-  {
-   "id": "892625e6cb8d",
-   "source": "chosun",
-   "title": "독립유공자 호시한·이괄 지사 유해 고국으로",
-   "link": "https://www.chosun.com/politics/diplomacy-defense/2026/11/14/GWKYJWDQA5H73D73SYS6PD25FY/",
-   "published": "2026-11-14T00:33:00+09:00",
-   "people": []
-  },
-  {
-   "id": "df405d28e8eb",
-   "source": "kmib",
-   "title": "이란 “뱁새 가랑이 찢어져” 경고에…외교부 “전쟁 불관여 원칙”",
-   "link": "https://www.kmib.co.kr/article/20261113500683",
-   "published": "2026-11-13T23:52:16+09:00",
-   "people": []
-  },
-  {
-   "id": "04db9962dfd3",
-   "source": "segye",
-   "title": "주가조작 범LG 3세 검거에…李대통령 \"새로운 韓에선 법 지켜야\"",
-   "link": "https://www.segye.com/newsView/20261113515386",
-   "published": "2026-11-13T23:47:28+09:00",
-   "people": []
-  },
-  {
-   "id": "6c3446ae82d3",
-   "source": "segye",
-   "title": "APEC 앞두고 한·중 외교장관 회담…조현 \"한반도 평화는 한중 공동이익\"",
-   "link": "https://www.segye.com/newsView/20261113514645",
-   "published": "2026-11-13T23:47:15+09:00",
-   "people": []
-  },
-  {
-   "id": "80663d1dd861",
-   "source": "hankyung",
-   "title": "李대통령, 주가조작 범LG家 3세에 \"새로운 韓에선 법 지켜야\"",
-   "link": "https://www.hankyung.com/article/2026111360797",
-   "published": "2026-11-13T22:59:32+09:00",
-   "people": []
-  },
-  {
-   "id": "025f4f310dd9",
-   "source": "hankyung",
-   "title": "APEC 앞두고 中 왕이 만난 조현 \"한반도 평화는 양국 공동 이익\"",
-   "link": "https://www.hankyung.com/article/2026111360701",
-   "published": "2026-11-13T22:52:13+09:00",
-   "people": []
-  },
-  {
-   "id": "e8b2cb9532d8",
-   "source": "kmib",
-   "title": "“당청 부동산 정책 일관돼야”⋯ 종부세 정부안 유지 무게",
-   "link": "https://www.kmib.co.kr/article/20261112502236",
-   "published": "2026-11-13T22:51:39+09:00",
-   "people": []
-  },
-  {
-   "id": "2733ce7c6571",
-   "source": "segye",
-   "title": "코이카 신임 이사장에 오현주 전 국가안보실 제3차장",
-   "link": "https://www.segye.com/newsView/20261113511073",
-   "published": "2026-11-13T22:50:00+09:00",
-   "people": []
-  },
-  {
-   "id": "fd4655531b44",
-   "source": "kmib",
-   "title": "李 “범죄혐의자 여러분, 이제 새 한국서 법·질서 지키시라”",
-   "link": "https://www.kmib.co.kr/article/20261113500666",
-   "published": "2026-11-13T22:41:55+09:00",
-   "people": []
-  },
-  {
-   "id": "b1ea1042e390",
-   "source": "hankyung",
-   "title": "\"뱁새가 황새 따라가면\"…이란이 한국에 경고 날린 이유",
-   "link": "https://www.hankyung.com/article/2026111360677",
-   "published": "2026-11-13T22:25:23+09:00",
-   "people": []
-  },
-  {
-   "id": "b7e250458272",
-   "source": "dailian",
-   "title": "한·중 외교장관 회담 개최…조현 \"한반도 평화는 공동이익\"",
-   "link": "https://www.dailian.co.kr/news/view/1714908/?sc=rss",
-   "published": "2026-11-13T22:16:00+09:00",
-   "people": []
-  },
-  {
-   "id": "45f5c6898b46",
-   "source": "hankyung",
-   "title": "한동훈 \"재판 열리면 시한부\"…최민희 말실수에 李대통령 정조준",
-   "link": "https://www.hankyung.com/article/2026111358927",
-   "published": "2026-11-13T22:07:51+09:00",
-   "people": []
-  },
-  {
-   "id": "d6d4af2705f9",
-   "source": "segye",
-   "title": "김진아 외교 2차관, 방미…美국무부 경제차관과 공급망 등 논의",
-   "link": "https://www.segye.com/newsView/20261113511225",
-   "published": "2026-11-13T21:40:00+09:00",
-   "people": []
-  },
-  {
-   "id": "c46ac5d6e52c",
-   "source": "donga",
-   "title": "외교부, ‘뱁새가 황새 따라가면’ 이란 메시지에…“전쟁 불관여 원칙”",
-   "link": "https://www.donga.com/news/Politics/article/all/20261113/135023175/1",
-   "published": "2026-11-13T21:31:35+09:00",
-   "people": []
-  },
-  {
-   "id": "af0b1f23f2ef",
-   "source": "kmib",
-   "title": "조현 “인적 교류 1000만명 돌파”⋯왕이 “양국 관계 정상궤도 돌아와”",
-   "link": "https://www.kmib.co.kr/article/20261113500649",
-   "published": "2026-11-13T21:23:10+09:00",
-   "people": []
-  },
-  {
-   "id": "f1383fcd17f0",
-   "source": "segye",
-   "title": "한·중 외교장관 베이징 회담…왕이 “손잡고 아태 공동체 건설”",
-   "link": "https://www.segye.com/newsView/20261113514600",
-   "published": "2026-11-13T21:20:24+09:00",
-   "people": []
-  },
-  {
-   "id": "06aa5aa0e0a7",
-   "source": "hankyung",
-   "title": "\"북한이 만들었다고?\"…평양서 포착된 '폴더블 스마트폰'",
-   "link": "https://www.hankyung.com/article/2026111360197",
-   "published": "2026-11-13T20:39:36+09:00",
-   "people": []
-  },
-  {
-   "id": "6a034828b1e7",
-   "source": "chosun",
-   "title": "국힘 “미래대응기금 증액 신청, 모두 철회하라” 전 상임위에 지시",
-   "link": "https://www.chosun.com/politics/assembly/2026/11/13/C7AELPHPFBCMXKOLJTIQ6WQS7Q/",
-   "published": "2026-11-13T20:25:54+09:00",
-   "people": []
-  },
-  {
-   "id": "ef096cb52bbc",
-   "source": "donga",
-   "title": "조현 “한반도 문제는 사활적 이익”…왕이 “함께 아태 공동체 건설”",
-   "link": "https://www.donga.com/news/Politics/article/all/20261113/135022871/1",
-   "published": "2026-11-13T20:20:00+09:00",
-   "people": []
-  },
-  {
-   "id": "195a346046e1",
-   "source": "segye",
-   "title": "국방부, 육해공 사관생도 2350명 대상 국군사관학교 설문 착수",
-   "link": "https://www.segye.com/newsView/20261113509355",
-   "published": "2026-11-13T20:03:37+09:00",
-   "people": []
-  },
-  {
-   "id": "f4d5b02dbf0f",
-   "source": "dailian",
-   "title": "[속보] 中 왕이 \"한·중관계 개선·발전 궤도복귀…인적교류 1000만명 기대\"",
-   "link": "https://www.dailian.co.kr/news/view/1714900/?sc=rss",
-   "published": "2026-11-13T20:02:00+09:00",
    "people": []
   }
  ]
