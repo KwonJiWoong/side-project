@@ -822,3 +822,15 @@ html[data-contrast="high"] .tip { border: var(--border-w) solid var(--color-text
 .doc__more a, .doc__sources a { display: inline-flex; align-items: center; min-height: var(--touch); }
 .doc .tip { margin-top: clamp(2rem, 5vw, 2.5rem); }
 .empty__help { margin-top: 0.75rem; }
+
+/* 광고 자리 (안내 글에만, 승인 전에는 숨김) */
+.ad {
+  margin-block: clamp(2rem, 5vw, 2.5rem);
+  padding-block: 1rem;
+  border-block: 0.0625rem solid var(--color-bg);
+}
+.ad__label { font-size: 0.9375rem; font-weight: 700; color: var(--color-text); }
+.ad__note { font-weight: 400; }
+/* 광고가 늦게 떠도 글이 밀리지 않게 자리를 미리 잡아 둠 */
+.ad__box { min-height: 17.5rem; margin-top: 0.5rem; }
+.ad__unit { display: block; }
