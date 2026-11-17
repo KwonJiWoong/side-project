@@ -2,7 +2,7 @@
    - 안내 글(도움말 · 식전식후 · 가족 · 잊지 않는 법)에만 씀. 약 화면 · 방침 · 약관 · 404에는 넣지 않음
    - ADS.client · ADS.slots 를 채우고, 사이트 주소가 ADS.domain 일 때만 광고가 보임
      (비어 있으면 광고 자리는 숨겨진 채로 아무것도 불러오지 않음)
-   - 애드센스 화면에서 '자동 광고'의 앵커(화면 아래 고정) · 전면 광고는 꺼 둘 것 (어르신이 잘못 누르기 쉬움)
+   - 자동 광고(화면 아래 고정 · 전면 광고)는 코드에서 막아 둠 (어르신이 잘못 누르기 쉬움). 애드센스 화면에서도 꺼 둘 것
    - 건강 정보 글이라 개인 맞춤 광고는 끄고(비개인 맞춤) 보여 줌 */
 (() => {
   'use strict';
@@ -14,7 +14,13 @@
       'help-1': '', 'help-2': '',
       'meal-1': '', 'meal-2': '',
       'family-1': '', 'family-2': '',
-      'remember-1': '', 'remember-2': ''
+      'remember-1': '', 'remember-2': '',
+      'storage-1': '', 'storage-2': '',
+      'disposal-1': '', 'disposal-2': '',
+      'mymed-1': '', 'mymed-2': '',
+      'split-1': '', 'split-2': '',
+      'hospital-1': '', 'hospital-2': '',
+      'home-1': '', 'home-2': ''
     }
   };
 
@@ -28,7 +34,8 @@
   if (ADS.nonPersonalized) window.adsbygoogle.requestNonPersonalizedAds = 1;
   const s = document.createElement('script');
   s.async = true;
-  s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + encodeURIComponent(ADS.client);
+  /* client를 주소에 붙이지 않아야 '자동 광고'(화면 아래 고정 · 전면 광고)가 켜지지 않음. 정해 둔 자리에만 광고 */
+  s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
   s.crossOrigin = 'anonymous';
   document.head.appendChild(s);
 
