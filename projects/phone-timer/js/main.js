@@ -8,6 +8,8 @@
   var FAST = /[?&]fast(?:[=&]|$)/.test(location.search); // 확인용: 주소 끝에 ?fast → 1분을 1초로
   var MINUTE = FAST ? 1000 : 60000;
   var GRACE = 10000;              // 이탈 유예 10초
+  var PAUSE_MAX = 5 * 60000;      // 급한 일 이어하기: 5분 이내, 한 번만 (실제 시간 기준)
+  var BONUS_MAX = 30 * MINUTE;    // 꽃이 핀 뒤 보너스 시간 최대 30분
   var DATA_KEY = 'growtime-v1';
   var SESSION_KEY = 'growtime-session';
   var CIRCUMFERENCE = 2 * Math.PI * 100; // 게이지 원 둘레 (r=100)
@@ -15,6 +17,7 @@
   var THEME_COLORS = { run: '#0d120d', other: '#f6f3ea' };
 
   var $ = function (id) { return document.getElementById(id); };
+  var ICON = function (name) { return '<svg class="ico" aria-hidden="true" focusable="false"><use href="#i-' + name + '"></use></svg>'; };
 
   /* ===== 저장소 (쓸 수 없으면 메모리에만 보관) ===== */
   var canStore = (function () {
@@ -68,13 +71,18 @@
     return h + '시간' + (m ? ' ' + m + '분' : '');
   }
 
-  function fmtClock(ms) {
-    var s = Math.max(0, Math.ceil(ms / 1000));
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  function fmtClock(ms, up) {
+    var s = Math.max(0, up ? Math.floor(ms / 1000) : Math.ceil(ms / 1000));
     var h = Math.floor(s / 3600);
     var m = Math.floor((s % 3600) / 60);
-    var sec = s % 60;
-    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
-    return (h ? h + ':' + pad(m) : pad(m)) + ':' + pad(sec);
+    return (h ? h + ':' + pad(m) : pad(m)) + ':' + pad(s % 60);
+  }
+
+  function fmtAway(ms) {
+    var s = Math.round(ms / 1000);
+    return s < 60 ? s + '초' : Math.floor(s / 60) + '분' + (s % 60 ? ' ' + (s % 60) + '초' : '');
   }
 
   // 받침 유무에 따라 조사 고르기 (튤립‘이’ / 데이지‘가’)
@@ -83,22 +91,28 @@
     return code >= 0 && code <= 11171 && code % 28 ? withBatchim : without;
   }
 
-  function ymd(date) {
+  function dayKey(date) {
     return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
   }
 
-  function streakDays() {
-    var days = {};
-    data.records.forEach(function (r) { if (r.ok) days[ymd(new Date(r.at))] = true; });
-    var d = new Date();
-    if (!days[ymd(d)]) d.setDate(d.getDate() - 1); // 오늘 아직 안 했으면 어제부터 셈
-    var count = 0;
-    while (days[ymd(d)]) {
-      count++;
-      d.setDate(d.getDate() - 1);
-    }
-    return count;
+  // 그 주의 월요일 0시
+  function weekStart(date) {
+    var d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    d.setDate(d.getDate() - ((d.getDay() + 6) % 7));
+    return d;
   }
+
+  function weekSuccessDays() {
+    var start = weekStart(new Date()).getTime();
+    var days = {};
+    data.records.forEach(function (r) {
+      var at = new Date(r.at);
+      if (r.ok && at.getTime() >= start) days[dayKey(at)] = true;
+    });
+    return Object.keys(days).length;
+  }
+
+  function md(date) { return (date.getMonth() + 1) + '월 ' + date.getDate() + '일'; }
 
   /* ===== 화면 전환 ===== */
   var screens = {
@@ -194,6 +208,7 @@
     customWrap.hidden = !(picked && picked.value === 'custom');
     var min = selectedMinutes();
     startLabel.textContent = min ? fmtMin(min) + ' 시작하기' : '시작하기';
+    $('battery-note').hidden = !(min && min >= 50); // 오래 할 땐 충전 안내
   }
 
   function renderSetup() {
@@ -217,9 +232,7 @@
     seedList.innerHTML = P.SPECIES.map(function (sp) {
       var open = isUnlocked(sp, total);
       var id = 'seed-' + sp.id;
-      var state = open
-        ? '키울 수 있어요'
-        : '<svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lock"></use></svg>' + fmtMin(sp.unlock) + ' 모으면 열려요';
+      var state = open ? '키울 수 있어요' : ICON('lock') + fmtMin(sp.unlock) + ' 모으면 열려요';
       return '<li class="seed">' +
         '<input class="seed__input" type="radio" name="plant" id="' + id + '" value="' + sp.id + '"' +
           (open ? '' : ' disabled') + (sp.id === chosen.id ? ' checked' : '') + ' aria-describedby="' + id + '-state">' +
@@ -229,7 +242,8 @@
         '</label></li>';
     }).join('');
 
-    $('unlock-desc').textContent = '지금까지 모은 시간 ' + fmtMin(total) + '. 시간을 모을수록 새 식물이 열려요.';
+    var openCount = P.SPECIES.filter(function (sp) { return isUnlocked(sp, total); }).length;
+    $('unlock-desc').textContent = '모은 시간 ' + fmtMin(total) + ' · 식물 ' + openCount + '/' + P.SPECIES.length + '종. 시간을 모을수록 새 식물이 열려요.';
     $('sound-toggle').checked = settings.sound;
   }
 
@@ -286,7 +300,7 @@
   function openGuide(startMode) {
     guideStartMode = startMode;
     guideOk.textContent = startMode ? '알겠어요, 시작할게요' : '알겠어요';
-    guideCancel.textContent = startMode ? '다음에 할게요' : '닫기';
+    guideCancel.textContent = '다음에 할게요';
     guideCancel.hidden = !startMode;
     guide.showModal();
   }
@@ -302,30 +316,78 @@
 
   $('guide-open').addEventListener('click', function () { openGuide(false); });
 
-  /* ===== 확인 대화 상자 ===== */
-  var confirmBox = $('confirm-dialog');
-  var confirmAction = null;
+  /* ===== 홈 화면에 추가 ===== */
+  var installDialog = $('install-dialog');
+  var installNow = $('install-now');
+  var installPrompt = null;
+  var standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 
-  function openConfirm(opt) {
-    $('confirm-title').textContent = opt.title;
-    $('confirm-desc').textContent = opt.desc;
-    $('confirm-ok').textContent = opt.ok;
-    $('confirm-cancel').textContent = opt.cancel;
-    confirmAction = opt.onOk;
-    confirmBox.showModal();
-    $('confirm-cancel').focus(); // 되돌릴 수 없는 동작이라 기본은 ‘취소’
-  }
+  if (standalone) $('install-open').hidden = true; // 이미 홈 화면 앱으로 연 경우
 
-  $('confirm-ok').addEventListener('click', function () {
-    var action = confirmAction;
-    confirmAction = null;
-    confirmBox.close();
-    if (action) action();
+  // 안드로이드 Chrome 등: 바로 추가 버튼 제공
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    installPrompt = e;
+    installNow.hidden = false;
   });
 
-  $('confirm-cancel').addEventListener('click', function () {
-    confirmAction = null;
-    confirmBox.close();
+  window.addEventListener('appinstalled', function () {
+    installPrompt = null;
+    installNow.hidden = true;
+    $('install-open').hidden = true;
+  });
+
+  $('install-open').addEventListener('click', function () { installDialog.showModal(); });
+  $('install-close').addEventListener('click', function () { installDialog.close(); });
+
+  installNow.addEventListener('click', function () {
+    if (!installPrompt) return;
+    installPrompt.prompt();
+    installPrompt.userChoice.finally(function () {
+      installPrompt = null;
+      installNow.hidden = true;
+      installDialog.close();
+    });
+  });
+
+  /* ===== 확인 대화 상자 ===== */
+  var confirmBox = $('confirm-dialog');
+  var confirmOk = $('confirm-ok');
+  var confirmCancel = $('confirm-cancel');
+  var confirmOpt = null;
+
+  /**
+   * opt: title, desc, ok, cancel, onOk, onCancel,
+   *      okPrimary(이어가기처럼 안전한 동작), cancelDanger, required(Esc로 닫기 막기)
+   */
+  function openConfirm(opt) {
+    confirmOpt = opt;
+    $('confirm-title').textContent = opt.title;
+    $('confirm-desc').textContent = opt.desc;
+    confirmOk.textContent = opt.ok;
+    confirmCancel.textContent = opt.cancel;
+    confirmOk.className = 'btn btn--lg btn--block ' + (opt.okPrimary ? 'btn--primary' : 'btn--danger-fill');
+    confirmCancel.className = 'btn btn--lg btn--block' + (opt.cancelDanger ? ' btn--danger' : '');
+    if (!confirmBox.open) confirmBox.showModal();
+    (opt.okPrimary ? confirmOk : confirmCancel).focus(); // 되돌릴 수 없는 동작은 기본 포커스를 안전한 쪽에
+  }
+
+  function closeConfirm(choice) {
+    var opt = confirmOpt;
+    confirmOpt = null;
+    if (confirmBox.open) confirmBox.close();
+    if (!opt) return;
+    if (choice === 'ok' && opt.onOk) opt.onOk();
+    if (choice === 'cancel' && opt.onCancel) opt.onCancel();
+  }
+
+  confirmOk.addEventListener('click', function () { closeConfirm('ok'); });
+  confirmCancel.addEventListener('click', function () { closeConfirm('cancel'); });
+
+  // Esc: 꼭 골라야 하는 창은 닫히지 않게
+  confirmBox.addEventListener('cancel', function (e) {
+    if (confirmOpt && confirmOpt.required) e.preventDefault();
+    else closeConfirm('cancel');
   });
 
   /* ===== 효과음 · 진동 ===== */
@@ -344,6 +406,11 @@
   // 도·미·솔·도 차임
   function playChime() {
     if (!settings.sound || !audioCtx) return;
+    // 아이폰 무음 모드에서도 울리도록 (iOS 17 이상). 다른 앱 음악을 오래 끊지 않게 잠깐만 바꿈
+    var session = navigator.audioSession;
+    if (session) { try { session.type = 'playback'; } catch (e) { /* 미지원 */ } }
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+
     var t0 = audioCtx.currentTime + 0.05;
     [523.25, 659.25, 783.99, 1046.5].forEach(function (freq, i) {
       var osc = audioCtx.createOscillator();
@@ -358,6 +425,10 @@
       osc.start(t);
       osc.stop(t + 1);
     });
+
+    if (session) {
+      setTimeout(function () { try { session.type = 'auto'; } catch (e) { /* 무시 */ } }, 2000);
+    }
   }
 
   /* ===== 화면 켜짐 유지 (Wake Lock) ===== */
@@ -371,7 +442,9 @@
     }
     navigator.wakeLock.request('screen').then(function (lock) {
       wakeLock = lock;
-      lockText.textContent = '화면이 꺼지지 않게 해 두었어요. 폰을 엎어두세요.';
+      lockText.textContent = run && run.phase === 'bonus'
+        ? '화면이 켜져 있어요. 확인했으면 위 버튼을 눌러 주세요.'
+        : '화면이 꺼지지 않게 해 두었어요. 폰을 엎어두세요.';
       lock.addEventListener('release', function () { wakeLock = null; });
     }).catch(function () {
       lockText.textContent = '화면 켜짐 유지를 켜지 못했어요. 화면이 꺼지면 식물이 시드니, ‘화면 자동 꺼짐’ 시간을 늘려 주세요.';
@@ -388,23 +461,38 @@
   var ticker = null;
   var runPlant = $('run-plant');
   var runTime = $('run-time');
+  var runTimeTitle = $('run-time-title');
   var runLive = $('run-live');
   var runCaption = $('run-stage-label');
   var runAlert = $('run-alert');
   var gaugeBar = $('gauge-bar');
+  var gaugeBonus = $('gauge-bonus');
+  var doneBtn = $('done-btn');
+  var quitBtn = $('quit-btn');
+  var bonusDesc = $('bonus-desc');
   var baseTitle = document.title;
 
-  gaugeBar.setAttribute('stroke-dasharray', CIRCUMFERENCE.toFixed(2));
-  gaugeBar.setAttribute('stroke-dashoffset', CIRCUMFERENCE.toFixed(2));
+  [gaugeBar, gaugeBonus].forEach(function (c) {
+    c.setAttribute('stroke-dasharray', CIRCUMFERENCE.toFixed(2));
+    c.setAttribute('stroke-dashoffset', CIRCUMFERENCE.toFixed(2));
+  });
 
   function saveSession() {
     save(SESSION_KEY, {
       start: run.start,
       duration: run.duration,
       plant: run.plant,
+      phase: run.phase,
+      bonusStart: run.bonusStart,
       lastSeen: run.lastSeen,
-      leftAt: run.leftAt
+      leftAt: run.leftAt,
+      usedPause: run.usedPause
     });
+  }
+
+  function showAlert(html) {
+    runAlert.innerHTML = ICON('alert') + '<span>' + html + '</span>';
+    runAlert.hidden = false;
   }
 
   function startRun() {
@@ -417,9 +505,12 @@
       start: now,
       duration: min * MINUTE,
       plant: plant.id,
+      phase: 'grow',      // grow: 자라는 중 / paused: 급한 일 선택 대기 / bonus: 꽃 핀 뒤
+      bonusStart: null,
       lastSeen: now,
       lastSaved: 0,
       leftAt: null,
+      usedPause: false,
       stage: 0,
       remainMin: null
     };
@@ -427,8 +518,14 @@
 
     runPlant.innerHTML = P.svg(plant.id, 0);
     runCaption.textContent = RUN_CAPTIONS[0];
+    runTimeTitle.textContent = '남은 시간';
+    gaugeBonus.setAttribute('stroke-dashoffset', CIRCUMFERENCE.toFixed(2));
     runAlert.hidden = true;
+    doneBtn.hidden = true;
+    bonusDesc.hidden = true;
+    quitBtn.hidden = false;
     lockText.textContent = '';
+    screens.run.classList.remove('run--bonus');
 
     show('run');
     requestWakeLock();
@@ -437,39 +534,75 @@
     ticker = setInterval(tick, 500);
   }
 
+  function setStage(stage) {
+    if (stage === run.stage) return;
+    run.stage = stage;
+    runPlant.querySelector('.plant').setAttribute('data-stage', String(stage));
+    runCaption.textContent = RUN_CAPTIONS[stage];
+    runLive.textContent = RUN_CAPTIONS[stage] + '.';
+  }
+
+  // 꽃이 핌 → 보너스 시간 시작
+  function enterBonus(at) {
+    run.phase = 'bonus';
+    run.bonusStart = at;
+    setStage(3);
+    gaugeBar.setAttribute('stroke-dashoffset', '0');
+    screens.run.classList.add('run--bonus');
+    runTimeTitle.textContent = '보너스 시간';
+    runCaption.textContent = '꽃이 피었어요';
+    runAlert.hidden = true;
+    quitBtn.hidden = true;
+    doneBtn.hidden = false;
+    bonusDesc.hidden = false;
+    lockText.textContent = '';
+    runLive.textContent = '꽃이 피었어요. 지금부터는 보너스 시간이에요. 확인했으면 정원에 심기 버튼을 눌러 주세요.';
+    saveSession();
+
+    playChime();
+    if (navigator.vibrate) navigator.vibrate([150, 80, 150]);
+  }
+
   function tick() {
-    if (!run || document.hidden) return;
+    if (!run || document.hidden || run.phase === 'paused') return;
     var now = Date.now();
-    var elapsed = now - run.start; // 시작 시각과의 차이로 계산 → 백그라운드 지연에도 정확
-    if (elapsed >= run.duration) {
-      finish(true, run.duration, 'done');
-      return;
+
+    if (run.phase === 'grow') {
+      var elapsed = now - run.start; // 시작 시각과의 차이로 계산 → 백그라운드 지연에도 정확
+      if (elapsed >= run.duration) {
+        enterBonus(run.start + run.duration);
+      } else {
+        var remain = run.duration - elapsed;
+        var ratio = elapsed / run.duration;
+        var clock = fmtClock(remain);
+
+        runTime.textContent = clock;
+        runTime.setAttribute('datetime', 'PT' + Math.ceil(remain / 1000) + 'S');
+        document.title = clock + ' 남음 - 자라는 시간';
+        gaugeBar.setAttribute('stroke-dashoffset', (CIRCUMFERENCE * (1 - ratio)).toFixed(2));
+        setStage(P.stageOf(ratio));
+
+        // 스크린리더: 남은 시간은 1분 단위로만 안내
+        var remainMin = Math.ceil(remain / MINUTE);
+        if (run.remainMin !== null && remainMin !== run.remainMin) {
+          runLive.textContent = '남은 시간 ' + fmtMin(remainMin) + '.';
+        }
+        run.remainMin = remainMin;
+      }
     }
 
-    var remain = run.duration - elapsed;
-    var ratio = elapsed / run.duration;
-    var clock = fmtClock(remain);
-
-    runTime.textContent = clock;
-    runTime.setAttribute('datetime', 'PT' + Math.ceil(remain / 1000) + 'S');
-    document.title = clock + ' 남음 - 자라는 시간';
-    gaugeBar.setAttribute('stroke-dashoffset', (CIRCUMFERENCE * (1 - ratio)).toFixed(2));
-
-    // 성장 단계가 바뀔 때만 다시 그림
-    var stage = P.stageOf(ratio);
-    if (stage !== run.stage) {
-      run.stage = stage;
-      runPlant.querySelector('.plant').setAttribute('data-stage', String(stage));
-      runCaption.textContent = RUN_CAPTIONS[stage];
-      runLive.textContent = RUN_CAPTIONS[stage] + '.';
+    if (run.phase === 'bonus') {
+      var bonus = now - run.bonusStart;
+      if (bonus >= BONUS_MAX) {
+        finish({ ok: true, held: run.duration, bonus: BONUS_MAX, reason: 'done' });
+        return;
+      }
+      var up = fmtClock(bonus, true);
+      runTime.textContent = '+' + up;
+      runTime.setAttribute('datetime', 'PT' + Math.floor(bonus / 1000) + 'S');
+      document.title = '꽃이 피었어요 +' + up + ' - 자라는 시간';
+      gaugeBonus.setAttribute('stroke-dashoffset', (CIRCUMFERENCE * (1 - bonus / BONUS_MAX)).toFixed(2));
     }
-
-    // 스크린리더: 남은 시간은 1분 단위로만 안내
-    var remainMin = Math.ceil(remain / MINUTE);
-    if (run.remainMin !== null && remainMin !== run.remainMin) {
-      runLive.textContent = '남은 시간 ' + fmtMin(remainMin) + '.';
-    }
-    run.remainMin = remainMin;
 
     run.lastSeen = now;
     if (now - run.lastSaved > 5000) {
@@ -484,54 +617,107 @@
     var now = Date.now();
 
     if (document.hidden) {
-      run.leftAt = now;
-      run.lastSeen = now;
-      saveSession();
+      // 꽃이 핀 뒤 나가면 거기까지를 보너스로 인정하고 마무리
+      if (run.phase === 'bonus') {
+        finish({ ok: true, held: run.duration, bonus: now - run.bonusStart, reason: 'done' });
+        return;
+      }
+      if (run.phase === 'grow') {
+        run.leftAt = now;
+        run.lastSeen = now;
+        saveSession();
+      }
       return;
     }
 
+    if (run.phase !== 'grow' || run.leftAt === null) return;
     var leftAt = run.leftAt;
-    if (leftAt === null) return;
     var away = now - leftAt;
+    var held = leftAt - run.start;
     run.leftAt = null;
 
-    if (leftAt - run.start >= run.duration) {
-      finish(true, run.duration, 'done'); // 나가기 전에 이미 끝남
-    } else if (away > GRACE) {
-      finish(false, leftAt - run.start, 'left');
-    } else {
-      runAlert.innerHTML = '<svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg>' +
-        '<span>다른 화면에 ' + Math.max(1, Math.round(away / 1000)) + '초 다녀왔어요. 10초 넘게 나가 있으면 식물이 시들어요.</span>';
-      runAlert.hidden = false;
+    if (held >= run.duration) {
+      // 나가기 전에 이미 꽃이 핌 → 나간 시각까지 보너스 인정
+      finish({ ok: true, held: run.duration, bonus: held - run.duration, reason: 'done' });
+    } else if (away <= GRACE) {
+      showAlert('다른 화면에 ' + fmtAway(away) + ' 다녀왔어요. 10초 넘게 나가 있으면 식물이 시들어요.');
       requestWakeLock(); // 화면을 벗어나면 해제되므로 다시 요청
       saveSession();
       tick();
+    } else if (!run.usedPause && away <= PAUSE_MAX) {
+      askPause(leftAt, away);
+    } else {
+      finish({ ok: false, held: held, reason: run.usedPause ? 'left-again' : 'left-long' });
     }
   });
 
-  $('quit-btn').addEventListener('click', function () {
-    if (!run) return;
+  // 급한 일(전화 등) 이어하기: 한 번만, 비운 시간은 빼고 계산
+  function askPause(leftAt, away) {
+    run.phase = 'paused';
+    run.leftAt = leftAt;
+    saveSession();
+    openConfirm({
+      title: '자리를 비웠어요',
+      desc: fmtAway(away) + ' 동안 다른 화면에 있었어요. 전화처럼 급한 일이었다면 한 번만 이어서 할 수 있어요. 비운 시간은 빼고 계산해요.',
+      ok: '급한 일이었어요, 이어서 하기',
+      cancel: '그만두기 (식물이 시들어요)',
+      okPrimary: true,
+      cancelDanger: true,
+      required: true,
+      onOk: function () {
+        if (!run) return;
+        run.start += Date.now() - run.leftAt; // 비운 시간만큼 시작 시각을 미룸
+        run.leftAt = null;
+        run.usedPause = true;
+        run.phase = 'grow';
+        showAlert('이어서 자라는 중이에요. 이어하기는 이번 한 번만 쓸 수 있어요.');
+        requestWakeLock();
+        saveSession();
+        tick();
+      },
+      onCancel: function () {
+        if (!run) return;
+        finish({ ok: false, held: run.leftAt - run.start, reason: 'left' });
+      }
+    });
+  }
+
+  quitBtn.addEventListener('click', function () {
+    if (!run || run.phase !== 'grow') return;
     var held = Math.floor((Date.now() - run.start) / MINUTE);
     openConfirm({
       title: '정말 그만둘까요?',
       desc: '지금 그만두면 식물이 시들어요. ' + (held >= 1
-        ? '지금까지 버틴 ' + fmtMin(held) + '만큼 자란 식물은 정원에 기록돼요.'
+        ? '지금까지 버틴 ' + fmtMin(held) + '은 시든 모습 그대로 정원에 남아요.'
         : '1분이 안 돼서 정원에는 기록되지 않아요.'),
       ok: '그만두기',
       cancel: '계속하기',
-      onOk: function () { if (run) finish(false, Date.now() - run.start, 'quit'); }
+      onOk: function () {
+        if (run && run.phase === 'grow') finish({ ok: false, held: Date.now() - run.start, reason: 'quit' });
+      }
     });
+  });
+
+  doneBtn.addEventListener('click', function () {
+    if (!run || run.phase !== 'bonus') return;
+    finish({ ok: true, held: run.duration, bonus: Date.now() - run.bonusStart, reason: 'done' });
   });
 
   /* ===== 4. 결과 화면 ===== */
   var lastPlantedId = null;
   var REASONS = {
-    left: '다른 화면에 10초 넘게 나가 있었어요. ',
+    left: '',
     quit: '',
-    reload: '타이머가 도는 중에 창이 닫혔거나 새로고침됐어요. '
+    'left-long': '다른 화면에 5분 넘게 나가 있었어요. ',
+    'left-again': '이어하기는 한 번만 쓸 수 있어서, 이번에는 시들었어요. ',
+    reload: '타이머가 도는 중에 창이 닫혔거나 새로고침됐어요. ',
+    done: ''
   };
 
-  function finish(ok, elapsed, reason, session) {
+  /**
+   * r: { ok, held(자란 시간 ms), bonus(보너스 ms), reason }, session: 새로고침 복구용
+   */
+  function finish(r, session) {
     var info = run || session;
     clearInterval(ticker);
     ticker = null;
@@ -539,18 +725,21 @@
     releaseWakeLock();
     remove(SESSION_KEY);
     document.title = baseTitle;
-    if (confirmBox.open) confirmBox.close();
+    if (confirmBox.open) { confirmOpt = null; confirmBox.close(); }
 
-    elapsed = Math.max(0, Math.min(elapsed, info.duration));
-    var minutes = Math.floor(elapsed / MINUTE);
-    var stage = ok ? 3 : P.stageOf(elapsed / info.duration);
+    var ok = r.ok;
+    var held = Math.max(0, Math.min(r.held, info.duration));
+    var bonus = ok ? Math.max(0, Math.min(r.bonus || 0, BONUS_MAX)) : 0;
+    var minutes = Math.floor((held + bonus) / MINUTE);
+    var bonusMin = Math.floor(bonus / MINUTE);
+    var stage = ok ? 3 : P.stageOf(held / info.duration);
     var sp = P.find(info.plant);
 
-    // 기록 (1분 이상 버틴 경우만, 실패해도 버틴 단계로 부분 보상)
+    // 기록 (1분 이상 버틴 경우만. 실패해도 버틴 단계로 남기되, 시든 모습으로)
     var before = totalMinutes();
     var record = null;
     if (minutes >= 1) {
-      record = { id: Date.now(), plant: sp.id, stage: stage, minutes: minutes, ok: ok, at: new Date().toISOString() };
+      record = { id: Date.now(), plant: sp.id, stage: stage, minutes: minutes, bonus: bonusMin, ok: ok, at: new Date().toISOString() };
       data.records.push(record);
       saveData();
       lastPlantedId = record.id;
@@ -564,19 +753,23 @@
     box.classList.toggle('result--fail', !ok);
 
     var plantBox = $('result-plant');
-    plantBox.innerHTML = P.svg(sp.id, ok ? 2 : stage, { label: true, wilted: false });
+    plantBox.innerHTML = P.svg(sp.id, ok ? 2 : stage, { label: true });
     var svgEl = plantBox.querySelector('.plant');
-    if (!ok) svgEl.setAttribute('aria-label', sp.name + ', ' + P.STAGES[stage] + ' 단계(시듦)');
+    svgEl.setAttribute('aria-label', sp.name + ', ' + P.STAGES[stage] + ' 단계' + (ok ? '' : '(시듦)'));
 
     $('result-title').textContent = ok ? '꽃이 피었어요' : '시들었어요';
 
     var desc = $('result-desc');
+    var heldMin = Math.floor(held / MINUTE);
     if (ok) {
-      desc.innerHTML = '<strong>' + fmtMin(minutes) + '</strong> 동안 폰을 내려놓았어요. ' + sp.name + ' 꽃을 정원에 심어 보세요.';
+      desc.innerHTML = '<strong>' + fmtMin(heldMin) + '</strong> 동안 폰을 내려놓았어요.' +
+        (bonusMin ? ' 꽃이 핀 뒤에도 <strong>보너스 ' + fmtMin(bonusMin) + '</strong>을 더 모았어요.' : '') +
+        ' ' + sp.name + ' 꽃을 정원에 심어 보세요.';
     } else if (record) {
-      desc.innerHTML = REASONS[reason] + '<strong>' + fmtMin(minutes) + '</strong> 버텼어요. ' + (stage ? '버틴 만큼 자란 ‘' + P.STAGES[stage] + '’을' : '심어 둔 ‘씨앗’을') + ' 정원에 기록했어요.';
+      desc.innerHTML = REASONS[r.reason] + '<strong>' + fmtMin(minutes) + '</strong> 버텼어요. ' +
+        '‘' + P.STAGES[stage] + '’ 단계에서 시든 모습 그대로 정원에 남겼어요. 모은 시간에는 들어가요.';
     } else {
-      desc.innerHTML = REASONS[reason] + '1분이 안 돼서 정원에는 기록하지 않았어요.';
+      desc.innerHTML = REASONS[r.reason] + '1분이 안 돼서 정원에는 기록하지 않았어요.';
     }
 
     var unlockBox = $('result-unlock');
@@ -589,8 +782,7 @@
       unlockBox.hidden = true;
     }
 
-    var gardenBtn = $('result-garden');
-    gardenBtn.lastChild.textContent = ok ? '정원에 심기' : '정원 보러 가기';
+    $('result-garden').lastChild.textContent = ok ? '정원에 심기' : '정원 보러 가기';
     $('result-again').lastChild.textContent = ok ? '한 번 더 하기' : '다시 도전';
 
     show('result');
@@ -603,20 +795,41 @@
         else svgEl.classList.add('plant--wilted');
       });
     });
-
-    if (ok) {
-      playChime();
-      if (navigator.vibrate) navigator.vibrate([150, 80, 150]);
-    }
   }
 
   /* ===== 5. 내 정원 ===== */
+  function weekKeyOf(r) { return weekStart(new Date(r.at)).getTime(); }
+
+  function weekTitle(startMs) {
+    var thisWeek = weekStart(new Date()).getTime();
+    var lastWeek = weekStart(new Date(thisWeek - 86400000)).getTime();
+    if (startMs === thisWeek) return '이번 주 화단';
+    if (startMs === lastWeek) return '지난주 화단';
+    var start = new Date(startMs);
+    var end = new Date(startMs);
+    end.setDate(end.getDate() + 6);
+    return md(start) + ' ~ ' + md(end) + ' 화단';
+  }
+
+  function plotItem(r) {
+    var sp = P.find(r.plant);
+    var date = new Date(r.at);
+    var badge = r.ok
+      ? '<span class="bed__badge">' + ICON('check') + '꽃 피움</span>'
+      : '<span class="bed__badge bed__badge--wilted">' + ICON('alert') + P.STAGES[r.stage] + '에서 시듦</span>';
+    return '<li class="bed__item' + (r.id === lastPlantedId ? ' bed__item--new' : '') + '">' +
+      '<span class="bed__plant">' + P.svg(sp.id, r.stage, { ground: true, wilted: !r.ok }) + '</span>' +
+      '<span class="bed__name">' + sp.name + '</span>' + badge +
+      '<span class="bed__meta">' + fmtMin(r.minutes) + (r.bonus ? ' (보너스 ' + r.bonus + '분)' : '') + ' · ' + md(date) + '</span>' +
+    '</li>';
+  }
+
   function renderGarden() {
     var total = totalMinutes();
     var records = data.records.slice().reverse(); // 최근 것부터
 
     $('stat-total').textContent = fmtMin(total);
-    $('stat-streak').textContent = streakDays() + '일';
+    $('stat-week').textContent = weekSuccessDays() + '일';
     $('stat-count').textContent = records.length + '그루';
 
     // 다음 해금까지
@@ -634,24 +847,34 @@
     $('next-bar').setAttribute('aria-valuetext', pct + '%');
     $('next-fill').style.width = pct + '%';
 
-    // 심은 식물
-    $('plot').innerHTML = records.map(function (r) {
-      var sp = P.find(r.plant);
-      var date = new Date(r.at);
-      var badge = r.ok
-        ? '<span class="plot__badge"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg>꽃 피움</span>'
-        : '<span class="plot__badge plot__badge--part">' + P.STAGES[r.stage] + ' 단계</span>';
-      return '<li class="plot__item' + (r.id === lastPlantedId ? ' plot__item--new' : '') + '">' +
-        P.svg(sp.id, r.stage) +
-        '<span class="plot__name">' + sp.name + '</span>' + badge +
-        '<span class="plot__meta">' + fmtMin(r.minutes) + ' · ' + (date.getMonth() + 1) + '월 ' + date.getDate() + '일</span>' +
-      '</li>';
+    // 주간 화단 (최근 주부터)
+    var weeks = [];
+    var byWeek = {};
+    records.forEach(function (r) {
+      var key = weekKeyOf(r);
+      if (!byWeek[key]) { byWeek[key] = []; weeks.push(key); }
+      byWeek[key].push(r);
+    });
+    var thisWeek = weekStart(new Date()).getTime();
+    if (records.length && !byWeek[thisWeek]) { byWeek[thisWeek] = []; weeks.unshift(thisWeek); }
+
+    $('beds').innerHTML = weeks.map(function (key, i) {
+      var list = byWeek[key];
+      var id = 'bed-' + i;
+      return '<section class="bed" aria-labelledby="' + id + '">' +
+        '<h4 class="bed__title" id="' + id + '">' + weekTitle(key) + ' <span class="bed__count">' + list.length + '그루</span></h4>' +
+        (list.length
+          ? '<ul class="bed__list">' + list.map(plotItem).join('') + '</ul>'
+          : '<p class="bed__empty">이번 주 화단은 아직 비어 있어요. 첫 식물을 심어 보세요.</p>') +
+      '</section>';
     }).join('');
     lastPlantedId = null;
 
     var empty = records.length === 0;
     $('garden-empty').hidden = !empty;
     $('garden-clear').hidden = empty;
+    $('share-box').hidden = empty;
+    $('share-status').textContent = '';
   }
 
   $('garden-clear').addEventListener('click', function () {
@@ -669,15 +892,148 @@
     });
   });
 
+  /* ===== 화단 사진 저장 · 공유 (Canvas) ===== */
+  var shareBtn = $('share-btn');
+  var shareStatus = $('share-status');
+
+  function loadSvg(markup) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image();
+      img.onload = function () { resolve(img); };
+      img.onerror = reject;
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(markup);
+    });
+  }
+
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  function drawGarden() {
+    var thisWeek = weekStart(new Date()).getTime();
+    var list = data.records.filter(function (r) { return weekKeyOf(r) === thisWeek; });
+    var title = '이번 주 화단';
+    if (!list.length) { list = data.records; title = '최근 화단'; }
+    list = list.slice(-12); // 최대 12그루 (4 × 3줄)
+
+    var W = 1080, H = 1350;
+    var canvas = document.createElement('canvas');
+    canvas.width = W;
+    canvas.height = H;
+    var ctx = canvas.getContext('2d');
+    var font = '"Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif';
+
+    // 배경
+    ctx.fillStyle = '#f6f3ea';
+    ctx.fillRect(0, 0, W, H);
+
+    // 제목
+    ctx.fillStyle = '#2b5a1b';
+    ctx.font = '800 64px ' + font;
+    ctx.fillText('자라는 시간', 80, 140);
+    ctx.fillStyle = '#1e2619';
+    ctx.font = '700 44px ' + font;
+    ctx.fillText(title, 80, 210);
+
+    // 통계
+    var stats = [
+      ['모은 시간', fmtMin(totalMinutes())],
+      ['이번 주 성공', weekSuccessDays() + '일'],
+      ['심은 식물', data.records.length + '그루']
+    ];
+    stats.forEach(function (s, i) {
+      var x = 80 + i * 313;
+      ctx.fillStyle = '#fffdf7';
+      roundRect(ctx, x, 260, 293, 150, 24);
+      ctx.fill();
+      ctx.fillStyle = '#45503f';
+      ctx.font = '700 30px ' + font;
+      ctx.fillText(s[0], x + 28, 312);
+      ctx.fillStyle = '#2b5a1b';
+      ctx.font = '800 46px ' + font;
+      ctx.fillText(s[1], x + 28, 375);
+    });
+
+    // 화단 (심은 만큼만 줄을 그리고, 가운데로 모음)
+    var cols = 4, cellW = 230, cellH = 250, left = 80;
+    var rows = Math.max(1, Math.ceil(list.length / cols));
+    var top = 440 + ((3 - rows) * cellH) / 2;
+    for (var row = 0; row < rows; row++) {
+      ctx.fillStyle = '#6b4a2e';
+      roundRect(ctx, left - 20, top + row * cellH + 196, cellW * cols + 40, 40, 20);
+      ctx.fill();
+    }
+
+    return Promise.all(list.map(function (r) {
+      return loadSvg(P.svg(r.plant, r.stage, { ground: true, flat: true, wilted: !r.ok }));
+    })).then(function (imgs) {
+      imgs.forEach(function (img, i) {
+        var col = i % cols;
+        var row = Math.floor(i / cols);
+        var w = 200, h = w * 114 / 120;
+        ctx.drawImage(img, left + col * cellW + (cellW - w) / 2, top + row * cellH + 214 - h, w, h);
+      });
+      ctx.fillStyle = '#45503f';
+      ctx.font = '700 30px ' + font;
+      ctx.fillText(md(new Date()) + ' · 폰을 내려놓은 만큼 자라는 정원', 80, H - 60);
+      return new Promise(function (resolve) { canvas.toBlob(resolve, 'image/png'); });
+    });
+  }
+
+  shareBtn.addEventListener('click', function () {
+    shareBtn.disabled = true;
+    shareStatus.textContent = '사진을 만드는 중이에요…';
+    drawGarden().then(function (blob) {
+      if (!blob) throw new Error('blob');
+      var d = new Date();
+      var name = 'growtime-garden-' + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + '.png';
+      var file = new File([blob], name, { type: 'image/png' });
+
+      // 휴대폰: 공유 창 (카톡·인스타 등) / 그 밖: 파일로 저장
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        return navigator.share({ files: [file], title: '자라는 시간 · 내 정원' }).then(function () {
+          shareStatus.textContent = '공유 창을 열었어요.';
+        });
+      }
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      shareStatus.textContent = '사진을 저장했어요. 다운로드 폴더를 확인해 주세요.';
+    }).catch(function (err) {
+      shareStatus.textContent = err && err.name === 'AbortError'
+        ? '공유를 취소했어요.'
+        : '사진을 만들지 못했어요. 잠시 뒤 다시 눌러 주세요.';
+    }).finally(function () {
+      shareBtn.disabled = false;
+    });
+  });
+
   /* ===== 시작 ===== */
   if (!canStore) $('storage-notice').hidden = false;
   applyFont();
 
-  // 진행 중에 창이 닫혔던 경우 → 마지막으로 확인된 시각까지 버틴 것으로 처리
+  // 진행 중에 창이 닫혔던 경우 → 마지막으로 확인된 시각까지로 처리
   var leftover = load(SESSION_KEY, null);
   if (leftover && leftover.start && leftover.duration) {
-    var held = (leftover.leftAt || leftover.lastSeen || leftover.start) - leftover.start;
-    finish(held >= leftover.duration, held, 'reload', leftover);
+    var lastAt = leftover.leftAt || leftover.lastSeen || leftover.start;
+    if (leftover.phase === 'bonus' && leftover.bonusStart) {
+      finish({ ok: true, held: leftover.duration, bonus: lastAt - leftover.bonusStart, reason: 'done' }, leftover);
+    } else {
+      var held = lastAt - leftover.start;
+      if (held >= leftover.duration) finish({ ok: true, held: leftover.duration, bonus: held - leftover.duration, reason: 'done' }, leftover);
+      else finish({ ok: false, held: held, reason: 'reload' }, leftover);
+    }
   } else {
     route(false);
   }

@@ -262,6 +262,7 @@ body[data-screen="run"] .btn--danger-fill { color: var(--color-bg); }
   width: min(92%, 28rem);
   max-height: 90vh;
   margin: auto;
+  overflow-y: auto;
   padding: var(--space-lg) var(--space-md) var(--space-md);
   color: var(--color-text);
   background: var(--color-surface);

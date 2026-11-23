@@ -9,6 +9,7 @@
 
 .header__inner {
   display: flex;
+  flex-wrap: wrap; /* 좁은 화면 + 글자 크게: 버튼이 아래로 내려감 */
   align-items: center;
   justify-content: space-between;
   gap: var(--space-sm);
@@ -418,55 +419,6 @@ body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-event
 
 .garden__plot-title { font-size: var(--fs-lg); font-weight: 800; }
 
-.plot {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 8.5rem), 1fr));
-  gap: var(--space-xs);
-}
-
-.plot:empty { display: none; }
-
-.plot__item {
-  display: grid;
-  justify-items: center;
-  align-content: start;
-  gap: 0.125rem;
-  padding: var(--space-sm) var(--space-xs);
-  text-align: center;
-  background: var(--color-surface);
-  border: var(--border-w) solid var(--color-line);
-  border-radius: var(--radius);
-}
-
-.plot__item .plant { width: 4.75rem; }
-
-.plot__name { font-weight: 800; }
-
-.plot__meta { font-size: var(--fs-sm); color: var(--color-muted); }
-
-.plot__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  color: var(--color-primary);
-}
-
-.plot__badge--part { color: var(--color-accent); }
-
-/* 새로 심은 식물 강조 */
-.plot__item--new {
-  border-color: var(--color-primary);
-  box-shadow: inset 0 0 0 0.125rem var(--color-primary);
-  animation: plant-in 0.7s ease-out;
-}
-
-@keyframes plant-in {
-  from { transform: translateY(0.75rem); opacity: 0; }
-  to { transform: none; opacity: 1; }
-}
-
 .empty {
   display: grid;
   justify-items: center;
@@ -509,16 +461,10 @@ body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-event
 .plant { display: block; width: 100%; height: auto; overflow: visible; }
 
 .plant__stem {
-  fill: none;
-  stroke: var(--stem);
-  stroke-width: 4;
-  stroke-linecap: round;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
   transition: stroke-dashoffset 1.2s ease-out;
 }
-
-.plant--cactus .plant__stem { stroke: #4f8f3a; stroke-width: 15; }
 
 .plant__sprout,
 .plant__leaves,
@@ -561,6 +507,156 @@ body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-event
   filter: grayscale(0.7) sepia(0.6) brightness(0.85);
 }
 
+/* 시작 화면: 충전 안내 */
+.pick__note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.pick__note .ico { margin-top: 0.15em; }
+
+.setting-row__btns { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+
+/* 진행 화면: 보너스 시간 */
+.gauge__bonus {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.run--bonus .gauge__bar { stroke: color-mix(in srgb, var(--color-primary) 45%, var(--color-bg)); }
+
+.run--bonus .run__time,
+.run--bonus .run__time-title { color: var(--color-accent); }
+
+.run__bonus-desc { max-width: 30rem; font-weight: 700; color: var(--color-muted); }
+
+.run__done { width: min(100%, 24rem); }
+
+/* 내 정원: 주간 화단 */
+.garden__plot-desc { color: var(--color-muted); }
+
+.beds { display: grid; gap: var(--space-lg); }
+
+.bed { display: grid; gap: var(--space-sm); }
+
+.bed__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+  font-size: var(--fs-md);
+  font-weight: 800;
+}
+
+.bed__count { font-size: var(--fs-sm); font-weight: 700; color: var(--color-muted); }
+
+.bed__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 8.5rem), 1fr));
+  row-gap: var(--space-md);
+  padding: var(--space-md) var(--space-sm);
+  background: var(--color-soft);
+  border: var(--border-w) solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.bed__item {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 0.125rem;
+  padding: 0 var(--space-xs);
+  text-align: center;
+}
+
+/* 식물 아래 흙 — 한 줄로 이어져 화단처럼 보임 */
+.bed__plant {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0 12% 0.5rem;
+  margin-bottom: var(--space-xs);
+}
+
+.bed__plant::after {
+  content: "";
+  position: absolute;
+  right: calc(-1 * var(--space-xs));
+  bottom: 0;
+  left: calc(-1 * var(--space-xs));
+  height: 0.875rem;
+  background: var(--soil);
+}
+
+.bed__plant .plant { position: relative; z-index: 1; }
+
+.bed__name { font-weight: 800; }
+
+.bed__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.bed__badge--wilted { color: var(--color-accent); }
+
+.bed__meta { font-size: var(--fs-sm); color: var(--color-muted); }
+
+.bed__empty {
+  padding: var(--space-md);
+  color: var(--color-muted);
+  background: var(--color-surface);
+  border: var(--border-w) dashed var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.bed__item--new {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: inset 0 0 0 0.125rem var(--color-primary);
+}
+
+.bed__item--new .bed__plant { animation: plant-in 0.7s ease-out; }
+
+@keyframes plant-in {
+  from { transform: translateY(0.75rem); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+/* 화단 사진 */
+.share { display: grid; gap: var(--space-xs); }
+
+.share__status { font-weight: 700; color: var(--color-primary); }
+
+.share__status:empty { display: none; }
+
+/* 홈 화면에 추가 */
+.install__now { margin-bottom: var(--space-md); }
+
+.install__how {
+  display: grid;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  margin-top: var(--space-sm);
+  background: var(--color-bg);
+  border-radius: var(--radius);
+}
+
+.install__os { font-size: var(--fs-md); font-weight: 800; }
+
+.install__steps { padding-left: 1.4em; list-style: decimal; }
+
+.install__note { font-size: var(--fs-sm); font-weight: 700; color: var(--color-accent); }
+
 /* 반응형: 태블릿 */
 @media (min-width: 768px) {
   .gnb__list { display: flex; justify-content: flex-start; }
@@ -580,7 +676,6 @@ body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-event
 @media (min-width: 1024px) {
   .header__inner { min-height: 4.5rem; }
 
-  .plot { grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); }
 }
 
 /* 저장 불가 안내 폭 맞춤 */
