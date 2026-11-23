@@ -29,13 +29,12 @@
     panel: $('orderPanel'), lead: $('orderLead'),
     loadError: $('loadError'), retry: $('retryBtn'),
     ticket: $('ticket'), ticketInner: $('ticketInner'), front: $('ticketFront'), back: $('ticketBack'),
-    ticketTime: $('ticketTime'), ticketCat: $('ticketCat'), ticketCatIcon: $('ticketCatIcon'),
-    ticketTitle: $('ticketTitle'), ticketDesc: $('ticketDesc'), ticketNo: $('ticketNo'),
+    ticketMeta: $('ticketMeta'), ticketTitle: $('ticketTitle'), ticketDesc: $('ticketDesc'),
     draw: $('drawBtn'), start: $('startBtn'), change: $('changeBtn'), changeLeft: $('changeLeft'), limitNote: $('limitNote'),
     timer: $('timer'), timerTitle: $('timerTitle'), timerHeading: $('timerHeading'),
     timerWhat: $('timerWhat'), timerDesc: $('timerDesc'), timerLeft: $('timerLeft'),
     timerProgress: $('timerProgress'), timerEnd: $('timerEnd'), timerDone: $('timerDone'),
-    stamp: $('stampBtn'), early: $('earlyBtn'), quit: $('quitBtn'),
+    stamp: $('stampBtn'), quit: $('quitBtn'),
     boardTitle: $('boardTitle'), boardRange: $('boardRange'), boardDays: $('boardDays'),
     boardEmpty: $('boardEmpty'), boardListTitle: $('boardListTitle'), boardTotal: $('boardTotal'), boardList: $('boardList'),
     notice: $('notice')
@@ -246,12 +245,9 @@
   }
 
   function fillTicket(pick) {
-    el.ticketTime.textContent = `${pick.time}분`;
-    el.ticketCat.textContent = getCategoryLabel(pick.category);
-    el.ticketCatIcon.setAttribute('href', `#c-${pick.category in state.categories ? pick.category : 'rest'}`);
+    el.ticketMeta.textContent = `${getCategoryLabel(pick.category)} · ${pick.time}분`;
     el.ticketTitle.textContent = pick.title;
     el.ticketDesc.textContent = pick.desc || '';
-    el.ticketNo.textContent = `${pad2(pick.time)}-${pick.id.split('-').pop()}`;
   }
 
   function renderOrder() {
@@ -261,7 +257,7 @@
     const isReady = state.status === 'ready';
     el.loadError.hidden = state.status !== 'error';
     el.ticket.hidden = state.status === 'error';
-    el.lead.hidden = state.status === 'error';
+    el.lead.hidden = state.status !== 'loading';
 
     if (!isReady) {
       el.lead.textContent = '메뉴를 불러오고 있어요.';
@@ -274,7 +270,6 @@
       return;
     }
 
-    el.lead.textContent = `${state.time}분 메뉴 ${getPool(state.time).length}가지가 준비돼 있어요.`;
     const pick = getPick(state.time);
     const left = state.today.changesLeft;
 
@@ -317,8 +312,6 @@
     el.timerEnd.textContent = t.isDone ? '' : `${t.time}분 · 끝나는 시각 ${formatHour(t.startAt + t.duration)}`;
     el.timerEnd.hidden = t.isDone;
     el.timerDone.hidden = !t.isDone;
-    el.stamp.hidden = !t.isDone;
-    el.early.hidden = t.isDone;
     renderClock();
     syncTicker();
   }
@@ -333,17 +326,15 @@
   }
 
   function finishTimer(message) {
-    const wasOnEarly = document.activeElement === el.early;
     state.timer.isDone = true;
     writeJSON(KEY.timer, state.timer);
     renderTimer();
-    if (wasOnEarly) el.stamp.focus();
     say(message);
   }
 
   function tickTimer() {
     if (!state.timer || state.timer.isDone) return;
-    if (getRemaining() <= 0) finishTimer('시간이 다 됐어요. 완료 도장 찍기 버튼을 눌러 주세요.');
+    if (getRemaining() <= 0) finishTimer('시간이 다 됐어요. 다 했어요, 도장 찍기 버튼을 눌러 주세요.');
     else renderClock();
   }
 
@@ -376,15 +367,13 @@
 
     const days = document.createDocumentFragment();
     DAY_NAMES.forEach((name, i) => {
-      const date = addDays(monday, i);
-      const key = toDateKey(date);
+      const key = toDateKey(addDays(monday, i));
       const count = items.filter((it) => it.date === key).length;
       const li = document.createElement('li');
       li.className = 'board__day';
       if (key === todayKey) li.setAttribute('aria-current', 'date');
 
       li.appendChild(makeText('span', 'board__dayname', name));
-      li.appendChild(makeText('span', 'board__date', String(date.getDate())));
       if (count > 0) {
         li.appendChild(makeSvg(`board__stamp${key === state.newStampDate ? ' board__stamp--new' : ''}`, '#s-done'));
         li.appendChild(makeText('span', 'board__count', `${count}개`));
@@ -409,11 +398,8 @@
       const dayIndex = (new Date(`${it.date}T00:00:00`).getDay() + 6) % 7;
       const li = document.createElement('li');
       li.className = 'board__item';
-      li.appendChild(makeSvg('ico', `#c-${['move', 'hand', 'tidy', 'outside', 'rest'].includes(it.category) ? it.category : 'rest'}`));
-      const text = document.createElement('span');
-      text.appendChild(makeText('span', 'board__when', `${DAY_NAMES[dayIndex]} · ${it.time}분`));
-      text.appendChild(document.createTextNode(` ${it.title}`));
-      li.appendChild(text);
+      li.appendChild(makeText('span', 'board__when', `${DAY_NAMES[dayIndex]} · ${it.time}분`));
+      li.appendChild(makeText('span', 'board__what', it.title));
       list.appendChild(li);
     });
     el.boardList.replaceChildren(list);
@@ -551,7 +537,6 @@
   el.start.addEventListener('click', onStart);
   el.ticketInner.addEventListener('animationend', () => el.ticketInner.classList.remove('ticket__inner--spin'));
 
-  el.early.addEventListener('click', () => finishTimer('잘하셨어요! 완료 도장 찍기 버튼을 눌러 주세요.'));
   el.stamp.addEventListener('click', onStamp);
   el.quit.addEventListener('click', onQuit);
 

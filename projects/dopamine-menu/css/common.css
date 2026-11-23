@@ -1,10 +1,10 @@
 /* 디자인 토큰 */
 :root {
-  --color-bg: #f6f5f2;          /* 밝은 웜그레이 */
-  --color-surface: #ffffff;     /* 카드 */
-  --color-soft: #fdf1ef;        /* 연한 빨강 (선택·강조 바탕) */
-  --color-text: #18181b;        /* 대비 16.3:1 (배경) */
-  --color-text-sub: #45434a;    /* 대비 8.9:1 */
+  --color-bg: #ffffff;          /* 흰 배경 */
+  --color-surface: #ffffff;     /* 버튼 바탕 */
+  --color-soft: #f4f3f0;        /* 카드·블록 바탕 (연한 회색) */
+  --color-text: #18181b;        /* 대비 17.7:1 (흰 배경) */
+  --color-text-sub: #45434a;    /* 대비 9.8:1, 회색 블록 위 8.7:1 */
   --color-primary: #a51d14;     /* 도장 빨강, 흰 바탕 7.5:1 */
   --color-primary-hover: #861710;
   --color-on-primary: #ffffff;  /* 빨강 위 흰 글자 7.5:1 */
@@ -17,7 +17,6 @@
   --radius: 1rem;
   --radius-lg: 1.5rem;
   --radius-pill: 999px;         /* 알약 모양은 아주 큰 값이 필요 */
-  --shadow: 0 0.125rem 0.25rem color-mix(in srgb, var(--color-text) 6%, transparent), 0 0.5rem 1.5rem color-mix(in srgb, var(--color-text) 7%, transparent);
   --touch: 3.5rem;
   --page-pad: clamp(1rem, 4vw, 1.5rem);
 }
@@ -36,7 +35,6 @@ html[data-contrast="high"] {
   --color-focus: #d00000;
   --color-divider: #000000;
   --border-w: 0.25rem;
-  --shadow: none;
 }
 
 /* 글자 크기 단계 (기본 18px) */
