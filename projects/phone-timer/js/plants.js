@@ -1,5 +1,5 @@
 /* 식물 데이터 · 단계별 SVG (씨앗 → 새싹 → 잎 → 꽃) */
-(function () {
+(function (GT) {
   'use strict';
 
   // 해금 기준: 모은 시간(분)
@@ -175,5 +175,5 @@
     return 0;
   }
 
-  window.Plants = { SPECIES: SPECIES, STAGES: STAGES, find: find, svg: svg, stageOf: stageOf };
-})();
+  GT.plants = { SPECIES: SPECIES, STAGES: STAGES, find: find, svg: svg, stageOf: stageOf };
+})(window.GT = window.GT || {});
