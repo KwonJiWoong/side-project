@@ -1,21 +1,23 @@
 /* 디자인 토큰 */
 :root {
-  --color-bg: #f7f0e1;          /* 크라프트지 아이보리 */
-  --color-surface: #fffdf6;     /* 영수증 종이 */
-  --color-soft: #efe3c8;        /* 진한 크라프트 */
-  --color-text: #2a1f16;        /* 대비 14.2:1 (배경) */
-  --color-text-sub: #4a3b2e;    /* 대비 9.5:1 */
-  --color-primary: #9c1c16;     /* 빨간 도장, 대비 7.1:1 */
-  --color-primary-hover: #7d150f;
-  --color-on-primary: #ffffff;  /* 도장색 위 흰 글자 8.1:1 */
-  --color-line: #8c7a62;        /* 테두리·점선 3.6:1 */
+  --color-bg: #f6f5f2;          /* 밝은 웜그레이 */
+  --color-surface: #ffffff;     /* 카드 */
+  --color-soft: #fdf1ef;        /* 연한 빨강 (선택·강조 바탕) */
+  --color-text: #18181b;        /* 대비 16.3:1 (배경) */
+  --color-text-sub: #45434a;    /* 대비 8.9:1 */
+  --color-primary: #a51d14;     /* 도장 빨강, 흰 바탕 7.5:1 */
+  --color-primary-hover: #861710;
+  --color-on-primary: #ffffff;  /* 빨강 위 흰 글자 7.5:1 */
+  --color-line: #8a8580;        /* 버튼 테두리 3.4:1 */
   --color-focus: #0b3d91;
+  --color-divider: color-mix(in srgb, var(--color-line) 40%, transparent);
 
   --font-sans: 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
-  --border-w: 0.1875rem;
-  --radius: 0.75rem;
-  --radius-lg: 1.25rem;
+  --border-w: 0.125rem;
+  --radius: 1rem;
+  --radius-lg: 1.5rem;
   --radius-pill: 999px;         /* 알약 모양은 아주 큰 값이 필요 */
+  --shadow: 0 0.125rem 0.25rem color-mix(in srgb, var(--color-text) 6%, transparent), 0 0.5rem 1.5rem color-mix(in srgb, var(--color-text) 7%, transparent);
   --touch: 3.5rem;
   --page-pad: clamp(1rem, 4vw, 1.5rem);
 }
@@ -32,7 +34,9 @@ html[data-contrast="high"] {
   --color-on-primary: #ffffff;
   --color-line: #000000;
   --color-focus: #d00000;
+  --color-divider: #000000;
   --border-w: 0.25rem;
+  --shadow: none;
 }
 
 /* 글자 크기 단계 (기본 18px) */
@@ -46,7 +50,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.7;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.005em;
   color: var(--color-text);
   background: var(--color-bg);
   word-break: keep-all;
