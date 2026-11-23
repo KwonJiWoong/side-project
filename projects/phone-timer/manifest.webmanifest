@@ -1,0 +1,16 @@
+{
+  "name": "자라는 시간 - 폰 내려놓기 타이머",
+  "short_name": "자라는 시간",
+  "description": "폰을 안 보는 동안 화분이 자라는 폰 내려놓기 타이머",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f3ea",
+  "theme_color": "#2b5a1b",
+  "icons": [
+    { "src": "images/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "images/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

@@ -9,6 +9,9 @@
   <title>자라는 시간 - 폰 내려놓기 타이머</title>
   <meta name="description" content="폰을 안 보는 동안 화분이 자라고, 다른 앱으로 넘어가면 시드는 폰 내려놓기 타이머입니다. 설치 없이 웹에서 바로 쓰고, 키운 식물은 내 정원에 모입니다.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="images/icon-180.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-title" content="자라는 시간">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/common.css">
   <link rel="stylesheet" href="css/style.css">
@@ -36,6 +39,11 @@
     <symbol id="i-redo" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3L19.5 9M19.5 4.5V9H15" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7M6 9.5V20h12V9.5M10 20v-5.5h4V20" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6.5 8h11v3a5.5 5.5 0 0 1-11 0zM12 16.5V21" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V3.5M7.5 8 12 3.5 16.5 8M5 12.5V20h14v-7.5" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-call" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2 2A16.5 16.5 0 0 1 4.5 5.5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
   </svg>
 
   <!-- 헤더 -->
@@ -81,6 +89,7 @@
             </div>
             <p class="field__error" id="custom-error" role="alert"></p>
           </div>
+          <p class="pick__note" id="battery-note" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plug"></use></svg><span>50분 이상은 화면이 오래 켜져 있어요. <strong>충전기를 꽂아 두면</strong> 마음 편히 할 수 있어요.</span></p>
         </fieldset>
 
         <!-- 식물 고르기 -->
@@ -98,7 +107,10 @@
               <input class="check__input" id="sound-toggle" type="checkbox" checked>
               <span class="check__label"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sound"></use></svg>다 끝나면 소리 내기</span>
             </label>
-            <button class="btn btn--sm" id="guide-open" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-info"></use></svg>사용 안내 다시 보기</button>
+            <div class="setting-row__btns">
+              <button class="btn btn--sm" id="guide-open" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-info"></use></svg>사용 안내 다시 보기</button>
+              <button class="btn btn--sm" id="install-open" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg>홈 화면에 추가하기</button>
+            </div>
           </div>
         </fieldset>
 
@@ -116,19 +128,22 @@
         <svg class="gauge" viewBox="0 0 220 220" aria-hidden="true" focusable="false">
           <circle class="gauge__track" cx="110" cy="110" r="100"></circle>
           <circle class="gauge__bar" id="gauge-bar" cx="110" cy="110" r="100"></circle>
+          <circle class="gauge__bonus" id="gauge-bonus" cx="110" cy="110" r="100"></circle>
         </svg>
         <div class="run__plant" id="run-plant"></div>
         <figcaption class="run__stage-label" id="run-stage-label">씨앗을 심었어요</figcaption>
       </figure>
 
       <p class="run__time-wrap">
-        <span class="run__time-title">남은 시간</span>
+        <span class="run__time-title" id="run-time-title">남은 시간</span>
         <time class="run__time" id="run-time" aria-hidden="true">25:00</time>
       </p>
       <p class="sr-only" id="run-live" aria-live="polite" aria-atomic="true"></p>
 
       <p class="run__lock" id="run-lock"></p>
 
+      <p class="run__bonus-desc" id="bonus-desc" hidden>그대로 두면 보너스 시간이 최대 30분까지 더 쌓여요.</p>
+      <button class="btn btn--primary btn--lg run__done" id="done-btn" type="button" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-garden"></use></svg>다 했어요, 정원에 심기</button>
       <button class="btn btn--ghost run__quit" id="quit-btn" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-exit"></use></svg>그만두기</button>
     </section>
 
@@ -156,8 +171,8 @@
           <dd class="stats__value" id="stat-total">0분</dd>
         </div>
         <div class="stats__item">
-          <dt class="stats__label">연속 성공</dt>
-          <dd class="stats__value" id="stat-streak">0일</dd>
+          <dt class="stats__label">이번 주 성공</dt>
+          <dd class="stats__value" id="stat-week">0일</dd>
         </div>
         <div class="stats__item">
           <dt class="stats__label">심은 식물</dt>
@@ -172,13 +187,19 @@
       </section>
 
       <section class="garden__plot" aria-labelledby="plot-title">
-        <h3 class="garden__plot-title" id="plot-title">심은 식물</h3>
-        <ul class="plot" id="plot"></ul>
+        <h3 class="garden__plot-title" id="plot-title">주간 화단</h3>
+        <p class="garden__plot-desc">매주 월요일에 새 화단이 열려요.</p>
+        <div class="beds" id="beds"></div>
         <div class="empty" id="garden-empty" hidden>
           <p class="empty__text">아직 심은 식물이 없어요.</p>
           <a class="btn btn--primary btn--lg" href="#timer"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg>첫 타이머 시작</a>
         </div>
       </section>
+
+      <div class="share" id="share-box">
+        <button class="btn btn--primary btn--lg btn--block" id="share-btn" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-share"></use></svg><span id="share-label">이번 주 화단 사진 저장하기</span></button>
+        <p class="share__status" id="share-status" role="status"></p>
+      </div>
 
       <p class="notice"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-info"></use></svg>정원은 이 기기의 브라우저에만 저장돼요. 브라우저 데이터를 지우면 정원이 사라져요.</p>
 
@@ -201,6 +222,8 @@
       <li class="guide-steps__item"><svg class="ico guide-steps__ico" aria-hidden="true" focusable="false"><use href="#i-sun"></use></svg><span><strong>화면은 켜둔 채로</strong> 두세요. 화면이 꺼져도 ‘나간 것’으로 봐요.</span></li>
       <li class="guide-steps__item"><svg class="ico guide-steps__ico" aria-hidden="true" focusable="false"><use href="#i-flip"></use></svg><span>폰을 <strong>뒤집어 엎어두고</strong> 할 일을 하세요.</span></li>
       <li class="guide-steps__item"><svg class="ico guide-steps__ico" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg><span>다른 앱으로 넘어가도 <strong>10초 안에 돌아오면</strong> 괜찮아요. 그보다 길면 식물이 시들어요.</span></li>
+      <li class="guide-steps__item"><svg class="ico guide-steps__ico" aria-hidden="true" focusable="false"><use href="#i-call"></use></svg><span>전화처럼 <strong>급한 일</strong>이면 5분 안에 돌아와 <strong>한 번 이어서</strong> 할 수 있어요.</span></li>
+      <li class="guide-steps__item"><svg class="ico guide-steps__ico" aria-hidden="true" focusable="false"><use href="#i-star"></use></svg><span>꽃이 핀 뒤에도 그대로 두면 <strong>보너스 시간</strong>이 쌓여요. 늦게 확인해도 괜찮아요.</span></li>
     </ol>
     <p class="dialog__note" id="guide-lock-note" hidden></p>
     <div class="dialog__actions">
@@ -216,6 +239,31 @@
     <div class="dialog__actions">
       <button class="btn btn--danger-fill btn--lg btn--block" id="confirm-ok" type="button">그만두기</button>
       <button class="btn btn--lg btn--block" id="confirm-cancel" type="button">계속하기</button>
+    </div>
+  </dialog>
+
+  <!-- 홈 화면에 추가 -->
+  <dialog class="dialog" id="install-dialog" aria-labelledby="install-title">
+    <h2 class="dialog__title" id="install-title">홈 화면에 추가하기</h2>
+    <p class="dialog__desc">홈 화면에 아이콘을 두면 앱처럼 바로 열 수 있어요. 설치할 것은 없어요.</p>
+    <button class="btn btn--primary btn--lg btn--block install__now" id="install-now" type="button" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg>지금 홈 화면에 추가</button>
+    <section class="install__how" aria-labelledby="install-ios">
+      <h3 class="install__os" id="install-ios">아이폰 (Safari)</h3>
+      <ol class="install__steps">
+        <li>아래쪽 <strong>공유 버튼</strong>(네모에 위 화살표)을 눌러요.</li>
+        <li>목록에서 <strong>‘홈 화면에 추가’</strong>를 눌러요.</li>
+      </ol>
+      <p class="install__note">iOS 18.4 이상이어야 홈 화면에서 연 앱도 화면 켜짐이 유지돼요. 그보다 낮으면 Safari에서 바로 쓰세요.</p>
+    </section>
+    <section class="install__how" aria-labelledby="install-android">
+      <h3 class="install__os" id="install-android">안드로이드 (Chrome)</h3>
+      <ol class="install__steps">
+        <li>오른쪽 위 <strong>점 세 개(⋮)</strong>를 눌러요.</li>
+        <li><strong>‘홈 화면에 추가’</strong> 또는 <strong>‘앱 설치’</strong>를 눌러요.</li>
+      </ol>
+    </section>
+    <div class="dialog__actions">
+      <button class="btn btn--lg btn--block" id="install-close" type="button">닫기</button>
     </div>
   </dialog>
 </body>
