@@ -17,6 +17,8 @@ phone-timer/
 ├─ index.html              화면 4개(시작·진행·결과·정원) + 대화 상자 3개 + 아이콘 모음 + 공유 미리보기(OG)
 ├─ privacy.html            개인정보 처리방침 (JS 없음, CSS만)
 ├─ manifest.webmanifest    홈 화면에 추가
+├─ sitemap.xml             검색 엔진용 페이지 목록 (Search Console에 제출)
+├─ llms.txt                AI 검색용 서비스 요약 (사람이 읽는 글 그대로)
 ├─ css/
 │  ├─ reset.css            브라우저 초기화
 │  ├─ common.css           토큰(밝은 화면 / 진행 화면), 부품(.btn · .field · .check · .notice · .dialog)
@@ -143,7 +145,15 @@ phone-timer/
 
 ---
 
-## 6. 자주 하는 작업
+## 6. 검색 · AI 검색
+
+- `index.html` `<head>`: `canonical`, `robots`, 설명(`description`), 공유 미리보기(OG), 구조화 데이터 JSON-LD 2개(`WebApplication`, `FAQPage`)
+- 시작 화면 아래 **자주 묻는 질문**(`<details>`)은 JSON-LD `FAQPage`와 **문구가 똑같아야** 한다. 한쪽을 고치면 다른 쪽도 고친다
+- 기능·해금 기준·규칙이 바뀌면 `llms.txt`와 FAQ도 함께 고친다
+- 주소(도메인)가 바뀌면 `canonical` · `og:url` · `og:image` · JSON-LD `url`·`image` · `sitemap.xml` · `llms.txt`를 한꺼번에 고친다
+- `robots.txt`는 도메인 맨 위에만 효과가 있어서 GitHub Pages 하위 폴더에는 두지 않는다. 대신 `sitemap.xml`을 Search Console에 직접 제출한다
+
+## 7. 자주 하는 작업
 
 | 하고 싶은 것 | 고칠 곳 |
 |---|---|
@@ -156,7 +166,7 @@ phone-timer/
 
 ---
 
-## 7. 확인 방법
+## 8. 확인 방법
 
 - 주소 끝에 `?fast` → 1분이 1초 (10초 유예 · 5분 이어하기는 실제 시간 그대로)
 - 이탈 확인: 다른 탭으로 갔다 오기 (`visibilitychange`)
