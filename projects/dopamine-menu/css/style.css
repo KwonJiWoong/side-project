@@ -259,21 +259,24 @@ main:focus { outline: none; }
 }
 .board__when { flex-shrink: 0; font-weight: 700; color: var(--color-text-sub); }
 
+/* 광고 자리 (도장판 아래 한 곳, 승인 전에는 숨김) */
+.ad {
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+  border-top: 0.0625rem solid var(--color-divider);
+}
+.ad__label { font-size: 0.8125rem; color: var(--color-text-sub); }
+/* 광고가 늦게 떠도 화면이 밀리지 않게 자리를 미리 잡아 둠 */
+.ad__box { min-height: 15.625rem; margin-top: 0.5rem; }
+.ad__unit { display: block; }
+
 /* 푸터 */
 .footer {
   padding-block: 1.25rem 1.75rem;
   border-top: 0.0625rem solid var(--color-divider);
 }
 .footer__inner { text-align: center; }
-.footer__link {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--touch);
-  font-weight: 700;
-  color: var(--color-text-sub);
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-}
+.footer__copy { font-size: 0.875rem; color: var(--color-text-sub); }
 
 /* 모션 최소화: 뒤집기 대신 페이드 */
 @media (prefers-reduced-motion: reduce) {
