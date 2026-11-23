@@ -5,23 +5,17 @@
   const TIMES = [5, 15, 30];
   const CHANGE_LIMIT = 3;
   const RECENT_SIZE = 3;
-  const SIZE_LABELS = ['보통', '크게', '아주 크게'];
   const DAY_NAMES = ['월', '화', '수', '목', '금', '토', '일'];
   const PAGE_TITLE = document.title;
   const KEY = {
-    size: 'dopamine-size',
-    contrast: 'dopamine-contrast',
     today: 'dopamine-today',
     recent: 'dopamine-recent',
     timer: 'dopamine-timer',
     stamps: 'dopamine-stamps'
   };
 
-  const root = document.documentElement;
   const $ = (id) => document.getElementById(id);
   const el = {
-    viewSet: $('viewSet'), viewBtn: $('viewBtn'),
-    fontDown: $('fontDown'), fontUp: $('fontUp'), sizeText: $('sizeText'), contrast: $('contrastBtn'),
     storageNote: $('storageNote'),
     order: $('order'), orderTitle: $('orderTitle'),
     tabs: Array.from(document.querySelectorAll('[role="tab"]')),
@@ -29,13 +23,12 @@
     panel: $('orderPanel'), lead: $('orderLead'),
     loadError: $('loadError'), retry: $('retryBtn'),
     ticket: $('ticket'), ticketInner: $('ticketInner'), front: $('ticketFront'), back: $('ticketBack'),
-    ticketTime: $('ticketTime'), ticketCat: $('ticketCat'), ticketCatIcon: $('ticketCatIcon'),
-    ticketTitle: $('ticketTitle'), ticketDesc: $('ticketDesc'), ticketNo: $('ticketNo'),
+    ticketMeta: $('ticketMeta'), ticketTitle: $('ticketTitle'), ticketDesc: $('ticketDesc'),
     draw: $('drawBtn'), start: $('startBtn'), change: $('changeBtn'), changeLeft: $('changeLeft'), limitNote: $('limitNote'),
     timer: $('timer'), timerTitle: $('timerTitle'), timerHeading: $('timerHeading'),
     timerWhat: $('timerWhat'), timerDesc: $('timerDesc'), timerLeft: $('timerLeft'),
     timerProgress: $('timerProgress'), timerEnd: $('timerEnd'), timerDone: $('timerDone'),
-    stamp: $('stampBtn'), early: $('earlyBtn'), quit: $('quitBtn'),
+    stamp: $('stampBtn'), quit: $('quitBtn'),
     boardTitle: $('boardTitle'), boardRange: $('boardRange'), boardDays: $('boardDays'),
     boardEmpty: $('boardEmpty'), boardListTitle: $('boardListTitle'), boardTotal: $('boardTotal'), boardList: $('boardList'),
     notice: $('notice')
@@ -110,8 +103,6 @@
     recent: { 5: [], 15: [], 30: [] },
     timer: null,                  // { id, title, desc, category, time, startAt, duration, isDone }
     stamps: null,                 // { weekStart, items: [] }
-    size: 0,
-    isHighContrast: false,
     newStampDate: null
   };
   let ticker = null;
@@ -208,25 +199,6 @@
     requestAnimationFrame(() => { el.notice.textContent = message; });
   }
 
-  /* 보기 설정 */
-  function applyView() {
-    if (state.size > 0) root.dataset.size = String(state.size);
-    else delete root.dataset.size;
-    if (state.isHighContrast) root.dataset.contrast = 'high';
-    else delete root.dataset.contrast;
-    el.sizeText.textContent = SIZE_LABELS[state.size];
-    el.fontDown.disabled = state.size === 0;
-    el.fontUp.disabled = state.size === SIZE_LABELS.length - 1;
-    el.contrast.setAttribute('aria-pressed', String(state.isHighContrast));
-  }
-
-  function changeSize(step) {
-    state.size = Math.min(Math.max(state.size + step, 0), SIZE_LABELS.length - 1);
-    store.set(KEY.size, String(state.size));
-    applyView();
-    say(`글자 크기를 ${SIZE_LABELS[state.size]}로 바꿨어요.`);
-  }
-
   /* 그리기: 메뉴판 */
   function renderTabs() {
     el.tabs.forEach((tab) => {
@@ -246,12 +218,9 @@
   }
 
   function fillTicket(pick) {
-    el.ticketTime.textContent = `${pick.time}분`;
-    el.ticketCat.textContent = getCategoryLabel(pick.category);
-    el.ticketCatIcon.setAttribute('href', `#c-${pick.category in state.categories ? pick.category : 'rest'}`);
+    el.ticketMeta.textContent = `${getCategoryLabel(pick.category)} · ${pick.time}분`;
     el.ticketTitle.textContent = pick.title;
     el.ticketDesc.textContent = pick.desc || '';
-    el.ticketNo.textContent = `${pad2(pick.time)}-${pick.id.split('-').pop()}`;
   }
 
   function renderOrder() {
@@ -261,7 +230,7 @@
     const isReady = state.status === 'ready';
     el.loadError.hidden = state.status !== 'error';
     el.ticket.hidden = state.status === 'error';
-    el.lead.hidden = state.status === 'error';
+    el.lead.hidden = state.status !== 'loading';
 
     if (!isReady) {
       el.lead.textContent = '메뉴를 불러오고 있어요.';
@@ -274,7 +243,6 @@
       return;
     }
 
-    el.lead.textContent = `${state.time}분 메뉴 ${getPool(state.time).length}가지가 준비돼 있어요.`;
     const pick = getPick(state.time);
     const left = state.today.changesLeft;
 
@@ -317,8 +285,6 @@
     el.timerEnd.textContent = t.isDone ? '' : `${t.time}분 · 끝나는 시각 ${formatHour(t.startAt + t.duration)}`;
     el.timerEnd.hidden = t.isDone;
     el.timerDone.hidden = !t.isDone;
-    el.stamp.hidden = !t.isDone;
-    el.early.hidden = t.isDone;
     renderClock();
     syncTicker();
   }
@@ -333,17 +299,15 @@
   }
 
   function finishTimer(message) {
-    const wasOnEarly = document.activeElement === el.early;
     state.timer.isDone = true;
     writeJSON(KEY.timer, state.timer);
     renderTimer();
-    if (wasOnEarly) el.stamp.focus();
     say(message);
   }
 
   function tickTimer() {
     if (!state.timer || state.timer.isDone) return;
-    if (getRemaining() <= 0) finishTimer('시간이 다 됐어요. 완료 도장 찍기 버튼을 눌러 주세요.');
+    if (getRemaining() <= 0) finishTimer('시간이 다 됐어요. 다 했어요, 도장 찍기 버튼을 눌러 주세요.');
     else renderClock();
   }
 
@@ -376,15 +340,13 @@
 
     const days = document.createDocumentFragment();
     DAY_NAMES.forEach((name, i) => {
-      const date = addDays(monday, i);
-      const key = toDateKey(date);
+      const key = toDateKey(addDays(monday, i));
       const count = items.filter((it) => it.date === key).length;
       const li = document.createElement('li');
       li.className = 'board__day';
       if (key === todayKey) li.setAttribute('aria-current', 'date');
 
       li.appendChild(makeText('span', 'board__dayname', name));
-      li.appendChild(makeText('span', 'board__date', String(date.getDate())));
       if (count > 0) {
         li.appendChild(makeSvg(`board__stamp${key === state.newStampDate ? ' board__stamp--new' : ''}`, '#s-done'));
         li.appendChild(makeText('span', 'board__count', `${count}개`));
@@ -409,11 +371,8 @@
       const dayIndex = (new Date(`${it.date}T00:00:00`).getDay() + 6) % 7;
       const li = document.createElement('li');
       li.className = 'board__item';
-      li.appendChild(makeSvg('ico', `#c-${['move', 'hand', 'tidy', 'outside', 'rest'].includes(it.category) ? it.category : 'rest'}`));
-      const text = document.createElement('span');
-      text.appendChild(makeText('span', 'board__when', `${DAY_NAMES[dayIndex]} · ${it.time}분`));
-      text.appendChild(document.createTextNode(` ${it.title}`));
-      li.appendChild(text);
+      li.appendChild(makeText('span', 'board__when', `${DAY_NAMES[dayIndex]} · ${it.time}분`));
+      li.appendChild(makeText('span', 'board__what', it.title));
       list.appendChild(li);
     });
     el.boardList.replaceChildren(list);
@@ -509,19 +468,6 @@
   }
 
   /* 이벤트 */
-  el.viewBtn.addEventListener('click', () => {
-    const isOpen = el.viewBtn.getAttribute('aria-expanded') === 'true';
-    el.viewBtn.setAttribute('aria-expanded', String(!isOpen));
-  });
-  el.fontDown.addEventListener('click', () => changeSize(-1));
-  el.fontUp.addEventListener('click', () => changeSize(1));
-  el.contrast.addEventListener('click', () => {
-    state.isHighContrast = !state.isHighContrast;
-    store.set(KEY.contrast, state.isHighContrast ? 'high' : '');
-    applyView();
-    say(state.isHighContrast ? '고대비 보기를 켰어요.' : '고대비 보기를 껐어요.');
-  });
-
   el.tablist.addEventListener('click', (e) => {
     const tab = e.target.closest('[role="tab"]');
     if (tab) selectTab(Number(tab.dataset.time), false);
@@ -551,7 +497,6 @@
   el.start.addEventListener('click', onStart);
   el.ticketInner.addEventListener('animationend', () => el.ticketInner.classList.remove('ticket__inner--spin'));
 
-  el.early.addEventListener('click', () => finishTimer('잘하셨어요! 완료 도장 찍기 버튼을 눌러 주세요.'));
   el.stamp.addEventListener('click', onStamp);
   el.quit.addEventListener('click', onQuit);
 
@@ -565,11 +510,6 @@
   });
 
   /* 시작 */
-  const savedSize = Number(store.get(KEY.size));
-  state.size = Number.isInteger(savedSize) ? Math.min(Math.max(savedSize, 0), SIZE_LABELS.length - 1) : 0;
-  state.isHighContrast = store.get(KEY.contrast) === 'high';
-  applyView();
-  el.viewSet.classList.add('view-set--ready');
   el.storageNote.hidden = store.isOk;
 
   ensureToday();

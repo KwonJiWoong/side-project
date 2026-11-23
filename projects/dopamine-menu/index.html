@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="숏폼 열기 전에 딱 1번만 뽑아 보세요. 5분·15분·30분 동안 휴대폰 없이 할 수 있는 짧은 딴짓을 메뉴판처럼 골라 드리고, 다 하면 주간 도장판에 도장을 찍어 드려요.">
-  <meta name="theme-color" content="#efe3c8">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121214" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
   <title>오늘의 딴짓 메뉴 | 숏폼 대신 고르는 도파민 메뉴판</title>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" integrity="sha384-ei/b2Mz3F5J8nqTvpKS89CkzDCuD7Cc+/F+OsaPUKItzHgLNKnGq3rjtYq/B7RnO" crossorigin="anonymous">
@@ -17,25 +19,14 @@
 
   <!-- 아이콘 모음 -->
   <svg class="sprite" aria-hidden="true" focusable="false">
-    <symbol id="i-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M3 11.5 12 4l9 7.5M6 10v10h12V10"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M10 20v-5h4v5"/></symbol>
-    <symbol id="i-text-minus" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="10.5" cy="10.5" r="6.5"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="m15.5 15.5 5 5M7.5 10.5h6"/></symbol>
-    <symbol id="i-text-plus" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="10.5" cy="10.5" r="6.5"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="m15.5 15.5 5 5M7.5 10.5h6M10.5 7.5v6"/></symbol>
-    <symbol id="i-contrast" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="8.5"/><path fill="currentColor" d="M12 3.5a8.5 8.5 0 0 1 0 17z"/></symbol>
     <symbol id="i-draw" viewBox="0 0 24 24"><rect fill="none" stroke="currentColor" stroke-width="2.2" x="4" y="4" width="16" height="16" rx="3"/><circle fill="currentColor" cx="9" cy="9" r="1.6"/><circle fill="currentColor" cx="15" cy="15" r="1.6"/><circle fill="currentColor" cx="15" cy="9" r="1.6"/><circle fill="currentColor" cx="9" cy="15" r="1.6"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
     <symbol id="i-change" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 9h13l-3.5-3.5M20 15H7l3.5 3.5"/></symbol>
     <symbol id="i-back" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 9h11a5 5 0 0 1 0 10H9"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m8 5-4 4 4 4"/></symbol>
-    <symbol id="i-clock" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="8.5"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 7.5V12l3 2"/></symbol>
     <symbol id="i-stamp" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M9.5 3.5h5v4.5l2 4h-9l2-4zM5 12h14v4H5zM4 20h16"/></symbol>
     <symbol id="i-retry" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M19.5 4v4h-4"/></symbol>
     <symbol id="i-alert" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M12 3 2 20h20z"/><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M12 10v4.5M12 17.5v.5"/></symbol>
     <symbol id="i-info" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2.2" cx="12" cy="12" r="8.5"/><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M12 11v5.5M12 7.5v.5"/></symbol>
-    <!-- 활동 종류 -->
-    <symbol id="c-move" viewBox="0 0 24 24"><circle fill="none" stroke="currentColor" stroke-width="2" cx="14" cy="4.5" r="2"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m7 10 4-2.5 3 2 2.5 3H20M11 7.5 9.5 14l3.5 2.5V21M9.5 14 6 20"/></symbol>
-    <symbol id="c-hand" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11m0-6.5a1.5 1.5 0 0 1 3 0V11m0-5a1.5 1.5 0 0 1 3 0v6m0-3.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7h-1a6 6 0 0 1-5-2.7L4.5 15a1.6 1.6 0 0 1 2.6-1.9L8 14"/></symbol>
-    <symbol id="c-tidy" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M3.5 8 12 4l8.5 4v9L12 21l-8.5-4zM3.5 8 12 12l8.5-4M12 12v9"/></symbol>
-    <symbol id="c-outside" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 3 6 11h3l-4 6h14l-4-6h3zM12 17v4"/></symbol>
-    <symbol id="c-rest" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 9.5h12v4.5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM16 11h1.5a2.5 2.5 0 0 1 0 5H16M8 3.5v3M12 3.5v3"/></symbol>
     <!-- 완료 도장 -->
     <symbol id="s-done" viewBox="0 0 64 64"><circle fill="none" stroke="currentColor" stroke-width="3.5" cx="32" cy="32" r="28"/><circle fill="none" stroke="currentColor" stroke-width="1.6" cx="32" cy="32" r="22.5"/><path fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" d="m20 33 8 8 16-17"/></symbol>
   </svg>
@@ -47,17 +38,6 @@
         <svg class="ico header__logo" aria-hidden="true" focusable="false"><use href="#s-done"></use></svg>
         오늘의 딴짓 메뉴
       </h1>
-      <a class="btn btn--home" href="#main" id="homeLink"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg> 처음으로</a>
-
-      <div class="view-set" id="viewSet">
-        <button type="button" class="btn btn--tool view-set__toggle" id="viewBtn" aria-expanded="false" aria-controls="viewPanel"><span class="view-set__mark" aria-hidden="true">가</span> 글자 크기·고대비 <span class="view-set__arrow" aria-hidden="true">▾</span></button>
-        <div class="tools view-set__panel" id="viewPanel" role="group" aria-label="보기 설정">
-          <p class="tools__label">글자 크기: <strong id="sizeText">보통</strong></p>
-          <button type="button" class="btn btn--tool" id="fontDown"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-text-minus"></use></svg> 작게</button>
-          <button type="button" class="btn btn--tool" id="fontUp"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-text-plus"></use></svg> 크게</button>
-          <button type="button" class="btn btn--tool btn--toggle tools__contrast" id="contrastBtn" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-contrast"></use></svg> 고대비 보기</button>
-        </div>
-      </div>
     </div>
   </header>
 
@@ -76,19 +56,18 @@
 
       <!-- 소개 -->
       <section class="intro" aria-labelledby="introTitle">
-        <p class="intro__eyebrow">숏폼 대신 한 접시</p>
         <h2 class="intro__title" id="introTitle">숏폼 열기 전에,<br>딱 1번만 뽑아 보세요</h2>
-        <p class="intro__desc">쉬는 시간을 고르면, 휴대폰 없이 할 수 있는 짧은 딴짓 하나를 골라 드려요.</p>
+        <p class="intro__desc">휴대폰 없이 할 짧은 딴짓 하나를 골라 드려요.</p>
       </section>
 
       <!-- 메뉴판 -->
       <section class="order" id="order" aria-labelledby="orderTitle">
-        <h2 class="section-title" id="orderTitle" tabindex="-1"><span class="section-title__num" aria-hidden="true">1</span> 얼마나 쉴까요?</h2>
+        <h2 class="section-title" id="orderTitle" tabindex="-1">얼마나 쉴까요?</h2>
 
         <div class="time-tabs" role="tablist" aria-label="쉬는 시간">
-          <button type="button" class="time-tabs__tab" role="tab" id="tab5" data-time="5" aria-selected="true" aria-controls="orderPanel"><span class="time-tabs__num">5</span>분 <span class="time-tabs__hint">잠깐</span></button>
-          <button type="button" class="time-tabs__tab" role="tab" id="tab15" data-time="15" aria-selected="false" aria-controls="orderPanel" tabindex="-1"><span class="time-tabs__num">15</span>분 <span class="time-tabs__hint">한숨 돌리기</span></button>
-          <button type="button" class="time-tabs__tab" role="tab" id="tab30" data-time="30" aria-selected="false" aria-controls="orderPanel" tabindex="-1"><span class="time-tabs__num">30</span>분 <span class="time-tabs__hint">제대로 쉬기</span></button>
+          <button type="button" class="time-tabs__tab" role="tab" id="tab5" data-time="5" aria-selected="true" aria-controls="orderPanel"><span class="time-tabs__num">5</span>분</button>
+          <button type="button" class="time-tabs__tab" role="tab" id="tab15" data-time="15" aria-selected="false" aria-controls="orderPanel" tabindex="-1"><span class="time-tabs__num">15</span>분</button>
+          <button type="button" class="time-tabs__tab" role="tab" id="tab30" data-time="30" aria-selected="false" aria-controls="orderPanel" tabindex="-1"><span class="time-tabs__num">30</span>분</button>
         </div>
 
         <div class="order__panel" id="orderPanel" role="tabpanel" aria-labelledby="tab5" tabindex="0">
@@ -105,18 +84,13 @@
           <div class="ticket" id="ticket" data-flipped="false">
             <div class="ticket__inner" id="ticketInner">
               <div class="ticket__face ticket__face--front" id="ticketFront">
-                <p class="ticket__badge">오늘의<br>추천</p>
                 <p class="ticket__mark" aria-hidden="true">?</p>
-                <p class="ticket__hint">아래 <strong>오늘의 추천 뽑기</strong>를 눌러 주세요</p>
+                <p class="sr-only">아직 뽑지 않았어요.</p>
               </div>
               <article class="ticket__face ticket__face--back" id="ticketBack" aria-labelledby="ticketTitle" aria-hidden="true" inert>
-                <p class="ticket__meta">
-                  <span class="ticket__time"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clock"></use></svg> <span id="ticketTime"></span></span>
-                  <span class="ticket__cat"><svg class="ico" aria-hidden="true" focusable="false"><use id="ticketCatIcon" href="#c-rest"></use></svg> <span id="ticketCat"></span></span>
-                </p>
+                <p class="ticket__meta" id="ticketMeta"></p>
                 <h3 class="ticket__title" id="ticketTitle" tabindex="-1"></h3>
                 <p class="ticket__desc" id="ticketDesc"></p>
-                <p class="ticket__no" aria-hidden="true">No. <span id="ticketNo"></span></p>
               </article>
             </div>
           </div>
@@ -135,7 +109,7 @@
 
       <!-- 타이머 -->
       <section class="timer" id="timer" aria-labelledby="timerTitle" hidden>
-        <h2 class="section-title" id="timerTitle" tabindex="-1"><span class="section-title__num" aria-hidden="true">2</span> <span id="timerHeading">지금 하는 중이에요</span></h2>
+        <h2 class="section-title" id="timerTitle" tabindex="-1"><span id="timerHeading">지금 하는 중이에요</span></h2>
         <article class="timer__card" aria-labelledby="timerWhat">
           <h3 class="timer__what" id="timerWhat"></h3>
           <p class="timer__desc" id="timerDesc"></p>
@@ -145,9 +119,8 @@
           <p class="timer__done" id="timerDone" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> 시간이 다 됐어요. 잘하셨어요!</p>
         </article>
         <div class="timer__actions">
-          <button type="button" class="btn btn--primary btn--block" id="stampBtn" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-stamp"></use></svg> 완료 도장 찍기</button>
-          <button type="button" class="btn btn--block" id="earlyBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg> 벌써 다 했어요</button>
-          <button type="button" class="btn btn--block" id="quitBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-back"></use></svg> 그만하고 메뉴로 돌아가기</button>
+          <button type="button" class="btn btn--primary btn--block" id="stampBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-stamp"></use></svg> 다 했어요, 도장 찍기</button>
+          <button type="button" class="btn btn--block" id="quitBtn"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-back"></use></svg> 그만하기</button>
         </div>
       </section>
 
@@ -159,7 +132,6 @@
         <p class="board__empty" id="boardEmpty">이번 주 첫 도장을 찍어 보세요</p>
         <h3 class="board__subtitle" id="boardListTitle" hidden>이번 주에 한 일 <span id="boardTotal"></span></h3>
         <ul class="board__list" id="boardList" aria-labelledby="boardListTitle"></ul>
-        <p class="board__help">도장판은 매주 월요일에 새로 시작해요.</p>
       </section>
 
       <p class="sr-only" id="notice" role="status"></p>
@@ -169,7 +141,6 @@
   <!-- 푸터 -->
   <footer class="footer">
     <div class="container footer__inner">
-      <p>휴대폰은 잠깐 내려놓고, 딴짓 한 접시 어떠세요?</p>
       <a class="footer__link" href="../../">포트폴리오로 돌아가기</a>
     </div>
   </footer>

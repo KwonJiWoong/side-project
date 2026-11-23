@@ -63,7 +63,7 @@
 │  ├─ garden-guide/     우리집 텃밭 수첩
 │  ├─ menu/             오늘 뭐 먹지? (‘귀여운 화면’ 버튼으로 밥풀이 테마 전환)
 │  ├─ politics-news/    오늘의 정치 소식 (scraper/를 GitHub Actions가 하루 3번(07·12·18시) 실행해 data/news.json 갱신)
-│  ├─ dopamine-menu/    오늘의 딴짓 메뉴 (도파민 메뉴판. 활동 목록은 data/activities.json에서 고침)
+│  ├─ dopamine-menu/    오늘의 딴짓 메뉴 (도파민 메뉴판. 노약자 전용이 아니라 스마트폰에 익숙한 세대 대상 — 심플한 앱 느낌, 글자 크기·고대비 대신 기기 다크 모드를 따름. 활동 목록은 data/activities.json에서 고침)
 │  ├─ phone-timer/      자라는 시간 (폰 내려놓기 타이머. 식물 종류·해금 기준은 js/plants.js에서 고침, 주소 끝 ?fast로 1분=1초 확인)
 │  └─ workout-planner/  핏루틴 (운동 루틴 플래너. 첫 화면에서 일반용/노약자용과 화면 밝기(자동=기기 다크 모드 설정 따름 / 밝게·어둡게 직접 고정) 선택. 루틴·자세 팁은 각 HTML에서 직접 고침)
 ├─ services/
