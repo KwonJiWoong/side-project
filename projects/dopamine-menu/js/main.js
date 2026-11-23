@@ -5,23 +5,17 @@
   const TIMES = [5, 15, 30];
   const CHANGE_LIMIT = 3;
   const RECENT_SIZE = 3;
-  const SIZE_LABELS = ['보통', '크게', '아주 크게'];
   const DAY_NAMES = ['월', '화', '수', '목', '금', '토', '일'];
   const PAGE_TITLE = document.title;
   const KEY = {
-    size: 'dopamine-size',
-    contrast: 'dopamine-contrast',
     today: 'dopamine-today',
     recent: 'dopamine-recent',
     timer: 'dopamine-timer',
     stamps: 'dopamine-stamps'
   };
 
-  const root = document.documentElement;
   const $ = (id) => document.getElementById(id);
   const el = {
-    viewSet: $('viewSet'), viewBtn: $('viewBtn'),
-    fontDown: $('fontDown'), fontUp: $('fontUp'), sizeText: $('sizeText'), contrast: $('contrastBtn'),
     storageNote: $('storageNote'),
     order: $('order'), orderTitle: $('orderTitle'),
     tabs: Array.from(document.querySelectorAll('[role="tab"]')),
@@ -109,8 +103,6 @@
     recent: { 5: [], 15: [], 30: [] },
     timer: null,                  // { id, title, desc, category, time, startAt, duration, isDone }
     stamps: null,                 // { weekStart, items: [] }
-    size: 0,
-    isHighContrast: false,
     newStampDate: null
   };
   let ticker = null;
@@ -205,25 +197,6 @@
   function say(message) {
     el.notice.textContent = '';
     requestAnimationFrame(() => { el.notice.textContent = message; });
-  }
-
-  /* 보기 설정 */
-  function applyView() {
-    if (state.size > 0) root.dataset.size = String(state.size);
-    else delete root.dataset.size;
-    if (state.isHighContrast) root.dataset.contrast = 'high';
-    else delete root.dataset.contrast;
-    el.sizeText.textContent = SIZE_LABELS[state.size];
-    el.fontDown.disabled = state.size === 0;
-    el.fontUp.disabled = state.size === SIZE_LABELS.length - 1;
-    el.contrast.setAttribute('aria-pressed', String(state.isHighContrast));
-  }
-
-  function changeSize(step) {
-    state.size = Math.min(Math.max(state.size + step, 0), SIZE_LABELS.length - 1);
-    store.set(KEY.size, String(state.size));
-    applyView();
-    say(`글자 크기를 ${SIZE_LABELS[state.size]}로 바꿨어요.`);
   }
 
   /* 그리기: 메뉴판 */
@@ -495,19 +468,6 @@
   }
 
   /* 이벤트 */
-  el.viewBtn.addEventListener('click', () => {
-    const isOpen = el.viewBtn.getAttribute('aria-expanded') === 'true';
-    el.viewBtn.setAttribute('aria-expanded', String(!isOpen));
-  });
-  el.fontDown.addEventListener('click', () => changeSize(-1));
-  el.fontUp.addEventListener('click', () => changeSize(1));
-  el.contrast.addEventListener('click', () => {
-    state.isHighContrast = !state.isHighContrast;
-    store.set(KEY.contrast, state.isHighContrast ? 'high' : '');
-    applyView();
-    say(state.isHighContrast ? '고대비 보기를 켰어요.' : '고대비 보기를 껐어요.');
-  });
-
   el.tablist.addEventListener('click', (e) => {
     const tab = e.target.closest('[role="tab"]');
     if (tab) selectTab(Number(tab.dataset.time), false);
@@ -550,11 +510,6 @@
   });
 
   /* 시작 */
-  const savedSize = Number(store.get(KEY.size));
-  state.size = Number.isInteger(savedSize) ? Math.min(Math.max(savedSize, 0), SIZE_LABELS.length - 1) : 0;
-  state.isHighContrast = store.get(KEY.contrast) === 'high';
-  applyView();
-  el.viewSet.classList.add('view-set--ready');
   el.storageNote.hidden = store.isOk;
 
   ensureToday();
