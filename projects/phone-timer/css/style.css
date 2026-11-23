@@ -260,6 +260,44 @@ body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-event
 
 .setting-row__btns { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
 
+/* 자주 묻는 질문 */
+.faq { display: grid; gap: var(--space-xs); }
+
+.faq__title { margin-bottom: var(--space-xs); font-size: var(--fs-lg); font-weight: 800; }
+
+.faq__item {
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-line);
+  border-radius: var(--radius);
+}
+
+.faq__q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  min-height: var(--touch);
+  padding: var(--space-xs) var(--space-md);
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq__q::-webkit-details-marker { display: none; }
+
+/* 열림·닫힘을 글자 기호로도 표시 */
+.faq__q::after {
+  content: "+";
+  flex-shrink: 0;
+  font-size: var(--fs-xl);
+  line-height: 1;
+  color: var(--color-primary);
+}
+
+.faq__item[open] .faq__q::after { content: "−"; }
+
+.faq__a { padding: 0 var(--space-md) var(--space-md); color: var(--color-muted); }
+
 /* ========== 4. 진행 화면 ========== */
 
 /* 진행 화면 */
