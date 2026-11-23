@@ -22,7 +22,7 @@ dopamine-menu/
 │  ├─ main.js            화면 동작 전부
 │  └─ ads.js             광고 자리 (ID가 비어 있으면 아무것도 안 함)
 ├─ data/activities.json  활동 목록
-├─ images/favicon.svg
+├─ images/              favicon.svg, og-image.png(1200×630 공유 미리보기)
 ├─ DESIGN.md · FRONTEND.md
 ```
 
