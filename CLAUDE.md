@@ -78,7 +78,7 @@
 │  ├─ easy-phone/       쉬운 폰 배우기 (어르신 스마트폰·키오스크 사용법, guides/)
 │  ├─ pill-check/       아 맞다 약! (실서비스·시니어, 메인 카드 있음. 푸시는 services/pill-push)
 │  ├─ dopamine-menu/    딴짓 메뉴 (실서비스·메인 카드 없음, 광고 자리는 js/ads.js. 도파민 메뉴판. 노약자 전용이 아니라 스마트폰에 익숙한 세대 대상 — 심플한 앱 느낌, 글자 크기·고대비 대신 기기 다크 모드를 따름. 활동 목록은 data/activities.json에서 고침. 디자인 기준은 DESIGN.md, 코드 구조는 FRONTEND.md)
-│  ├─ phone-timer/      자라는 시간 (실서비스·메인 카드 없음. 폰 내려놓기 타이머. 식물 종류·해금 기준은 js/plants.js에서 고침, 주소 끝 ?fast로 1분=1초 확인. 디자인 기준은 DESIGN.md, 코드 구조는 FRONTEND.md)
+│  ├─ phone-timer/      자라는 시간 (실서비스·메인 카드 없음. 폰 내려놓기 타이머. 식물 종류·해금 기준은 js/plants.js, 배지는 js/badges.js에서 고침, 주소 끝 ?fast로 1분=1초 확인. 디자인 기준은 DESIGN.md, 코드 구조는 FRONTEND.md)
 │  └─ workout-planner/  핏루틴 (운동 루틴 플래너. 첫 화면에서 일반용/노약자용과 화면 밝기(자동=기기 다크 모드 설정 따름 / 밝게·어둡게 직접 고정) 선택. 루틴·자세 팁은 각 HTML에서 직접 고침)
 ├─ services/
 │  └─ pill-push/       아 맞다 약! 웹 푸시 알림 서버 (AWS SAM · Lambda, 올리는 법은 README.md)

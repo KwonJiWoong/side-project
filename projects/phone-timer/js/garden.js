@@ -1,10 +1,12 @@
-/* 4. 내 정원: 통계 · 다음 식물 · 주간 화단 */
+/* 4. 내 정원: 통계 · 다음 식물 · 배지 · 주간 화단 */
 ((GT) => {
   'use strict';
 
   const util = GT.util;
   const $ = util.$;
   const el = {
+    badgeCount: $('badgeCount'),
+    badgeList: $('badgeList'),
     beds: $('beds'),
     gardenClear: $('gardenClear'),
     gardenEmpty: $('gardenEmpty'),
@@ -70,6 +72,22 @@
     el.nextBar.setAttribute('aria-valuenow', String(pct));
     el.nextBar.setAttribute('aria-valuetext', pct + '%');
     el.nextFill.style.width = pct + '%'; // 값이 바뀌는 너비라 CSSOM으로
+
+    // 배지 (기록에서 매번 다시 셈)
+    const got = GT.badges.earned(store.data.records);
+    const list = GT.badges.BADGES;
+    el.badgeCount.textContent = list.filter((b) => got[b.id]).length + '/' + list.length;
+    el.badgeList.innerHTML = list.map((b) => {
+      const at = got[b.id];
+      const state = at
+        ? util.ico('check') + util.md(new Date(at)) + ' 받음'
+        : util.ico('lock') + '아직이에요';
+      return '<li class="badge' + (at ? ' badge--on' : '') + '">' + GT.badges.svg(b.id, !!at) +
+        '<span class="badge__name">' + b.name + '</span>' +
+        '<span class="badge__desc">' + b.desc + '</span>' +
+        '<span class="badge__state">' + state + '</span>' +
+      '</li>';
+    }).join('');
 
     // 주간 화단 (최근 주부터)
     const weeks = [];
