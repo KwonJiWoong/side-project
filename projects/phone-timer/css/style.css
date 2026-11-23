@@ -462,6 +462,56 @@ body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-event
   transition: width 0.6s;
 }
 
+/* 배지 */
+.badges { display: grid; gap: var(--space-sm); }
+
+.badges__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+  font-size: var(--fs-lg);
+  font-weight: 800;
+}
+
+.badges__count { font-size: var(--fs-sm); font-weight: 700; color: var(--color-muted); }
+
+.badges__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 9rem), 1fr));
+  gap: var(--space-xs);
+}
+
+.badge {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 0.125rem;
+  padding: var(--space-sm) var(--space-xs);
+  text-align: center;
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-line);
+  border-radius: var(--radius);
+}
+
+.badge .medal { width: 4rem; height: 4rem; margin-bottom: 0.25rem; }
+
+.badge__name { font-weight: 800; }
+
+.badge__desc { font-size: var(--fs-sm); color: var(--color-muted); }
+
+.badge__state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.badge--on { border-color: var(--color-primary); }
+
+.badge--on .badge__state { color: var(--color-primary); }
+
 .garden__plot { display: grid; gap: var(--space-sm); }
 
 .garden__plot-title { font-size: var(--fs-lg); font-weight: 800; }

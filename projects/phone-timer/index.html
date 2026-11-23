@@ -31,6 +31,7 @@
   <script src="js/util.js" defer></script>
   <script src="js/store.js" defer></script>
   <script src="js/plants.js" defer></script>
+  <script src="js/badges.js" defer></script>
   <script src="js/device.js" defer></script>
   <script src="js/ui.js" defer></script>
   <script src="js/setup.js" defer></script>
@@ -175,8 +176,11 @@
       <h2 class="result__title" id="resultTitle" tabindex="-1">꽃이 피었어요</h2>
       <p class="result__desc" id="resultDesc"></p>
       <p class="notice notice--good" id="resultUnlock" role="status" hidden></p>
+      <p class="notice notice--good" id="resultBadge" role="status" hidden></p>
       <div class="result__actions">
         <a class="btn btn--primary btn--lg btn--block" id="resultGarden" href="#garden"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-garden"></use></svg>정원에 심기</a>
+        <button class="btn btn--lg btn--block" id="resultShare" type="button" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-share"></use></svg>자랑하기</button>
+        <p class="share__status" id="resultShareStatus" role="status"></p>
         <a class="btn btn--lg btn--block" id="resultAgain" href="#timer"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-redo"></use></svg>한 번 더 하기</a>
       </div>
     </section>
@@ -206,6 +210,11 @@
         <h3 class="next-unlock__title" id="nextTitle">다음 식물</h3>
         <p class="next-unlock__text" id="nextText"></p>
         <div class="bar" id="nextBar" role="progressbar" aria-labelledby="nextTitle" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="bar__fill" id="nextFill"></span></div>
+      </section>
+
+      <section class="badges" aria-labelledby="badgeTitle">
+        <h3 class="badges__title" id="badgeTitle">배지 <span class="badges__count" id="badgeCount">0/8</span></h3>
+        <ul class="badges__list" id="badgeList"></ul>
       </section>
 
       <section class="garden__plot" aria-labelledby="plotTitle">

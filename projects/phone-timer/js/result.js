@@ -25,8 +25,13 @@
     resultGarden: $('resultGarden'),
     resultPlant: $('resultPlant'),
     resultTitle: $('resultTitle'),
-    resultUnlock: $('resultUnlock')
+    resultUnlock: $('resultUnlock'),
+    resultBadge: $('resultBadge'),
+    resultShare: $('resultShare'),
+    resultShareStatus: $('resultShareStatus')
   };
+
+  let last = null; // 자랑하기 카드에 쓸 이번 결과
 
   /**
    * 모든 끝을 여기서 처리
@@ -44,14 +49,17 @@
 
     // 기록 (1분 이상 버틴 경우만. 실패해도 버틴 단계로 남기되, 시든 모습으로)
     const before = store.totalMinutes();
+    const badgesBefore = GT.badges.earned(store.data.records);
     let record = null;
     if (minutes >= 1) {
       record = { id: Date.now(), plant: sp.id, stage: stage, minutes: minutes, bonus: bonusMin, ok: ok, at: new Date().toISOString() };
+      if (config.FAST) record.fast = true; // 확인용 빠른 모드 기록은 배지·자랑하기에서 뺌
       store.addRecord(record);
       GT.garden.markNew(record.id);
     }
     const after = store.totalMinutes();
     const unlocked = plants.SPECIES.filter((s) => { return !store.isUnlocked(s, before) && store.isUnlocked(s, after); });
+    const newBadges = GT.badges.newOnes(badgesBefore, GT.badges.earned(store.data.records));
 
     // 화면 채우기
     el.screen.classList.toggle('result--success', ok);
@@ -87,6 +95,20 @@
       unlockBox.hidden = true;
     }
 
+    if (newBadges.length) {
+      const names = newBadges.map((b) => '‘' + b.name + '’').join(', ');
+      const lastName = newBadges[newBadges.length - 1].name;
+      el.resultBadge.textContent = '새 배지 ' + names + util.josa(lastName, '을', '를') + ' 받았어요! 내 정원에서 볼 수 있어요.';
+      el.resultBadge.hidden = false;
+    } else {
+      el.resultBadge.hidden = true;
+    }
+
+    // 자랑하기: 꽃을 피웠을 때만 (시든 기록은 사용자가 고르지 않는 한 공유하지 않음)
+    last = ok && record ? { plant: sp.id, heldMin: heldMin, bonusMin: bonusMin, at: record.at, badges: newBadges.map((b) => b.id) } : null;
+    el.resultShare.hidden = !last || config.FAST;
+    el.resultShareStatus.textContent = last && config.FAST ? '확인용 빠른 모드에서는 자랑하기 카드를 만들지 않아요.' : '';
+
     el.resultGarden.lastChild.textContent = ok ? '정원에 심기' : '정원 보러 가기';
     el.resultAgain.lastChild.textContent = ok ? '한 번 더 하기' : '다시 도전';
 
@@ -101,6 +123,12 @@
       });
     });
   }
+
+  /* ===== 자랑하기 ===== */
+  el.resultShare.addEventListener('click', () => {
+    if (!last) return;
+    GT.share.shareToday(last, el.resultShare, el.resultShareStatus);
+  });
 
   GT.result = { finish: finish };
 })(window.GT = window.GT || {});

@@ -26,20 +26,21 @@ phone-timer/
 │  ├─ util.js              글자 만들기 · 날짜 계산
 │  ├─ store.js             저장소, 기록 · 설정, 모은 시간 · 해금 계산
 │  ├─ plants.js            식물 8종 데이터 + 단계별 SVG
+│  ├─ badges.js            배지 8종 데이터 + 받은 날짜 계산 + 메달 SVG
 │  ├─ device.js            화면 켜짐 유지(Wake Lock) · 효과음 · 진동
 │  ├─ ui.js                화면 전환 · 주소, 확인 창, 글자 크게
 │  ├─ setup.js             1. 시작 화면 + 사용 안내 + 홈 화면에 추가
 │  ├─ timer.js             2. 진행 화면 + 이탈 감지 + 보너스
 │  ├─ result.js            3. 결과 화면 + 기록 남기기
 │  ├─ garden.js            4. 내 정원 (주간 화단)
-│  ├─ share.js             화단 사진 만들기 · 공유 (Canvas)
+│  ├─ share.js             화단 사진 · 자랑하기 카드 만들기 · 공유 (Canvas)
 │  └─ main.js              첫 실행: 끊긴 타이머 복구 또는 첫 화면 열기
 └─ images/                 favicon.svg, icon-180/192/512.png, og-image.png(1200×630 공유 미리보기)
 ```
 
 ### JS 파일 규칙 (이 사이트만)
 - 전역은 `window.GT` 하나. 파일마다 `((GT) => { … })(window.GT = window.GT || {});`로 감싸고 `GT.이름` 하나를 내보낸다
-- 파일 위쪽에서 꺼내 둬도 되는 건 먼저 불러오는 기초 파일(`config` · `util` · `store` · `plants`)뿐. 나머지는 **쓰는 순간에** `GT.timer.start()`처럼 부른다
+- 파일 위쪽에서 꺼내 둬도 되는 건 먼저 불러오는 기초 파일(`config` · `util` · `store` · `plants` · `badges`)뿐. 나머지는 **쓰는 순간에** `GT.timer.start()`처럼 부른다
 - 처음 그리기는 `main.js`만 한다. 다른 파일은 불러올 때 이벤트만 연결한다
 - 화면 요소는 파일마다 위쪽 `const el = { … }`에 모은다 (그 파일이 다루는 화면의 요소만)
 
@@ -49,13 +50,14 @@ phone-timer/
 | util.js | `GT.util` | `$`, `ico`, `pad`, `fmtMin`, `fmtClock`, `fmtAway`, `josa`, `md`, `dayKey`, `weekStart` |
 | store.js | `GT.store` | `canStore`, `data`, `settings`, `saveData`, `addRecord`, `clearRecords`, `totalMinutes`, `isUnlocked`, `weekKeyOf`, `weekSuccessDays`, `session.get/set/clear` |
 | plants.js | `GT.plants` | `SPECIES`, `STAGES`, `find`, `svg`, `stageOf` |
+| badges.js | `GT.badges` | `BADGES`, `earned(records)`, `newOnes(before, after)`, `svg(id, on)` |
 | device.js | `GT.device` | `unlockAudio`, `chime`, `vibrate`, `canKeepAwake`, `keepAwake`, `releaseAwake` |
 | ui.js | `GT.ui` | `screens`, `headings`, `show`, `route`, `go`, `confirm`, `closeConfirm`, `applyFont` |
 | setup.js | `GT.setup` | `render` |
 | timer.js | `GT.timer` | `start`, `isRunning` |
 | result.js | `GT.result` | `finish` |
 | garden.js | `GT.garden` | `render`, `markNew` |
-| share.js | `GT.share` | `draw` |
+| share.js | `GT.share` | `draw`(화단 사진), `drawToday(last)`, `shareToday(last, btn, status)` |
 
 ---
 
@@ -115,6 +117,8 @@ phone-timer/
   "bonusStart": null, "lastSeen": 0, "leftAt": null, "usedPause": false }
 ```
 - `minutes`는 자란 시간 + 보너스. 모은 시간 · 해금은 `minutes`의 합으로 계산한다 (따로 저장하지 않음)
+- `fast`는 확인용 `?fast`로 만든 기록에만 붙는다. 배지 · 자랑하기 카드에서 뺀다
+- 배지도 저장하지 않는다. `GT.badges.earned(records)`가 기록을 처음부터 다시 훑어 "받은 배지: 받은 날"을 만든다 (결과 화면은 기록 전후를 비교해 새 배지를 찾음)
 - 저장소를 쓸 수 없으면(시크릿 모드 등) 메모리에만 두고 `#storageNotice`를 보여 준다
 - 구조를 바꿀 땐 키 뒤 숫자를 올리고(`growtime-v2`), 예전 값을 옮기는 코드를 `store.js`에 둔다
 
@@ -144,6 +148,7 @@ phone-timer/
 | 하고 싶은 것 | 고칠 곳 |
 |---|---|
 | 식물 추가 | `plants.js` — `SPECIES`에 이름 · 해금 시간, `PARTS`에 꽃 모양 |
+| 배지 추가 | `badges.js` — `BADGES`에 이름 · 설명 · 아이콘 · 색 · 조건(`test`). 조건에 새 누적 값이 필요하면 `earned()`의 상태 `s`에 더한다 |
 | 10초 유예 · 5분 이어하기 · 보너스 30분 | `config.js` |
 | 시간 버튼(10 · 25 · 50분) | `index.html` 시간 고르기 라디오 |
 | 결과 문구 | `result.js`의 `REASONS`와 `finish()` 안 문구 |

@@ -119,31 +119,121 @@
     setTimeout(() => { URL.revokeObjectURL(url); }, 1000);
   }
 
-  el.shareBtn.addEventListener('click', () => {
-    el.shareBtn.disabled = true;
-    el.shareStatus.textContent = '사진을 만드는 중이에요…';
-    draw().then((blob) => {
+  // 사진 만들기 → 휴대폰은 공유 창(카톡·인스타 등), 그 밖은 파일로 저장
+  function deliver(make, prefix, title, btn, status) {
+    btn.disabled = true;
+    status.textContent = '사진을 만드는 중이에요…';
+    make().then((blob) => {
       if (!blob) throw new Error('blob');
       const d = new Date();
-      const name = 'growtime-garden-' + d.getFullYear() + util.pad(d.getMonth() + 1) + util.pad(d.getDate()) + '.png';
+      const name = prefix + '-' + d.getFullYear() + util.pad(d.getMonth() + 1) + util.pad(d.getDate()) + '.png';
       const file = new File([blob], name, { type: 'image/png' });
 
-      // 휴대폰: 공유 창 (카톡·인스타 등) / 그 밖: 파일로 저장
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        return navigator.share({ files: [file], title: '자라는 시간 · 내 정원' }).then(() => {
-          el.shareStatus.textContent = '공유 창을 열었어요.';
+        return navigator.share({ files: [file], title: title }).then(() => {
+          status.textContent = '공유 창을 열었어요.';
         });
       }
       download(blob, name);
-      el.shareStatus.textContent = '사진을 저장했어요. 다운로드 폴더를 확인해 주세요.';
+      status.textContent = '사진을 저장했어요. 다운로드 폴더를 확인해 주세요.';
     }).catch((err) => {
-      el.shareStatus.textContent = err && err.name === 'AbortError'
+      status.textContent = err && err.name === 'AbortError'
         ? '공유를 취소했어요.'
         : '사진을 만들지 못했어요. 잠시 뒤 다시 눌러 주세요.';
     }).finally(() => {
-      el.shareBtn.disabled = false;
+      btn.disabled = false;
     });
+  }
+
+  el.shareBtn.addEventListener('click', () => {
+    deliver(draw, 'growtime-garden', '자라는 시간 · 내 정원', el.shareBtn, el.shareStatus);
   });
 
-  GT.share = { draw: draw };
+  /* ===== 자랑하기 카드 (결과 화면, 1080×1920 세로) ===== */
+  function drawToday(last) {
+    const W2 = 1080;
+    const H2 = 1920;
+    const sp = plants.find(last.plant);
+    const canvas = document.createElement('canvas');
+    canvas.width = W2;
+    canvas.height = H2;
+    const ctx = canvas.getContext('2d');
+    const center = (text, y, font, color) => {
+      ctx.font = font;
+      ctx.fillStyle = color;
+      ctx.textAlign = 'center';
+      ctx.fillText(text, W2 / 2, y);
+    };
+
+    // 배경 · 서비스 이름 · 날짜
+    ctx.fillStyle = '#f6f3ea';
+    ctx.fillRect(0, 0, W2, H2);
+    center('자라는 시간', 150, '800 54px ' + FONT, '#2b5a1b');
+    center(util.md(new Date(last.at)), 220, '700 38px ' + FONT, '#45503f');
+
+    // 화분 뒤 둥근 바탕
+    ctx.fillStyle = '#e7ecdd';
+    ctx.beginPath();
+    ctx.arc(W2 / 2, 650, 350, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 문구
+    center(util.fmtMin(last.heldMin) + ' 동안 폰을 내려놓고', 1120, '700 58px ' + FONT, '#1e2619');
+    center(sp.name + util.josa(sp.name, '을', '를') + ' 피웠어요', 1225, '800 88px ' + FONT, '#2b5a1b');
+    if (last.bonusMin) center('꽃이 핀 뒤 보너스 ' + util.fmtMin(last.bonusMin) + ' 더', 1300, '700 42px ' + FONT, '#8a3410');
+
+    // 통계
+    const earned = GT.badges.earned(store.data.records);
+    const ids = GT.badges.BADGES.filter((b) => earned[b.id]).map((b) => b.id);
+    const stats = [
+      ['모은 시간', util.fmtMin(store.totalMinutes())],
+      ['이번 주 성공', store.weekSuccessDays() + '일'],
+      ['받은 배지', ids.length + '개']
+    ];
+    stats.forEach((st, i) => {
+      const x = 80 + i * 313;
+      ctx.fillStyle = '#fffdf7';
+      roundRect(ctx, x, 1370, 293, 150, 24);
+      ctx.fill();
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#45503f';
+      ctx.font = '700 30px ' + FONT;
+      ctx.fillText(st[0], x + 28, 1422);
+      ctx.fillStyle = '#2b5a1b';
+      ctx.font = '800 44px ' + FONT;
+      ctx.fillText(st[1], x + 28, 1485);
+    });
+
+    // 배지: 이번에 받은 것 먼저, 최대 4개
+    const shown = last.badges.concat(ids.filter((id) => last.badges.indexOf(id) < 0)).slice(0, 4);
+
+    const images = [loadSvg(plants.svg(sp.id, 3, { flat: true }))]
+      .concat(shown.map((id) => loadSvg(GT.badges.svg(id, true))));
+
+    return Promise.all(images).then((imgs) => {
+      // 화분 (120×160 비율)
+      ctx.drawImage(imgs[0], W2 / 2 - 210, 650 - 330, 420, 560);
+
+      const step = 230;
+      const startX = W2 / 2 - ((shown.length - 1) * step) / 2;
+      shown.forEach((id, i) => {
+        const b = GT.badges.BADGES.find((x) => x.id === id);
+        const cx = startX + i * step;
+        ctx.drawImage(imgs[i + 1], cx - 65, 1580, 130, 130);
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#1e2619';
+        ctx.font = '700 30px ' + FONT;
+        ctx.fillText(b.name, cx, 1760);
+      });
+
+      center('폰을 내려놓은 만큼 자라는 정원', 1860, '700 32px ' + FONT, '#45503f');
+      return new Promise((resolve) => { canvas.toBlob(resolve, 'image/png'); });
+    });
+  }
+
+  function shareToday(last, btn, status) {
+    deliver(() => drawToday(last), 'growtime-today', '자라는 시간 · 오늘 핀 꽃', btn, status);
+  }
+
+  GT.share = { draw: draw, drawToday: drawToday, shareToday: shareToday };
 })(window.GT = window.GT || {});
