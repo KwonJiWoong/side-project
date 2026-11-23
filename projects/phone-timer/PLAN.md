@@ -59,7 +59,7 @@
 ├─ index.html
 ├─ css/ (reset.css, common.css, style.css)
 ├─ manifest.webmanifest (홈 화면에 추가)
-├─ js/ (plants.js 식물 데이터·SVG, main.js)
+├─ js/ (역할별 12개 파일 — 자세한 구조는 FRONTEND.md)
 └─ images/ (favicon.svg, icon-180/192/512.png)
 ```
 

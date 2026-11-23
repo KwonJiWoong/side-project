@@ -1,3 +1,5 @@
+/* ========== 1. 헤더 · 메뉴 ========== */
+
 /* 헤더 */
 .header {
   position: sticky;
@@ -67,6 +69,8 @@ body[data-screen="run"] .header { border-bottom-color: transparent; }
 
 body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-events: none; }
 
+/* ========== 2. 본문 · 화면 공통 ========== */
+
 /* 본문 */
 .main {
   display: grid;
@@ -96,6 +100,11 @@ body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-event
 .screen__desc { color: var(--color-muted); }
 
 .screen__desc strong { color: var(--color-accent); }
+
+/* 저장 불가 안내 폭 맞춤 */
+.main > .notice { width: 100%; max-width: 46rem; margin: 0 auto; }
+
+/* ========== 3. 시작 화면 ========== */
 
 /* 시작 화면 */
 .setup__form { display: grid; gap: var(--space-lg); }
@@ -237,6 +246,22 @@ body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-event
   gap: var(--space-sm);
 }
 
+/* 시작 화면: 충전 안내 */
+.pick__note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.pick__note .ico { margin-top: 0.15em; }
+
+.setting-row__btns { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+
+/* ========== 4. 진행 화면 ========== */
+
 /* 진행 화면 */
 .run {
   justify-items: center;
@@ -311,6 +336,26 @@ body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-event
 
 .run__quit { margin-top: var(--space-sm); }
 
+/* 진행 화면: 보너스 시간 */
+.gauge__bonus {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.run--bonus .gauge__bar { stroke: color-mix(in srgb, var(--color-primary) 45%, var(--color-bg)); }
+
+.run--bonus .run__time,
+.run--bonus .run__time-title { color: var(--color-accent); }
+
+.run__bonus-desc { max-width: 30rem; font-weight: 700; color: var(--color-muted); }
+
+.run__done { width: min(100%, 24rem); }
+
+/* ========== 5. 결과 화면 ========== */
+
 /* 결과 화면 */
 .result {
   justify-items: center;
@@ -359,6 +404,8 @@ body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-event
 .result__desc strong { color: var(--color-text); }
 
 .result__actions { display: grid; gap: var(--space-sm); width: 100%; margin-top: var(--space-sm); }
+
+/* ========== 6. 내 정원 ========== */
 
 /* 내 정원 */
 .stats {
@@ -433,111 +480,6 @@ body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-event
 .empty__text { font-size: var(--fs-lg); font-weight: 700; }
 
 .garden__clear { justify-self: start; }
-
-/* 사용 안내 단계 */
-.guide-steps { display: grid; gap: var(--space-sm); counter-reset: step; }
-
-.guide-steps__item {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-sm);
-  padding: var(--space-sm);
-  background: var(--color-bg);
-  border-radius: var(--radius);
-}
-
-.guide-steps__ico { width: 1.75rem; height: 1.75rem; color: var(--color-primary); }
-
-/* 푸터 */
-.footer {
-  padding: var(--space-lg) 0;
-  font-size: var(--fs-sm);
-  color: var(--color-muted);
-  text-align: center;
-  border-top: var(--border-w) solid var(--color-line);
-}
-
-/* 식물 SVG · 성장 연출 */
-.plant { display: block; width: 100%; height: auto; overflow: visible; }
-
-.plant__stem {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  transition: stroke-dashoffset 1.2s ease-out;
-}
-
-.plant__sprout,
-.plant__leaves,
-.plant__flower {
-  transform: scale(0);
-  transform-box: view-box;
-  transition: transform 0.8s cubic-bezier(0.34, 1.4, 0.64, 1) 0.5s;
-}
-
-.plant__sprout { transform-origin: 60px 100px; }
-
-.plant__leaves { transform-origin: 60px 77px; }
-
-.plant__flower { transform-origin: 60px 44px; }
-
-.plant__seed { transition: opacity 0.4s; }
-
-.plant[data-stage="1"] .plant__stem { stroke-dashoffset: 0.72; }
-
-.plant[data-stage="2"] .plant__stem { stroke-dashoffset: 0.2; }
-
-.plant[data-stage="3"] .plant__stem { stroke-dashoffset: 0; }
-
-.plant:not([data-stage="0"]) .plant__sprout,
-.plant[data-stage="2"] .plant__leaves,
-.plant[data-stage="3"] .plant__leaves,
-.plant[data-stage="3"] .plant__flower { transform: scale(1); }
-
-.plant:not([data-stage="0"]) .plant__seed { opacity: 0; }
-
-/* 시든 식물: 고개 숙임 + 누렇게 */
-.plant__body {
-  transform-box: view-box;
-  transform-origin: 60px 114px;
-  transition: transform 1s ease-in, filter 1s;
-}
-
-.plant--wilted .plant__body {
-  transform: rotate(-16deg) scaleY(0.92);
-  filter: grayscale(0.7) sepia(0.6) brightness(0.85);
-}
-
-/* 시작 화면: 충전 안내 */
-.pick__note {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-xs);
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  color: var(--color-accent);
-}
-
-.pick__note .ico { margin-top: 0.15em; }
-
-.setting-row__btns { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
-
-/* 진행 화면: 보너스 시간 */
-.gauge__bonus {
-  fill: none;
-  stroke: var(--color-accent);
-  stroke-width: 10;
-  stroke-linecap: round;
-  transition: stroke-dashoffset 1s linear;
-}
-
-.run--bonus .gauge__bar { stroke: color-mix(in srgb, var(--color-primary) 45%, var(--color-bg)); }
-
-.run--bonus .run__time,
-.run--bonus .run__time-title { color: var(--color-accent); }
-
-.run__bonus-desc { max-width: 30rem; font-weight: 700; color: var(--color-muted); }
-
-.run__done { width: min(100%, 24rem); }
 
 /* 내 정원: 주간 화단 */
 .garden__plot-desc { color: var(--color-muted); }
@@ -639,6 +581,22 @@ body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-event
 
 .share__status:empty { display: none; }
 
+/* ========== 7. 대화 상자 내용 ========== */
+
+/* 사용 안내 단계 */
+.guide-steps { display: grid; gap: var(--space-sm); counter-reset: step; }
+
+.guide-steps__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  background: var(--color-bg);
+  border-radius: var(--radius);
+}
+
+.guide-steps__ico { width: 1.75rem; height: 1.75rem; color: var(--color-primary); }
+
 /* 홈 화면에 추가 */
 .install__now { margin-bottom: var(--space-md); }
 
@@ -656,6 +614,71 @@ body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-event
 .install__steps { padding-left: 1.4em; list-style: decimal; }
 
 .install__note { font-size: var(--fs-sm); font-weight: 700; color: var(--color-accent); }
+
+/* ========== 8. 푸터 ========== */
+
+/* 푸터 */
+.footer {
+  padding: var(--space-lg) 0;
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  text-align: center;
+  border-top: var(--border-w) solid var(--color-line);
+}
+
+/* ========== 9. 식물 SVG · 성장 연출 ========== */
+
+/* 식물 SVG · 성장 연출 */
+.plant { display: block; width: 100%; height: auto; overflow: visible; }
+
+.plant__stem {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.2s ease-out;
+}
+
+.plant__sprout,
+.plant__leaves,
+.plant__flower {
+  transform: scale(0);
+  transform-box: view-box;
+  transition: transform 0.8s cubic-bezier(0.34, 1.4, 0.64, 1) 0.5s;
+}
+
+.plant__sprout { transform-origin: 60px 100px; }
+
+.plant__leaves { transform-origin: 60px 77px; }
+
+.plant__flower { transform-origin: 60px 44px; }
+
+.plant__seed { transition: opacity 0.4s; }
+
+.plant[data-stage="1"] .plant__stem { stroke-dashoffset: 0.72; }
+
+.plant[data-stage="2"] .plant__stem { stroke-dashoffset: 0.2; }
+
+.plant[data-stage="3"] .plant__stem { stroke-dashoffset: 0; }
+
+.plant:not([data-stage="0"]) .plant__sprout,
+.plant[data-stage="2"] .plant__leaves,
+.plant[data-stage="3"] .plant__leaves,
+.plant[data-stage="3"] .plant__flower { transform: scale(1); }
+
+.plant:not([data-stage="0"]) .plant__seed { opacity: 0; }
+
+/* 시든 식물: 고개 숙임 + 누렇게 */
+.plant__body {
+  transform-box: view-box;
+  transform-origin: 60px 114px;
+  transition: transform 1s ease-in, filter 1s;
+}
+
+.plant--wilted .plant__body {
+  transform: rotate(-16deg) scaleY(0.92);
+  filter: grayscale(0.7) sepia(0.6) brightness(0.85);
+}
+
+/* ========== 10. 반응형 ========== */
 
 /* 반응형: 태블릿 */
 @media (min-width: 768px) {
@@ -677,6 +700,3 @@ body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-event
   .header__inner { min-height: 4.5rem; }
 
 }
-
-/* 저장 불가 안내 폭 맞춤 */
-.main > .notice { width: 100%; max-width: 46rem; margin: 0 auto; }
