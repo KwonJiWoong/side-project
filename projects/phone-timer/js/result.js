@@ -1,15 +1,15 @@
 /* 3. 결과 화면 + 기록 남기기 */
-(function (GT) {
+((GT) => {
   'use strict';
 
-  var config = GT.config;
-  var util = GT.util;
-  var $ = util.$;
-  var store = GT.store;
-  var plants = GT.plants;
+  const config = GT.config;
+  const util = GT.util;
+  const $ = util.$;
+  const store = GT.store;
+  const plants = GT.plants;
 
   // 시들었을 때 앞에 붙는 이유
-  var REASONS = {
+  const REASONS = {
     left: '',
     quit: '',
     'left-long': '다른 화면에 5분 넘게 나가 있었어요. ',
@@ -18,7 +18,15 @@
     done: ''
   };
 
-  var screen = $('screen-result');
+  const el = {
+    screen: $('screenResult'),
+    resultAgain: $('resultAgain'),
+    resultDesc: $('resultDesc'),
+    resultGarden: $('resultGarden'),
+    resultPlant: $('resultPlant'),
+    resultTitle: $('resultTitle'),
+    resultUnlock: $('resultUnlock')
+  };
 
   /**
    * 모든 끝을 여기서 처리
@@ -26,38 +34,38 @@
    * info: 진행 정보 { duration, plant } (진행 화면 또는 복구한 세션)
    */
   function finish(r, info) {
-    var ok = r.ok;
-    var held = Math.max(0, Math.min(r.held, info.duration));
-    var bonus = ok ? Math.max(0, Math.min(r.bonus || 0, config.BONUS_MAX)) : 0;
-    var minutes = Math.floor((held + bonus) / config.MINUTE);
-    var bonusMin = Math.floor(bonus / config.MINUTE);
-    var stage = ok ? 3 : plants.stageOf(held / info.duration);
-    var sp = plants.find(info.plant);
+    const ok = r.ok;
+    const held = Math.max(0, Math.min(r.held, info.duration));
+    const bonus = ok ? Math.max(0, Math.min(r.bonus || 0, config.BONUS_MAX)) : 0;
+    const minutes = Math.floor((held + bonus) / config.MINUTE);
+    const bonusMin = Math.floor(bonus / config.MINUTE);
+    const stage = ok ? 3 : plants.stageOf(held / info.duration);
+    const sp = plants.find(info.plant);
 
     // 기록 (1분 이상 버틴 경우만. 실패해도 버틴 단계로 남기되, 시든 모습으로)
-    var before = store.totalMinutes();
-    var record = null;
+    const before = store.totalMinutes();
+    let record = null;
     if (minutes >= 1) {
       record = { id: Date.now(), plant: sp.id, stage: stage, minutes: minutes, bonus: bonusMin, ok: ok, at: new Date().toISOString() };
       store.addRecord(record);
       GT.garden.markNew(record.id);
     }
-    var after = store.totalMinutes();
-    var unlocked = plants.SPECIES.filter(function (s) { return !store.isUnlocked(s, before) && store.isUnlocked(s, after); });
+    const after = store.totalMinutes();
+    const unlocked = plants.SPECIES.filter((s) => { return !store.isUnlocked(s, before) && store.isUnlocked(s, after); });
 
     // 화면 채우기
-    screen.classList.toggle('result--success', ok);
-    screen.classList.toggle('result--fail', !ok);
+    el.screen.classList.toggle('result--success', ok);
+    el.screen.classList.toggle('result--fail', !ok);
 
-    var plantBox = $('result-plant');
+    const plantBox = el.resultPlant;
     plantBox.innerHTML = plants.svg(sp.id, ok ? 2 : stage, { label: true });
-    var svgEl = plantBox.querySelector('.plant');
+    const svgEl = plantBox.querySelector('.plant');
     svgEl.setAttribute('aria-label', sp.name + ', ' + plants.STAGES[stage] + ' 단계' + (ok ? '' : '(시듦)'));
 
-    $('result-title').textContent = ok ? '꽃이 피었어요' : '시들었어요';
+    el.resultTitle.textContent = ok ? '꽃이 피었어요' : '시들었어요';
 
-    var desc = $('result-desc');
-    var heldMin = Math.floor(held / config.MINUTE);
+    const desc = el.resultDesc;
+    const heldMin = Math.floor(held / config.MINUTE);
     if (ok) {
       desc.innerHTML = '<strong>' + util.fmtMin(heldMin) + '</strong> 동안 폰을 내려놓았어요.' +
         (bonusMin ? ' 꽃이 핀 뒤에도 <strong>보너스 ' + util.fmtMin(bonusMin) + '</strong>을 더 모았어요.' : '') +
@@ -69,25 +77,25 @@
       desc.innerHTML = REASONS[r.reason] + '1분이 안 돼서 정원에는 기록하지 않았어요.';
     }
 
-    var unlockBox = $('result-unlock');
+    const unlockBox = el.resultUnlock;
     if (unlocked.length) {
-      var names = unlocked.map(function (s) { return '‘' + s.name + '’'; }).join(', ');
-      var lastName = unlocked[unlocked.length - 1].name;
+      const names = unlocked.map((s) => { return '‘' + s.name + '’'; }).join(', ');
+      const lastName = unlocked[unlocked.length - 1].name;
       unlockBox.textContent = '새 식물 ' + names + util.josa(lastName, '이', '가') + ' 열렸어요! 다음 타이머부터 고를 수 있어요.';
       unlockBox.hidden = false;
     } else {
       unlockBox.hidden = true;
     }
 
-    $('result-garden').lastChild.textContent = ok ? '정원에 심기' : '정원 보러 가기';
-    $('result-again').lastChild.textContent = ok ? '한 번 더 하기' : '다시 도전';
+    el.resultGarden.lastChild.textContent = ok ? '정원에 심기' : '정원 보러 가기';
+    el.resultAgain.lastChild.textContent = ok ? '한 번 더 하기' : '다시 도전';
 
     GT.ui.show('result');
     history.replaceState(null, '', location.pathname + location.search); // 결과 화면은 주소 없이
 
     // 연출: 성공이면 꽃이 피고, 실패면 시듦
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
         if (ok) svgEl.setAttribute('data-stage', '3');
         else svgEl.classList.add('plant--wilted');
       });

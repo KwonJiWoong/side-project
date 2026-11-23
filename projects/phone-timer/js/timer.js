@@ -1,49 +1,51 @@
 /* 2. 진행 화면: 자라기 → (급한 일) → 꽃 핀 뒤 보너스, 이탈 감지 */
-(function (GT) {
+((GT) => {
   'use strict';
 
-  var config = GT.config;
-  var util = GT.util;
-  var $ = util.$;
-  var store = GT.store;
-  var plants = GT.plants;
+  const config = GT.config;
+  const util = GT.util;
+  const $ = util.$;
+  const store = GT.store;
+  const plants = GT.plants;
 
-  var CIRCUMFERENCE = 2 * Math.PI * 100; // 게이지 원 둘레 (r=100)
-  var CAPTIONS = ['씨앗을 심었어요', '새싹이 났어요', '잎이 자랐어요', '꽃이 피었어요'];
-  var LOCK_TEXT = {
+  const CIRCUMFERENCE = 2 * Math.PI * 100; // 게이지 원 둘레 (r=100)
+  const CAPTIONS = ['씨앗을 심었어요', '새싹이 났어요', '잎이 자랐어요', '꽃이 피었어요'];
+  const LOCK_TEXT = {
     on: '화면이 꺼지지 않게 해 두었어요. 폰을 엎어두세요.',
     onBonus: '화면이 켜져 있어요. 확인했으면 위 버튼을 눌러 주세요.',
     fail: '화면 켜짐 유지를 켜지 못했어요. 화면이 꺼지면 식물이 시드니, ‘화면 자동 꺼짐’ 시간을 늘려 주세요.',
     unsupported: '이 브라우저는 화면 켜짐 유지를 지원하지 않아요. 화면이 꺼지면 식물이 시드니, 휴대폰 설정에서 ‘화면 자동 꺼짐’ 시간을 늘려 주세요.'
   };
 
-  var screen = $('screen-run');
-  var plantBox = $('run-plant');
-  var timeEl = $('run-time');
-  var timeTitle = $('run-time-title');
-  var live = $('run-live');
-  var caption = $('run-stage-label');
-  var alertBox = $('run-alert');
-  var lockText = $('run-lock');
-  var gaugeBar = $('gauge-bar');
-  var gaugeBonus = $('gauge-bonus');
-  var doneBtn = $('done-btn');
-  var quitBtn = $('quit-btn');
-  var bonusDesc = $('bonus-desc');
-  var baseTitle = document.title;
+  const el = {
+    screen: $('screenRun'),
+    plantBox: $('runPlant'),
+    time: $('runTime'),
+    timeTitle: $('runTimeTitle'),
+    live: $('runLive'),
+    caption: $('runStageLabel'),
+    alertBox: $('runAlert'),
+    lockText: $('runLock'),
+    gaugeBar: $('gaugeBar'),
+    gaugeBonus: $('gaugeBonus'),
+    doneBtn: $('doneBtn'),
+    quitBtn: $('quitBtn'),
+    bonusDesc: $('bonusDesc')
+  };
+  const baseTitle = document.title;
 
   /**
    * run.phase — grow: 자라는 중 / paused: 급한 일 선택 대기 / bonus: 꽃 핀 뒤
    */
-  var run = null;
-  var ticker = null;
+  let run = null;
+  let ticker = null;
 
-  [gaugeBar, gaugeBonus].forEach(function (c) {
+  [el.gaugeBar, el.gaugeBonus].forEach((c) => {
     c.setAttribute('stroke-dasharray', CIRCUMFERENCE.toFixed(2));
     c.setAttribute('stroke-dashoffset', CIRCUMFERENCE.toFixed(2));
   });
 
-  function isRunning() { return !!run; }
+  const isRunning = () => !!run;
 
   function saveSession() {
     store.session.set({
@@ -59,25 +61,25 @@
   }
 
   function showAlert(text) {
-    alertBox.innerHTML = util.icon('alert') + '<span>' + text + '</span>';
-    alertBox.hidden = false;
+    el.alertBox.innerHTML = util.ico('alert') + '<span>' + text + '</span>';
+    el.alertBox.hidden = false;
   }
 
   function keepAwake() {
-    GT.device.keepAwake().then(function (status) {
+    GT.device.keepAwake().then((status) => {
       if (status === 'on' && run && run.phase === 'bonus') status = 'onBonus';
-      if (run) lockText.textContent = LOCK_TEXT[status];
+      if (run) el.lockText.textContent = LOCK_TEXT[status];
     });
   }
 
   /* ===== 시작 ===== */
   function start() {
-    var settings = store.settings;
-    var min = settings.minutes || 25;
-    var plant = plants.find(settings.plant);
+    const settings = store.settings;
+    const min = settings.minutes || 25;
+    let plant = plants.find(settings.plant);
     if (!store.isUnlocked(plant)) plant = plants.SPECIES[0];
 
-    var now = Date.now();
+    const now = Date.now();
     run = {
       start: now,
       duration: min * config.MINUTE,
@@ -93,20 +95,20 @@
     };
     saveSession();
 
-    plantBox.innerHTML = plants.svg(plant.id, 0);
-    caption.textContent = CAPTIONS[0];
-    timeTitle.textContent = '남은 시간';
-    gaugeBonus.setAttribute('stroke-dashoffset', CIRCUMFERENCE.toFixed(2));
-    alertBox.hidden = true;
-    doneBtn.hidden = true;
-    bonusDesc.hidden = true;
-    quitBtn.hidden = false;
-    lockText.textContent = '';
-    screen.classList.remove('run--bonus');
+    el.plantBox.innerHTML = plants.svg(plant.id, 0);
+    el.caption.textContent = CAPTIONS[0];
+    el.timeTitle.textContent = '남은 시간';
+    el.gaugeBonus.setAttribute('stroke-dashoffset', CIRCUMFERENCE.toFixed(2));
+    el.alertBox.hidden = true;
+    el.doneBtn.hidden = true;
+    el.bonusDesc.hidden = true;
+    el.quitBtn.hidden = false;
+    el.lockText.textContent = '';
+    el.screen.classList.remove('run--bonus');
 
     GT.ui.show('run');
     keepAwake();
-    live.textContent = plant.name + ' 씨앗을 심었어요. 남은 시간 ' + util.fmtMin(min) + '.';
+    el.live.textContent = plant.name + ' 씨앗을 심었어요. 남은 시간 ' + util.fmtMin(min) + '.';
     tick();
     ticker = setInterval(tick, 500);
   }
@@ -114,7 +116,7 @@
   /* ===== 끝 → 결과 화면 ===== */
   // r: { ok, held(자란 ms), bonus(보너스 ms), reason }
   function end(r) {
-    var info = run;
+    const info = run;
     clearInterval(ticker);
     ticker = null;
     run = null;
@@ -129,9 +131,9 @@
   function setStage(stage) {
     if (stage === run.stage) return;
     run.stage = stage;
-    plantBox.querySelector('.plant').setAttribute('data-stage', String(stage));
-    caption.textContent = CAPTIONS[stage];
-    live.textContent = CAPTIONS[stage] + '.';
+    el.plantBox.querySelector('.plant').setAttribute('data-stage', String(stage));
+    el.caption.textContent = CAPTIONS[stage];
+    el.live.textContent = CAPTIONS[stage] + '.';
   }
 
   // 꽃이 핌 → 보너스 시간 시작
@@ -139,16 +141,16 @@
     run.phase = 'bonus';
     run.bonusStart = at;
     setStage(3);
-    gaugeBar.setAttribute('stroke-dashoffset', '0');
-    screen.classList.add('run--bonus');
-    timeTitle.textContent = '보너스 시간';
-    caption.textContent = '꽃이 피었어요';
-    alertBox.hidden = true;
-    quitBtn.hidden = true;
-    doneBtn.hidden = false;
-    bonusDesc.hidden = false;
-    lockText.textContent = '';
-    live.textContent = '꽃이 피었어요. 지금부터는 보너스 시간이에요. 확인했으면 정원에 심기 버튼을 눌러 주세요.';
+    el.gaugeBar.setAttribute('stroke-dashoffset', '0');
+    el.screen.classList.add('run--bonus');
+    el.timeTitle.textContent = '보너스 시간';
+    el.caption.textContent = '꽃이 피었어요';
+    el.alertBox.hidden = true;
+    el.quitBtn.hidden = true;
+    el.doneBtn.hidden = false;
+    el.bonusDesc.hidden = false;
+    el.lockText.textContent = '';
+    el.live.textContent = '꽃이 피었어요. 지금부터는 보너스 시간이에요. 확인했으면 정원에 심기 버튼을 눌러 주세요.';
     saveSession();
 
     GT.device.chime();
@@ -157,43 +159,43 @@
 
   function tick() {
     if (!run || document.hidden || run.phase === 'paused') return;
-    var now = Date.now();
+    const now = Date.now();
 
     if (run.phase === 'grow') {
-      var elapsed = now - run.start; // 시작 시각과의 차이로 계산 → 백그라운드 지연에도 정확
+      const elapsed = now - run.start; // 시작 시각과의 차이로 계산 → 백그라운드 지연에도 정확
       if (elapsed >= run.duration) {
         enterBonus(run.start + run.duration);
       } else {
-        var remain = run.duration - elapsed;
-        var ratio = elapsed / run.duration;
-        var clock = util.fmtClock(remain);
+        const remain = run.duration - elapsed;
+        const ratio = elapsed / run.duration;
+        const clock = util.fmtClock(remain);
 
-        timeEl.textContent = clock;
-        timeEl.setAttribute('datetime', 'PT' + Math.ceil(remain / 1000) + 'S');
+        el.time.textContent = clock;
+        el.time.setAttribute('datetime', 'PT' + Math.ceil(remain / 1000) + 'S');
         document.title = clock + ' 남음 - 자라는 시간';
-        gaugeBar.setAttribute('stroke-dashoffset', (CIRCUMFERENCE * (1 - ratio)).toFixed(2));
+        el.gaugeBar.setAttribute('stroke-dashoffset', (CIRCUMFERENCE * (1 - ratio)).toFixed(2));
         setStage(plants.stageOf(ratio));
 
         // 스크린리더: 남은 시간은 1분 단위로만 안내
-        var remainMin = Math.ceil(remain / config.MINUTE);
+        const remainMin = Math.ceil(remain / config.MINUTE);
         if (run.remainMin !== null && remainMin !== run.remainMin) {
-          live.textContent = '남은 시간 ' + util.fmtMin(remainMin) + '.';
+          el.live.textContent = '남은 시간 ' + util.fmtMin(remainMin) + '.';
         }
         run.remainMin = remainMin;
       }
     }
 
     if (run.phase === 'bonus') {
-      var bonus = now - run.bonusStart;
+      const bonus = now - run.bonusStart;
       if (bonus >= config.BONUS_MAX) {
         end({ ok: true, held: run.duration, bonus: config.BONUS_MAX, reason: 'done' });
         return;
       }
-      var up = util.fmtClock(bonus, true);
-      timeEl.textContent = '+' + up;
-      timeEl.setAttribute('datetime', 'PT' + Math.floor(bonus / 1000) + 'S');
+      const up = util.fmtClock(bonus, true);
+      el.time.textContent = '+' + up;
+      el.time.setAttribute('datetime', 'PT' + Math.floor(bonus / 1000) + 'S');
       document.title = '꽃이 피었어요 +' + up + ' - 자라는 시간';
-      gaugeBonus.setAttribute('stroke-dashoffset', (CIRCUMFERENCE * (1 - bonus / config.BONUS_MAX)).toFixed(2));
+      el.gaugeBonus.setAttribute('stroke-dashoffset', (CIRCUMFERENCE * (1 - bonus / config.BONUS_MAX)).toFixed(2));
     }
 
     run.lastSeen = now;
@@ -204,9 +206,9 @@
   }
 
   /* ===== 이탈 감지: 다른 앱으로 넘어가거나 화면이 꺼지면 hidden ===== */
-  document.addEventListener('visibilitychange', function () {
+  document.addEventListener('visibilitychange', () => {
     if (!run) return;
-    var now = Date.now();
+    const now = Date.now();
 
     if (document.hidden) {
       // 꽃이 핀 뒤 나가면 거기까지를 보너스로 인정하고 마무리
@@ -223,9 +225,9 @@
     }
 
     if (run.phase !== 'grow' || run.leftAt === null) return;
-    var leftAt = run.leftAt;
-    var away = now - leftAt;
-    var held = leftAt - run.start;
+    const leftAt = run.leftAt;
+    const away = now - leftAt;
+    const held = leftAt - run.start;
     run.leftAt = null;
 
     if (held >= run.duration) {
@@ -256,7 +258,7 @@
       okPrimary: true,
       cancelDanger: true,
       required: true,
-      onOk: function () {
+      onOk() {
         if (!run) return;
         run.start += Date.now() - run.leftAt; // 비운 시간만큼 시작 시각을 미룸
         run.leftAt = null;
@@ -267,7 +269,7 @@
         saveSession();
         tick();
       },
-      onCancel: function () {
+      onCancel() {
         if (!run) return;
         end({ ok: false, held: run.leftAt - run.start, reason: 'left' });
       }
@@ -275,9 +277,9 @@
   }
 
   /* ===== 버튼 ===== */
-  quitBtn.addEventListener('click', function () {
+  el.quitBtn.addEventListener('click', () => {
     if (!run || run.phase !== 'grow') return;
-    var held = Math.floor((Date.now() - run.start) / config.MINUTE);
+    const held = Math.floor((Date.now() - run.start) / config.MINUTE);
     GT.ui.confirm({
       title: '정말 그만둘까요?',
       desc: '지금 그만두면 식물이 시들어요. ' + (held >= 1
@@ -285,13 +287,13 @@
         : '1분이 안 돼서 정원에는 기록되지 않아요.'),
       ok: '그만두기',
       cancel: '계속하기',
-      onOk: function () {
+      onOk() {
         if (run && run.phase === 'grow') end({ ok: false, held: Date.now() - run.start, reason: 'quit' });
       }
     });
   });
 
-  doneBtn.addEventListener('click', function () {
+  el.doneBtn.addEventListener('click', () => {
     if (!run || run.phase !== 'bonus') return;
     end({ ok: true, held: run.duration, bonus: Date.now() - run.bonusStart, reason: 'done' });
   });
