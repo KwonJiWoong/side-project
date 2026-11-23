@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#f6f3ea">
+  <title>자라는 시간 - 폰 내려놓기 타이머</title>
+  <meta name="description" content="폰을 안 보는 동안 화분이 자라고, 다른 앱으로 넘어가면 시드는 폰 내려놓기 타이머입니다. 설치 없이 웹에서 바로 쓰고, 키운 식물은 내 정원에 모입니다.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/plants.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body data-screen="setup">
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <!-- 아이콘 모음 -->
+  <svg class="sr-only" aria-hidden="true" focusable="false">
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 5-13.5 14-14 0 9-5.5 14-14 14zM5 19l7-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-timer" viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 9.5v4l2.5 2M9.5 2.5h5M12 2.5V6" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-garden" viewBox="0 0 24 24"><path d="M4 20h16M7 20v-6M7 14c-2.5 0-3.5-2-3.5-4 2 0 3.5 1.5 3.5 4zM7 14c0-3 1.5-5 4-5 0 3-1.5 5-4 5zM16.5 20v-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16.5" cy="9" r="3" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+    <symbol id="i-font" viewBox="0 0 24 24"><path d="M4 7V5h16v2M12 5v14M8.5 19h7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none" stroke="currentColor" stroke-width="2.1"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5 21 19.5H3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 10v4M12 16.9v.1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 11v5.5M12 7.5v.1" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M10.5 18.5h3" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></symbol>
+    <symbol id="i-flip" viewBox="0 0 24 24"><path d="M4 9a8 8 0 0 1 14-3.5L20 8M20 3.5V8h-4.5M20 15a8 8 0 0 1-14 3.5L4 16M4 20.5V16h4.5" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-exit" viewBox="0 0 24 24"><path d="M14 4.5h4.5v15H14M10 8l-4 4 4 4M6 12h9" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M15.5 9a4.5 4.5 0 0 1 0 6M18 6.5a8 8 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-redo" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3L19.5 9M19.5 4.5V9H15" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2.1"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></symbol>
+  </svg>
+
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="wrap header__inner">
+      <h1 class="header__title"><a class="header__logo" href="#timer"><svg class="ico header__mark" aria-hidden="true" focusable="false"><use href="#i-leaf"></use></svg>자라는 시간</a></h1>
+      <button class="btn btn--sm btn--toggle" id="font-toggle" type="button" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-font"></use></svg>글자 크게<svg class="ico btn__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg></button>
+    </div>
+    <nav class="gnb" aria-label="주요 메뉴">
+      <ul class="wrap gnb__list">
+        <li><a class="gnb__link" href="#timer" data-nav="setup"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-timer"></use></svg>타이머</a></li>
+        <li><a class="gnb__link" href="#garden" data-nav="garden"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-garden"></use></svg>내 정원</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="wrap main" id="main">
+    <!-- 저장 불가 안내 (시크릿 모드 등) -->
+    <p class="notice notice--warn" id="storage-notice" role="status" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg>이 브라우저에서는 기록을 저장할 수 없어요(시크릿 모드 등). 타이머는 쓸 수 있지만, 키운 식물은 창을 닫으면 사라져요.</p>
+
+    <!-- 1. 시작 화면 -->
+    <section class="screen setup" id="screen-setup" data-screen-name="setup" aria-labelledby="setup-title">
+      <header class="screen__head">
+        <h2 class="screen__title" id="setup-title" tabindex="-1">얼마나 폰을 내려놓을까요?</h2>
+        <p class="screen__desc">폰을 안 보는 동안 식물이 자라요. 다른 앱으로 넘어가 <strong>10초가 지나면</strong> 식물이 시들어요.</p>
+      </header>
+
+      <form class="setup__form" id="setup-form" novalidate>
+        <!-- 시간 고르기 -->
+        <fieldset class="pick">
+          <legend class="pick__title">시간 고르기</legend>
+          <div class="pick__list pick__list--time">
+            <label class="pick__item"><input class="pick__input" type="radio" name="minutes" value="10"><span class="pick__label"><strong class="pick__num">10</strong>분</span></label>
+            <label class="pick__item"><input class="pick__input" type="radio" name="minutes" value="25" checked><span class="pick__label"><strong class="pick__num">25</strong>분</span></label>
+            <label class="pick__item"><input class="pick__input" type="radio" name="minutes" value="50"><span class="pick__label"><strong class="pick__num">50</strong>분</span></label>
+            <label class="pick__item"><input class="pick__input" type="radio" name="minutes" value="custom"><span class="pick__label">직접 입력</span></label>
+          </div>
+          <div class="field custom-time" id="custom-time" hidden>
+            <label class="field__label" for="custom-minutes">몇 분 동안 내려놓을까요? (1~180분)</label>
+            <div class="field__row">
+              <input class="field__input" id="custom-minutes" type="number" inputmode="numeric" min="1" max="180" step="1" value="30" aria-describedby="custom-error">
+              <span class="field__unit" aria-hidden="true">분</span>
+            </div>
+            <p class="field__error" id="custom-error" role="alert"></p>
+          </div>
+        </fieldset>
+
+        <!-- 식물 고르기 -->
+        <fieldset class="pick">
+          <legend class="pick__title">키울 식물 고르기</legend>
+          <p class="pick__desc" id="unlock-desc">시간을 모을수록 새 식물이 열려요.</p>
+          <ul class="seed-list" id="seed-list" aria-describedby="unlock-desc"></ul>
+        </fieldset>
+
+        <!-- 설정 -->
+        <fieldset class="pick pick--plain">
+          <legend class="pick__title">설정</legend>
+          <div class="setting-row">
+            <label class="check">
+              <input class="check__input" id="sound-toggle" type="checkbox" checked>
+              <span class="check__label"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sound"></use></svg>다 끝나면 소리 내기</span>
+            </label>
+            <button class="btn btn--sm" id="guide-open" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-info"></use></svg>사용 안내 다시 보기</button>
+          </div>
+        </fieldset>
+
+        <button class="btn btn--primary btn--lg btn--block" type="submit"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg><span id="start-label">25분 시작하기</span></button>
+      </form>
+    </section>
+
+    <!-- 2. 진행 화면 -->
+    <section class="screen run" id="screen-run" data-screen-name="run" aria-labelledby="run-title" hidden>
+      <h2 class="sr-only" id="run-title" tabindex="-1">식물이 자라는 중</h2>
+
+      <p class="notice notice--warn run__alert" id="run-alert" role="alert" hidden></p>
+
+      <figure class="run__stage">
+        <svg class="gauge" viewBox="0 0 220 220" aria-hidden="true" focusable="false">
+          <circle class="gauge__track" cx="110" cy="110" r="100"></circle>
+          <circle class="gauge__bar" id="gauge-bar" cx="110" cy="110" r="100"></circle>
+        </svg>
+        <div class="run__plant" id="run-plant"></div>
+        <figcaption class="run__stage-label" id="run-stage-label">씨앗을 심었어요</figcaption>
+      </figure>
+
+      <p class="run__time-wrap">
+        <span class="run__time-title">남은 시간</span>
+        <time class="run__time" id="run-time" aria-hidden="true">25:00</time>
+      </p>
+      <p class="sr-only" id="run-live" aria-live="polite" aria-atomic="true"></p>
+
+      <p class="run__lock" id="run-lock"></p>
+
+      <button class="btn btn--ghost run__quit" id="quit-btn" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-exit"></use></svg>그만두기</button>
+    </section>
+
+    <!-- 3. 결과 화면 -->
+    <section class="screen result" id="screen-result" data-screen-name="result" aria-labelledby="result-title" hidden>
+      <div class="result__plant" id="result-plant"></div>
+      <h2 class="result__title" id="result-title" tabindex="-1">꽃이 피었어요</h2>
+      <p class="result__desc" id="result-desc"></p>
+      <p class="notice notice--good" id="result-unlock" role="status" hidden></p>
+      <div class="result__actions">
+        <a class="btn btn--primary btn--lg btn--block" id="result-garden" href="#garden"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-garden"></use></svg>정원에 심기</a>
+        <a class="btn btn--lg btn--block" id="result-again" href="#timer"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-redo"></use></svg>한 번 더 하기</a>
+      </div>
+    </section>
+
+    <!-- 4. 내 정원 -->
+    <section class="screen garden" id="screen-garden" data-screen-name="garden" aria-labelledby="garden-title" hidden>
+      <header class="screen__head">
+        <h2 class="screen__title" id="garden-title" tabindex="-1">내 정원</h2>
+      </header>
+
+      <dl class="stats">
+        <div class="stats__item">
+          <dt class="stats__label">모은 시간</dt>
+          <dd class="stats__value" id="stat-total">0분</dd>
+        </div>
+        <div class="stats__item">
+          <dt class="stats__label">연속 성공</dt>
+          <dd class="stats__value" id="stat-streak">0일</dd>
+        </div>
+        <div class="stats__item">
+          <dt class="stats__label">심은 식물</dt>
+          <dd class="stats__value" id="stat-count">0그루</dd>
+        </div>
+      </dl>
+
+      <section class="next-unlock" id="next-unlock" aria-labelledby="next-title">
+        <h3 class="next-unlock__title" id="next-title">다음 식물</h3>
+        <p class="next-unlock__text" id="next-text"></p>
+        <div class="bar" id="next-bar" role="progressbar" aria-labelledby="next-title" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="bar__fill" id="next-fill"></span></div>
+      </section>
+
+      <section class="garden__plot" aria-labelledby="plot-title">
+        <h3 class="garden__plot-title" id="plot-title">심은 식물</h3>
+        <ul class="plot" id="plot"></ul>
+        <div class="empty" id="garden-empty" hidden>
+          <p class="empty__text">아직 심은 식물이 없어요.</p>
+          <a class="btn btn--primary btn--lg" href="#timer"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg>첫 타이머 시작</a>
+        </div>
+      </section>
+
+      <p class="notice"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-info"></use></svg>정원은 이 기기의 브라우저에만 저장돼요. 브라우저 데이터를 지우면 정원이 사라져요.</p>
+
+      <button class="btn btn--danger garden__clear" id="garden-clear" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-trash"></use></svg>정원 비우기</button>
+    </section>
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <div class="wrap">
+      <p class="footer__text">설치 없이 웹에서 바로 쓰는 폰 내려놓기 타이머</p>
+      <p class="footer__copy">© 2026 자라는 시간 · 웹 퍼블리싱 포트폴리오</p>
+    </div>
+  </footer>
+
+  <!-- 사용 안내 -->
+  <dialog class="dialog" id="guide-dialog" aria-labelledby="guide-title">
+    <h2 class="dialog__title" id="guide-title">화면을 켜둔 채 폰을 엎어두세요</h2>
+    <ol class="guide-steps">
+      <li class="guide-steps__item"><svg class="ico guide-steps__ico" aria-hidden="true" focusable="false"><use href="#i-sun"></use></svg><span><strong>화면은 켜둔 채로</strong> 두세요. 화면이 꺼져도 ‘나간 것’으로 봐요.</span></li>
+      <li class="guide-steps__item"><svg class="ico guide-steps__ico" aria-hidden="true" focusable="false"><use href="#i-flip"></use></svg><span>폰을 <strong>뒤집어 엎어두고</strong> 할 일을 하세요.</span></li>
+      <li class="guide-steps__item"><svg class="ico guide-steps__ico" aria-hidden="true" focusable="false"><use href="#i-phone"></use></svg><span>다른 앱으로 넘어가도 <strong>10초 안에 돌아오면</strong> 괜찮아요. 그보다 길면 식물이 시들어요.</span></li>
+    </ol>
+    <p class="dialog__note" id="guide-lock-note" hidden></p>
+    <div class="dialog__actions">
+      <button class="btn btn--primary btn--lg btn--block" id="guide-ok" type="button">알겠어요, 시작할게요</button>
+      <button class="btn btn--lg btn--block" id="guide-cancel" type="button">닫기</button>
+    </div>
+  </dialog>
+
+  <!-- 확인 창 -->
+  <dialog class="dialog" id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-desc">
+    <h2 class="dialog__title" id="confirm-title">정말 그만둘까요?</h2>
+    <p class="dialog__desc" id="confirm-desc"></p>
+    <div class="dialog__actions">
+      <button class="btn btn--danger-fill btn--lg btn--block" id="confirm-ok" type="button">그만두기</button>
+      <button class="btn btn--lg btn--block" id="confirm-cancel" type="button">계속하기</button>
+    </div>
+  </dialog>
+</body>
+</html>
