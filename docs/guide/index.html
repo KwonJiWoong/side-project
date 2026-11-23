@@ -63,9 +63,10 @@
           <li class="toc__item"><a class="toc__link" href="#css-요약">3. CSS (요약)</a></li>
           <li class="toc__item"><a class="toc__link" href="#javascript">4. JavaScript</a></li>
           <li class="toc__item"><a class="toc__link" href="#바깥-데이터-쓰기-자동-수집">5. 바깥 데이터 쓰기 (자동 수집)</a></li>
-          <li class="toc__item"><a class="toc__link" href="#접근성-시니어-ux-기준">6. 접근성 · 시니어 UX 기준</a></li>
+          <li class="toc__item"><a class="toc__link" href="#접근성-ux-기준">6. 접근성 · UX 기준</a></li>
           <li class="toc__item"><a class="toc__link" href="#작업-방식">7. 작업 방식</a></li>
-          <li class="toc__item"><a class="toc__link" href="#완료-체크리스트">8. 완료 체크리스트</a></li>
+          <li class="toc__item"><a class="toc__link" href="#실서비스-기준">8. 실서비스 기준</a></li>
+          <li class="toc__item"><a class="toc__link" href="#완료-체크리스트">9. 완료 체크리스트</a></li>
         </ol>
           <button type="button" class="btn btn--block" data-reset-checks><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-reset"></use></svg> 체크 모두 지우기</button>
       </details>
@@ -79,7 +80,7 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 <ul class="doc__list">
 <li class="doc__item"><strong class="doc__strong">적용 범위:</strong> 이 폴더의 모든 사이트, 그리고 앞으로 만들 개인 프로젝트</li>
 <li class="doc__item"><strong class="doc__strong">우선순위:</strong> 프로젝트별 <code class="doc__inline-code">CLAUDE.md</code> &gt; 이 가이드 &gt; 일반적인 관례</li>
-<li class="doc__item"><strong class="doc__strong">기준 코드:</strong> 포트폴리오 메인과 <code class="doc__inline-code">projects/</code>의 사이트 4개(텃밭 수첩 · 오늘 뭐 먹지 · 밥풀이 · 오늘의 정치 소식)에서 실제로 쓰는 방식을 정리했다. 새 사이트는 가장 비슷한 사이트를 참고해서 시작한다.</li>
+<li class="doc__item"><strong class="doc__strong">기준 코드:</strong> 포트폴리오 메인과 <code class="doc__inline-code">projects/</code>의 사이트들에서 실제로 쓰는 방식을 정리했다. 새 사이트는 0-1 표에서 <strong class="doc__strong">유형이 같은</strong> 사이트를 참고해서 시작한다.</li>
 </ul>
       </div>
 
@@ -87,7 +88,8 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 <h2 class="doc__h2" id="기본-원칙" tabindex="-1">0. 기본 원칙</h2>
 <blockquote class="doc__quote">
 <p class="doc__text"><strong class="doc__strong">"노약자도 쉽게 쓸 수 있는 UI/UX"</strong>
-모든 결정은 고령자와 시력·운동 능력이 낮은 사용자를 기준으로 한다. 화려함보다 명확함과 편안함이 먼저다.</p>
+기본 기준은 고령자와 시력·운동 능력이 낮은 사용자다. 화려함보다 명확함과 편안함이 먼저다.
+대상이 다른 사이트(0-1)도 <strong class="doc__strong">6-1 공통 기준은 줄이지 않는다.</strong></p>
 </blockquote>
 <ol class="doc__list doc__list--num">
 <li class="doc__item"><strong class="doc__strong">한 화면에 한 가지 목적.</strong> 정보는 적게, 여백은 넉넉하게 둔다.</li>
@@ -98,6 +100,99 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 <li class="doc__item"><strong class="doc__strong">표준을 먼저 쓴다.</strong> 직접 만들기 전에 HTML 기본 요소(<code class="doc__inline-code">button</code>, <code class="doc__inline-code">details</code>, <code class="doc__inline-code">dialog</code>, <code class="doc__inline-code">form</code>)로 되는지 확인한다.</li>
 <li class="doc__item"><strong class="doc__strong">프레임워크 없이.</strong> HTML5 / CSS3 / Vanilla JS. 외부 라이브러리는 꼭 필요할 때만, CDN 1~2개 이내로 쓴다. 지금은 글꼴 CDN(Pretendard, 필요하면 꾸밈 글꼴 1개)만 쓴다.</li>
 </ol>
+<h3 class="doc__h3" id="사이트-유형" tabindex="-1">0-1. 사이트 유형</h3>
+<p class="doc__text">사이트마다 <strong class="doc__strong">대상</strong>과 <strong class="doc__strong">운영 방식</strong>을 정하고, 아래 표와 <code class="doc__inline-code">CLAUDE.md</code> 폴더 구조에 적는다.</p>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col">구분</th>
+<th class="doc__th" scope="col">종류</th>
+<th class="doc__th" scope="col">무엇이 달라지나</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td">대상</td>
+<td class="doc__td"><strong class="doc__strong">시니어</strong>(기본) / <strong class="doc__strong">일반</strong>(스마트폰에 익숙한 20~30대)</td>
+<td class="doc__td">글자·터치·대비 수치, 보기 설정, 메뉴 (6장)</td>
+</tr>
+<tr>
+<td class="doc__td">운영</td>
+<td class="doc__td"><strong class="doc__strong">포트폴리오</strong> / <strong class="doc__strong">실서비스</strong></td>
+<td class="doc__td">메인 카드, 푸터 표시, 필수 페이지·광고·공유 (8장)</td>
+</tr>
+</tbody>
+</table></div>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col">사이트</th>
+<th class="doc__th" scope="col">대상</th>
+<th class="doc__th" scope="col">운영</th>
+<th class="doc__th" scope="col">메인 카드</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td">포트폴리오 메인 (<code class="doc__inline-code">/</code>)</td>
+<td class="doc__td">시니어</td>
+<td class="doc__td">포트폴리오</td>
+<td class="doc__td">—</td>
+</tr>
+<tr>
+<td class="doc__td">우리집 텃밭 수첩 <code class="doc__inline-code">garden-guide</code></td>
+<td class="doc__td">시니어</td>
+<td class="doc__td">포트폴리오</td>
+<td class="doc__td">있음</td>
+</tr>
+<tr>
+<td class="doc__td">오늘 뭐 먹지? <code class="doc__inline-code">menu</code></td>
+<td class="doc__td">시니어</td>
+<td class="doc__td">포트폴리오</td>
+<td class="doc__td">있음</td>
+</tr>
+<tr>
+<td class="doc__td">오늘의 정치 소식 <code class="doc__inline-code">politics-news</code></td>
+<td class="doc__td">시니어</td>
+<td class="doc__td">포트폴리오</td>
+<td class="doc__td">있음</td>
+</tr>
+<tr>
+<td class="doc__td">쉬운 폰 배우기 <code class="doc__inline-code">easy-phone</code></td>
+<td class="doc__td">시니어</td>
+<td class="doc__td">포트폴리오</td>
+<td class="doc__td">있음</td>
+</tr>
+<tr>
+<td class="doc__td">아 맞다 약! <code class="doc__inline-code">pill-check</code></td>
+<td class="doc__td">시니어</td>
+<td class="doc__td">실서비스</td>
+<td class="doc__td">있음</td>
+</tr>
+<tr>
+<td class="doc__td">핏루틴 <code class="doc__inline-code">workout-planner</code></td>
+<td class="doc__td">일반 + 시니어 (첫 화면에서 고름)</td>
+<td class="doc__td">포트폴리오</td>
+<td class="doc__td">있음</td>
+</tr>
+<tr>
+<td class="doc__td">딴짓 메뉴 <code class="doc__inline-code">dopamine-menu</code></td>
+<td class="doc__td">일반</td>
+<td class="doc__td">실서비스</td>
+<td class="doc__td">없음</td>
+</tr>
+<tr>
+<td class="doc__td">자라는 시간 <code class="doc__inline-code">phone-timer</code></td>
+<td class="doc__td">일반</td>
+<td class="doc__td">실서비스</td>
+<td class="doc__td">없음</td>
+</tr>
+</tbody>
+</table></div>
+<ul class="doc__list">
+<li class="doc__item">대상이 애매하면 <strong class="doc__strong">시니어</strong>로 정한다.</li>
+<li class="doc__item">두 대상을 다 받는 사이트(핏루틴)는 첫 화면에서 고르게 하고, 고른 쪽 기준을 화면 전체에 적용한다.</li>
+</ul>
 <p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
 </section>
 <section class="doc__section" aria-labelledby="폴더와-파일">
@@ -105,10 +200,16 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 <h3 class="doc__h3" id="저장소-전체" tabindex="-1">1-1. 저장소 전체</h3>
 <pre class="doc__pre" tabindex="0"><code class="doc__code">side-project/                    GitHub Pages로 공개 (main 브랜치)
 ├─ index.html · css/ · js/ · images/   포트폴리오 메인
-├─ projects/
+├─ projects/                     사이트 목록과 유형은 0-1 표
 │  ├─ garden-guide/              우리집 텃밭 수첩 (+ privacy.html)
 │  ├─ menu/                      오늘 뭐 먹지? (귀여운 화면 전환)
-│  └─ politics-news/             오늘의 정치 소식 (+ data/, scraper/)
+│  ├─ politics-news/             오늘의 정치 소식 (+ data/, scraper/)
+│  ├─ easy-phone/                쉬운 폰 배우기 (+ guides/)
+│  ├─ pill-check/                아 맞다 약! (실서비스, + privacy·terms·sw.js)
+│  ├─ workout-planner/           핏루틴 (페이지 여러 개)
+│  ├─ dopamine-menu/             딴짓 메뉴 (실서비스, + privacy.html, data/)
+│  └─ phone-timer/               자라는 시간 (실서비스, JS 역할별 파일)
+├─ services/                     서버 쪽 코드 (pill-push: 웹 푸시 알림, AWS)
 ├─ docs/                         작업 규칙 문서와 가이드 뷰어
 ├─ .github/workflows/            자동 실행 (정치 뉴스 수집)
 ├─ .nojekyll
@@ -128,7 +229,8 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 </code></pre>
 <ul class="doc__list">
 <li class="doc__item">루트에는 포트폴리오 메인 사이트를 둔다. 개인 작업 사이트는 <code class="doc__inline-code">projects/사이트이름/</code>에 두고, 폴더마다 위 구조를 똑같이 둔다. 사이트끼리 파일을 나눠 쓰지 않는다 (<code class="doc__inline-code">reset.css</code>도 폴더마다 따로).</li>
-<li class="doc__item">새 사이트를 만들면 메인 <code class="doc__inline-code">index.html</code>의 "직접 만든 사이트"에 카드를 추가한다 (번호 · 분야 · 연도, 설명, 태그 3개, "사이트 보기" 버튼).</li>
+<li class="doc__item">새 <strong class="doc__strong">포트폴리오</strong> 사이트를 만들면 메인 <code class="doc__inline-code">index.html</code>의 "직접 만든 사이트"에 카드를 추가한다 (번호 · 분야 · 연도, 설명, 태그 3개, "사이트 보기" 버튼). <strong class="doc__strong">실서비스</strong>는 카드를 달지 않아도 되고, 0-1 표에 있음/없음을 적는다.</li>
+<li class="doc__item">사이트에만 있는 기획·디자인·코드 구조는 그 폴더의 <code class="doc__inline-code">PLAN.md</code>, <code class="doc__inline-code">DESIGN.md</code>, <code class="doc__inline-code">FRONTEND.md</code>에 적는다. 공통 규칙은 이 문서를 가리키기만 하고 다시 쓰지 않는다.</li>
 <li class="doc__item">모든 사이트에 <code class="doc__inline-code">images/favicon.svg</code>를 둔다.</li>
 <li class="doc__item">바깥에서 모아 오는 데이터가 있으면 <code class="doc__inline-code">data/</code>(화면이 읽는 JSON)와 <code class="doc__inline-code">scraper/</code>(모으는 스크립트와 <code class="doc__inline-code">config.json</code>)를 더 둔다. 자세한 규칙은 아래 5장.</li>
 <li class="doc__item">작업 규칙 문서(<code class="doc__inline-code">CODING_GUIDE.md</code>, <code class="doc__inline-code">CSS_GUIDE.md</code>)와 가이드 뷰어(<code class="doc__inline-code">guide/</code>)는 <code class="doc__inline-code">docs/</code>에 둔다. <code class="doc__inline-code">CLAUDE.md</code>만 루트에 둔다.</li>
@@ -177,7 +279,7 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 <li class="doc__item"><strong class="doc__strong">필수 요소:</strong> <code class="doc__inline-code">lang="ko"</code>, <code class="doc__inline-code">description</code>, <code class="doc__inline-code">title</code>을 빠뜨리지 않는다 (SEO와 화면 낭독기 모두에 필요).</li>
 <li class="doc__item"><strong class="doc__strong"><code class="doc__inline-code">theme-color</code>:</strong> 그 사이트의 대표 색(헤더 배경색이나 주요 색)으로 맞춘다.</li>
 <li class="doc__item"><strong class="doc__strong">글꼴:</strong> Pretendard CDN을 기본으로 넣는다. 꾸밈 글꼴이 필요하면 제목용으로 하나만 더한다 (예: 밥풀이 사이트의 Jua).</li>
-<li class="doc__item"><strong class="doc__strong">만든 사람 표시:</strong> <code class="doc__inline-code">&lt;meta name="author" content="권지웅"&gt;</code>을 넣고, 푸터에 <code class="doc__inline-code">© 2026 권지웅</code>과 포트폴리오로 돌아가는 링크를 둔다.</li>
+<li class="doc__item"><strong class="doc__strong">만든 사람 표시 (포트폴리오 사이트):</strong> <code class="doc__inline-code">&lt;meta name="author" content="권지웅"&gt;</code>을 넣고, 푸터에 <code class="doc__inline-code">© 2026 권지웅</code>과 포트폴리오로 돌아가는 링크를 둔다. <strong class="doc__strong">실서비스</strong>는 8-1을 따른다.</li>
 <li class="doc__item"><strong class="doc__strong">스크립트 위치:</strong> <code class="doc__inline-code">&lt;body&gt;</code> 맨 끝에 둔다.</li>
 </ul>
 <h3 class="doc__h3" id="구조와-제목" tabindex="-1">2-2. 구조와 제목</h3>
@@ -196,6 +298,7 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 <ul class="doc__list">
 <li class="doc__item"><strong class="doc__strong"><code class="doc__inline-code">nav</code>:</strong> 여러 개면 <code class="doc__inline-code">aria-label</code>로 구분한다 (예: "주요 메뉴", "사이트 정보", "보기 고르기").</li>
 <li class="doc__item"><strong class="doc__strong">현재 위치:</strong> 현재 페이지·현재 메뉴에는 <code class="doc__inline-code">aria-current="page"</code>, 목록 안에서 지금 보고 있는 항목에는 <code class="doc__inline-code">aria-current="true"</code>를 단다.</li>
+<li class="doc__item"><strong class="doc__strong">메뉴를 숨기는 화면:</strong> 타이머 진행처럼 나가지 않게 해야 하는 집중 화면만 메뉴를 숨길 수 있다 (6-4).</li>
 <li class="doc__item"><strong class="doc__strong">보기 설정 묶음:</strong> 글자 크기·고대비 버튼은 한곳에 묶는다.</li>
 <li class="doc__item">작업 사이트: 헤더 안 <code class="doc__inline-code">&lt;div class="tools" role="group" aria-label="보기 설정"&gt;</code></li>
 <li class="doc__item">포트폴리오 메인: 맨 위 <code class="doc__inline-code">&lt;aside class="tools" aria-label="보기 설정"&gt;</code></li>
@@ -279,7 +382,7 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 <li class="doc__item"><code class="doc__inline-code">alert()</code>, <code class="doc__inline-code">confirm()</code>, <code class="doc__inline-code">prompt()</code> (대신 공통 알림창을 쓴다. 아래 2-8)</li>
 </ul>
 <h3 class="doc__h3" id="공통-알림창" tabindex="-1">2-8. 공통 알림창</h3>
-<p class="doc__text">브라우저 기본 <code class="doc__inline-code">alert()</code> 대신 쓰는 알림창이다. 페이지마다 <strong class="doc__strong">하나만</strong> 두고, 어디서든 JS의 <code class="doc__inline-code">showAlert()</code>로 내용을 바꿔 연다.</p>
+<p class="doc__text">브라우저 기본 <code class="doc__inline-code">alert()</code> 대신 쓰는 알림창이다. 페이지마다 <strong class="doc__strong">하나만</strong> 두고, 어디서든 JS의 <code class="doc__inline-code">showAlert()</code>로 내용을 바꿔 연다. 이 알림창 말고 목적이 분명한 대화 상자(사용 안내, 홈 화면 추가 등)는 6-4 기준으로 따로 둘 수 있다.</p>
 <ul class="doc__list">
 <li class="doc__item"><strong class="doc__strong">태그:</strong> <code class="doc__inline-code">&lt;dialog&gt;</code>를 쓴다. 열리면 뒤 화면을 누를 수 없고, 포커스가 [확인] 버튼으로 가며, <code class="doc__inline-code">Esc</code>로도 닫힌다.</li>
 <li class="doc__item"><strong class="doc__strong">위치:</strong> <code class="doc__inline-code">&lt;/body&gt;</code> 바로 위, <code class="doc__inline-code">&lt;script&gt;</code> 앞에 둔다.</li>
@@ -332,7 +435,7 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 <ul class="doc__list">
 <li class="doc__item"><strong class="doc__strong">문구:</strong> 제목은 결과를 짧게("복사했어요"), 본문은 <strong class="doc__strong">다음에 할 일</strong>까지 쉬운 말로 쓴다 ("메일 쓰는 곳에 붙여 넣어 주세요.").</li>
 <li class="doc__item"><strong class="doc__strong">하지 않는 것:</strong> 저절로 사라지게 만들지 않는다 (읽기 느린 사용자가 놓친다). 바깥을 눌러 닫히게 하지 않는다 (실수로 닫힌다).</li>
-<li class="doc__item"><strong class="doc__strong">되돌릴 수 없는 동작의 확인 단계</strong>는 이 알림창이 아니라 화면 안의 <code class="doc__inline-code">.confirm</code> 블록으로 만든다.</li>
+<li class="doc__item"><strong class="doc__strong">되돌릴 수 없는 동작의 확인 단계</strong>는 이 알림창이 아니라 화면 안의 <code class="doc__inline-code">.confirm</code> 블록으로 만든다. 화면을 멈추고 꼭 골라야 하는 경우(진행 중 그만두기 등)만 확인용 대화 상자를 쓴다 (6-4).</li>
 </ul>
 <p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
 </section>
@@ -373,11 +476,15 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 </tr>
 <tr>
 <td class="doc__td">접근성</td>
-<td class="doc__td">굵은 포커스 테두리, 터치 영역 <code class="doc__inline-code">3.5rem</code> 이상, <code class="doc__inline-code">prefers-reduced-motion</code> 지원</td>
+<td class="doc__td">포커스 테두리 3px 이상, 터치 영역 <code class="doc__inline-code">--touch</code>(시니어 <code class="doc__inline-code">3.5rem</code> / 일반 <code class="doc__inline-code">3rem</code> 이상), <code class="doc__inline-code">prefers-reduced-motion</code> 지원</td>
 </tr>
 <tr>
 <td class="doc__td">보기 설정</td>
-<td class="doc__td">글자 크기 3단계(<code class="doc__inline-code">html[data-size]</code>), 고대비 모드(<code class="doc__inline-code">html[data-contrast="high"]</code>)</td>
+<td class="doc__td">시니어: 글자 크기 3단계(<code class="doc__inline-code">html[data-size]</code>) + 고대비(<code class="doc__inline-code">html[data-contrast="high"]</code>) 필수 / 일반: 선택</td>
+</tr>
+<tr>
+<td class="doc__td">어두운 화면</td>
+<td class="doc__td">다크 모드·집중 화면은 색 토큰 값만 바꾼다 (CSS_GUIDE 2-4)</td>
 </tr>
 </tbody>
 </table></div>
@@ -605,8 +712,10 @@ showAlert({ type: 'error', message: '날짜를 골라 주세요. 오늘이나 �
 </ul>
 <p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
 </section>
-<section class="doc__section" aria-labelledby="접근성-시니어-ux-기준">
-<h2 class="doc__h2" id="접근성-시니어-ux-기준" tabindex="-1">6. 접근성 · 시니어 UX 기준</h2>
+<section class="doc__section" aria-labelledby="접근성-ux-기준">
+<h2 class="doc__h2" id="접근성-ux-기준" tabindex="-1">6. 접근성 · UX 기준</h2>
+<p class="doc__text">대상(0-1)에 따라 6-1에 6-2 또는 6-3을 더한다. 수치는 <strong class="doc__strong">화면에 실제로 보이는 크기(px)</strong> 기준이고, 괄호는 그 사이트 루트 글자 크기에서의 <code class="doc__inline-code">rem</code> 값이다.</p>
+<h3 class="doc__h3" id="모든-사이트-공통-필수" tabindex="-1">6-1. 모든 사이트 공통 (필수)</h3>
 <div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
 <thead class="doc__thead">
 <tr>
@@ -617,19 +726,15 @@ showAlert({ type: 'error', message: '날짜를 골라 주세요. 오늘이나 �
 <tbody>
 <tr>
 <td class="doc__td">글자</td>
-<td class="doc__td">본문 18px 이상(<code class="doc__inline-code">1rem</code>), 버튼·중요 안내 20px 이상. 행간 1.6 이상, 굵기 400 이상</td>
-</tr>
-<tr>
-<td class="doc__td">글꼴</td>
-<td class="doc__td">Pretendard 또는 Noto Sans KR</td>
+<td class="doc__td">본문 16px 이상, 행간 1.6 이상, 굵기 400 이상. 글꼴은 Pretendard 또는 Noto Sans KR</td>
 </tr>
 <tr>
 <td class="doc__td">대비</td>
-<td class="doc__td">글자 대비 7:1 목표, 최소 4.5:1</td>
+<td class="doc__td">글자 대비 최소 4.5:1, 목표 7:1. 어두운 화면도 같은 기준</td>
 </tr>
 <tr>
 <td class="doc__td">터치</td>
-<td class="doc__td">누르는 곳 최소 48×48px(<code class="doc__inline-code">3.5rem</code>), 간격 8px 이상</td>
+<td class="doc__td">누르는 곳 최소 48×48px, 사이 간격 8px 이상</td>
 </tr>
 <tr>
 <td class="doc__td">조작</td>
@@ -637,27 +742,176 @@ showAlert({ type: 'error', message: '날짜를 골라 주세요. 오늘이나 �
 </tr>
 <tr>
 <td class="doc__td">키보드</td>
-<td class="doc__td">키보드만으로 모든 기능 사용 가능. 포커스 테두리 3px 이상</td>
+<td class="doc__td">키보드만으로 모든 기능 사용 가능. 포커스 테두리 3px 이상 + 띄움</td>
 </tr>
 <tr>
-<td class="doc__td">메뉴</td>
-<td class="doc__td">5~6개 이하, 쉬운 우리말, 아이콘 + 글자, 현재 위치 표시, "처음으로" 버튼 항상 노출</td>
-</tr>
-<tr>
-<td class="doc__td">보기 설정</td>
-<td class="doc__td">글자 크기 조절(보통 / 크게 / 아주 크게), 고대비 보기</td>
+<td class="doc__td">상태</td>
+<td class="doc__td">색만으로 알리지 않는다 (색 + 아이콘 + 글자)</td>
 </tr>
 <tr>
 <td class="doc__td">확대</td>
 <td class="doc__td">브라우저 200% 확대에서도 깨지지 않음</td>
 </tr>
 <tr>
-<td class="doc__td">움직임</td>
-<td class="doc__td">자동 재생·깜빡임 금지, <code class="doc__inline-code">prefers-reduced-motion</code> 존중</td>
+<td class="doc__td">움직임 · 문구 · 상태 화면</td>
+<td class="doc__td">6-5, 6-6, 6-7</td>
+</tr>
+</tbody>
+</table></div>
+<h3 class="doc__h3" id="시니어-사이트-추가" tabindex="-1">6-2. 시니어 사이트 (추가)</h3>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col">영역</th>
+<th class="doc__th" scope="col">기준</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td">글자</td>
+<td class="doc__td">루트 <code class="doc__inline-code">html { font-size: 112.5%; }</code> → 본문 <code class="doc__inline-code">1rem</code>(18px), 버튼·중요 안내 <code class="doc__inline-code">1.125rem</code>(20px) 이상</td>
 </tr>
 <tr>
+<td class="doc__td">대비</td>
+<td class="doc__td">7:1 이상</td>
+</tr>
+<tr>
+<td class="doc__td">터치</td>
+<td class="doc__td"><code class="doc__inline-code">--touch: 3.5rem</code>(약 63px)</td>
+</tr>
+<tr>
+<td class="doc__td">포커스</td>
+<td class="doc__td">테두리 <code class="doc__inline-code">0.25rem</code>(약 4.5px)</td>
+</tr>
+<tr>
+<td class="doc__td">보기 설정</td>
+<td class="doc__td">글자 크기 3단계(보통 / 크게 / 아주 크게 = <code class="doc__inline-code">html[data-size="1·2"]</code>), 고대비(<code class="doc__inline-code">html[data-contrast="high"]</code>)</td>
+</tr>
+<tr>
+<td class="doc__td">메뉴</td>
+<td class="doc__td">5~6개 이하, 쉬운 우리말, 아이콘 + 글자, 현재 위치 표시, "처음으로" 버튼 항상 노출</td>
+</tr>
+<tr>
+<td class="doc__td">배경</td>
+<td class="doc__td">흰색 또는 아주 밝은 톤</td>
+</tr>
+</tbody>
+</table></div>
+<h3 class="doc__h3" id="일반-서비스-추가" tabindex="-1">6-3. 일반 서비스 (추가)</h3>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col">영역</th>
+<th class="doc__th" scope="col">기준</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td">글자</td>
+<td class="doc__td">루트 <code class="doc__inline-code">100%</code> → 본문 <code class="doc__inline-code">1rem</code>~<code class="doc__inline-code">1.125rem</code>(16~18px), 버튼·중요 안내 <code class="doc__inline-code">1.125rem</code>(18px) 이상</td>
+</tr>
+<tr>
+<td class="doc__td">대비</td>
+<td class="doc__td">7:1 목표, 4.5:1 미만 금지</td>
+</tr>
+<tr>
+<td class="doc__td">터치</td>
+<td class="doc__td"><code class="doc__inline-code">--touch: 3rem</code>(48px) 이상</td>
+</tr>
+<tr>
+<td class="doc__td">포커스</td>
+<td class="doc__td">테두리 <code class="doc__inline-code">0.1875rem</code>(3px) 이상</td>
+</tr>
+<tr>
+<td class="doc__td">보기 설정</td>
+<td class="doc__td">선택. 기기 설정(글자 크기, 다크 모드)을 따르는 것으로 대신할 수 있다. 글자 크기 버튼을 넣으면 속성 이름은 <code class="doc__inline-code">html[data-size]</code>로 쓴다</td>
+</tr>
+<tr>
+<td class="doc__td">메뉴</td>
+<td class="doc__td">5개 이하, 아이콘 + 글자, 현재 위치 표시. 서비스 이름(로고)을 첫 화면 링크로 쓰면 "처음으로" 버튼은 따로 두지 않아도 된다</td>
+</tr>
+<tr>
+<td class="doc__td">배경</td>
+<td class="doc__td">밝은 화면 기본. 기기 다크 모드를 따를 수 있다 (6-4)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 class="doc__h3" id="화면-예외-두-대상-공통" tabindex="-1">6-4. 화면 예외 (두 대상 공통)</h3>
+<ul class="doc__list">
+<li class="doc__item"><strong class="doc__strong">어두운 화면:</strong> 기본은 밝은 화면이다. 다크 모드, 타이머 진행 화면(배터리 절약·집중)처럼 이유가 있을 때만 어둡게 한다. <strong class="doc__strong">색 토큰 값만</strong> 바꾸고, 대비 기준은 밝은 화면과 똑같이 지킨다 (CSS_GUIDE 2-4).</li>
+<li class="doc__item"><strong class="doc__strong">집중 화면:</strong> 다른 곳으로 나가지 않게 해야 하는 화면(타이머 진행 등)은 메뉴·"처음으로"·푸터를 숨길 수 있다. 대신 [그만두기] 버튼과 확인 단계를 반드시 둔다.</li>
+<li class="doc__item"><strong class="doc__strong">대화 상자:</strong> 공통 알림창(2-8)은 페이지마다 하나. 그 밖에 목적이 분명한 <code class="doc__inline-code">&lt;dialog&gt;</code>(사용 안내, 홈 화면 추가, 화면을 멈추고 골라야 하는 확인)는 둘 수 있다. 모두 <code class="doc__inline-code">aria-labelledby</code>로 제목을 잇고, 열면 안쪽으로 포커스를 옮기고, 닫으면 연 버튼으로 돌려준다. 되돌릴 수 없는 확인에서는 처음 포커스를 안전한 버튼(취소·계속하기)에 둔다. 꼭 골라야 하는 창은 <code class="doc__inline-code">Esc</code>로 닫히지 않게 한다.</li>
+</ul>
+<h3 class="doc__h3" id="움직임" tabindex="-1">6-5. 움직임</h3>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col">종류</th>
+<th class="doc__th" scope="col">기준</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td">상태 변화 (색·테두리)</td>
+<td class="doc__td"><code class="doc__inline-code">0.15s</code> 이하</td>
+</tr>
+<tr>
+<td class="doc__td">기능을 설명하는 연출 (자라기, 카드 뒤집기, 도장 찍기)</td>
+<td class="doc__td">한 번에 1초 안팎. 사용자 동작이나 상태가 바뀔 때만</td>
+</tr>
+<tr>
+<td class="doc__td">금지</td>
+<td class="doc__td">자동 재생, 끝없는 반복, 깜빡임(1초에 3번 이상), 화면 전체가 크게 움직이는 효과</td>
+</tr>
+<tr>
+<td class="doc__td">움직임 줄이기</td>
+<td class="doc__td"><code class="doc__inline-code">prefers-reduced-motion</code>이면 모두 끈다 (바로 끝 상태로)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 class="doc__h3" id="문구" tabindex="-1">6-6. 문구</h3>
+<ul class="doc__list">
+<li class="doc__item">해요체 + 쉬운 말. 전문 용어·영어 약어는 피한다.</li>
+<li class="doc__item">버튼은 무엇이 일어나는지 쓴다 ("오늘 물 줬어요", "네, 뺄게요").</li>
+<li class="doc__item">사용자를 탓하지 않는다. "실패했습니다" 대신 상황을 쓴다 ("시들었어요. 8분 버텼어요").</li>
+<li class="doc__item">오류는 원인과 해결 방법을 함께 쓴다 (2-5).</li>
+<li class="doc__item">숫자는 단위와 함께 쓴다 (<code class="doc__inline-code">25분</code>, <code class="doc__inline-code">3그루</code>, <code class="doc__inline-code">2일</code>).</li>
+</ul>
+<h3 class="doc__h3" id="상태-화면" tabindex="-1">6-7. 상태 화면</h3>
+<p class="doc__text">목록·기록이 있는 화면은 아래 상태를 모두 만든다. 바깥 데이터를 쓰면 5-4도 함께 지킨다.</p>
+<div class="doc__table-wrap" role="region" aria-label="표" tabindex="0"><table class="doc__table">
+<thead class="doc__thead">
+<tr>
+<th class="doc__th" scope="col">상태</th>
+<th class="doc__th" scope="col">보여 줄 것</th>
+<th class="doc__th" scope="col">예</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="doc__td">처음</td>
+<td class="doc__td">무엇을 하는 곳인지 한 줄 + 첫 동작 버튼</td>
+<td class="doc__td">처음 열면 사용 안내</td>
+</tr>
+<tr>
+<td class="doc__td">비어 있음</td>
+<td class="doc__td">안내 문구 + 첫 동작 버튼</td>
+<td class="doc__td">"아직 심은 식물이 없어요" + [첫 타이머 시작]</td>
+</tr>
+<tr>
+<td class="doc__td">불러오는 중</td>
 <td class="doc__td">문구</td>
-<td class="doc__td">존댓말 + 쉬운 말. 전문 용어·영어 약어는 피한다. 버튼은 무엇이 일어나는지 쓴다 ("오늘 물 줬어요", "네, 뺄게요")</td>
+<td class="doc__td">"불러오는 중이에요"</td>
+</tr>
+<tr>
+<td class="doc__td">실패</td>
+<td class="doc__td">원인 + 다시 하기 버튼</td>
+<td class="doc__td">"불러오지 못했어요" + [다시 불러오기]</td>
+</tr>
+<tr>
+<td class="doc__td">저장 불가</td>
+<td class="doc__td">기능은 그대로 쓰게 하고 안내만</td>
+<td class="doc__td">"이 브라우저에서는 기록이 저장되지 않아요"</td>
 </tr>
 </tbody>
 </table></div>
@@ -735,32 +989,81 @@ refactor: 태그 선택자를 BEM 클래스로 변경
 </ul>
 <p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
 </section>
+<section class="doc__section" aria-labelledby="실서비스-기준">
+<h2 class="doc__h2" id="실서비스-기준" tabindex="-1">8. 실서비스 기준</h2>
+<p class="doc__text">운영 방식(0-1)이 <strong class="doc__strong">실서비스</strong>인 사이트는 반드시 지킨다. 포트폴리오 사이트도 해당하는 부분(예: 광고가 있으면 8-2)은 따른다.</p>
+<h3 class="doc__h3" id="필수-페이지와-표시" tabindex="-1">8-1. 필수 페이지와 표시</h3>
+<ul class="doc__list">
+<li class="doc__item"><strong class="doc__strong">개인정보 처리방침 <code class="doc__inline-code">privacy.html</code>:</strong> 무엇을 어디에 저장하는지(이 기기 브라우저의 localStorage, 서버 등), 광고·분석 도구, 문의처. 저장하는 것이 없어도 "저장하지 않아요"라고 적는다.</li>
+<li class="doc__item"><strong class="doc__strong">문의처:</strong> 메일 주소를 처리방침이나 푸터에 둔다.</li>
+<li class="doc__item"><strong class="doc__strong">기록 위치 안내:</strong> 기록을 브라우저에만 저장하면 기록 화면에 "이 기기 브라우저에만 저장돼요. 브라우저 데이터를 지우면 사라져요"를 적는다.</li>
+<li class="doc__item"><strong class="doc__strong">푸터:</strong> <code class="doc__inline-code">© 연도 서비스 이름</code> + 처리방침 링크. 포트폴리오 링크나 "웹 퍼블리싱 포트폴리오" 문구는 넣지 않는다.</li>
+</ul>
+<h3 class="doc__h3" id="광고" tabindex="-1">8-2. 광고</h3>
+<ul class="doc__list">
+<li class="doc__item"><strong class="doc__strong">위치:</strong> 콘텐츠 아래나 사이에 둔다. 주요 버튼 바로 옆·위, 집중 화면(6-4), 대화 상자 안에는 두지 않는다.</li>
+<li class="doc__item"><strong class="doc__strong">개수:</strong> 한 화면에 1개를 기본으로 한다.</li>
+<li class="doc__item"><strong class="doc__strong">자리:</strong> 광고가 늦게 떠도 화면이 밀리지 않게 자리 높이를 미리 잡는다 (CSS_GUIDE 5장 광고 규격). 광고 ID가 비어 있으면 자리째 숨긴다.</li>
+<li class="doc__item"><strong class="doc__strong">구분:</strong> "광고" 글자를 붙여 콘텐츠와 헷갈리지 않게 한다.</li>
+</ul>
+<h3 class="doc__h3" id="소리-진동" tabindex="-1">8-3. 소리 · 진동</h3>
+<ul class="doc__list">
+<li class="doc__item">소리는 사용자가 버튼을 누른 뒤에만 준비하고 낸다. 자동 재생 금지.</li>
+<li class="doc__item">화면에 소리 끄기 스위치를 둔다. 진동은 소리를 돕는 신호로만 쓴다.</li>
+<li class="doc__item">소리만으로 알리지 않는다. 화면 글자와 알림(<code class="doc__inline-code">role="status"</code>)을 함께 쓴다.</li>
+</ul>
+<h3 class="doc__h3" id="공유-설치" tabindex="-1">8-4. 공유 · 설치</h3>
+<ul class="doc__list">
+<li class="doc__item"><strong class="doc__strong">공유 미리보기:</strong> <code class="doc__inline-code">&lt;head&gt;</code>에 <code class="doc__inline-code">og:title</code>, <code class="doc__inline-code">og:description</code>, <code class="doc__inline-code">og:image</code>(1200×630), <code class="doc__inline-code">og:url</code>, <code class="doc__inline-code">twitter:card</code>를 넣는다.</li>
+<li class="doc__item"><strong class="doc__strong"><code class="doc__inline-code">theme-color</code>:</strong> 화면 배경과 맞춘다. 어두운 화면으로 바뀌면 JS로 함께 바꾼다.</li>
+<li class="doc__item"><strong class="doc__strong">홈 화면에 추가:</strong> 자주 다시 여는 서비스는 <code class="doc__inline-code">manifest.webmanifest</code>와 아이콘(180·192·512px PNG)을 두고, 설정이나 안내에 "홈 화면에 추가하기" 방법(아이폰·안드로이드)을 적는다.</li>
+</ul>
+<h3 class="doc__h3" id="실기기-확인" tabindex="-1">8-5. 실기기 확인</h3>
+<ul class="doc__list">
+<li class="doc__item">아이폰 Safari와 안드로이드 Chrome 실기기에서 확인한다. 특히 화면 꺼짐, 다른 앱으로 전환, 무음 모드, 홈 화면 앱처럼 PC에서 재현되지 않는 동작은 꼭 직접 본다.</li>
+</ul>
+<p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
+</section>
 <section class="doc__section" aria-labelledby="완료-체크리스트">
-<h2 class="doc__h2" id="완료-체크리스트" tabindex="-1">8. 완료 체크리스트</h2>
-<p class="doc__text"><strong class="doc__strong">화면</strong></p>
+<h2 class="doc__h2" id="완료-체크리스트" tabindex="-1">9. 완료 체크리스트</h2>
+<p class="doc__text"><strong class="doc__strong">화면 (모든 사이트)</strong></p>
 <ul class="doc__list doc__list--check">
 <li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-1" data-check="index-check-1"><label class="doc__check-label" for="index-check-1">모바일(375px) / 태블릿(768px) / PC(1280px)에서 가로 스크롤이 없다</label></li>
-<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-2" data-check="index-check-2"><label class="doc__check-label" for="index-check-2">글자 "아주 크게"와 브라우저 200% 확대에서 깨지지 않는다</label></li>
-<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-3" data-check="index-check-3"><label class="doc__check-label" for="index-check-3">고대비 모드에서 모든 글자와 아이콘이 보인다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-2" data-check="index-check-2"><label class="doc__check-label" for="index-check-2">브라우저 200% 확대에서 깨지지 않는다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-3" data-check="index-check-3"><label class="doc__check-label" for="index-check-3">어두운 화면이 있으면 그 화면에서도 글자 대비를 확인했다</label></li>
 </ul>
-<p class="doc__text"><strong class="doc__strong">접근성</strong></p>
+<p class="doc__text"><strong class="doc__strong">시니어 사이트</strong></p>
 <ul class="doc__list doc__list--check">
-<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-4" data-check="index-check-4"><label class="doc__check-label" for="index-check-4">키보드(Tab, Enter, Space)만으로 모든 기능을 쓸 수 있다</label></li>
-<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-5" data-check="index-check-5"><label class="doc__check-label" for="index-check-5">모든 버튼에 아이콘 + 글자가 있고, 터치 영역이 48px 이상이다</label></li>
-<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-6" data-check="index-check-6"><label class="doc__check-label" for="index-check-6">글자 대비 7:1 (최소 4.5:1)</label></li>
-<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-7" data-check="index-check-7"><label class="doc__check-label" for="index-check-7">이미지 <code class="doc__inline-code">alt</code>, 폼 <code class="doc__inline-code">label</code>, 제목 순서, h1 한 개</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-4" data-check="index-check-4"><label class="doc__check-label" for="index-check-4">글자 "아주 크게"에서 깨지지 않는다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-5" data-check="index-check-5"><label class="doc__check-label" for="index-check-5">고대비 모드에서 모든 글자와 아이콘이 보인다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-6" data-check="index-check-6"><label class="doc__check-label" for="index-check-6">터치 영역 <code class="doc__inline-code">3.5rem</code>, 글자 대비 7:1 이상</label></li>
+</ul>
+<p class="doc__text"><strong class="doc__strong">접근성 (모든 사이트)</strong></p>
+<ul class="doc__list doc__list--check">
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-7" data-check="index-check-7"><label class="doc__check-label" for="index-check-7">키보드(Tab, Enter, Space, Esc)만으로 모든 기능을 쓸 수 있다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-8" data-check="index-check-8"><label class="doc__check-label" for="index-check-8">모든 버튼에 아이콘 + 글자가 있고, 터치 영역이 48px 이상이다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-9" data-check="index-check-9"><label class="doc__check-label" for="index-check-9">글자 대비 최소 4.5:1 (목표 7:1)</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-10" data-check="index-check-10"><label class="doc__check-label" for="index-check-10">이미지 <code class="doc__inline-code">alt</code>, 폼 <code class="doc__inline-code">label</code>, 제목 순서, h1 한 개</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-11" data-check="index-check-11"><label class="doc__check-label" for="index-check-11"><code class="doc__inline-code">prefers-reduced-motion</code>에서 움직임이 꺼진다</label></li>
 </ul>
 <p class="doc__text"><strong class="doc__strong">코드</strong></p>
 <ul class="doc__list doc__list--check">
-<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-8" data-check="index-check-8"><label class="doc__check-label" for="index-check-8">콘솔 에러가 없다</label></li>
-<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-9" data-check="index-check-9"><label class="doc__check-label" for="index-check-9">바깥 데이터를 쓰면: 불러오는 중 · 실패 · 비어 있음 화면을 모두 확인했다</label></li>
-<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-10" data-check="index-check-10"><label class="doc__check-label" for="index-check-10">인라인 스타일·인라인 이벤트·<code class="doc__inline-code">!important</code>가 없다 (허용 예외 제외)</label></li>
-<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-11" data-check="index-check-11"><label class="doc__check-label" for="index-check-11">쓰지 않는 파일·클래스·코드가 없다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-12" data-check="index-check-12"><label class="doc__check-label" for="index-check-12">콘솔 에러가 없다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-13" data-check="index-check-13"><label class="doc__check-label" for="index-check-13">상태 화면(처음 · 비어 있음 · 불러오는 중 · 실패 · 저장 불가) 중 해당하는 것을 모두 확인했다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-14" data-check="index-check-14"><label class="doc__check-label" for="index-check-14">인라인 스타일·인라인 이벤트·<code class="doc__inline-code">!important</code>가 없다 (허용 예외 제외)</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-15" data-check="index-check-15"><label class="doc__check-label" for="index-check-15">쓰지 않는 파일·클래스·코드가 없다</label></li>
+</ul>
+<p class="doc__text"><strong class="doc__strong">실서비스</strong></p>
+<ul class="doc__list doc__list--check">
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-16" data-check="index-check-16"><label class="doc__check-label" for="index-check-16">개인정보 처리방침·문의처가 있고 푸터에서 갈 수 있다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-17" data-check="index-check-17"><label class="doc__check-label" for="index-check-17">광고 자리가 8-2 기준을 지킨다 (광고가 있을 때)</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-18" data-check="index-check-18"><label class="doc__check-label" for="index-check-18">공유 미리보기(OG)가 나온다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-19" data-check="index-check-19"><label class="doc__check-label" for="index-check-19">아이폰 Safari · 안드로이드 Chrome 실기기에서 확인했다</label></li>
 </ul>
 <p class="doc__text"><strong class="doc__strong">품질</strong></p>
 <ul class="doc__list doc__list--check">
-<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-12" data-check="index-check-12"><label class="doc__check-label" for="index-check-12">Lighthouse 접근성 95점 이상, SEO 90점 이상</label></li>
-<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-13" data-check="index-check-13"><label class="doc__check-label" for="index-check-13">Chrome, Safari, Edge에서 확인했다</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-20" data-check="index-check-20"><label class="doc__check-label" for="index-check-20">Lighthouse 접근성 95점 이상, SEO 90점 이상</label></li>
+<li class="doc__item doc__item--check"><input class="doc__checkbox" type="checkbox" id="index-check-21" data-check="index-check-21"><label class="doc__check-label" for="index-check-21">Chrome, Safari, Edge에서 확인했다</label></li>
 </ul>
 <p class="doc__top"><a class="doc__top-link" href="#top"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-up"></use></svg> 맨 위로</a></p>
 </section>
