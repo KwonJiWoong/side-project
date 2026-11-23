@@ -1,9 +1,9 @@
 /* 식물 데이터 · 단계별 SVG (씨앗 → 새싹 → 잎 → 꽃) */
-(function (GT) {
+((GT) => {
   'use strict';
 
   // 해금 기준: 모은 시간(분)
-  var SPECIES = [
+  const SPECIES = [
     { id: 'daisy', name: '데이지', unlock: 0 },
     { id: 'tulip', name: '튤립', unlock: 60 },
     { id: 'sunflower', name: '해바라기', unlock: 180 },
@@ -14,10 +14,10 @@
     { id: 'mugunghwa', name: '무궁화', unlock: 1500 }
   ];
 
-  var STAGES = ['씨앗', '새싹', '잎', '꽃'];
+  const STAGES = ['씨앗', '새싹', '잎', '꽃'];
 
   // 공통 색 (이미지로 저장할 때도 그대로 보이도록 색값을 직접 씀)
-  var C = {
+  const C = {
     pot: '#b5643a',
     rim: '#9a4f2b',
     soil: '#5a3b22',
@@ -30,8 +30,8 @@
 
   // 꽃잎을 중심(60,40) 둘레로 돌려 배치
   function petals(count, rx, ry, cy, fill, stroke) {
-    var out = '';
-    for (var i = 0; i < count; i++) {
+    let out = '';
+    for (let i = 0; i < count; i++) {
       out += '<ellipse cx="60" cy="' + cy + '" rx="' + rx + '" ry="' + ry + '" transform="rotate(' + (360 / count) * i + ' 60 40)" fill="' + fill + '"' + (stroke ? ' stroke="' + stroke + '" stroke-width="1"' : '') + '/>';
     }
     return out;
@@ -39,10 +39,10 @@
 
   // 수국 꽃송이 (작은 네잎 꽃 여러 개)
   function florets() {
-    var spots = [[60, 25], [50, 30], [70, 30], [45, 40], [60, 37], [75, 40], [52, 47], [68, 47]];
-    var out = '<circle cx="60" cy="37" r="17" fill="#c9d4f2"/>';
-    spots.forEach(function (p, i) {
-      var fill = i % 2 ? '#6c8fd8' : '#9a7fd6';
+    const spots = [[60, 25], [50, 30], [70, 30], [45, 40], [60, 37], [75, 40], [52, 47], [68, 47]];
+    let out = '<circle cx="60" cy="37" r="17" fill="#c9d4f2"/>';
+    spots.forEach((p, i) => {
+      const fill = i % 2 ? '#6c8fd8' : '#9a7fd6';
       out += '<g fill="' + fill + '">' +
         '<circle cx="' + (p[0] - 2.6) + '" cy="' + p[1] + '" r="2.8"/><circle cx="' + (p[0] + 2.6) + '" cy="' + p[1] + '" r="2.8"/>' +
         '<circle cx="' + p[0] + '" cy="' + (p[1] - 2.6) + '" r="2.8"/><circle cx="' + p[0] + '" cy="' + (p[1] + 2.6) + '" r="2.8"/></g>' +
@@ -53,16 +53,16 @@
 
   // 라벤더 꽃대
   function spike() {
-    var out = '';
-    for (var i = 0; i < 7; i++) {
-      var y = 44 - i * 4;
+    let out = '';
+    for (let i = 0; i < 7; i++) {
+      const y = 44 - i * 4;
       out += '<ellipse cx="' + (i % 2 ? 63.5 : 56.5) + '" cy="' + y + '" rx="3.6" ry="4.4" fill="' + (i % 2 ? '#7a5bbf' : '#9b7fd9') + '"/>';
     }
     return out + '<ellipse cx="60" cy="15" rx="3" ry="4" fill="#9b7fd9"/>';
   }
 
   // 종류별 꽃 · 잎 모양
-  var PARTS = {
+  const PARTS = {
     daisy: {
       flower: petals(8, 5, 11, 28, '#ffffff', '#cfc6b0') + '<circle cx="60" cy="40" r="6.5" fill="#f2b705"/>'
     },
@@ -99,19 +99,19 @@
     }
   };
 
-  var DEFAULT_SPROUT =
+  const DEFAULT_SPROUT =
     '<path d="M60 100c-10-8-18-4-20 0 6 6 14 6 20 0z" fill="' + C.leaf + '"/>' +
     '<path d="M60 100c10-8 18-4 20 0-6 6-14 6-20 0z" fill="' + C.leaf + '"/>';
 
-  var DEFAULT_LEAVES =
+  const DEFAULT_LEAVES =
     '<path d="M59 84c-15-12-27-8-31-2 10 10 22 10 31 2z" fill="' + C.leafDark + '"/>' +
     '<path d="M61 70c15-12 27-8 31-2-10 10-22 10-31 2z" fill="' + C.leaf + '"/>';
 
   // 단계별 줄기 길이 (pathLength=1 기준 dashoffset)
-  var STEM_OFFSET = [1, 0.72, 0.2, 0];
+  const STEM_OFFSET = [1, 0.72, 0.2, 0];
 
   function find(id) {
-    for (var i = 0; i < SPECIES.length; i++) if (SPECIES[i].id === id) return SPECIES[i];
+    for (let i = 0; i < SPECIES.length; i++) if (SPECIES[i].id === id) return SPECIES[i];
     return SPECIES[0];
   }
 
@@ -127,35 +127,35 @@
    */
   function svg(id, stage, opts) {
     opts = opts || {};
-    var sp = find(id);
-    var part = PARTS[sp.id] || {};
-    var flat = !!opts.flat;
-    var a11y = opts.label
+    const sp = find(id);
+    const part = PARTS[sp.id] || {};
+    const flat = !!opts.flat;
+    const a11y = opts.label
       ? 'role="img" aria-label="' + sp.name + ', ' + STAGES[stage] + ' 단계' + (opts.wilted ? '(시듦)' : '') + '"'
       : 'aria-hidden="true" focusable="false"';
-    var viewBox = opts.ground ? '0 6 120 114' : '0 0 120 160';
+    const viewBox = opts.ground ? '0 6 120 114' : '0 0 120 160';
 
     // 시든 모습 (이미지 저장용은 SVG 필터·속성으로 직접 표현)
-    var wiltAttr = flat && opts.wilted ? ' transform="rotate(-16 60 114)" filter="url(#wilt)"' : '';
-    var defs = flat && opts.wilted
+    const wiltAttr = flat && opts.wilted ? ' transform="rotate(-16 60 114)" filter="url(#wilt)"' : '';
+    const defs = flat && opts.wilted
       ? '<defs><filter id="wilt"><feColorMatrix type="matrix" values="0.5 0.45 0.15 0 0 0.42 0.42 0.12 0 0 0.3 0.32 0.1 0 0 0 0 0 1 0"/></filter></defs>'
       : '';
 
-    var stem = '<path class="plant__stem" d="M60 114c-3-18 3-38 0-70" pathLength="1"' +
+    const stem = '<path class="plant__stem" d="M60 114c-3-18 3-38 0-70" pathLength="1"' +
       ' fill="none" stroke="' + (part.stem || C.stem) + '" stroke-width="' + (part.stem ? 15 : 4) + '" stroke-linecap="round"' +
       (flat ? ' stroke-dasharray="1" stroke-dashoffset="' + STEM_OFFSET[stage] + '"' : '') + '/>';
 
-    var body =
+    const body =
       (!flat || stage > 0 ? stem : '') +
       (!flat || stage >= 1 ? '<g class="plant__sprout">' + (part.sprout || DEFAULT_SPROUT) + '</g>' : '') +
       (!flat || stage >= 2 ? '<g class="plant__leaves">' + (part.leaves || DEFAULT_LEAVES) + '</g>' : '') +
       (!flat || stage >= 3 ? '<g class="plant__flower">' + part.flower + '</g>' : '');
 
-    var seed = !flat || stage === 0
+    const seed = !flat || stage === 0
       ? '<ellipse class="plant__seed" cx="60" cy="111" rx="5.5" ry="3.5" fill="' + C.seed + '"/>'
       : '';
 
-    var base = opts.ground
+    const base = opts.ground
       ? '<ellipse cx="60" cy="116" rx="20" ry="4" fill="' + C.soil + '"/>'
       : '<g class="plant__pot"><path d="M34 122h52l-6 32H40z" fill="' + C.pot + '"/>' +
         '<rect x="29" y="113" width="62" height="11" rx="3" fill="' + C.rim + '"/>' +

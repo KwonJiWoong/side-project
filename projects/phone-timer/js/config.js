@@ -1,9 +1,9 @@
 /* 바꿀 수 있는 값: 시간 기준 · 저장 키 */
-(function (GT) {
+((GT) => {
   'use strict';
 
-  var FAST = /[?&]fast(?:[=&]|$)/.test(location.search); // 확인용: 주소 끝에 ?fast → 1분을 1초로
-  var MINUTE = FAST ? 1000 : 60000;
+  const FAST = /[?&]fast(?:[=&]|$)/.test(location.search); // 확인용: 주소 끝에 ?fast → 1분을 1초로
+  const MINUTE = FAST ? 1000 : 60000;
 
   GT.config = {
     FAST: FAST,

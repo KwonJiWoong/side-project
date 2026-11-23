@@ -62,7 +62,7 @@
 
 /* 진행 중에는 헤더 메뉴를 숨김 (다른 화면으로 나가지 않도록) */
 body[data-screen="run"] .gnb,
-body[data-screen="run"] #font-toggle,
+body[data-screen="run"] .header__font,
 body[data-screen="run"] .footer { display: none; }
 
 body[data-screen="run"] .header { border-bottom-color: transparent; }

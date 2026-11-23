@@ -60,7 +60,7 @@
   <header class="header">
     <div class="wrap header__inner">
       <h1 class="header__title"><a class="header__logo" href="#timer"><svg class="ico header__mark" aria-hidden="true" focusable="false"><use href="#i-leaf"></use></svg>자라는 시간</a></h1>
-      <button class="btn btn--sm btn--toggle" id="font-toggle" type="button" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-font"></use></svg>글자 크게<svg class="ico btn__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg></button>
+      <button class="btn btn--sm btn--toggle header__font" id="fontToggle" type="button" aria-pressed="false"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-font"></use></svg>글자 크게<svg class="ico btn__check" aria-hidden="true" focusable="false"><use href="#i-check"></use></svg></button>
     </div>
     <nav class="gnb" aria-label="주요 메뉴">
       <ul class="wrap gnb__list">
@@ -72,16 +72,16 @@
 
   <main class="wrap main" id="main">
     <!-- 저장 불가 안내 (시크릿 모드 등) -->
-    <p class="notice notice--warn" id="storage-notice" role="status" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg>이 브라우저에서는 기록을 저장할 수 없어요(시크릿 모드 등). 타이머는 쓸 수 있지만, 키운 식물은 창을 닫으면 사라져요.</p>
+    <p class="notice notice--warn" id="storageNotice" role="status" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-alert"></use></svg>이 브라우저에서는 기록을 저장할 수 없어요(시크릿 모드 등). 타이머는 쓸 수 있지만, 키운 식물은 창을 닫으면 사라져요.</p>
 
     <!-- 1. 시작 화면 -->
-    <section class="screen setup" id="screen-setup" data-screen-name="setup" aria-labelledby="setup-title">
+    <section class="screen setup" id="screenSetup" data-screen-name="setup" aria-labelledby="setupTitle">
       <header class="screen__head">
-        <h2 class="screen__title" id="setup-title" tabindex="-1">얼마나 폰을 내려놓을까요?</h2>
+        <h2 class="screen__title" id="setupTitle" tabindex="-1">얼마나 폰을 내려놓을까요?</h2>
         <p class="screen__desc">폰을 안 보는 동안 식물이 자라요. 다른 앱으로 넘어가 <strong>10초가 지나면</strong> 식물이 시들어요.</p>
       </header>
 
-      <form class="setup__form" id="setup-form" novalidate>
+      <form class="setup__form" id="setupForm" novalidate>
         <!-- 시간 고르기 -->
         <fieldset class="pick">
           <legend class="pick__title">시간 고르기</legend>
@@ -91,22 +91,22 @@
             <label class="pick__item"><input class="pick__input" type="radio" name="minutes" value="50"><span class="pick__label"><strong class="pick__num">50</strong>분</span></label>
             <label class="pick__item"><input class="pick__input" type="radio" name="minutes" value="custom"><span class="pick__label">직접 입력</span></label>
           </div>
-          <div class="field custom-time" id="custom-time" hidden>
-            <label class="field__label" for="custom-minutes">몇 분 동안 내려놓을까요? (1~180분)</label>
+          <div class="field custom-time" id="customTime" hidden>
+            <label class="field__label" for="customMinutes">몇 분 동안 내려놓을까요? (1~180분)</label>
             <div class="field__row">
-              <input class="field__input" id="custom-minutes" type="number" inputmode="numeric" min="1" max="180" step="1" value="30" aria-describedby="custom-error">
+              <input class="field__input" id="customMinutes" type="number" inputmode="numeric" min="1" max="180" step="1" value="30" aria-describedby="customError">
               <span class="field__unit" aria-hidden="true">분</span>
             </div>
-            <p class="field__error" id="custom-error" role="alert"></p>
+            <p class="field__error" id="customError" role="alert"></p>
           </div>
-          <p class="pick__note" id="battery-note" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plug"></use></svg><span>50분 이상은 화면이 오래 켜져 있어요. <strong>충전기를 꽂아 두면</strong> 마음 편히 할 수 있어요.</span></p>
+          <p class="pick__note" id="batteryNote" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-plug"></use></svg><span>50분 이상은 화면이 오래 켜져 있어요. <strong>충전기를 꽂아 두면</strong> 마음 편히 할 수 있어요.</span></p>
         </fieldset>
 
         <!-- 식물 고르기 -->
         <fieldset class="pick">
           <legend class="pick__title">키울 식물 고르기</legend>
-          <p class="pick__desc" id="unlock-desc">시간을 모을수록 새 식물이 열려요.</p>
-          <ul class="seed-list" id="seed-list" aria-describedby="unlock-desc"></ul>
+          <p class="pick__desc" id="unlockDesc">시간을 모을수록 새 식물이 열려요.</p>
+          <ul class="seed-list" id="seedList" aria-describedby="unlockDesc"></ul>
         </fieldset>
 
         <!-- 설정 -->
@@ -114,106 +114,106 @@
           <legend class="pick__title">설정</legend>
           <div class="setting-row">
             <label class="check">
-              <input class="check__input" id="sound-toggle" type="checkbox" checked>
+              <input class="check__input" id="soundToggle" type="checkbox" checked>
               <span class="check__label"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sound"></use></svg>다 끝나면 소리 내기</span>
             </label>
             <div class="setting-row__btns">
-              <button class="btn btn--sm" id="guide-open" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-info"></use></svg>사용 안내 다시 보기</button>
-              <button class="btn btn--sm" id="install-open" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg>홈 화면에 추가하기</button>
+              <button class="btn btn--sm" id="guideOpen" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-info"></use></svg>사용 안내 다시 보기</button>
+              <button class="btn btn--sm" id="installOpen" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg>홈 화면에 추가하기</button>
             </div>
           </div>
         </fieldset>
 
-        <button class="btn btn--primary btn--lg btn--block" type="submit"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg><span id="start-label">25분 시작하기</span></button>
+        <button class="btn btn--primary btn--lg btn--block" type="submit"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg><span id="startLabel">25분 시작하기</span></button>
       </form>
     </section>
 
     <!-- 2. 진행 화면 -->
-    <section class="screen run" id="screen-run" data-screen-name="run" aria-labelledby="run-title" hidden>
-      <h2 class="sr-only" id="run-title" tabindex="-1">식물이 자라는 중</h2>
+    <section class="screen run" id="screenRun" data-screen-name="run" aria-labelledby="runTitle" hidden>
+      <h2 class="sr-only" id="runTitle" tabindex="-1">식물이 자라는 중</h2>
 
-      <p class="notice notice--warn run__alert" id="run-alert" role="alert" hidden></p>
+      <p class="notice notice--warn run__alert" id="runAlert" role="alert" hidden></p>
 
       <figure class="run__stage">
         <svg class="gauge" viewBox="0 0 220 220" aria-hidden="true" focusable="false">
           <circle class="gauge__track" cx="110" cy="110" r="100"></circle>
-          <circle class="gauge__bar" id="gauge-bar" cx="110" cy="110" r="100"></circle>
-          <circle class="gauge__bonus" id="gauge-bonus" cx="110" cy="110" r="100"></circle>
+          <circle class="gauge__bar" id="gaugeBar" cx="110" cy="110" r="100"></circle>
+          <circle class="gauge__bonus" id="gaugeBonus" cx="110" cy="110" r="100"></circle>
         </svg>
-        <div class="run__plant" id="run-plant"></div>
-        <figcaption class="run__stage-label" id="run-stage-label">씨앗을 심었어요</figcaption>
+        <div class="run__plant" id="runPlant"></div>
+        <figcaption class="run__stage-label" id="runStageLabel">씨앗을 심었어요</figcaption>
       </figure>
 
       <p class="run__time-wrap">
-        <span class="run__time-title" id="run-time-title">남은 시간</span>
-        <time class="run__time" id="run-time" aria-hidden="true">25:00</time>
+        <span class="run__time-title" id="runTimeTitle">남은 시간</span>
+        <time class="run__time" id="runTime" aria-hidden="true">25:00</time>
       </p>
-      <p class="sr-only" id="run-live" aria-live="polite" aria-atomic="true"></p>
+      <p class="sr-only" id="runLive" aria-live="polite" aria-atomic="true"></p>
 
-      <p class="run__lock" id="run-lock"></p>
+      <p class="run__lock" id="runLock"></p>
 
-      <p class="run__bonus-desc" id="bonus-desc" hidden>그대로 두면 보너스 시간이 최대 30분까지 더 쌓여요.</p>
-      <button class="btn btn--primary btn--lg run__done" id="done-btn" type="button" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-garden"></use></svg>다 했어요, 정원에 심기</button>
-      <button class="btn btn--ghost run__quit" id="quit-btn" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-exit"></use></svg>그만두기</button>
+      <p class="run__bonus-desc" id="bonusDesc" hidden>그대로 두면 보너스 시간이 최대 30분까지 더 쌓여요.</p>
+      <button class="btn btn--primary btn--lg run__done" id="doneBtn" type="button" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-garden"></use></svg>다 했어요, 정원에 심기</button>
+      <button class="btn btn--ghost run__quit" id="quitBtn" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-exit"></use></svg>그만두기</button>
     </section>
 
     <!-- 3. 결과 화면 -->
-    <section class="screen result" id="screen-result" data-screen-name="result" aria-labelledby="result-title" hidden>
-      <div class="result__plant" id="result-plant"></div>
-      <h2 class="result__title" id="result-title" tabindex="-1">꽃이 피었어요</h2>
-      <p class="result__desc" id="result-desc"></p>
-      <p class="notice notice--good" id="result-unlock" role="status" hidden></p>
+    <section class="screen result" id="screenResult" data-screen-name="result" aria-labelledby="resultTitle" hidden>
+      <div class="result__plant" id="resultPlant"></div>
+      <h2 class="result__title" id="resultTitle" tabindex="-1">꽃이 피었어요</h2>
+      <p class="result__desc" id="resultDesc"></p>
+      <p class="notice notice--good" id="resultUnlock" role="status" hidden></p>
       <div class="result__actions">
-        <a class="btn btn--primary btn--lg btn--block" id="result-garden" href="#garden"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-garden"></use></svg>정원에 심기</a>
-        <a class="btn btn--lg btn--block" id="result-again" href="#timer"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-redo"></use></svg>한 번 더 하기</a>
+        <a class="btn btn--primary btn--lg btn--block" id="resultGarden" href="#garden"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-garden"></use></svg>정원에 심기</a>
+        <a class="btn btn--lg btn--block" id="resultAgain" href="#timer"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-redo"></use></svg>한 번 더 하기</a>
       </div>
     </section>
 
     <!-- 4. 내 정원 -->
-    <section class="screen garden" id="screen-garden" data-screen-name="garden" aria-labelledby="garden-title" hidden>
+    <section class="screen garden" id="screenGarden" data-screen-name="garden" aria-labelledby="gardenTitle" hidden>
       <header class="screen__head">
-        <h2 class="screen__title" id="garden-title" tabindex="-1">내 정원</h2>
+        <h2 class="screen__title" id="gardenTitle" tabindex="-1">내 정원</h2>
       </header>
 
       <dl class="stats">
         <div class="stats__item">
           <dt class="stats__label">모은 시간</dt>
-          <dd class="stats__value" id="stat-total">0분</dd>
+          <dd class="stats__value" id="statTotal">0분</dd>
         </div>
         <div class="stats__item">
           <dt class="stats__label">이번 주 성공</dt>
-          <dd class="stats__value" id="stat-week">0일</dd>
+          <dd class="stats__value" id="statWeek">0일</dd>
         </div>
         <div class="stats__item">
           <dt class="stats__label">심은 식물</dt>
-          <dd class="stats__value" id="stat-count">0그루</dd>
+          <dd class="stats__value" id="statCount">0그루</dd>
         </div>
       </dl>
 
-      <section class="next-unlock" id="next-unlock" aria-labelledby="next-title">
-        <h3 class="next-unlock__title" id="next-title">다음 식물</h3>
-        <p class="next-unlock__text" id="next-text"></p>
-        <div class="bar" id="next-bar" role="progressbar" aria-labelledby="next-title" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="bar__fill" id="next-fill"></span></div>
+      <section class="next-unlock" id="nextUnlock" aria-labelledby="nextTitle">
+        <h3 class="next-unlock__title" id="nextTitle">다음 식물</h3>
+        <p class="next-unlock__text" id="nextText"></p>
+        <div class="bar" id="nextBar" role="progressbar" aria-labelledby="nextTitle" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span class="bar__fill" id="nextFill"></span></div>
       </section>
 
-      <section class="garden__plot" aria-labelledby="plot-title">
-        <h3 class="garden__plot-title" id="plot-title">주간 화단</h3>
+      <section class="garden__plot" aria-labelledby="plotTitle">
+        <h3 class="garden__plot-title" id="plotTitle">주간 화단</h3>
         <p class="garden__plot-desc">매주 월요일에 새 화단이 열려요.</p>
         <div class="beds" id="beds"></div>
-        <div class="empty" id="garden-empty" hidden>
+        <div class="empty" id="gardenEmpty" hidden>
           <p class="empty__text">아직 심은 식물이 없어요.</p>
           <a class="btn btn--primary btn--lg" href="#timer"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-play"></use></svg>첫 타이머 시작</a>
         </div>
       </section>
 
-      <div class="share" id="share-box">
-        <button class="btn btn--primary btn--lg btn--block" id="share-btn" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-share"></use></svg><span id="share-label">이번 주 화단 사진 저장하기</span></button>
-        <p class="share__status" id="share-status" role="status"></p>
+      <div class="share" id="shareBox">
+        <button class="btn btn--primary btn--lg btn--block" id="shareBtn" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-share"></use></svg><span id="shareLabel">이번 주 화단 사진 저장하기</span></button>
+        <p class="share__status" id="shareStatus" role="status"></p>
       </div>
 
       <p class="notice"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-info"></use></svg>정원은 이 기기의 브라우저에만 저장돼요. 브라우저 데이터를 지우면 정원이 사라져요.</p>
 
-      <button class="btn btn--danger garden__clear" id="garden-clear" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-trash"></use></svg>정원 비우기</button>
+      <button class="btn btn--danger garden__clear" id="gardenClear" type="button"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-trash"></use></svg>정원 비우기</button>
     </section>
   </main>
 
@@ -226,8 +226,8 @@
   </footer>
 
   <!-- 사용 안내 -->
-  <dialog class="dialog" id="guide-dialog" aria-labelledby="guide-title">
-    <h2 class="dialog__title" id="guide-title">화면을 켜둔 채 폰을 엎어두세요</h2>
+  <dialog class="dialog" id="guideDialog" aria-labelledby="guideTitle">
+    <h2 class="dialog__title" id="guideTitle">화면을 켜둔 채 폰을 엎어두세요</h2>
     <ol class="guide-steps">
       <li class="guide-steps__item"><svg class="ico guide-steps__ico" aria-hidden="true" focusable="false"><use href="#i-sun"></use></svg><span><strong>화면은 켜둔 채로</strong> 두세요. 화면이 꺼져도 ‘나간 것’으로 봐요.</span></li>
       <li class="guide-steps__item"><svg class="ico guide-steps__ico" aria-hidden="true" focusable="false"><use href="#i-flip"></use></svg><span>폰을 <strong>뒤집어 엎어두고</strong> 할 일을 하세요.</span></li>
@@ -235,45 +235,45 @@
       <li class="guide-steps__item"><svg class="ico guide-steps__ico" aria-hidden="true" focusable="false"><use href="#i-call"></use></svg><span>전화처럼 <strong>급한 일</strong>이면 5분 안에 돌아와 <strong>한 번 이어서</strong> 할 수 있어요.</span></li>
       <li class="guide-steps__item"><svg class="ico guide-steps__ico" aria-hidden="true" focusable="false"><use href="#i-star"></use></svg><span>꽃이 핀 뒤에도 그대로 두면 <strong>보너스 시간</strong>이 쌓여요. 늦게 확인해도 괜찮아요.</span></li>
     </ol>
-    <p class="dialog__note" id="guide-lock-note" hidden></p>
+    <p class="dialog__note" id="guideLockNote" hidden></p>
     <div class="dialog__actions">
-      <button class="btn btn--primary btn--lg btn--block" id="guide-ok" type="button">알겠어요, 시작할게요</button>
-      <button class="btn btn--lg btn--block" id="guide-cancel" type="button">닫기</button>
+      <button class="btn btn--primary btn--lg btn--block" id="guideOk" type="button">알겠어요, 시작할게요</button>
+      <button class="btn btn--lg btn--block" id="guideCancel" type="button">닫기</button>
     </div>
   </dialog>
 
   <!-- 확인 창 -->
-  <dialog class="dialog" id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-desc">
-    <h2 class="dialog__title" id="confirm-title">정말 그만둘까요?</h2>
-    <p class="dialog__desc" id="confirm-desc"></p>
+  <dialog class="dialog" id="confirmDialog" aria-labelledby="confirmTitle" aria-describedby="confirmDesc">
+    <h2 class="dialog__title" id="confirmTitle">정말 그만둘까요?</h2>
+    <p class="dialog__desc" id="confirmDesc"></p>
     <div class="dialog__actions">
-      <button class="btn btn--danger-fill btn--lg btn--block" id="confirm-ok" type="button">그만두기</button>
-      <button class="btn btn--lg btn--block" id="confirm-cancel" type="button">계속하기</button>
+      <button class="btn btn--danger-fill btn--lg btn--block" id="confirmOk" type="button">그만두기</button>
+      <button class="btn btn--lg btn--block" id="confirmCancel" type="button">계속하기</button>
     </div>
   </dialog>
 
   <!-- 홈 화면에 추가 -->
-  <dialog class="dialog" id="install-dialog" aria-labelledby="install-title">
-    <h2 class="dialog__title" id="install-title">홈 화면에 추가하기</h2>
+  <dialog class="dialog" id="installDialog" aria-labelledby="installTitle">
+    <h2 class="dialog__title" id="installTitle">홈 화면에 추가하기</h2>
     <p class="dialog__desc">홈 화면에 아이콘을 두면 앱처럼 바로 열 수 있어요. 설치할 것은 없어요.</p>
-    <button class="btn btn--primary btn--lg btn--block install__now" id="install-now" type="button" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg>지금 홈 화면에 추가</button>
-    <section class="install__how" aria-labelledby="install-ios">
-      <h3 class="install__os" id="install-ios">아이폰 (Safari)</h3>
+    <button class="btn btn--primary btn--lg btn--block install__now" id="installNow" type="button" hidden><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg>지금 홈 화면에 추가</button>
+    <section class="install__how" aria-labelledby="installIos">
+      <h3 class="install__os" id="installIos">아이폰 (Safari)</h3>
       <ol class="install__steps">
         <li>아래쪽 <strong>공유 버튼</strong>(네모에 위 화살표)을 눌러요.</li>
         <li>목록에서 <strong>‘홈 화면에 추가’</strong>를 눌러요.</li>
       </ol>
       <p class="install__note">iOS 18.4 이상이어야 홈 화면에서 연 앱도 화면 켜짐이 유지돼요. 그보다 낮으면 Safari에서 바로 쓰세요.</p>
     </section>
-    <section class="install__how" aria-labelledby="install-android">
-      <h3 class="install__os" id="install-android">안드로이드 (Chrome)</h3>
+    <section class="install__how" aria-labelledby="installAndroid">
+      <h3 class="install__os" id="installAndroid">안드로이드 (Chrome)</h3>
       <ol class="install__steps">
         <li>오른쪽 위 <strong>점 세 개(⋮)</strong>를 눌러요.</li>
         <li><strong>‘홈 화면에 추가’</strong> 또는 <strong>‘앱 설치’</strong>를 눌러요.</li>
       </ol>
     </section>
     <div class="dialog__actions">
-      <button class="btn btn--lg btn--block" id="install-close" type="button">닫기</button>
+      <button class="btn btn--lg btn--block" id="installClose" type="button">닫기</button>
     </div>
   </dialog>
 </body>
