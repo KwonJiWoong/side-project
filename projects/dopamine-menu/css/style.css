@@ -275,8 +275,39 @@ main:focus { outline: none; }
   padding-block: 1.25rem 1.75rem;
   border-top: 0.0625rem solid var(--color-divider);
 }
-.footer__inner { text-align: center; }
+.footer__inner { display: grid; justify-items: center; text-align: center; }
+.footer__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
 .footer__copy { font-size: 0.875rem; color: var(--color-text-sub); }
+
+/* 개인정보 처리방침 */
+.policy__title { font-size: clamp(1.5rem, 6.5vw, 2rem); font-weight: 800; letter-spacing: -0.03em; }
+.policy__lead { margin-top: 0.75rem; color: var(--color-text-sub); }
+.policy__section { margin-top: 2rem; }
+.policy__heading { margin-bottom: 0.5rem; font-size: 1.125rem; font-weight: 800; }
+.policy__text + .policy__list, .policy__list + .policy__text { margin-top: 0.5rem; }
+.policy__list { padding-left: 1.25rem; list-style: disc; }
+.policy__item + .policy__item { margin-top: 0.25rem; }
+.policy__link { font-weight: 700; color: var(--color-primary); text-decoration: underline; text-underline-offset: 0.2em; }
+.policy__table-wrap { margin-top: 0.75rem; overflow-x: auto; }
+.policy__table { width: 100%; font-size: 0.9375rem; border-collapse: collapse; }
+.policy__th, .policy__td {
+  padding: 0.625rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 0.0625rem solid var(--color-divider);
+}
+.policy__th { font-weight: 700; background: var(--color-soft); }
+.policy__date { margin-top: 2rem; font-size: 0.9375rem; color: var(--color-text-sub); }
+.policy__back { margin-top: 1.5rem; }
 
 /* 모션 최소화: 뒤집기 대신 페이드 */
 @media (prefers-reduced-motion: reduce) {
