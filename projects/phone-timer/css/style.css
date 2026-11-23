@@ -1,0 +1,587 @@
+/* 헤더 */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-bg);
+  border-bottom: var(--border-w) solid var(--color-line);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  min-height: 4rem;
+}
+
+.header__title { font-size: var(--fs-xl); font-weight: 800; }
+
+.header__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: var(--touch);
+  color: var(--color-primary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.header__mark { width: 1.5em; height: 1.5em; }
+
+/* 메뉴 */
+.gnb__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xs);
+  padding-bottom: var(--space-xs);
+}
+
+.gnb__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: var(--touch);
+  font-weight: 700;
+  color: var(--color-muted);
+  text-decoration: none;
+  border: var(--border-w) solid transparent;
+  border-radius: var(--radius);
+}
+
+.gnb__link:hover { border-color: var(--color-line); }
+
+.gnb__link[aria-current="page"] {
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+}
+
+/* 진행 중에는 헤더 메뉴를 숨김 (다른 화면으로 나가지 않도록) */
+body[data-screen="run"] .gnb,
+body[data-screen="run"] #font-toggle,
+body[data-screen="run"] .footer { display: none; }
+
+body[data-screen="run"] .header { border-bottom-color: transparent; }
+
+body[data-screen="run"] .header__logo { color: var(--color-muted); pointer-events: none; }
+
+/* 본문 */
+.main {
+  display: grid;
+  gap: var(--space-md);
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-xl);
+}
+
+.screen {
+  display: grid;
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.screen__head { display: grid; gap: var(--space-xs); }
+
+.screen__title {
+  font-size: var(--fs-xxl);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.screen__title:focus { outline: none; }
+
+.screen__desc { color: var(--color-muted); }
+
+.screen__desc strong { color: var(--color-accent); }
+
+/* 시작 화면 */
+.setup__form { display: grid; gap: var(--space-lg); }
+
+.pick {
+  display: grid;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.pick__title {
+  float: left; /* legend를 박스 안쪽으로 */
+  width: 100%;
+  margin-bottom: var(--space-sm);
+  font-size: var(--fs-lg);
+  font-weight: 800;
+}
+
+.pick__title + * { clear: both; }
+
+.pick__desc { color: var(--color-muted); }
+
+.pick__list--time {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xs);
+}
+
+.pick__item { position: relative; display: block; }
+
+.pick__input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.pick__label {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.125rem;
+  min-height: 3.75rem;
+  padding: 0.75rem;
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  background: var(--color-bg);
+  border: var(--border-w) solid var(--color-line);
+  border-radius: var(--radius);
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.pick__num { font-family: var(--font-num); font-size: var(--fs-xl); line-height: 1.2; }
+
+.pick__item:hover .pick__label { border-color: var(--color-primary); }
+
+.pick__input:checked + .pick__label {
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.pick__input:focus-visible + .pick__label {
+  outline: 0.1875rem solid var(--color-accent);
+  outline-offset: 0.1875rem;
+}
+
+.custom-time { margin-top: var(--space-xs); }
+
+/* 식물 고르기 */
+.seed-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xs);
+}
+
+.seed { position: relative; height: 100%; }
+
+.seed__input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.seed__input:disabled { cursor: not-allowed; }
+
+.seed__card {
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+  height: 100%;
+  padding: var(--space-sm) var(--space-xs);
+  text-align: center;
+  background: var(--color-bg);
+  border: var(--border-w) solid var(--color-line);
+  border-radius: var(--radius);
+}
+
+.seed__card .plant { width: 4.5rem; height: auto; }
+
+.seed__name { font-weight: 800; }
+
+.seed__state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.seed:hover .seed__input:enabled + .seed__card { border-color: var(--color-primary); }
+
+.seed__input:checked + .seed__card {
+  background: var(--color-soft);
+  border-color: var(--color-primary);
+  box-shadow: inset 0 0 0 0.125rem var(--color-primary);
+}
+
+.seed__input:checked + .seed__card .seed__state { color: var(--color-primary); }
+
+.seed__input:focus-visible + .seed__card {
+  outline: 0.1875rem solid var(--color-accent);
+  outline-offset: 0.1875rem;
+}
+
+/* 잠긴 식물: 흐리게 + 자물쇠 아이콘·글자로 함께 안내 */
+.seed__input:disabled + .seed__card .plant { filter: grayscale(1) brightness(0.55); opacity: 0.5; }
+
+.setting-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+/* 진행 화면 */
+.run {
+  justify-items: center;
+  gap: var(--space-md);
+  text-align: center;
+}
+
+.run__alert { width: 100%; max-width: 32rem; text-align: left; }
+
+.run__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(80vw, 20rem);
+  aspect-ratio: 1;
+}
+
+.gauge {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); /* 12시 방향부터 채움 */
+}
+
+.gauge__track,
+.gauge__bar {
+  fill: none;
+  stroke-width: 10;
+}
+
+.gauge__track { stroke: var(--color-surface); }
+
+.gauge__bar {
+  stroke: var(--color-primary);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.run__plant { width: 46%; margin-top: -12%; }
+
+.run__stage-label {
+  position: absolute;
+  bottom: 9%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.125rem 0.75rem;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--color-primary);
+  background: var(--color-bg);
+  border-radius: var(--radius-pill);
+}
+
+.run__time-wrap { display: grid; }
+
+.run__time-title { font-weight: 700; color: var(--color-muted); }
+
+.run__time {
+  font-family: var(--font-num);
+  font-size: clamp(3.5rem, 2.5rem + 6vw, 5rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+.run__lock { max-width: 30rem; font-size: var(--fs-sm); color: var(--color-muted); }
+
+.run__lock:empty { display: none; }
+
+.run__quit { margin-top: var(--space-sm); }
+
+/* 결과 화면 */
+.result {
+  justify-items: center;
+  gap: var(--space-md);
+  max-width: 32rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.result__plant {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(60vw, 14rem);
+  aspect-ratio: 1;
+  background: var(--color-soft);
+  border-radius: 50%;
+}
+
+.result__plant .plant { width: 72%; }
+
+/* 성공 시 둥근 빛이 한 번 퍼짐 */
+.result--success .result__plant::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 0.25rem solid var(--color-primary);
+  border-radius: 50%;
+  opacity: 0;
+  animation: ripple 1.4s ease-out 0.9s 2;
+}
+
+@keyframes ripple {
+  from { transform: scale(0.85); opacity: 0.8; }
+  to { transform: scale(1.25); opacity: 0; }
+}
+
+.result__title { font-size: var(--fs-xxl); font-weight: 800; line-height: 1.35; }
+
+.result__title:focus { outline: none; }
+
+.result--fail .result__title { color: var(--color-accent); }
+
+.result__desc { color: var(--color-muted); }
+
+.result__desc strong { color: var(--color-text); }
+
+.result__actions { display: grid; gap: var(--space-sm); width: 100%; margin-top: var(--space-sm); }
+
+/* 내 정원 */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xs);
+}
+
+.stats__item {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  padding: var(--space-sm) var(--space-xs);
+  text-align: center;
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-line);
+  border-radius: var(--radius);
+}
+
+.stats__label { font-size: var(--fs-sm); font-weight: 700; color: var(--color-muted); }
+
+.stats__value {
+  font-family: var(--font-num);
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  line-height: 1.3;
+  color: var(--color-primary);
+}
+
+.next-unlock {
+  display: grid;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  background: var(--color-soft);
+  border: var(--border-w) solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.next-unlock__title { font-size: var(--fs-lg); font-weight: 800; }
+
+.bar {
+  height: 1rem;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-line);
+  border-radius: var(--radius-pill);
+}
+
+.bar__fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--color-primary);
+  transition: width 0.6s;
+}
+
+.garden__plot { display: grid; gap: var(--space-sm); }
+
+.garden__plot-title { font-size: var(--fs-lg); font-weight: 800; }
+
+.plot {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 8.5rem), 1fr));
+  gap: var(--space-xs);
+}
+
+.plot:empty { display: none; }
+
+.plot__item {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 0.125rem;
+  padding: var(--space-sm) var(--space-xs);
+  text-align: center;
+  background: var(--color-surface);
+  border: var(--border-w) solid var(--color-line);
+  border-radius: var(--radius);
+}
+
+.plot__item .plant { width: 4.75rem; }
+
+.plot__name { font-weight: 800; }
+
+.plot__meta { font-size: var(--fs-sm); color: var(--color-muted); }
+
+.plot__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.plot__badge--part { color: var(--color-accent); }
+
+/* 새로 심은 식물 강조 */
+.plot__item--new {
+  border-color: var(--color-primary);
+  box-shadow: inset 0 0 0 0.125rem var(--color-primary);
+  animation: plant-in 0.7s ease-out;
+}
+
+@keyframes plant-in {
+  from { transform: translateY(0.75rem); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+.empty {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+  background: var(--color-surface);
+  border: var(--border-w) dashed var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.empty__text { font-size: var(--fs-lg); font-weight: 700; }
+
+.garden__clear { justify-self: start; }
+
+/* 사용 안내 단계 */
+.guide-steps { display: grid; gap: var(--space-sm); counter-reset: step; }
+
+.guide-steps__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  background: var(--color-bg);
+  border-radius: var(--radius);
+}
+
+.guide-steps__ico { width: 1.75rem; height: 1.75rem; color: var(--color-primary); }
+
+/* 푸터 */
+.footer {
+  padding: var(--space-lg) 0;
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+  text-align: center;
+  border-top: var(--border-w) solid var(--color-line);
+}
+
+/* 식물 SVG · 성장 연출 */
+.plant { display: block; width: 100%; height: auto; overflow: visible; }
+
+.plant__stem {
+  fill: none;
+  stroke: var(--stem);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.2s ease-out;
+}
+
+.plant--cactus .plant__stem { stroke: #4f8f3a; stroke-width: 15; }
+
+.plant__sprout,
+.plant__leaves,
+.plant__flower {
+  transform: scale(0);
+  transform-box: view-box;
+  transition: transform 0.8s cubic-bezier(0.34, 1.4, 0.64, 1) 0.5s;
+}
+
+.plant__sprout { transform-origin: 60px 100px; }
+
+.plant__leaves { transform-origin: 60px 77px; }
+
+.plant__flower { transform-origin: 60px 44px; }
+
+.plant__seed { transition: opacity 0.4s; }
+
+.plant[data-stage="1"] .plant__stem { stroke-dashoffset: 0.72; }
+
+.plant[data-stage="2"] .plant__stem { stroke-dashoffset: 0.2; }
+
+.plant[data-stage="3"] .plant__stem { stroke-dashoffset: 0; }
+
+.plant:not([data-stage="0"]) .plant__sprout,
+.plant[data-stage="2"] .plant__leaves,
+.plant[data-stage="3"] .plant__leaves,
+.plant[data-stage="3"] .plant__flower { transform: scale(1); }
+
+.plant:not([data-stage="0"]) .plant__seed { opacity: 0; }
+
+/* 시든 식물: 고개 숙임 + 누렇게 */
+.plant__body {
+  transform-box: view-box;
+  transform-origin: 60px 114px;
+  transition: transform 1s ease-in, filter 1s;
+}
+
+.plant--wilted .plant__body {
+  transform: rotate(-16deg) scaleY(0.92);
+  filter: grayscale(0.7) sepia(0.6) brightness(0.85);
+}
+
+/* 반응형: 태블릿 */
+@media (min-width: 768px) {
+  .gnb__list { display: flex; justify-content: flex-start; }
+
+  .gnb__link { padding: 0 var(--space-md); }
+
+  .pick__list--time { grid-template-columns: repeat(4, 1fr); }
+
+  .seed-list { grid-template-columns: repeat(4, 1fr); }
+
+  .setup__form > .btn--primary { justify-self: center; max-width: 24rem; }
+
+  .stats__value { font-size: var(--fs-xxl); }
+}
+
+/* 반응형: PC */
+@media (min-width: 1024px) {
+  .header__inner { min-height: 4.5rem; }
+
+  .plot { grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); }
+}
+
+/* 저장 불가 안내 폭 맞춤 */
+.main > .notice { width: 100%; max-width: 46rem; margin: 0 auto; }
