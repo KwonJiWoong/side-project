@@ -17,12 +17,14 @@ dopamine-menu/
 ├─ css/
 │  ├─ reset.css          브라우저 초기화
 │  ├─ common.css         색 토큰(밝은/어두운), 기본값, .btn · .ico · .sr-only 등 공통 부품
-│  └─ style.css          화면별 스타일 (헤더 → 탭 → 카드 → 타이머 → 도장판 → 광고 → 푸터 → 처리방침 순)
+│  └─ style.css          화면별 스타일 (헤더 → 탭 → 카드 → 타이머 → 도장판 → 자주 묻는 질문 → 광고 → 푸터 → 처리방침 순)
 ├─ js/
 │  ├─ main.js            화면 동작 전부
 │  └─ ads.js             광고 자리 (ID가 비어 있으면 아무것도 안 함)
 ├─ data/activities.json  활동 목록
 ├─ images/              favicon.svg, og-image.png(1200×630 공유 미리보기)
+├─ sitemap.xml           검색 엔진용 페이지 목록 (Search Console에 제출)
+├─ llms.txt              AI 검색용 서비스 요약
 ├─ DESIGN.md · FRONTEND.md
 ```
 
@@ -250,3 +252,14 @@ python3 -m http.server 8000
 - `setTimeout`으로 순서 맞추기 (애니메이션은 `animationend`, 시간은 `Date.now()` 차이로)
 - 저장소를 `try/catch` 없이 직접 쓰기
 - 화면 안에 다크 모드·글자 크기 전환 버튼 추가 (기기 설정을 따름)
+
+---
+
+## 검색 · AI 검색
+
+공통 기준은 `docs/CODING_GUIDE.md` 8-5. 이 사이트에서 함께 고쳐야 하는 곳:
+
+- `index.html` `<head>`: `canonical`, `robots`, 설명, 공유 미리보기(OG), JSON-LD 2개(`WebApplication`, `FAQPage`)
+- 도장판 아래 **자주 묻는 질문**(`<details>`)과 JSON-LD `FAQPage`는 문구가 똑같아야 한다
+- 활동 수(지금 51가지)·하루 바꾸기 횟수(3번)·광고 상태가 바뀌면 FAQ · JSON-LD · `llms.txt`를 같이 고친다
+- 자체 도메인으로 옮길 때(BACKEND.md 3장) `canonical` · `og:url` · `og:image` · JSON-LD 주소 · `sitemap.xml` · `llms.txt`를 한꺼번에 고친다
