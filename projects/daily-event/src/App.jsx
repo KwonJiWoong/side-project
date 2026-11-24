@@ -9,17 +9,28 @@ import AdSlot from './components/AdSlot.jsx';
 import Faq from './components/Faq.jsx';
 import Footer from './components/Footer.jsx';
 import Icon from './components/Icon.jsx';
+import TestBar from './components/TestBar.jsx';
 import { loadData, saveData, storageAvailable } from './lib/storage.js';
 import { pickEvent } from './lib/pick.js';
-import { toKey } from './lib/date.js';
+import { addDays, toKey } from './lib/date.js';
 
 const canStore = storageAvailable();
+const TEST_KEY = 'daily-event-test-offset';
+const isTest = () => location.hash === '#test' || new URLSearchParams(location.search).has('test');
+const readOffset = () => {
+  try { return Number(localStorage.getItem(TEST_KEY)) || 0; } catch { return 0; }
+};
 
 export default function App() {
   const [data, setData] = useState(loadData);
   const [events, setEvents] = useState([]);
   const [status, setStatus] = useState('loading'); /* loading | ready | error */
-  const [today, setToday] = useState(() => toKey(new Date()));
+  /* 테스트 모드: 가상 날짜(실제 + offset일) */
+  const [testMode, setTestMode] = useState(isTest);
+  const [offset, setOffset] = useState(() => (isTest() ? readOffset() : 0));
+  const offsetRef = useRef(offset);
+  const realToday = () => addDays(toKey(new Date()), offsetRef.current);
+  const [today, setToday] = useState(realToday);
   const [tab, setTab] = useState('today');
   const [picking, setPicking] = useState(!data.type);
   const [preview, setPreview] = useState(null);
@@ -51,7 +62,7 @@ export default function App() {
 
   /* 자정이 지나거나 다시 화면으로 돌아오면 날짜 다시 확인 */
   useEffect(() => {
-    const check = () => setToday(toKey(new Date()));
+    const check = () => setToday(realToday());
     const timer = setInterval(check, 60000);
     document.addEventListener('visibilitychange', check);
     window.addEventListener('focus', check);
@@ -61,6 +72,27 @@ export default function App() {
       window.removeEventListener('focus', check);
     };
   }, []);
+
+  /* 테스트 모드 켜고 끄기 (#test) */
+  useEffect(() => {
+    const on = () => {
+      const t = isTest();
+      setTestMode(t);
+      offsetRef.current = t ? readOffset() : 0;
+      setOffset(offsetRef.current);
+      setToday(realToday());
+    };
+    window.addEventListener('hashchange', on);
+    return () => window.removeEventListener('hashchange', on);
+  }, []);
+
+  const changeOffset = (n) => {
+    offsetRef.current = n;
+    try { localStorage.setItem(TEST_KEY, String(n)); } catch { /* 저장 못 해도 이번 화면에서는 동작 */ }
+    setOffset(n);
+    setToday(realToday());
+    setTab('today');
+  };
 
   /* 유형 색: html[data-type] (고르는 중에는 미리보기 색) */
   const shownType = picking ? preview ?? data.type : data.type;
@@ -157,6 +189,30 @@ export default function App() {
               <Icon name="i-info" />
               <span>이 브라우저에서는 기록이 저장되지 않아요. 초대장은 그대로 볼 수 있어요.</span>
             </p>
+          )}
+
+          {testMode && (
+            <TestBar
+              today={today}
+              offset={offset}
+              onNextDay={() => changeOffset(offset + 1)}
+              onRealDay={() => changeOffset(0)}
+              onResetToday={() => {
+                setData((prev) => {
+                  const days = { ...prev.days };
+                  delete days[today];
+                  return { ...prev, days };
+                });
+                setTab('today');
+                setNotice('오늘 기록을 지웠어요. 봉투부터 다시 시작해요.');
+              }}
+              onResetAll={() => {
+                setData({ v: 1, type: null, days: {}, handoffClosed: false });
+                changeOffset(0);
+                setPicking(true);
+                setNotice('모든 기록을 지웠어요.');
+              }}
+            />
           )}
 
           {!picking && !data.handoffClosed && <HandoffCard onClose={closeHandoff} />}

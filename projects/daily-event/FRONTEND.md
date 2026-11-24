@@ -47,6 +47,7 @@ daily-event/
 │  │  ├─ CalendarPanel.jsx 월간 달력 + 고른 날 상세
 │  │  ├─ HandoffCard.jsx   PC 전용 휴대폰 안내 (QR · 링크 복사)
 │  │  ├─ AdSlot.jsx        광고 자리
+│  │  ├─ TestBar.jsx       테스트 모드 막대 (#test)
 │  │  ├─ Faq.jsx · Footer.jsx · Icon.jsx
 │  ├─ data/faq.js          자주 묻는 질문 (화면 + JSON-LD가 같이 씀)
 │  ├─ lib/
@@ -131,7 +132,23 @@ daily-event/
 
 ---
 
-## 7. 함께 고치기
+## 7. 테스트 모드
+
+주소 끝에 `#test`(또는 `?test`)를 붙이면 화면 위에 테스트 막대가 나온다. 하루 1통 규칙 때문에 여러 번 확인하기 어려운 것을 돕는다.
+
+| 버튼 | 하는 일 |
+|---|---|
+| 다음 날로 | 가상 날짜를 하루 뒤로 (`daily-event-test-offset`에 저장). 7일 중복 방지 · 달력 확인용 |
+| 오늘 다시 받기 | 가상 오늘의 기록만 지우고 봉투부터 |
+| 실제 날짜로 | 가상 날짜를 되돌림 |
+| 처음부터 | 기록을 모두 지우고 유형 고르기부터 |
+
+- 가상 날짜로 만든 기록도 같은 저장소에 남는다. 테스트가 끝나면 [처음부터]로 지운다
+- `#test`를 빼면 실제 날짜로 돌아간다 (저장된 offset은 테스트 모드에서만 씀)
+
+---
+
+## 8. 함께 고치기
 
 - 자주 묻는 질문은 `src/data/faq.js` 하나만 고치면 화면과 JSON-LD가 같이 바뀐다
 - 규칙(교체 횟수, 7일, 이벤트 수)이 바뀌면 `faq.js` · `public/llms.txt` · `index.html` description · `vite.config.js` featureList를 함께 고친다
