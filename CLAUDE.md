@@ -51,6 +51,7 @@
 
 # 기술 스택
 - HTML5 / CSS3 / Vanilla JS (프레임워크·빌드 도구 없음)
+- 예외: `projects/daily-event/`만 Vite + React (빌드한 `dist/`를 자체 도메인에 배포). 마크업·CSS 규칙은 같게 지킨다
 - CSS: 변수(:root) 기반 디자인 토큰, BEM 네이밍
 - 레이아웃: Flexbox / Grid, Mobile First, 브레이크포인트 768px / 1024px
 
@@ -79,6 +80,7 @@
 │  ├─ pill-check/       아 맞다 약! (실서비스·시니어, 메인 카드 있음. 푸시는 services/pill-push)
 │  ├─ dopamine-menu/    딴짓 메뉴 (실서비스·메인 카드 없음, 광고 자리는 js/ads.js. 도파민 메뉴판. 노약자 전용이 아니라 스마트폰에 익숙한 세대 대상 — 심플한 앱 느낌, 글자 크기·고대비 대신 기기 다크 모드를 따름. 활동 목록은 data/activities.json에서 고침. 디자인 기준은 DESIGN.md, 코드 구조는 FRONTEND.md, 호스팅·배포는 BACKEND.md)
 │  ├─ phone-timer/      자라는 시간 (실서비스·메인 카드 없음. 폰 내려놓기 타이머. 식물 종류·해금 기준은 js/plants.js, 배지는 js/badges.js에서 고침, 주소 끝 ?fast로 1분=1초 확인. 디자인 기준은 DESIGN.md, 코드 구조는 FRONTEND.md)
+│  ├─ daily-event/      소소한 일상의 이벤트 (실서비스·일반, 메인 카드 없음. **Vite + React**. 학생/직장인/자유인을 고르면 매일 다른 길로 가기 같은 작은 이벤트 초대장 1통. 이벤트는 public/data/events.json, 디자인 DESIGN.md, 코드 구조 FRONTEND.md, 배포 BACKEND.md + scripts/deploy-daily-event.sh)
 │  └─ workout-planner/  핏루틴 (운동 루틴 플래너. 첫 화면에서 일반용/노약자용과 화면 밝기(자동=기기 다크 모드 설정 따름 / 밝게·어둡게 직접 고정) 선택. 루틴·자세 팁은 각 HTML에서 직접 고침)
 ├─ services/
 │  └─ pill-push/       아 맞다 약! 웹 푸시 알림 서버 (AWS SAM · Lambda, 올리는 법은 README.md)

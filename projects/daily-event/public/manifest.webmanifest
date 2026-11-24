@@ -1,0 +1,16 @@
+{
+  "name": "소소한 일상의 이벤트",
+  "short_name": "일상 이벤트",
+  "description": "학생 · 직장인 · 자유인의 하루에 맞춰, 평소와 조금 다른 행동 하나를 매일 초대장으로 보내 드려요.",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f3ea",
+  "theme_color": "#f7f3ea",
+  "icons": [
+    { "src": "images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "images/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
