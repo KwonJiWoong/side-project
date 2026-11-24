@@ -77,7 +77,7 @@
 │  ├─ politics-news/    오늘의 정치 소식 (scraper/를 GitHub Actions가 하루 3번(07·12·18시) 실행해 data/news.json 갱신)
 │  ├─ easy-phone/       쉬운 폰 배우기 (어르신 스마트폰·키오스크 사용법, guides/)
 │  ├─ pill-check/       아 맞다 약! (실서비스·시니어, 메인 카드 있음. 푸시는 services/pill-push)
-│  ├─ dopamine-menu/    딴짓 메뉴 (실서비스·메인 카드 없음, 광고 자리는 js/ads.js. 도파민 메뉴판. 노약자 전용이 아니라 스마트폰에 익숙한 세대 대상 — 심플한 앱 느낌, 글자 크기·고대비 대신 기기 다크 모드를 따름. 활동 목록은 data/activities.json에서 고침. 디자인 기준은 DESIGN.md, 코드 구조는 FRONTEND.md)
+│  ├─ dopamine-menu/    딴짓 메뉴 (실서비스·메인 카드 없음, 광고 자리는 js/ads.js. 도파민 메뉴판. 노약자 전용이 아니라 스마트폰에 익숙한 세대 대상 — 심플한 앱 느낌, 글자 크기·고대비 대신 기기 다크 모드를 따름. 활동 목록은 data/activities.json에서 고침. 디자인 기준은 DESIGN.md, 코드 구조는 FRONTEND.md, 호스팅·배포는 BACKEND.md)
 │  ├─ phone-timer/      자라는 시간 (실서비스·메인 카드 없음. 폰 내려놓기 타이머. 식물 종류·해금 기준은 js/plants.js, 배지는 js/badges.js에서 고침, 주소 끝 ?fast로 1분=1초 확인. 디자인 기준은 DESIGN.md, 코드 구조는 FRONTEND.md)
 │  └─ workout-planner/  핏루틴 (운동 루틴 플래너. 첫 화면에서 일반용/노약자용과 화면 밝기(자동=기기 다크 모드 설정 따름 / 밝게·어둡게 직접 고정) 선택. 루틴·자세 팁은 각 HTML에서 직접 고침)
 ├─ services/
@@ -93,7 +93,7 @@
 - 포트폴리오 사이트는 메인 index.html의 "직접 만든 사이트"에 카드를 단다 (실서비스는 선택)
 
 # 참고 가이드
-- 전체 코딩 규칙: `docs/CODING_GUIDE.md` (HTML · CSS · JS · 작업 방식 · 체크리스트)
+- 전체 코딩 규칙: `docs/CODING_GUIDE.md` (HTML · CSS · JS · 서버·배포 · 작업 방식 · 체크리스트)
 - CSS 세부 규칙: `docs/CSS_GUIDE.md`
 - 두 문서와 이 파일이 다르면 이 파일(CLAUDE.md)을 우선한다
 - **가이드 HTML 자동 갱신:** `CODING_GUIDE.md` 또는 `CSS_GUIDE.md`를 수정하면, 같은 작업 안에서 반드시 `python3 docs/guide/build.py`를 실행해 `docs/guide/index.html`, `docs/guide/css.html`을 다시 만든다 (`markdown` 패키지가 없으면 `pip install markdown`)
