@@ -639,7 +639,20 @@ refactor: 태그 선택자를 BEM 클래스로 변경
 - **`theme-color`:** 화면 배경과 맞춘다. 어두운 화면으로 바뀌면 JS로 함께 바꾼다.
 - **홈 화면에 추가:** 자주 다시 여는 서비스는 `manifest.webmanifest`와 아이콘(180·192·512px PNG)을 두고, 설정이나 안내에 "홈 화면에 추가하기" 방법(아이폰·안드로이드)을 적는다.
 
-### 8-5. 실기기 확인
+### 8-5. 검색 · AI 검색
+
+검색 엔진과 AI 검색(답을 요약해 주는 검색)이 서비스를 정확히 이해하고 소개하게 한다. 예: 자라는 시간 `projects/phone-timer/`.
+
+- **`<head>` 기본:** 찾는 말이 들어간 `title`(`서비스 이름 - 하는 일 | 특징`), 1~2문장 `description`, `<link rel="canonical">`(이 페이지의 대표 주소), `<meta name="robots" content="index, follow, max-image-preview:large">`. 처리방침 같은 하위 페이지에도 `canonical`을 넣는다.
+- **자주 묻는 질문:** 첫 화면 아래에 질문 5~8개를 `<details>`로 둔다. 무엇인지, 설치·가입이 필요한지, 핵심 규칙, 기록 저장 위치, 비용처럼 사람들이 실제로 묻는 것. AI 검색은 화면에 보이는 질문과 답을 그대로 가져가므로 해요체로 짧고 정확하게 쓴다.
+- **구조화 데이터(JSON-LD):** `<head>`에 `<script type="application/ld+json">`으로 서비스 종류(`WebApplication` 또는 `WebSite`, 무료면 `price: 0`)와 `FAQPage`를 넣는다. `FAQPage` 문구는 화면의 질문·답과 **글자까지 똑같아야** 한다 (다르면 검색 엔진이 무시한다). 데이터 블록이라 CSP `script-src 'self'`에 막히지 않는다.
+- **`sitemap.xml`:** 사이트 폴더에 페이지 목록을 두고, Google Search Console · 네이버 서치어드바이저에 사람이 직접 제출한다.
+- **`robots.txt`:** 도메인 맨 위(`/robots.txt`)에서만 효과가 있다. GitHub Pages 하위 폴더 사이트에는 두지 않고, 도메인을 따로 연결하면 그때 둔다.
+- **`llms.txt`:** 사이트 폴더에 AI가 읽기 좋은 요약을 둔다. 한 줄 소개 → 주소·대상 → 쓰는 방법 → 규칙 → 기능 → 개인정보·문의 순서. 마크다운, 사람이 읽어도 자연스러운 글로 쓴다.
+- **함께 고치기:** 기능·규칙이 바뀌면 FAQ · JSON-LD · `llms.txt`를 같이 고친다. 주소(도메인)가 바뀌면 `canonical` · `og:url` · `og:image` · JSON-LD 주소 · `sitemap.xml` · `llms.txt`를 한꺼번에 고친다 (사이트 `FRONTEND.md`에 목록을 적어 둔다).
+- **하지 않는 것:** 화면에 없는 말을 숨겨 넣기, 같은 단어 반복으로 채우기, 사실과 다른 설명(예: 없는 기능)을 FAQ·JSON-LD에 쓰기.
+
+### 8-6. 실기기 확인
 
 - 아이폰 Safari와 안드로이드 Chrome 실기기에서 확인한다. 특히 화면 꺼짐, 다른 앱으로 전환, 무음 모드, 홈 화면 앱처럼 PC에서 재현되지 않는 동작은 꼭 직접 본다.
 
@@ -741,6 +754,7 @@ refactor: 태그 선택자를 BEM 클래스로 변경
 - [ ] 자체 도메인으로 옮긴 뒤 HTTPS · 404 · 보안 헤더 · `ads.txt`를 확인했다 (9-2)
 - [ ] 광고 자리가 8-2 기준을 지킨다 (광고가 있을 때)
 - [ ] 공유 미리보기(OG)가 나온다
+- [ ] `canonical` · `description` · 구조화 데이터(JSON-LD) · 자주 묻는 질문 · `sitemap.xml` · `llms.txt`가 있고, FAQ와 JSON-LD 문구가 같다
 - [ ] 아이폰 Safari · 안드로이드 Chrome 실기기에서 확인했다
 
 **품질**
