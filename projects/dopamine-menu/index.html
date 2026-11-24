@@ -7,7 +7,102 @@
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#121214" media="(prefers-color-scheme: dark)">
   <meta name="color-scheme" content="light dark">
-  <title>딴짓 메뉴 | 숏폼 대신 고르는 도파민 메뉴판</title>
+  <title>딴짓 메뉴 - 숏폼 대신 고르는 도파민 메뉴판 | 휴대폰 없이 쉬는 법 추천</title>
+  <link rel="canonical" href="https://kwonjiwoong.github.io/side-project/projects/dopamine-menu/">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <script type="application/ld+json">
+[
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "딴짓 메뉴",
+      "alternateName": "도파민 메뉴판",
+      "url": "https://kwonjiwoong.github.io/side-project/projects/dopamine-menu/",
+      "description": "숏폼 열기 전에 휴대폰 없이 할 짧은 딴짓 하나를 5분·15분·30분 메뉴판처럼 골라 주고, 다 하면 주간 도장판에 도장을 찍어 주는 웹 서비스.",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": "웹 브라우저 (iOS, Android, Windows, macOS)",
+      "inLanguage": "ko",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "KRW"
+      },
+      "image": "https://kwonjiwoong.github.io/side-project/projects/dopamine-menu/images/og-image.png",
+      "featureList": [
+        "5분·15분·30분 쉬는 시간 고르기",
+        "휴대폰 없이 하는 딴짓 51가지 추천",
+        "하루 3번까지 다른 메뉴로 바꾸기",
+        "딴짓 타이머",
+        "주간 도장판",
+        "가입 없이 기기에만 기록 저장",
+        "기기 다크 모드 지원"
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "딴짓 메뉴는 어떤 서비스인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "숏폼이나 SNS를 열기 전에, 휴대폰 없이 할 수 있는 짧은 딴짓 하나를 메뉴판처럼 골라 주는 웹 서비스예요. 5분 · 15분 · 30분 중 쉴 시간을 고르고 [오늘의 추천 뽑기]를 누르면 돼요."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "어떤 딴짓이 나오나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "몸 움직이기, 손으로 하기, 정리, 바깥, 쉬기 다섯 갈래에서 시간마다 17가지씩, 모두 51가지가 있어요. 예를 들면 ‘창문 열고 바깥 소리 3가지 찾기’ 같은 거예요."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "마음에 안 들면 바꿀 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "[다른 거]를 누르면 하루에 3번까지 바꿀 수 있어요. 고르는 데 오래 걸리면 그것도 휴대폰을 오래 보는 일이 되니까 횟수를 정해 두었어요."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "도장판은 뭔가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "고른 딴짓을 하고 [다 했어요, 도장 찍기]를 누르면 이번 주 도장판에 도장이 찍혀요. 이번 주에 한 일 목록도 함께 볼 수 있어요."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "앱을 설치하거나 가입해야 하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "아니요. 휴대폰이나 컴퓨터 브라우저에서 바로 쓰고, 가입이나 로그인도 없어요."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "기록은 어디에 저장되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "이 휴대폰의 브라우저에만 저장되고 운영자에게 보내지지 않아요. 브라우저 데이터를 지우면 도장판도 사라져요."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "돈이 드나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "무료예요. 나중에 화면 아래쪽 한 곳에 광고가 붙을 수 있어요."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
   <!-- 공유 미리보기 (주소가 바뀌면 og:url · og:image도 함께 고치기) -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="딴짓 메뉴">
@@ -145,6 +240,39 @@
         <p class="board__empty" id="boardEmpty">이번 주 첫 도장을 찍어 보세요</p>
         <h3 class="board__subtitle" id="boardListTitle" hidden>이번 주에 한 일 <span id="boardTotal"></span></h3>
         <ul class="board__list" id="boardList" aria-labelledby="boardListTitle"></ul>
+      </section>
+
+      <!-- 자주 묻는 질문 -->
+      <section class="faq" aria-labelledby="faqTitle">
+        <h2 class="section-title" id="faqTitle">자주 묻는 질문</h2>
+        <details class="faq__item">
+          <summary class="faq__q">딴짓 메뉴는 어떤 서비스인가요?</summary>
+          <p class="faq__a">숏폼이나 SNS를 열기 전에, 휴대폰 없이 할 수 있는 짧은 딴짓 하나를 메뉴판처럼 골라 주는 웹 서비스예요. 5분 · 15분 · 30분 중 쉴 시간을 고르고 [오늘의 추천 뽑기]를 누르면 돼요.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">어떤 딴짓이 나오나요?</summary>
+          <p class="faq__a">몸 움직이기, 손으로 하기, 정리, 바깥, 쉬기 다섯 갈래에서 시간마다 17가지씩, 모두 51가지가 있어요. 예를 들면 ‘창문 열고 바깥 소리 3가지 찾기’ 같은 거예요.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">마음에 안 들면 바꿀 수 있나요?</summary>
+          <p class="faq__a">[다른 거]를 누르면 하루에 3번까지 바꿀 수 있어요. 고르는 데 오래 걸리면 그것도 휴대폰을 오래 보는 일이 되니까 횟수를 정해 두었어요.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">도장판은 뭔가요?</summary>
+          <p class="faq__a">고른 딴짓을 하고 [다 했어요, 도장 찍기]를 누르면 이번 주 도장판에 도장이 찍혀요. 이번 주에 한 일 목록도 함께 볼 수 있어요.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">앱을 설치하거나 가입해야 하나요?</summary>
+          <p class="faq__a">아니요. 휴대폰이나 컴퓨터 브라우저에서 바로 쓰고, 가입이나 로그인도 없어요.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">기록은 어디에 저장되나요?</summary>
+          <p class="faq__a">이 휴대폰의 브라우저에만 저장되고 운영자에게 보내지지 않아요. 브라우저 데이터를 지우면 도장판도 사라져요.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__q">돈이 드나요?</summary>
+          <p class="faq__a">무료예요. 나중에 화면 아래쪽 한 곳에 광고가 붙을 수 있어요.</p>
+        </details>
       </section>
 
       <!-- 광고 (승인 전에는 숨김) -->
