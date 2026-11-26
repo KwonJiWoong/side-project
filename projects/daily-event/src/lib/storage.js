@@ -1,6 +1,6 @@
 /* 기록 저장 (이 기기 브라우저의 localStorage) */
 const KEY = 'daily-event';
-const EMPTY = { v: 1, type: null, days: {}, handoffClosed: false };
+const EMPTY = { v: 1, type: null, days: {}, handoffClosed: false, introSeen: false, theme: 'airmail' };
 
 export function storageAvailable() {
   try {

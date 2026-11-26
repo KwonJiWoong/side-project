@@ -12,6 +12,7 @@
 
   --font-sans: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   --font-deco: 'Gowun Batang', 'Noto Serif KR', serif;
+  --font-pen: 'Nanum Pen Script', 'Gowun Batang', cursive; /* 장식 글자(To · From)에만 */
 
   --fs-sm: 0.9375rem;
   --fs-md: 1.0625rem;
@@ -38,6 +39,19 @@
 html[data-type="student"] { --color-primary: #0e5a60; } /* 청록 7.2:1 */
 html[data-type="worker"] { --color-primary: #24407a; }  /* 남색 9.1:1 */
 html[data-type="free"] { --color-primary: #5a3d8a; }    /* 보라 7.7:1 */
+
+/* 파스텔 테마: 토큰 값만 바꿈 (대비는 표면색 기준 7:1, 바탕색 기준 6:1 이상) */
+html[data-theme="pastel"] {
+  --color-bg: #f6e7e1;          /* 복숭아빛 */
+  --color-surface: #fffbf5;
+  --color-text: #3a2a2e;        /* 바탕 11.3:1 */
+  --color-text-sub: #5f424a;    /* 바탕 7.4:1 */
+  --color-primary: #7f3443;     /* 장미 7.1:1 */
+  --color-line: #9a7e83;        /* UI 요소 3:1 */
+}
+html[data-theme="pastel"][data-type="student"] { --color-primary: #285450; } /* 세이지 7.1:1 */
+html[data-theme="pastel"][data-type="worker"] { --color-primary: #3d4f7d; }  /* 먼지 남색 6.7:1 */
+html[data-theme="pastel"][data-type="free"] { --color-primary: #6b3f72; }    /* 자두 6.8:1 */
 
 /* 기본 */
 html { font-size: 100%; background: var(--color-bg); }

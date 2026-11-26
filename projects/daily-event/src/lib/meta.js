@@ -22,3 +22,9 @@ export const CATEGORY_ICON = {
 export function typeName(id) {
   return TYPES.find((t) => t.id === id)?.name ?? '';
 }
+
+/* 화면 테마 (편지지) */
+export const THEMES = [
+  { id: 'airmail', name: '항공우편', desc: '단정한 남색 편지' },
+  { id: 'pastel', name: '파스텔', desc: '마스킹테이프와 꽃 편지' }
+];

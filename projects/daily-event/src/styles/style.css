@@ -112,6 +112,181 @@
 .handoff__msg:empty { display: none; }
 .handoff__close { position: absolute; top: 0.5rem; right: 0.5rem; background: transparent; }
 
+/* 첫 방문 소개 편지 (화면 전체, 여러 장) */
+.intro {
+  /* 인트로 색: 항공우편 = 남색 바탕, 파스텔 = 복숭아 바탕 */
+  --intro-bg: var(--color-primary);
+  --intro-ink: var(--color-on-primary);
+  --intro-btn: var(--color-surface);
+  --intro-btn-ink: var(--color-primary);
+  --color-focus: var(--color-surface); /* 남색 바탕에서 보이는 포커스 */
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: calc(var(--content-max) + 2 * var(--page-pad));
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin-inline: auto;
+  padding: max(env(safe-area-inset-top), var(--space-md)) var(--page-pad) max(env(safe-area-inset-bottom), var(--space-md));
+  color: var(--intro-ink);
+}
+html[data-theme="pastel"] .intro {
+  --intro-bg: var(--color-bg);
+  --intro-ink: var(--color-primary);
+  --intro-btn: var(--color-primary);
+  --intro-btn-ink: var(--color-on-primary);
+  --color-focus: var(--color-accent);
+}
+body:has(.intro) { background: var(--color-primary); }
+html[data-theme="pastel"] body:has(.intro) { background: var(--color-bg); }
+.intro__top { display: flex; align-items: center; justify-content: space-between; gap: var(--space-sm); min-height: 2.75rem; }
+.intro__brand { display: inline-flex; align-items: center; gap: var(--space-xs); font-size: var(--fs-sm); font-weight: 700; white-space: nowrap; }
+.intro__count { font-size: var(--fs-md); font-weight: 700; font-variant-numeric: tabular-nums; }
+.intro__progress { display: flex; align-items: center; justify-content: center; gap: var(--space-sm); }
+.intro__dots { display: flex; gap: 0.5rem; }
+.intro__dot { width: 0.5rem; height: 0.5rem; background: color-mix(in srgb, var(--intro-ink) 30%, transparent); border-radius: 50%; }
+.intro__dot--read { background: color-mix(in srgb, var(--intro-ink) 65%, transparent); }
+.intro__dot--now { width: 1.5rem; background: var(--intro-ink); border-radius: var(--radius-pill); }
+.intro__actions { display: flex; gap: var(--space-xs); }
+.intro__prev {
+  flex: none;
+  color: var(--intro-ink);
+  background: transparent;
+  border-color: color-mix(in srgb, var(--intro-ink) 70%, transparent);
+}
+.intro__prev:hover { background: color-mix(in srgb, var(--intro-ink) 12%, transparent); }
+.intro__next { flex: 1; white-space: nowrap; color: var(--intro-btn-ink); background: var(--intro-btn); border-color: var(--intro-btn); }
+.intro__next:hover { background: color-mix(in srgb, var(--intro-btn) 88%, var(--intro-btn-ink)); }
+
+/* 테마 고르기 */
+.theme-switch { display: inline-flex; gap: 0.25rem; padding: 0.25rem; background: var(--color-surface); border: 0.0625rem solid var(--color-divider); border-radius: var(--radius-pill); }
+.theme-switch__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 2.75rem;
+  padding: 0 0.875rem;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--color-text-sub);
+  border-radius: var(--radius-pill);
+  transition: background-color 0.15s;
+}
+.theme-switch__btn[aria-pressed="true"] { color: var(--color-on-primary); background: var(--color-primary); }
+.theme-switch__swatch { width: 0.875rem; height: 0.875rem; border: 0.125rem solid var(--color-surface); border-radius: 50%; box-shadow: 0 0 0 0.0625rem var(--color-line); }
+.theme-switch__btn--airmail .theme-switch__swatch { background: linear-gradient(90deg, #98211a 50%, #24407a 50%); }
+.theme-switch__btn--pastel .theme-switch__swatch { background: linear-gradient(90deg, #e8b9bd 50%, #c9d6b8 50%); }
+.intro__theme { border-color: transparent; }
+.intro__brand { min-width: 0; }
+@media (max-width: 399px) {
+  .intro__brand .ico { display: none; }
+  .intro__theme .theme-switch__btn { padding-inline: 0.625rem; }
+}
+
+.letter {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-xl) var(--space-md) var(--space-lg);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: 0 0.75rem 1.5rem color-mix(in srgb, #000 22%, transparent);
+}
+/* 항공 우편 줄무늬 */
+.letter::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 0.5rem;
+  content: '';
+  background: repeating-linear-gradient(90deg, var(--color-accent) 0 1.25rem, transparent 1.25rem 1.75rem, var(--color-primary) 1.75rem 3rem, transparent 3rem 3.5rem);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.letter--ready { cursor: pointer; }
+.letter__to { padding-right: 3.5rem; font-family: var(--font-deco); font-size: var(--fs-lg); font-weight: 700; color: var(--color-text-sub); }
+.letter__body { display: grid; flex: 1; align-content: center; gap: var(--space-md); animation: letter-in 0.3s ease-out; }
+@keyframes letter-in {
+  from { opacity: 0; transform: translateX(0.75rem); }
+  to { opacity: 1; transform: none; }
+}
+.letter__head { padding-right: 2.5rem; font-family: var(--font-deco); font-size: clamp(1.625rem, 7vw, 2rem); font-weight: 700; line-height: 1.4; }
+.letter__text { font-size: clamp(1.25rem, 5.2vw, 1.375rem); font-weight: 500; line-height: 1.75; }
+.letter__rest { visibility: hidden; }
+/* 깜빡이지 않는 고정 커서 */
+.letter__caret {
+  display: inline-block;
+  width: 0.125rem;
+  height: 1.1em;
+  margin-inline: 0.0625rem;
+  vertical-align: text-bottom;
+  background: var(--color-primary);
+}
+.letter__from {
+  align-self: flex-end;
+  font-family: var(--font-deco);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  visibility: hidden;
+}
+.letter__from--show { visibility: visible; }
+.letter__stamp {
+  position: absolute;
+  top: 1.5rem;
+  right: var(--space-md);
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 3.25rem;
+  color: var(--color-primary);
+  background: radial-gradient(circle at 0.25rem 0.25rem, transparent 0.15625rem, var(--color-soft) 0.1875rem) -0.25rem -0.25rem / 0.5rem 0.5rem;
+  transform: rotate(5deg);
+}
+
+/* 파스텔 편지지: 줄 · 마스킹테이프 · 말린 꽃 */
+html[data-theme="pastel"] .letter {
+  background: var(--color-surface) repeating-linear-gradient(transparent 0 2.1875rem, #f0dcd6 2.1875rem 2.25rem);
+  border-radius: 0.375rem;
+  box-shadow: 0 0.625rem 1.5rem color-mix(in srgb, var(--color-primary) 16%, transparent);
+}
+html[data-theme="pastel"] .letter::before { display: none; }
+html[data-theme="pastel"] .letter__to,
+html[data-theme="pastel"] .letter__from { font-family: var(--font-pen); font-size: 2.125rem; font-weight: 400; line-height: 1; color: var(--color-primary); }
+html[data-theme="pastel"] .letter__text { padding-right: 3.5rem; }
+.letter__tape {
+  position: absolute;
+  top: -0.625rem;
+  width: 6rem;
+  height: 1.875rem;
+  opacity: 0.85;
+  background-image: radial-gradient(circle, rgb(255 255 255 / 0.55) 0.125rem, transparent 0.15625rem);
+  background-size: 0.75rem 0.75rem;
+}
+.letter__tape--left { left: -0.875rem; background-color: #e8b9bd; transform: rotate(-12deg); }
+.letter__tape--right { right: -0.5rem; background-color: #c9d6b8; transform: rotate(10deg); }
+.letter__flower { position: absolute; right: 0.375rem; bottom: 0.625rem; width: 6.5rem; height: auto; pointer-events: none; }
+.letter__flower-stem { fill: none; stroke: #7d8b6a; stroke-width: 2.5; stroke-linecap: round; }
+.letter__flower-petal { fill: #e9a8a6; }
+.letter__flower-core { fill: #f3d27a; }
+.letter__flower-berry { fill: #c9a0c8; }
+
+/* 파스텔: 초대장에도 마스킹테이프 */
+html[data-theme="pastel"] .invite { position: relative; }
+html[data-theme="pastel"] .invite::before {
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  z-index: 1;
+  width: 5.5rem;
+  height: 1.625rem;
+  content: '';
+  background: #e8b9bd radial-gradient(circle, rgb(255 255 255 / 0.55) 0.125rem, transparent 0.15625rem) 0 0 / 0.75rem 0.75rem;
+  opacity: 0.85;
+  transform: translateX(-50%) rotate(-3deg);
+}
+
 /* 유형 고르기 */
 .picker { display: grid; gap: var(--space-md); padding-top: var(--space-sm); }
 .picker__eyebrow { font-size: var(--fs-sm); font-weight: 700; letter-spacing: 0.04em; color: var(--color-primary); }
@@ -120,6 +295,7 @@
 .picker__form { display: grid; gap: var(--space-md); }
 .picker__group { display: grid; gap: var(--space-sm); border: 0; }
 .picker__legend { margin-bottom: var(--space-sm); font-size: var(--fs-sm); font-weight: 700; color: var(--color-text-sub); }
+.picker__theme { display: grid; justify-items: start; }
 .picker__actions { display: grid; gap: var(--space-xs); padding-top: var(--space-xs); }
 
 .type-card {

@@ -39,7 +39,9 @@ daily-event/
 │  ├─ components/
 │  │  ├─ Header.jsx        사이트 이름 + 유형 버튼
 │  │  ├─ Tabs.jsx          오늘의 초대장 / 이벤트 달력
-│  │  ├─ TypePicker.jsx    유형 고르기 (fieldset + 라디오 카드)
+│  │  ├─ Intro.jsx         첫 방문 소개 편지 5장 (화면 전체, 타자 효과)
+│  │  ├─ ThemeSwitch.jsx   테마 고르기 (항공우편 / 파스텔)
+│  │  ├─ TypePicker.jsx    유형 고르기 (fieldset + 라디오 카드) + 테마
 │  │  ├─ TodayPanel.jsx    봉투 → 초대장 → 도전 중(소인 · 한 줄 기록)
 │  │  ├─ Envelope.jsx      봉투 그림
 │  │  ├─ InviteCard.jsx    초대장 카드
@@ -78,6 +80,8 @@ daily-event/
   v: 1,
   type: 'worker',                // student | worker | free | null(첫 방문)
   handoffClosed: false,          // PC 안내 카드를 닫았는지
+  introSeen: true,               // 소개 편지를 끝까지 봤는지
+  theme: 'airmail',              // airmail | pastel
   days: {
     '2026-11-24': {
       type: 'worker',            // 이 초대장을 받을 때의 유형
@@ -92,6 +96,7 @@ daily-event/
 
 | 화면 | 판단 기준 |
 |---|---|
+| 소개 편지 (화면 전체) | `type`도 `introSeen`도 없음 |
 | 유형 고르기 | `type`이 없음, 또는 헤더 버튼을 누름(`picking`) |
 | 봉투 | 오늘 기록이 없거나 `opened`가 아님 |
 | 초대장 | `opened` && !`accepted` |

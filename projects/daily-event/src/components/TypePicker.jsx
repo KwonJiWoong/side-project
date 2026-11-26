@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import Icon from './Icon.jsx';
+import ThemeSwitch from './ThemeSwitch.jsx';
 import { TYPES } from '../lib/meta.js';
 
 /* 유형 고르기 (첫 방문 · 헤더의 바꾸기) */
-export default function TypePicker({ headingRef, current, onPreview, onChoose, onCancel }) {
+export default function TypePicker({ headingRef, current, theme, onTheme, onPreview, onChoose, onCancel }) {
   const [picked, setPicked] = useState(current ?? null);
   const [error, setError] = useState(false);
 
@@ -57,6 +58,11 @@ export default function TypePicker({ headingRef, current, onPreview, onChoose, o
             </label>
           ))}
         </fieldset>
+
+        <div className="picker__theme">
+          <p className="picker__legend" id="themeLabel">편지지 테마</p>
+          <ThemeSwitch theme={theme} onTheme={onTheme} />
+        </div>
 
         {error && (
           <p className="notice notice--warn" id="pickerError" role="alert">

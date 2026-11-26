@@ -10,6 +10,7 @@ import Faq from './components/Faq.jsx';
 import Footer from './components/Footer.jsx';
 import Icon from './components/Icon.jsx';
 import TestBar from './components/TestBar.jsx';
+import Intro from './components/Intro.jsx';
 import { loadData, saveData, storageAvailable } from './lib/storage.js';
 import { pickEvent } from './lib/pick.js';
 import { addDays, toKey } from './lib/date.js';
@@ -94,6 +95,15 @@ export default function App() {
     setTab('today');
   };
 
+  /* 화면 테마: html[data-theme] */
+  const theme = data.theme === 'pastel' ? 'pastel' : 'airmail';
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = theme === 'pastel' ? '#f6e7e1' : '#f7f3ea';
+  }, [theme]);
+  const chooseTheme = (id) => setData((prev) => ({ ...prev, theme: id }));
+
   /* 유형 색: html[data-type] (고르는 중에는 미리보기 색) */
   const shownType = picking ? preview ?? data.type : data.type;
   useEffect(() => {
@@ -102,15 +112,23 @@ export default function App() {
     else delete root.dataset.type;
   }, [shownType]);
 
+  const showIntro = !data.type && !data.introSeen;
+
   /* 화면이 바뀌면 그 화면 제목으로 포커스 */
   useEffect(() => {
     if (!moved.current) return;
     headingRef.current?.focus();
-  }, [tab, picking]);
+  }, [tab, picking, showIntro]);
 
   const go = (next) => {
     moved.current = true;
     next();
+  };
+
+  /* 첫 방문: 소개 편지 → 유형 고르기 */
+  const startFromIntro = () => {
+    setData((prev) => ({ ...prev, introSeen: true }));
+    go(() => setPicking(true));
   };
 
   const record = data.days[today];
@@ -171,6 +189,9 @@ export default function App() {
   const number = Object.values(data.days).filter((r) => r.opened).length || 1;
   const todayEvent = record?.eventId ? events.find((ev) => ev.id === record.eventId) : null;
 
+  /* 첫 방문: 화면 전체를 덮는 소개 편지 */
+  if (showIntro) return <Intro headingRef={headingRef} onStart={startFromIntro} theme={theme} onTheme={chooseTheme} />;
+
   return (
     <>
       <Header
@@ -207,7 +228,7 @@ export default function App() {
                 setNotice('오늘 기록을 지웠어요. 봉투부터 다시 시작해요.');
               }}
               onResetAll={() => {
-                setData({ v: 1, type: null, days: {}, handoffClosed: false });
+                setData((prev) => ({ v: 1, type: null, days: {}, handoffClosed: false, introSeen: false, theme: prev.theme }));
                 changeOffset(0);
                 setPicking(true);
                 setNotice('모든 기록을 지웠어요.');
@@ -215,12 +236,14 @@ export default function App() {
             />
           )}
 
-          {!picking && !data.handoffClosed && <HandoffCard onClose={closeHandoff} />}
+          {!picking && !showIntro && !data.handoffClosed && <HandoffCard onClose={closeHandoff} />}
 
           {picking ? (
             <TypePicker
               headingRef={headingRef}
               current={data.type}
+              theme={theme}
+              onTheme={chooseTheme}
               onPreview={setPreview}
               onChoose={chooseType}
               onCancel={() => {
@@ -255,7 +278,7 @@ export default function App() {
             />
           )}
 
-          {!picking && <AdSlot name="bottom" />}
+          {!picking && !showIntro && <AdSlot name="bottom" />}
           <Faq />
           <p className="sr-only" role="status">{notice}</p>
         </div>
