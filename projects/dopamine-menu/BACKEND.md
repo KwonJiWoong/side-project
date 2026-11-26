@@ -83,7 +83,7 @@
 - [ ] HTML의 CSS · JS 링크에 `?v=` 붙이기 (지금은 없음. Pages에선 필요 없어서 안 붙였다)
 - [ ] `scripts/deploy-dopamine-menu.sh` 만들기 (`deploy-pill-check.sh`를 본떠서). **`.md` 파일은 올리지 않는다**
 - [ ] 도메인 루트에 `ads.txt`(실제 게시자 ID), `robots.txt`, `sitemap.xml`, `404.html`
-- [ ] `index.html`에 `canonical`, 공유 미리보기(`og:*`) 넣기
+- [ ] `index.html`의 `canonical`, `og:url`, `og:image` 주소를 새 도메인으로 바꾸기
 - [ ] `js/ads.js`의 `client` · `domain` · `slots.bottom` 채우기
 - [ ] `privacy.html` 3번의 "GitHub"를 실제 호스팅 업체(Amazon Web Services)로 고치고 시행일 바꾸기
 
