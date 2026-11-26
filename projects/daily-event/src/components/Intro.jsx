@@ -94,7 +94,7 @@ export default function Intro({ headingRef, onStart, theme, onTheme }) {
           <Icon name="i-mail" />
           소소한 일상의 이벤트
         </p>
-        <ThemeSwitch theme={theme} onTheme={onTheme} className="intro__theme" />
+        {onTheme && <ThemeSwitch theme={theme} onTheme={onTheme} className="intro__theme" />}
       </div>
 
       <article className={`letter${done ? ' letter--ready' : ''}`} aria-label={`편지 ${page + 1}장`} onClick={onLetterTap}>

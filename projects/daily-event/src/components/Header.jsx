@@ -14,7 +14,7 @@ export default function Header({ type, picking, onChangeType }) {
           <button type="button" className="header__type" onClick={onChangeType}>
             <Icon name="i-edit" />
             {typeName(type)}
-            <span className="sr-only"> · 내 하루 · 테마 바꾸기</span>
+            <span className="sr-only"> · 내 하루 바꾸기</span>
           </button>
         )}
       </div>

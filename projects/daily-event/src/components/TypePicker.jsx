@@ -59,10 +59,12 @@ export default function TypePicker({ headingRef, current, theme, onTheme, onPrev
           ))}
         </fieldset>
 
-        <div className="picker__theme">
-          <p className="picker__legend" id="themeLabel">편지지 테마</p>
-          <ThemeSwitch theme={theme} onTheme={onTheme} />
-        </div>
+        {onTheme && (
+          <div className="picker__theme">
+            <p className="picker__legend" id="themeLabel">편지지 테마</p>
+            <ThemeSwitch theme={theme} onTheme={onTheme} />
+          </div>
+        )}
 
         {error && (
           <p className="notice notice--warn" id="pickerError" role="alert">

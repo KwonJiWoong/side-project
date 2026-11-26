@@ -180,7 +180,7 @@ html[data-theme="pastel"] body:has(.intro) { background: var(--color-bg); }
 .intro__theme { border-color: transparent; }
 .intro__brand { min-width: 0; }
 @media (max-width: 399px) {
-  .intro__brand .ico { display: none; }
+  .intro__top:has(.intro__theme) .intro__brand .ico { display: none; }
   .intro__theme .theme-switch__btn { padding-inline: 0.625rem; }
 }
 

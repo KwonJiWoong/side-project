@@ -45,9 +45,12 @@
 - 다크 모드는 MVP에서 하지 않는다
 
 ### 테마 2가지 (편지지)
-`html[data-theme="airmail|pastel"]`에서 **토큰 값만** 바꾼다. 인트로 · 유형 고르기 화면에서 고르고, 바로 저장된다.
+`html[data-theme="airmail|pastel"]`에서 **토큰 값만** 바꾼다.
 
-| 토큰 | 항공우편 `airmail` (기본) | 파스텔 `pastel` |
+- **지금은 파스텔만 쓴다.** 항공우편은 코드에 남겨 두고 숨김 (`src/config.js`의 `THEME.switchable: false`)
+- `switchable: true`로 바꾸면 인트로 · 유형 고르기 화면에 테마 고르기가 나타나고, 고른 값이 저장된다
+
+| 토큰 | 항공우편 `airmail` (숨김) | 파스텔 `pastel` (기본) |
 |---|---|---|
 | `--color-bg` | `#f7f3ea` 크림 | `#f6e7e1` 복숭아 |
 | `--color-surface` | `#fffdf8` | `#fffbf5` |

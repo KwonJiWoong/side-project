@@ -12,6 +12,7 @@ import Icon from './components/Icon.jsx';
 import TestBar from './components/TestBar.jsx';
 import Intro from './components/Intro.jsx';
 import { loadData, saveData, storageAvailable } from './lib/storage.js';
+import { THEME } from './config.js';
 import { pickEvent } from './lib/pick.js';
 import { addDays, toKey } from './lib/date.js';
 
@@ -96,13 +97,13 @@ export default function App() {
   };
 
   /* 화면 테마: html[data-theme] */
-  const theme = data.theme === 'pastel' ? 'pastel' : 'airmail';
+  const theme = THEME.switchable && ['pastel', 'airmail'].includes(data.theme) ? data.theme : THEME.default;
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = theme === 'pastel' ? '#f6e7e1' : '#f7f3ea';
+    if (meta) meta.content = theme === 'pastel' ? '#f6e7e1' : '#24407a';
   }, [theme]);
-  const chooseTheme = (id) => setData((prev) => ({ ...prev, theme: id }));
+  const chooseTheme = THEME.switchable ? (id) => setData((prev) => ({ ...prev, theme: id })) : null;
 
   /* 유형 색: html[data-type] (고르는 중에는 미리보기 색) */
   const shownType = picking ? preview ?? data.type : data.type;

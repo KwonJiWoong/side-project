@@ -13,3 +13,9 @@ export const ADS = {
     bottom: ''  /* 애드센스 '디스플레이 광고' 단위 ID */
   }
 };
+
+/* 화면 테마 — 지금은 파스텔만 보임. 항공우편을 다시 열려면 switchable: true */
+export const THEME = {
+  default: 'pastel',  /* 'pastel' | 'airmail' */
+  switchable: false   /* true면 소개 편지 · 유형 고르기에 테마 고르기가 나타남 */
+};
