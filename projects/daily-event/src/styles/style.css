@@ -385,6 +385,11 @@ html[data-theme="pastel"] .invite::before {
 .envelope__stamp { fill: var(--color-soft); }
 .envelope__stamp-line { fill: none; stroke: var(--color-primary); stroke-width: 2; stroke-linecap: round; }
 .envelope__postmark { fill: none; stroke: #98211a; stroke-width: 1.5; opacity: 0.55; }
+/* 파스텔 봉투 */
+html[data-theme="pastel"] .envelope__body { fill: #fffbf5; stroke: #d9b3b6; }
+html[data-theme="pastel"] .envelope__fold { stroke: #d9b3b6; }
+html[data-theme="pastel"] .envelope__flap-shape { fill: #f9ece8; stroke: #d9b3b6; }
+html[data-theme="pastel"] .envelope__stamp-edge { stroke: #d9b3b6; }
 .envelope--opening .envelope__flap { transform: scaleY(-1); }
 .envelope--opening .envelope__seal,
 .envelope--opening .envelope__seal-ring,
