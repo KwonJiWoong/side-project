@@ -22,6 +22,8 @@
 | S3 버킷 | `tinyevent-kr-site-843012954327` (**시드니 `ap-southeast-2`**) |
 | CloudFront | `EDYZ0WUAEAW9V` (`d3uh08kg7phe8.cloudfront.net`), OAC `E306CHNDATTFJI` |
 | WAF | `tinyevent-kr-waf` — IP당 5분 1000회 넘으면 차단 |
+| CloudFront 함수 | `tinyevent-kr-www-redirect` — `www.tinyevent.kr` → `tinyevent.kr` 301 |
+| 오류 화면 | 403 · 404 → `/404.html` (응답 코드 404) |
 | CodeBuild | `tinyevent-kr-deploy` (시드니), 역할 `tinyevent-kr-codebuild-role` (이 버킷 쓰기 + 캐시 비우기만) |
 
 - 조직 SCP가 지역을 제한해서 S3 · CodeBuild는 **시드니만** 된다 (서울 불가). CloudFront가 앞에 있어 속도 차이는 거의 없음
