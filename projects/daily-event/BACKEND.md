@@ -9,6 +9,7 @@
 | 배포 | AWS CodeBuild `tinyevent-kr-deploy`가 공개 저장소를 받아 `scripts/deploy-daily-event.sh` 실행 (GitHub Actions에 AWS 권한 주지 않음) |
 | GitHub Pages | 쓰지 않음. 저장소의 이 폴더는 빌드 전 원본이라 Pages 주소로는 열리지 않음 |
 | 광고 | 도메인 맨 위 `/ads.txt` (빌드하면 `dist/ads.txt`) |
+| 방문 통계 | Cloudflare Web Analytics (쿠키 없음, `index.html` · `privacy.html` `<head>`). 대시보드: dash.cloudflare.com → Web Analytics |
 
 - 사이트를 도메인 **맨 위**(`https://도메인/`)에 둔다. `index.html`의 파비콘·manifest 경로가 `/`로 시작한다
 - CloudFront: 자동 압축 켜기, 인증서 ACM `us-east-1`. 한 페이지 서비스라 다른 주소로 돌려보내는 설정은 필요 없음
