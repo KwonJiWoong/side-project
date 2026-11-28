@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'node:path';
+import { readFileSync } from 'node:fs';
 import { FAQ } from './src/data/faq.js';
 import { SITE } from './src/config.js';
 
@@ -46,6 +47,40 @@ function seoPlugin() {
   };
 }
 
+/* events.html: public/data/events.json으로 이벤트 목록을 글로 채움 (검색·광고 검토용) */
+function eventsPagePlugin() {
+  const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const GENERIC = { morning: '아침', day: '낮', evening: '저녁' };
+  return {
+    name: 'daily-event-events-page',
+    transformIndexHtml(html) {
+      if (!html.includes('<!-- EVENTS_LIST -->')) return html;
+      const data = JSON.parse(readFileSync(resolve(import.meta.dirname, 'public/data/events.json'), 'utf-8'));
+      const { events, meta } = data;
+      const sections = meta.categories.map((cat, i) => {
+        const items = events.filter((e) => e.category === cat).map((e) => {
+          const all = e.types.length === Object.keys(meta.types).length;
+          const who = all ? '모든 하루' : e.types.map((t) => meta.types[t]).join(' · ');
+          const when = all ? GENERIC[e.slot] : meta.slots[e.types[0]][e.slot];
+          return `          <li class="event-list__item">
+            <h3 class="event-list__title">${esc(e.title)}</h3>
+            <p class="event-list__desc">${esc(e.desc)}</p>
+            <p class="event-list__tags"><span class="event-list__tag">${esc(who)}</span><span class="event-list__tag">${esc(when)}</span><span class="event-list__tag">${esc(e.level)}</span></p>
+          </li>`;
+        }).join('\n');
+        const count = events.filter((e) => e.category === cat).length;
+        return `      <section class="doc__section" aria-labelledby="cat${i}">
+        <h2 class="doc__heading" id="cat${i}">${esc(cat)} <span class="doc__count">${count}가지</span></h2>
+        <ul class="event-list">
+${items}
+        </ul>
+      </section>`;
+      }).join('\n\n');
+      return html.replace('<!-- EVENTS_LIST -->', sections).replace('<!-- EVENTS_COUNT -->', String(events.length));
+    }
+  };
+}
+
 /* 404.html은 아무 주소에서나 열리므로 css · 그림 경로를 맨 위(/) 기준으로 바꿈 */
 function notFoundPathPlugin() {
   return {
@@ -62,12 +97,15 @@ function notFoundPathPlugin() {
 
 export default defineConfig({
   base: './',
-  plugins: [react(), seoPlugin(), notFoundPathPlugin()],
+  plugins: [react(), eventsPagePlugin(), seoPlugin(), notFoundPathPlugin()],
   build: {
     rollupOptions: {
       input: {
         main: resolve(import.meta.dirname, 'index.html'),
         privacy: resolve(import.meta.dirname, 'privacy.html'),
+        guide: resolve(import.meta.dirname, 'guide.html'),
+        events: resolve(import.meta.dirname, 'events.html'),
+        about: resolve(import.meta.dirname, 'about.html'),
         notfound: resolve(import.meta.dirname, '404.html')
       }
     }

@@ -31,6 +31,9 @@ npm run qr        # SITE.url로 public/images/qr.svg 만들기 (도메인 정한
 daily-event/
 ├─ index.html              뼈대: <head>(SEO · 공유 미리보기), 아이콘 모음(<symbol>), #root
 ├─ privacy.html            개인정보 처리방침 (React 없음, CSS만)
+├─ guide.html · about.html  이용 방법 · 만든 이유 (React 없음, 글 페이지)
+├─ events.html             이벤트 모아보기 — 빌드할 때 events.json으로 목록을 채움 (vite.config.js eventsPagePlugin)
+├─ 404.html                없는 주소 안내 (CloudFront 403·404 → 이 페이지)
 ├─ vite.config.js          빌드 설정 + JSON-LD 넣기, __SITE_URL__ 채우기
 ├─ src/
 │  ├─ main.jsx             React 시작, CSS 불러오기
@@ -158,3 +161,4 @@ daily-event/
 - 자주 묻는 질문은 `src/data/faq.js` 하나만 고치면 화면과 JSON-LD가 같이 바뀐다
 - 규칙(교체 횟수, 7일, 이벤트 수)이 바뀌면 `faq.js` · `public/llms.txt` · `index.html` description · `vite.config.js` featureList를 함께 고친다
 - 저장 항목이 바뀌면 `privacy.html` 2장 표도 고친다
+- 글 페이지를 더하면 `vite.config.js` input, 푸터 링크(`Footer.jsx`와 각 정적 페이지), `public/sitemap.xml`, `public/llms.txt`를 같이 고친다
