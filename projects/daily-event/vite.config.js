@@ -46,14 +46,29 @@ function seoPlugin() {
   };
 }
 
+/* 404.html은 아무 주소에서나 열리므로 css · 그림 경로를 맨 위(/) 기준으로 바꿈 */
+function notFoundPathPlugin() {
+  return {
+    name: 'daily-event-404-path',
+    generateBundle: {
+      order: 'post',
+      handler(_, bundle) {
+        const page = bundle['404.html'];
+        if (page) page.source = String(page.source).replaceAll('"./', '"/');
+      }
+    }
+  };
+}
+
 export default defineConfig({
   base: './',
-  plugins: [react(), seoPlugin()],
+  plugins: [react(), seoPlugin(), notFoundPathPlugin()],
   build: {
     rollupOptions: {
       input: {
         main: resolve(import.meta.dirname, 'index.html'),
-        privacy: resolve(import.meta.dirname, 'privacy.html')
+        privacy: resolve(import.meta.dirname, 'privacy.html'),
+        notfound: resolve(import.meta.dirname, '404.html')
       }
     }
   }
