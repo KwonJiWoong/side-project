@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# 도메인이 정해지면 주소를 채운다
-# Sitemap: https://도메인/sitemap.xml
+Sitemap: https://tinyevent.kr/sitemap.xml

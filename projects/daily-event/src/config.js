@@ -2,7 +2,7 @@
 export const SITE = {
   name: '소소한 일상의 이벤트',
   /* 예: 'https://example.com/' (끝에 / 포함). 비어 있으면 canonical·og:url·QR을 만들지 않음 */
-  url: ''
+  url: 'https://tinyevent.kr/'
 };
 
 /* 광고 (구글 애드센스) — 셋 다 채우고, 사이트 주소가 domain일 때만 광고 자리가 보임 */
