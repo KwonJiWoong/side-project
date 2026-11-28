@@ -743,3 +743,4 @@ html[data-theme="pastel"] .envelope__stamp-edge { stroke: #d9b3b6; }
 /* 푸터 안내 링크 */
 .footer__list { display: flex; flex-wrap: wrap; justify-content: center; column-gap: var(--space-md); }
 .footer__link[aria-current="page"] { color: var(--color-primary); }
+.event-list__intro { margin-bottom: var(--space-sm); color: var(--color-text-sub); }

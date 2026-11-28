@@ -51,6 +51,14 @@ function seoPlugin() {
 function eventsPagePlugin() {
   const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   const GENERIC = { morning: '아침', day: '낮', evening: '저녁' };
+  /* 갈래마다 한 줄 소개 (검색에 쓰일 말을 자연스럽게) */
+  const INTRO = {
+    '길 바꾸기': '매일 같은 출근길 · 등굣길이 지겨울 때. 한 정거장 먼저 내려 걷기, 처음 보는 골목으로 돌아가기 같은 작은 모험이에요.',
+    '먹어보기': '늘 먹던 점심 메뉴 대신 한 번도 안 먹어 본 것 하나. 돈이 거의 들지 않는 소확행이에요.',
+    '관찰하기': '무심코 지나치던 간판, 하늘, 꽃을 한 번 더 바라보기. 익숙한 산책길이 새로워지는 시간이에요.',
+    '말 걸기': '먼저 건네는 인사, 동료에게 짧은 감사, 단골 가게 사장님께 한마디. 살짝 용기가 필요하지만 하루가 따뜻해져요.',
+    '기록하기': '퇴근길 노을 한 장, 오늘 좋았던 순간 한 줄. 혼자서도 해 볼 만한 작은 기록이에요.'
+  };
   return {
     name: 'daily-event-events-page',
     transformIndexHtml(html) {
@@ -71,7 +79,7 @@ function eventsPagePlugin() {
         const count = events.filter((e) => e.category === cat).length;
         return `      <section class="doc__section" aria-labelledby="cat${i}">
         <h2 class="doc__heading" id="cat${i}">${esc(cat)} <span class="doc__count">${count}가지</span></h2>
-        <ul class="event-list">
+${INTRO[cat] ? `        <p class="doc__text event-list__intro">${esc(INTRO[cat])}</p>\n` : ''}        <ul class="event-list">
 ${items}
         </ul>
       </section>`;
