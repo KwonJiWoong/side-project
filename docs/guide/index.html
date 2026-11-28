@@ -99,7 +99,7 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 <li class="doc__item"><strong class="doc__strong">즉시 알려 준다.</strong> 누르거나 제출하면 결과를 바로 보여 준다.</li>
 <li class="doc__item"><strong class="doc__strong">되돌릴 수 없는 일은 한 번 더 묻는다.</strong></li>
 <li class="doc__item"><strong class="doc__strong">표준을 먼저 쓴다.</strong> 직접 만들기 전에 HTML 기본 요소(<code class="doc__inline-code">button</code>, <code class="doc__inline-code">details</code>, <code class="doc__inline-code">dialog</code>, <code class="doc__inline-code">form</code>)로 되는지 확인한다.</li>
-<li class="doc__item"><strong class="doc__strong">프레임워크 없이.</strong> HTML5 / CSS3 / Vanilla JS. 외부 라이브러리는 꼭 필요할 때만, CDN 1~2개 이내로 쓴다. 지금은 글꼴 CDN(Pretendard, 필요하면 꾸밈 글꼴 1개)만 쓴다.</li>
+<li class="doc__item"><strong class="doc__strong">프레임워크 없이.</strong> HTML5 / CSS3 / Vanilla JS. 외부 라이브러리는 꼭 필요할 때만, CDN 1~2개 이내로 쓴다. 지금은 글꼴 CDN(Pretendard, 필요하면 꾸밈 글꼴 1개)만 쓴다. (예외: <code class="doc__inline-code">daily-event</code>는 Vite + React로 빌드한다. 마크업·CSS 규칙은 같다)</li>
 </ol>
 <h3 class="doc__h3" id="사이트-유형" tabindex="-1">0-1. 사이트 유형</h3>
 <p class="doc__text">사이트마다 <strong class="doc__strong">대상</strong>과 <strong class="doc__strong">운영 방식</strong>을 정하고, 아래 표와 <code class="doc__inline-code">CLAUDE.md</code> 폴더 구조에 적는다.</p>
@@ -184,6 +184,12 @@ CSS 세부 규칙은 <a class="doc__link" href="css.html">CSS 가이드</a>에 �
 </tr>
 <tr>
 <td class="doc__td">자라는 시간 <code class="doc__inline-code">phone-timer</code></td>
+<td class="doc__td">일반</td>
+<td class="doc__td">실서비스</td>
+<td class="doc__td">없음</td>
+</tr>
+<tr>
+<td class="doc__td">소소한 일상의 이벤트 <code class="doc__inline-code">daily-event</code> (Vite + React)</td>
 <td class="doc__td">일반</td>
 <td class="doc__td">실서비스</td>
 <td class="doc__td">없음</td>
