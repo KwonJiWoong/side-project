@@ -3,7 +3,8 @@
 # - Vite가 css · js 파일 이름에 해시를 붙이므로 assets/는 1년, 그림은 하루, 나머지는 매번 새로 받게
 #
 # 쓰는 법:
-#   BUCKET=내-버킷-이름 DISTRIBUTION_ID=E123ABC ./scripts/deploy-daily-event.sh
+#   BUCKET=tinyevent-kr-site-843012954327 DISTRIBUTION_ID=EDYZ0WUAEAW9V ./scripts/deploy-daily-event.sh
+#   (버킷은 시드니 ap-southeast-2. AWS CodeBuild "tinyevent-kr-deploy"도 이 스크립트를 실행함)
 #   (먼저 aws configure 로 로그인)
 set -euo pipefail
 

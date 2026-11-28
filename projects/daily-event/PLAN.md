@@ -77,6 +77,7 @@ CODING_GUIDE 8-2 기준. 한 화면에 1개, 콘텐츠 아래.
 - [x] 디자인 가이드 (`DESIGN.md`) · 시안
 - [x] React 화면 · 로직 · 예외 상태 · 개인정보 처리방침 · manifest · FAQ/JSON-LD · llms.txt
 - [x] 도메인 `tinyevent.kr` (가비아) · `SITE.url` · QR · `sitemap.xml` · `robots.txt`
-- [ ] Route 53 호스팅 영역 · 가비아 네임서버 변경 · 인증서 · S3 · CloudFront · 배포
+- [x] Route 53 호스팅 영역 · 가비아 네임서버 변경 · 인증서 · S3 · CloudFront · WAF · 배포 (CodeBuild)
+- [ ] Google Search Console · 네이버 서치어드바이저 sitemap 제출
 - [ ] 애드센스 승인 뒤 `ADS` 채우기, `ads.txt` 게시자 ID
 - [ ] 아이폰 Safari · 안드로이드 Chrome 실기기 확인
